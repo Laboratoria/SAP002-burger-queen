@@ -1,7 +1,6 @@
 {
   "name": "functions",
   "description": "Cloud Functions for Firebase",
-  "private": true,
   "scripts": {
     "lint": "eslint .",
     "serve": "firebase serve --only functions",
@@ -10,12 +9,17 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
+  "engines": {
+    "node": "8"
+  },
   "dependencies": {
-    "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.0.3"
+    "firebase-admin": "~7.0.0",
+    "firebase-functions": "^2.3.0"
   },
   "devDependencies": {
-    "eslint": "^4.12.0",
-    "eslint-plugin-promise": "^3.6.0"
-  }
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
 }
