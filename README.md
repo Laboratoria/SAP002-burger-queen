@@ -1,4 +1,4 @@
-# Burger Queen
+# Burger Queen 2
 
 ## Índice
 
