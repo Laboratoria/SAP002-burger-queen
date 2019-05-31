@@ -12,6 +12,17 @@
 
 ***
 
+
+* [Resumo do Projeto](#Resumo-do-Projeto)
+* [Linguagem de programação](#Linguagem-de-programação)
+* [Autoria](#Autoria)
+* [Definição do Produto](#Definição-do-produto)
+* [Personas](#Personas)
+* [Organização](#Organização)
+* [Protótipo](#Protótipo)
+* [Desenho da interface do Usuário](#Desenho-da-interface-do-Usuário)
+* [Teste de Usabilidade](#Teste-de-usabilidade)
+
 ## 1. Preâmbulo
 
 [React](https://reactjs.org/), [Angular](https://angular.io/) e
