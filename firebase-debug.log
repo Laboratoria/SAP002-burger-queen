@@ -1,0 +1,17 @@
+[debug] [2019-05-30T16:08:20.939Z] ----------------------------------------------------------------------
+[debug] [2019-05-30T16:08:20.943Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Mariana\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js use --add
+[debug] [2019-05-30T16:08:20.944Z] CLI Version:   6.10.0
+[debug] [2019-05-30T16:08:20.944Z] Platform:      win32
+[debug] [2019-05-30T16:08:20.944Z] Node Version:  v10.15.3
+[debug] [2019-05-30T16:08:20.950Z] Time:          Thu May 30 2019 13:08:20 GMT-0300 (GMT-03:00)
+[debug] [2019-05-30T16:08:20.950Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-05-30T16:08:20.969Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-05-30T16:08:20.970Z] > authorizing via signed-in user
+[debug] [2019-05-30T16:08:20.974Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-05-30T16:08:20.974Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-05-30T16:08:21.395Z] <<< HTTP RESPONSE 200
+[debug] [2019-05-30T16:08:21.448Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ 
+[debug] [2019-05-30T16:08:22.847Z] <<< HTTP RESPONSE 200
