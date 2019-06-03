@@ -1,9 +1,9 @@
 import React from 'react';
 import firebase from '../firebase-config';
+import Data from '../data.json';
 import '../components/Button.css';
 import ButtonMenu from '../components/ButtonMenu';
 import Button from '../components/Button';
-import Data from '../data';
 import { faCoffee, faGlassWhiskey, faHamburger, faCertificate } from '@fortawesome/free-solid-svg-icons';
 // import { userInfo } from 'os';
 
