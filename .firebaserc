@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "<nome-do-seu-projeto>"
+    "default": "burger-queen-db",
+    "burger-queen-db": "burger-queen-db"
   }
 }

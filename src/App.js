@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import firebase from "./firebaseConfig";
+import firebase from "./firebase-config";
 class App extends React.Component {
   constructor(props) {
     super(props);
