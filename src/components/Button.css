@@ -1,0 +1,19 @@
+.button {
+  background-color: yellow;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+} 
+
+.buttonMenu {
+  width: 200px;
+  height: 60px;
+} 
+
+.items {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
