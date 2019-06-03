@@ -1,0 +1,28 @@
+[debug] [2019-06-03T19:43:15.625Z] ----------------------------------------------------------------------
+[debug] [2019-06-03T19:43:15.628Z] Command:       /usr/bin/node /usr/bin/firebase functions:shell
+[debug] [2019-06-03T19:43:15.628Z] CLI Version:   6.10.0
+[debug] [2019-06-03T19:43:15.628Z] Platform:      linux
+[debug] [2019-06-03T19:43:15.628Z] Node Version:  v11.15.0
+[debug] [2019-06-03T19:43:15.628Z] Time:          Mon Jun 03 2019 16:43:15 GMT-0300 (Brasilia Standard Time)
+[debug] [2019-06-03T19:43:15.628Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-03T19:43:15.638Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-03T19:43:15.638Z] > authorizing via signed-in user
+[debug] [2019-06-03T19:43:15.638Z] [iam] checking project burguer-queen-f8f37 for permissions ["firebase.projects.get"]
+[debug] [2019-06-03T19:43:15.640Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/burguer-queen-f8f37:testIamPermissions  
+
+[debug] [2019-06-03T19:43:16.852Z] <<< HTTP RESPONSE 200
+[warn] ⚠  Your functions directory does not specify a Node version.
+   - Learn more at https://firebase.google.com/docs/functions/manage-functions#set_runtime_options
+[debug] [2019-06-03T19:43:16.856Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/burguer-queen-f8f37  
+ 
+[debug] [2019-06-03T19:43:17.838Z] <<< HTTP RESPONSE 200
+[debug] [2019-06-03T19:43:17.840Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/157548718764:getServerAppConfig  
+ 
+[debug] [2019-06-03T19:43:18.920Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2019-06-03T19:43:18.935Z] [functions] Watching "/home/laboratoria/Desktop/lays/now/burger-queen/functions" for Cloud Functions...
+[debug] [2019-06-03T19:43:19.286Z] DEBUG: Functions runtime initialized.
+[debug] [2019-06-03T19:43:19.288Z] DEBUG: Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-functions-test" to be installed as a development dependency. To fix this, run "npm install --save-dev firebase-functions-test" in your functions directory.
+[debug] [2019-06-03T19:43:19.496Z] [functions] Your functions could not be parsed due to an issue with your node_modules (see above)
