@@ -5,6 +5,7 @@ import ButtonMenu from '../components/ButtonMenu';
 import Button from '../components/Button';
 import Data from '../data';
 import { faCoffee, faGlassWhiskey, faHamburger, faCertificate } from '@fortawesome/free-solid-svg-icons';
+// import { userInfo } from 'os';
 
 const database = firebase.firestore();
 
@@ -51,11 +52,11 @@ class Saloon extends React.Component {
   render() {
     return (
       <div>
-        <p>Vc está no Salão</p>
+        <p>Olá, você está no Salão</p>
         <div className='items'>
           {
             Data.menu.breakfast.map(item => {
-              return (<ButtonMenu iconName={faCoffee} text={item.title} price={item.price} key={item.id} onClick={console.log(this)}></ButtonMenu>)
+              return (<ButtonMenu iconName={faCoffee} text={item.title} price={item.price} key={item.id} onClick=''></ButtonMenu>)
             })
           }
           {
@@ -73,16 +74,18 @@ class Saloon extends React.Component {
               return (<ButtonMenu iconName={faCertificate} text={item.title} price={item.price} key={item.id}></ButtonMenu>)
             })
           }
-          <h1>Pedido</h1>
-          <input value={this.state.clientName}
-            placeholder="clientName"
-            onChange={(e) => this.handleChange(e, "clientName")} />
-          <Button text="Salvar pedido" onClick={this.handleClick} />
-          {
-            this.state.listItem.map((item, index) => {
-              return <p key={index}>{item.clientName}</p>
-            })
-          }
+          <div>
+            <h1>Pedido</h1>
+            <input value={this.state.clientName}
+              placeholder="clientName"
+              onChange={(e) => this.handleChange(e, "clientName")} />
+            <Button text="Salvar pedido" onClick={this.handleClick} />
+            {
+              this.state.listItem.map((item, index) => {
+                return <p key={index}>{item.clientName}</p>
+              })
+            }
+          </div>
         </div>
       </div>
 
