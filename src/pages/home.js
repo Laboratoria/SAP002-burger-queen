@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from '../Button'
-import '../Form.css'
+import './home.css'
+import Button from '../components/Button'
+import '../components/Form.css'
 import firebase from '../firebase-config';
 import withFirebaseAuth from 'react-with-firebase-auth';
-// import Saloon from './pages/Saloon';
-// import { withRouter, Redirect } from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -14,6 +13,7 @@ class Home extends React.Component {
     this.state = {
       email: '',
       senha: '',
+      displayName: ''
     };
   }
 
@@ -24,7 +24,7 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.senha);
+    this.props.createUserWithEmailAndPassword(this.state.email, this.state.senha, this.state.displayName);
     alert('Usuário cadastrado com sucesso! Faça o login.')
   }
 
@@ -37,9 +37,9 @@ class Home extends React.Component {
       .then(() => {
         const userType = this.refs.userType.value;
         if (userType === 'saloon') {
-          this.props.history.push("/Saloon");
+          this.props.history.push(`/Saloon`);
         } else {
-          this.props.history.push(`/Kitchen`)
+          this.props.history.push(`/Kitchen`);
         }
       })
       .catch(error => alert(this.setState({ error })))
@@ -49,9 +49,12 @@ class Home extends React.Component {
     return (
       <div>
         <select ref='userType'>
-          <option value="kitchen">Cozinha</option>
           <option value="saloon">Salão</option>
+          <option value="kitchen">Cozinha</option>
         </select>
+        <input value={this.state.displayName}
+          placeholder='Nome de usuário'
+          onChange={(e) => this.handleChange(e, 'displayName')} />
         <input value={this.state.email}
           placeholder='email'
           onChange={(e) => this.handleChange(e, 'email')} />
