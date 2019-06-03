@@ -4,8 +4,6 @@ import home from './pages/home'
 import saloon from './pages/saloon'
 import kitchen from './pages/kitchen'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-// import firebase from "./firebaseConfig";
-
 
 class App extends React.Component {
   constructor(props) {
@@ -18,9 +16,9 @@ class App extends React.Component {
       <Router>
       <div className="App">
         <header className="App-header">
-          <Route path="/" exact component={home}/>
-          <Route path="/saloon" component={saloon}/>
-          <Route path="/kitchen" component={kitchen}/>
+          <Route exact path="/" component={home}/>
+          <Route exact path="/saloon" component={saloon}/>
+          <Route exact path="/kitchen" component={kitchen}/>
         </header>
       </div>
     </Router>
