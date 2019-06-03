@@ -12,7 +12,7 @@ class Home extends React.Component {
     super(props);
     this.state = {
       email: '',
-      senha: '',
+      password: '',
       displayName: ''
     };
   }
@@ -24,7 +24,7 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.senha, this.state.displayName);
+    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password, this.state.displayName);
     alert('Usuário cadastrado com sucesso! Faça o login.')
   }
 
@@ -33,7 +33,7 @@ class Home extends React.Component {
     console.log(this.state);
     console.log('>>>>', this.props.user);
 
-    this.props.signInWithEmailAndPassword(this.state.email, this.state.senha)
+    this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         const userType = this.refs.userType.value;
         if (userType === 'saloon') {
@@ -55,12 +55,12 @@ class Home extends React.Component {
         <input value={this.state.displayName}
           placeholder='Nome de usuário'
           onChange={(e) => this.handleChange(e, 'displayName')} />
-        <input value={this.state.email}
-          placeholder='email'
+        <input value={this.state.email} type='email'
+          placeholder='Email'
           onChange={(e) => this.handleChange(e, 'email')} />
-        <input value={this.state.senha}
-          placeholder='senha'
-          onChange={(e) => this.handleChange(e, 'senha')} />
+        <input value={this.state.password} type='password'
+          placeholder='Senha'
+          onChange={(e) => this.handleChange(e, 'password')} />
         <Button text='Entrar' onClick={this.signIn} />
         <Button text='Cadastrar' onClick={this.createUser} />
       </div>
