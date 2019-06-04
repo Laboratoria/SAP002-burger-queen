@@ -20,12 +20,12 @@ class App extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({
-      userType: {}
-    })
-    alert(this.state.email)
+    // this.setState({
+    //   userType: {}
+    // })
+    alert(this.state.userType)
   }
-
+   
   render() {
     return (
       <div className="App">
@@ -38,7 +38,16 @@ class App extends React.Component {
             placeholder="Digite sua senha"
             onChange={(e) => this.handleChange(e, "password")}
           />
+          <input type="radio" name="userType" value="salon"
+            onChange = {(e) => this.handleChange(e, "userType")}
+          />
+          <span>Salão</span>
+          <input type="radio" name="userType" value="kitchen"
+            onChange = {(e) => this.handleChange(e, "userType")}
+          />
+          <span>Cozinha</span>
           <Button text="clique aqui" onClick={this.handleClick}/>
+          <p>{this.state.userType !== "salon" ? "Cozinha" : "Salão"}</p>
         </header>
       </div>
     )
