@@ -11,8 +11,17 @@ class App extends React.Component {
     this.state = {
       email: "",
       password: "",
-      userType: ""
+      userType: "",
+      listItem: []
     };
+  }
+
+  componentDidMount() {
+    database.collection('users').get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map(doc => doc.data());
+        this.setState({ listItem: data });
+      });
   }
 
   handleChange = (event, element) => {
@@ -26,21 +35,20 @@ class App extends React.Component {
       userType: this.state.userType
     }
     database.collection('users').add({object})
-    // this.setState({
-    //   userType: {}
-    // })
     alert(this.state.userType)
   }
    
   render() {
+    const { email, password, listItem } = this.state;
+    console.log(listItem  )
     return (
       <div className="App">
         <header className="App-header">
-          <input value={this.state.email} 
+          <input value={email} 
             placeholder="Digite seu email"
             onChange={(e) => this.handleChange(e, "email")}
           />
-          <input value={this.state.password} 
+          <input value={password} 
             placeholder="Digite sua senha"
             onChange={(e) => this.handleChange(e, "password")}
           />
@@ -53,7 +61,11 @@ class App extends React.Component {
           />
           <span>Cozinha</span>
           <Button text="clique aqui" onClick={this.handleClick}/>
-          <p>{this.state.userType !== "salon" ? "Cozinha" : "Salão"}</p>
+          {
+            listItem.map((item, index) => {
+              return <p key={index}> { item.object.userType } </p>
+            })
+          }
         </header>
       </div>
     )
