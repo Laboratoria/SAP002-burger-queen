@@ -3,6 +3,8 @@ import './App.css';
 import firebase from "./firebaseConfig";
 import Button from "./components/Button"
 
+const database = firebase.firestore();
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,10 @@ class App extends React.Component {
   }
 
   handleClick = () => {
+    const object = {
+      userType: this.state.userType
+    }
+    database.collection('users').add({object})
     // this.setState({
     //   userType: {}
     // })
