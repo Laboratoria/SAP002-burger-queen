@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import firebase from "../firebaseConfig";
 import Input from "../components/Input";
+import Button from "../components/Button";
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
@@ -31,7 +32,6 @@ class Salao extends React.Component {
       })
   }
 
-
   //clicar valor atual altera no state e no firebase
   handleClick = () => {
     const object = {
@@ -44,12 +44,17 @@ class Salao extends React.Component {
   }
 
   render() {
-    // console.log(this.props.user)
+    console.log(this.state.user)
     return (
       <div>
-        <h1>#partiuBurgerQueen</h1>
-        <Input value={this.state.pedido} placeholder="Digite seu pedido" onChange={(e) => this.handleChange(e, "pedido")} />
-        <button onClick={this.handleClick}>Criar pedido</button>
+        <h2>Salão</h2>
+        {/* {
+          this.state.dia.bebidas.map((item, index) => {
+            return <p key={index} text={item.dia.bebidas} onClick={this.handleClick} onChange={(e) => this.handleChange(e, "pedido")}></p>
+          })
+        } */}
+        <Input value={this.state.pedido} onChange={(e) => this.handleChange(e, "pedido")} />
+        <Button onClick={this.handleClick} text="Criar Pedido" />
         {
           this.state.listItem.map((item, index) => {
             return <p key={index}>{item.pedido}</p>

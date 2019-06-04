@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import firebase from "../firebaseConfig";
 import Input from "../components/Input";
+import Button from "../components/Button";
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
@@ -47,9 +48,9 @@ class Cozinha extends React.Component {
     // console.log(this.props.user)
     return (
       <div>
-        <h1>#partiuBurgerQueen</h1>
+        <h2>Cozinha</h2>
         <Input value={this.state.pedido} placeholder="Digite seu pedido" onChange={(e) => this.handleChange(e, "pedido")} />
-        <button onClick={this.handleClick}>Criar pedido</button>
+        <Button onClick={this.handleClick} text="Criar Pedido" />
         {
           this.state.listItem.map((item, index) => {
             return <p key={index}>{item.pedido}</p>
