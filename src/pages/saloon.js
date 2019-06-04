@@ -35,7 +35,7 @@ class Saloon extends React.Component {
   handleClick = () => {
     const object = {
       clientName: this.state.clientName,
-      pedido: {}
+      pedido: []
     }
     database.collection('Pedidos').add(object)
     this.setState({
@@ -43,20 +43,36 @@ class Saloon extends React.Component {
     })
   }
 
-  handleAdd = () => {
+  handleAdd = (item) => {
     console.log('clique');
     // this.text, this.price
     // this.state.pedido.concat()
+    const itemIndex = this.state.pedido.findIndex(
+      (produto) => {
+        return produto.title === item.title;
+      });
+      if (itemIndex < 0) {
+        const newItem = {
+          ...item,
+          "quantidade": 1
+        }
+
+        this.setState({
+          pedido: this.state.pedido.concat(item)
+        });
+      }
   }
 
   render() {
+    console.log(this.state.pedido);
+
     return (
       <div>
         <p>Olá, você está no Salão</p>
         <div className='items'>
           {
             Data.menu.breakfast.map(item => {
-              return (<ButtonMenu iconName={faCoffee} text={item.title} price={item.price} key={item.id} onClick=''></ButtonMenu>)
+              return (<ButtonMenu iconName={faCoffee} text={item.title} price={item.price} key={item.id} onClick={() => this.handleAdd(item)}></ButtonMenu>)
             })
           }
           {
@@ -88,10 +104,6 @@ class Saloon extends React.Component {
           </div>
         </div>
       </div>
-
-
-
-
     )
   }
 

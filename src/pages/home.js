@@ -4,6 +4,7 @@ import Button from '../components/Button'
 import '../components/Form.css'
 import firebase from '../firebase-config';
 import withFirebaseAuth from 'react-with-firebase-auth';
+import addUser from '../firebase/firestore';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -24,7 +25,18 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password, this.state.displayName);
+    const { email, password, displayName } = this.state;
+
+    this.props.createUserWithEmailAndPassword(email, password)
+      .then((data) => {
+        console.log(data)
+        if(! data) return;
+        const { user: { uid } } = data;
+        addUser({
+          email,
+          displayName,
+        }, uid)
+      });
     alert('Usuário cadastrado com sucesso! Faça o login.')
   }
 
@@ -54,9 +66,11 @@ class Home extends React.Component {
           <option value="saloon">Salão</option>
           <option value="kitchen">Cozinha</option>
         </select>
+        
         <input value={this.state.displayName}
           placeholder='Nome de usuário'
           onChange={(e) => this.handleChange(e, 'displayName')} />
+
         <input value={this.state.email} type='email'
           placeholder='Email'
           onChange={(e) => this.handleChange(e, 'email')} />
