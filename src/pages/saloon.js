@@ -4,7 +4,7 @@ import Data from '../data.json';
 import './saloon.css';
 import '../components/Button.css';
 import Button from '../components/Button';
-import { faCoffee, faGlassWhiskey, faHamburger, faCertificate, faPlusCircle, faMinusCircle, faShareSquare} from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faGlassWhiskey, faHamburger, faCertificate, faPlusCircle, faMinusCircle, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 
 const database = firebase.firestore();
 
@@ -13,12 +13,12 @@ class Saloon extends React.Component {
     super(props);
     this.state = {
       listItem: [],
-      pedido: []
+      order: []
     }
   }
 
   componentDidMount() {
-    database.collection('Pedidos').get()
+    database.collection('Orders').get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => doc.data());
         this.setState({ listItem: data });
@@ -34,16 +34,16 @@ class Saloon extends React.Component {
   handleClick = () => {
     const object = {
       clientName: this.state.clientName,
-      pedido: []
+      order: []
     }
-    database.collection('Pedidos').add(object)
+    database.collection('Orders').add(object)
     this.setState({
       listItem: this.state.listItem.concat(object)
     })
   }
 
   handleAdd = (item) => {
-    const itemIndex = this.state.pedido.findIndex(
+    const itemIndex = this.state.order.findIndex(
       (produto) => {
         console.log(produto.title === item.title);
 
@@ -57,47 +57,47 @@ class Saloon extends React.Component {
       }
 
       this.setState({
-        pedido: this.state.pedido.concat(newItem)
+        order: this.state.order.concat(newItem)
       });
     } else {
-      let newPedido = this.state.pedido;
-      newPedido[itemIndex].quantity += 1;
+      let newOrder = this.state.order;
+      newOrder[itemIndex].quantity += 1;
       this.setState({
-        pedido: newPedido
+        order: newOrder
       });
     }
   }
 
   handleDelete = (item) => {
-    const itemIndex = this.state.pedido.findIndex((produto) => {
+    const itemIndex = this.state.order.findIndex((produto) => {
       return (produto.title === item.title);
     })
 
-    let newPedido = this.state.pedido;
-    newPedido[itemIndex].quantity -= 1;
+    let newOrder = this.state.order;
+    newOrder[itemIndex].quantity -= 1;
 
-    const quantity = newPedido[itemIndex].quantity;
+    const quantity = newOrder[itemIndex].quantity;
 
     if (quantity > 0) {
       this.setState({
-        pedido: newPedido
+        order: newOrder
       });
     } else {
-      newPedido.splice(itemIndex, 1);
+      newOrder.splice(itemIndex, 1);
       this.setState({
-        pedido: newPedido
+        order: newOrder
       });
     }
   };
 
   render() {
-    const total = this.state.pedido.reduce((acc, cur) => {
+    const total = this.state.order.reduce((acc, cur) => {
       return acc + (cur.quantity * cur.price)
     }, 0);
 
     return (
-      <section className='pedido'>
-        <p>Olá, você está no Salão</p>
+      <section className='order'>
+        <h1>Olá, você está no Salão</h1>
         <div className='items'>
           {
             Data.menu.breakfast.map(item => {
@@ -119,37 +119,37 @@ class Saloon extends React.Component {
               return (<Button className='btn item-btn' iconName={faCertificate} text={item.title} price={'- R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
             })
           }
-          <div className='pedido-items'>
-            <h1>Pedido</h1>
-            <h2>Produtos Comprados</h2>
-            {
-              this.state.pedido.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <p>
-                      Produto: {item.title} - Qtd: {item.quantity} - Subtotal: R$ {item.price * item.quantity}
-                    </p>
-                    <Button className='plus-minus-btn' iconName={faPlusCircle} onClick={() => this.handleAdd(item)}></Button>
-                    <Button className='plus-minus-btn' iconName={faMinusCircle} onClick={() => this.handleDelete(item)}></Button>
-                  </div>
-                )
-              })
-            }
+        </div>
+        <div className='order-items'>
+          <h1>Pedido</h1>
+          {
+            this.state.order.map((item, i) => {
+              return (
+                <div key={i}>
+                  <p>
+                    Produto: {item.title} - Qtd: {item.quantity} - Subtotal: R$ {item.price * item.quantity}
+                  </p>
+                  <Button className='plus-minus-btn' iconName={faPlusCircle} onClick={() => this.handleAdd(item)}></Button>
+                  <Button className='plus-minus-btn' iconName={faMinusCircle} onClick={() => this.handleDelete(item)}></Button>
+                </div>
+              )
+            })
+          }
 
-            <h3>Valor Total do Pedido</h3>
-            <p>R$ {total}</p>
-            <input value={this.state.clientName}
-              placeholder="Nome da(o) cliente"
-              onChange={(e) => this.handleChange(e, "clientName")} />
-            <Button text="Enviar pedido para cozinha" className='btn item-btn' iconName={faShareSquare} onClick={this.handleClick} />
-            {
-              this.state.listItem.map((item, index) => {
-                return (
-                  <p key={index}>{item.clientName}</p>
-                )
-              })
-            }
-          </div>
+          <h3>Valor Total do Pedido</h3>
+          <p>R$ {total}</p>
+          <input value={this.state.clientName}
+            placeholder='Nome da(o) cliente'
+            onChange={(e) => this.handleChange(e, 'clientName')} />
+          <Button text='Enviar pedido para cozinha' className='btn item-btn' iconName={faShareSquare} onClick={this.handleClick} />
+          {
+            this.state.listItem.map((item, index) => {
+              return (
+                <p key={index}>{item.clientName}</p>
+              )
+            })
+          }
+
         </div>
       </section>
     )
