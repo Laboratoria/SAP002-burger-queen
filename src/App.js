@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 import firebase from "./firebaseConfig";
 import Button from "./components/Button"
+import withFirebaseAuth from 'react-with-firebase-auth';
 
+const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
 class App extends React.Component {
@@ -37,10 +39,22 @@ class App extends React.Component {
     database.collection('users').add({object})
     alert(this.state.userType)
   }
+
+  createUser = () => {
+    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password);
+  }
    
+  signIn = () => {
+    this.props.signInWithEmailAndPassword(this.state.email, this.state.password).then(
+      () => {
+        alert("uhul");
+      }
+    )
+  }
+
   render() {
     const { email, password, listItem } = this.state;
-    console.log(listItem  )
+
     return (
       <div className="App">
         <header className="App-header">
@@ -60,16 +74,14 @@ class App extends React.Component {
             onChange = {(e) => this.handleChange(e, "userType")}
           />
           <span>Cozinha</span>
+          <Button text="Criar Conta" onClick={this.createUser}/>
+          <Button text="Logar" onClick={this.signIn}/>
           <Button text="clique aqui" onClick={this.handleClick}/>
-          {
-            listItem.map((item, index) => {
-              return <p key={index}> { item.object.userType } </p>
-            })
-          }
+       
         </header>
       </div>
     )
   }
   }
 
-export default App;
+export default withFirebaseAuth({firebaseAppAuth}) (App);
