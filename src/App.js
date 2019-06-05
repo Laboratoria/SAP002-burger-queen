@@ -12,8 +12,8 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>Burger Queen</h1>
-          <FontAwesomeIcon className="icon" icon={faCrown} size="4x" />
+          <h1 className="title">Burger Queen</h1>
+          <FontAwesomeIcon className="icon" icon={faCrown} size="2x" />
           <Route path="/" exact component={Home} />
           <Route path="/Salao" component={Salao} />
           <Route path="/Cozinha" component={Cozinha} />

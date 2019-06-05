@@ -19,7 +19,7 @@ class Home extends React.Component {
       user: undefined,
       displayName: "",
       email: "",
-      senha: "",
+      password: "",
       value: "Cozinha",
       redirect: false,
       error: ""
@@ -34,7 +34,6 @@ class Home extends React.Component {
           user: signedUser
         })
         localStorage.setItem('firebase-auth', this.state.user)
-        console.log(signedUser.email, signedUser.uid, signedUser.displayName)
       } else {
         this.setState({
           user: undefined
@@ -46,7 +45,8 @@ class Home extends React.Component {
 
   signIn = (e) => {
     e.preventDefault()
-    this.auth.signInWithEmailAndPassword(this.state.email, this.state.senha)
+    const { email, password } = this.state;
+    this.auth.signInWithEmailAndPassword(email, password)
       .then(signedUser => {
         this.setState({
           user: signedUser,
@@ -66,13 +66,10 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    const { email, senha, displayName } = this.state;
-    debugger;
-    this.props.createUserWithEmailAndPassword(email, senha)
+    const { email, password, displayName } = this.state;
+    this.props.createUserWithEmailAndPassword(email, password)
       .then((data) => {
-        console.log(data)
         if (!data) {
-          console.log('asjdjas')
           return;
         };
         const { user: { uid } } = data;
@@ -80,6 +77,9 @@ class Home extends React.Component {
           email,
           displayName,
         }, uid)
+        this.setState({
+          redirect: true
+        })
       })
   }
 
@@ -96,15 +96,15 @@ class Home extends React.Component {
       <div>
         <Input value={this.state.displayName} placeholder="Digite seu nome" onChange={(e) => this.handleChange(e, "displayName")} />
         <Input value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
-        <Input type="password" value={this.state.senha} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "senha")} />
+        <Input type="password" value={this.state.password} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} />
+        <span>{this.state.error}</span>
         <select onChange={(e) => this.handleChange(e, "value")} className="input" value={this.state.value}>
           <option value="Cozinha">Cozinha</option>
           <option value="Salao">Salão</option>
         </select>
-        <Button onClick={this.createUser} text="Criar usuário" />
+        <Button onClick={this.createUser} text="Criar usuário"></Button>
         {this.authLogin()}
         <Button onClick={this.signIn} text="Login" />
-        <span>{this.state.error}</span>
       </div>
     );
   }

@@ -1,15 +1,13 @@
 .itens {
-  padding: 10px;
-  max-width: 300px;
+  padding: 5px;
   display: flex;
-  margin-top: 40px;
   justify-content: space-around;
 }
 
 .input {
-  background-color: white;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 5px;
   border-color: black;
-  padding: 10px;
+  padding: 5px;
+  background-color: white;
 }
