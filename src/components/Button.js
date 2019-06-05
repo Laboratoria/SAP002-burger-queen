@@ -1,10 +1,11 @@
 import React from 'react';
 import './Button.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Button(props) {
   return (
-    <button className="button" onClick={props.onClick}>
-      {props.text}
+    <button className={props.className} onClick={props.onClick}>
+      <FontAwesomeIcon icon={props.iconName} /> {props.text} {props.price}
     </button>
   );
 }

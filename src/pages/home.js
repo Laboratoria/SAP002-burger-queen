@@ -2,9 +2,10 @@ import React from 'react';
 import './home.css'
 import Button from '../components/Button'
 import '../components/Form.css'
-import firebase from '../firebase-config';
+import firebase from '../firebase/firebase-config';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import addUser from '../firebase/firestore';
+import { faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -30,7 +31,7 @@ class Home extends React.Component {
     this.props.createUserWithEmailAndPassword(email, password)
       .then((data) => {
         console.log(data)
-        if(! data) return;
+        if (!data) return;
         const { user: { uid } } = data;
         addUser({
           email,
@@ -77,8 +78,8 @@ class Home extends React.Component {
         <input value={this.state.password} type='password'
           placeholder='Senha'
           onChange={(e) => this.handleChange(e, 'password')} />
-        <Button text='Entrar' onClick={this.signIn} />
-        <Button text='Cadastrar' onClick={this.createUser} />
+        <Button text='Entrar' className="btn" iconName={faSignInAlt} onClick={this.signIn} />
+        <Button text='Cadastrar' className="btn" iconName={faUserPlus} onClick={this.createUser} />
       </div>
     )
   }

@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ButtonMenu(props) {
   return (
-    <button className="button buttonMenu" onClick={props.onClick}>
-      <FontAwesomeIcon icon={props.iconName} /> {props.text} - R${props.price}
+    <button className={props.className} onClick={props.onClick}>
+      <FontAwesomeIcon icon={props.iconName} /> {props.text} {props.price}
     </button>
   );
 }

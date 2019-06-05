@@ -1,4 +1,4 @@
-.button {
+.btn {
   background-color: yellow;
   padding: 10px;
   margin: 10px;
@@ -6,7 +6,7 @@
   border-radius: 5px;
 } 
 
-.buttonMenu {
+.item-btn {
   width: 200px;
   height: 60px;
 } 
@@ -17,3 +17,12 @@
   align-content: center;
   flex-wrap: wrap;
 }
+
+
+.plus-minus-btn {
+  background-color: #0ccebe;
+  padding: 10px;
+  border: none;
+  width: 50px;
+  height: 50px;
+} 
