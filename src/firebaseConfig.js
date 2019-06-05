@@ -1,15 +1,15 @@
 import firebase from "firebase";
 
-const config = {
-  apiKey: "<sua-chave>",
-  authDomain: "<sua-chave>",
-  databaseURL: "<sua-chave>",
-  projectId: "<sua-chave>",
-  storageBucket: "<sua-chave>",
-  messagingSenderId: "<sua-chave>",
-  appId: "<sua-chave>"
+var firebaseConfig = {
+  apiKey: "AIzaSyAvSzepGkSmNt0_Rl-KXy_o18lpfuA0mzk",
+  authDomain: "burger-queen-308e3.firebaseapp.com",
+  databaseURL: "https://burger-queen-308e3.firebaseio.com",
+  projectId: "burger-queen-308e3",
+  storageBucket: "burger-queen-308e3.appspot.com",
+  messagingSenderId: "294099541135",
+  appId: "1:294099541135:web:5c94bf72cc0dcdea"
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 export default firebase;
