@@ -17,24 +17,16 @@ class Saloon extends React.Component {
     }
   }
 
-  componentDidMount() {
-    database.collection('Orders').get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => doc.data());
-        this.setState({ listItem: data });
-      });
-  }
-
   handleChange = (event, element) => {
     const newState = this.state;
     newState[element] = event.target.value
     this.setState(newState);
   }
 
-  handleClick = () => {
+  handleClick = (order) => {
     const object = {
       clientName: this.state.clientName,
-      order: []
+      order: order
     }
     database.collection('Orders').add(object)
     this.setState({
@@ -120,7 +112,7 @@ class Saloon extends React.Component {
             })
           }
         </div>
-        <div className='order-items'>
+        <div className='order-list'>
           <h1>Pedido</h1>
           {
             this.state.order.map((item, i) => {
@@ -141,15 +133,7 @@ class Saloon extends React.Component {
           <input value={this.state.clientName}
             placeholder='Nome da(o) cliente'
             onChange={(e) => this.handleChange(e, 'clientName')} />
-          <Button text='Enviar pedido para cozinha' className='btn item-btn' iconName={faShareSquare} onClick={this.handleClick} />
-          {
-            this.state.listItem.map((item, index) => {
-              return (
-                <p key={index}>{item.clientName}</p>
-              )
-            })
-          }
-
+          <Button text='Enviar pedido para cozinha' className='btn item-btn' iconName={faShareSquare} onClick={() => this.handleClick(this.state.order)} />
         </div>
       </section>
     )
