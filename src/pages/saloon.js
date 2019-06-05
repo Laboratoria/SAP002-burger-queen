@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import firebase from '../firebase/firebase-config';
 import Data from '../data.json';
 import './saloon.css';
@@ -8,7 +8,7 @@ import { faCoffee, faGlassWhiskey, faHamburger, faCertificate, faPlusCircle, faM
 
 const database = firebase.firestore();
 
-class Saloon extends React.Component {
+class Saloon extends Component {
   constructor(props) {
     super(props);
     this.state = {
