@@ -4,7 +4,7 @@ import firebase from "../firebaseConfig";
 import Button from "../components/Button"
 import Home from "../pages/Home"
 import withFirebaseAuth from 'react-with-firebase-auth';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -44,7 +44,7 @@ class App extends React.Component {
 
   
   render() {
-    
+    console.log(this.props.user)
     return (
       <Router>
       <div className="App">

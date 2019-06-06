@@ -3,6 +3,7 @@ import React from 'react';
 import firebase from "../firebaseConfig";
 import Button from "../components/Button"
 import withFirebaseAuth from 'react-with-firebase-auth';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
 // const database = firebase.firestore();
@@ -33,7 +34,7 @@ class Home extends React.Component {
   signIn = () => {
     this.props.signInWithEmailAndPassword(this.state.email, this.state.password).then(
       () => {
-        alert("uhul");
+        // <Redirect to="/Salao" />;
       }
     )
   }
