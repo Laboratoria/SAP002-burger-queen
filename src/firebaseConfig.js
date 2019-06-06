@@ -1,13 +1,13 @@
 import firebase from "firebase";
 
 const config = {
-  apiKey: "<sua-chave>",
-  authDomain: "<sua-chave>",
-  databaseURL: "<sua-chave>",
-  projectId: "<sua-chave>",
-  storageBucket: "<sua-chave>",
-  messagingSenderId: "<sua-chave>",
-  appId: "<sua-chave>"
+  apiKey: "AIzaSyB39FlUi5d3Z_HA32Gkn3oxjIuyHSPYd4E",
+  authDomain: "burger-queen-cakeno.firebaseapp.com",
+  databaseURL: "https://burger-queen-cakeno.firebaseio.com",
+  projectId: "burger-queen-cakeno",
+  storageBucket: "burger-queen-cakeno.appspot.com",
+  messagingSenderId: "211022016257",
+  appId: "1:211022016257:web:addf924a30aec9f0"
 };
 
 firebase.initializeApp(config);

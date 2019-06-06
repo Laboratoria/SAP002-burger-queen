@@ -12,6 +12,8 @@ exports.createProfile = functions.auth.user().onCreate(
     displayName: user.displayName,
     photoURL: user.photoURL,
     createdAt: new Date(),
+    id: user.uid,
+    
   })
 );
 
