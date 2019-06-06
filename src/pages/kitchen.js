@@ -34,34 +34,43 @@ class Kitchen extends React.Component {
 
   render() {
     const orders = this.state.listItem;
-    const client = orders.map((pedido) => {
-      return pedido.clientName;
-    })
+    // console.log('orders: ', orders);
+    // const client = orders.map((pedido) => {
+    //   return pedido.clientName;
+    // })
 
-    const pedido = orders.map((item) => {
-      const order = item.order;
+    // const pedido = orders.map((item) => {
+    //   const order = item.order;
 
-      for (let i in order) {
-        const title = order[i].title;
-        const quantity = order[i].quantity;
-        console.log('quantity: ', quantity);
-        console.log('title: ', title);
+    //   for (let i in order) {
+    //     const title = order[i].title;
+    //     const quantity = order[i].quantity;
+    //     // console.log('quantity: ', quantity);
+    //     // console.log('title: ', title);
 
-        // return 'Quantidade: ' + quantity + ' - Produto: ' + title;
-      }
+    //     // return 'Quantidade: ' + quantity + ' - Produto: ' + title;
+    //   }
 
-    })
-    // console.log('pedido: ', pedido);
+    // })
 
     return (
       <section className='order-list'>
         <p>Vc está na Cozinha</p>
         <h1>Seus Pedidos que já estão na cozinha:</h1>
-        
-          <h2>{client}</h2>
-          <ul>
-            {pedido}
-          </ul>
+          {
+            orders.map((client) => {
+              return (
+                <div>
+                  <h2>{client.clientName}</h2>
+                  {
+                    client.order.map(pedido => {
+                      return <p>Qtd: {pedido.quantity} - {pedido.title}</p>
+                    })
+                  }
+                </div>
+              )
+            })
+          }
         
       </section>
     )
