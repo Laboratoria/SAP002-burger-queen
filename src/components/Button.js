@@ -1,10 +1,9 @@
 import React from 'react';
-
-// import './Button.css';
+import '../App.css'
 
 function Button(props) {
   return (
-    <button className="button" onClick={props.onClick}>
+    <button className="myButton input-box" onClick={props.onClick}>
       {props.text}
     </button>
   );

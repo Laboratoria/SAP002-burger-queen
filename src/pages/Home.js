@@ -28,6 +28,7 @@ class Home extends React.Component {
  
 
   createUser = () => {
+    // event.preventDefault()
     this.props.createUserWithEmailAndPassword(this.state.email, this.state.password);
   }
    
@@ -44,26 +45,26 @@ class Home extends React.Component {
 
     return (
       <div>
-        <header className="App-header">
-          <input value={email} 
+        <header className="forms">
+        
+           <select className="input-box">
+			  <option value="" selected disabled hidden>Setor</option>
+			  <option value="kitchen" onChange = {(e) => this.handleChange(e, "userType")}>Cozinha</option>
+			  <option value="salon" onChange = {(e) => this.handleChange(e, "userType")}>Salão</option>
+			</select>
+          <input
+            className="input-box" 
+            value={email} 
             placeholder="Digite seu email"
             onChange={(e) => this.handleChange(e, "email")}
           />
-          <input value={password} 
+          <input 
+          className="input-box" 
+          value={password} 
             placeholder="Digite sua senha"
             onChange={(e) => this.handleChange(e, "password")}
-          />
-          <input type="radio" name="userType" value="salon"
-            onChange = {(e) => this.handleChange(e, "userType")}
-          />
-          <span>Salão</span>
-          <input type="radio" name="userType" value="kitchen"
-            onChange = {(e) => this.handleChange(e, "userType")}
-          />
-          <span>Cozinha</span>
+          />  
           <Button text="Criar Conta" onClick={this.createUser}/>
-          <Button text="Logar" onClick={this.signIn}/>
-          <Button text="clique aqui" onClick={this.handleClick}/>
        
         </header>
       </div>
