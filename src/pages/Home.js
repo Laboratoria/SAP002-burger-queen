@@ -44,7 +44,12 @@ class Home extends React.Component {
 
     return (
       <div>
-        <header className="forms">     
+        
+        <header className="forms"> 
+        <div className="nav-container">
+            <div className="nav-link-one">Login</div>
+            <div className="nav-link-two">Criar Conta</div>
+            </div>    
           <Input 
             type="text" 
             value={firstName} 

@@ -56,3 +56,25 @@ body {
 	background-color: black;
 	color: #fff;
 }
+
+.nav-container {
+	background-color: red;
+	display: flex;
+	flex-wrap: wrap;
+	   
+	
+}
+
+.nav-link-one {
+  background-color: #073561;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-link-two {
+  background-color: lightblue;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
