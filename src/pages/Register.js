@@ -12,9 +12,10 @@ class Register extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            displayName: "",
+            name: "",
             email: "",
-            password: ""
+            password: "",
+            tipo: "saloon"
         }
     }
 
@@ -27,25 +28,37 @@ class Register extends React.Component{
     createUser = () => {
         this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(resp => {
-            const id = resp.id.uid;
+            const id = resp.user.uid;
             database.collection("users").doc(id).set({
-                displayName: this.state.displayName,
-                email: this.state.email
+                name: this.state.name,
+                email: this.state.email,
+                tipo: this.state.tipo
             });
-        });
+        })
+        .then(() => {
+            this.props.history.push(`/${this.state.tipo}`)
+        })
     }
     
     render() {
         return (
+            <section>
             <form>
-                <Input type="text" placeholder="Nome completo" onChange={(e) => this.handleChange(e, "displayName")} value={this.props.displayName}/>
+                <Input type="text" placeholder="Nome completo" onChange={(e) => this.handleChange(e, "name")} value={this.props.name}/>
                 <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
                 <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
                 
                 {/*colocar se é salão ou cozinha*/}
 
-                <Button text="CADASTRAR" onClick={this.createUser}/>
+                <select onChange={(e) => this.handleChange(e, "tipo")}>
+                    <option value="saloon">SALÃO</option>
+                    <option value="kitchen">COZINHA</option>
+                </select>
+
             </form>
+                <Button text="CADASTRAR" onClick={this.createUser}/>
+                <Link to="/">NÃO QUERO ME CADASTRAR AGORA</Link>                
+                </section>
             )
         }
     }

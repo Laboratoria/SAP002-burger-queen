@@ -28,12 +28,15 @@ class Login extends React.Component{
     
     render() {
         return (
-            <form>
-                <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
-                <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
-                <Link to="order"><Button text="ENTRAR" onClick={this.signIn}/></Link>
-            </form>
-            )
+            <section>
+                <form>
+                    <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
+                    <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
+                </form>
+                    <Link to="order"><Button text="ENTRAR" onClick={this.signIn}/></Link>
+                <Link to="register">AINDA NÃO TEM CONTA? CADASTRE-SE</Link>
+            </section>
+                )
         }
     }
 

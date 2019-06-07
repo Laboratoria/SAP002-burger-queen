@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Order extends React.Component{
+class Kitchen extends React.Component{
     constructor(props) {
         super(props);
         this.state = {}
@@ -8,9 +8,9 @@ class Order extends React.Component{
     
     render() {
         return (
-            <h1>FOI!</h1>
+            <h1>Cozinha</h1>
             )
         }
     }
 
-export default Order;
+export default Kitchen;
