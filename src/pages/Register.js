@@ -6,12 +6,13 @@ import Button from '../components/Button';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
+const database = firebase.firestore();
 
 class Register extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            // displayName: "",
+            displayName: "",
             email: "",
             password: ""
         }
@@ -24,13 +25,20 @@ class Register extends React.Component{
     }
 
     createUser = () => {
-        this.props.createUserWithEmailAndPassword(this.state.email, this.state.password);
+        this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(resp => {
+            const id = resp.id.uid;
+            database.collection("users").doc(id).set({
+                displayName: this.state.displayName,
+                email: this.state.email
+            });
+        });
     }
     
     render() {
         return (
             <form>
-                {/* <Input type="text" placeholder="Nome completo" onChange={(e) => this.handleChange(e, "displayName")} value={this.props.displayName}/> */}
+                <Input type="text" placeholder="Nome completo" onChange={(e) => this.handleChange(e, "displayName")} value={this.props.displayName}/>
                 <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
                 <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
                 
