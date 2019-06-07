@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
-import firebase from './firebaseConfig'
-import withFirebaseAuth from './react-with-firebase-auth'
+import firebase from '../firebaseConfig'
+import withFirebaseAuth from 'react-with-firebase-auth'
 import LoginComponent from './LoginComponent'
 import SignUpComponent from './SignUpComponent'
 
@@ -85,4 +85,4 @@ class LoginContainer extends React.Component {
   }
 }
 
-export default LoginContainer
+export default withFirebaseAuth({firebaseAppAuth})(LoginContainer)
