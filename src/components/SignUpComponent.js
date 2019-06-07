@@ -4,10 +4,10 @@ import { Modal, Form, Button, ToggleButtonGroup, ToggleButton } from 'react-boot
 function SignUpComponent(props) {
   return (
     <Modal
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      show = {props.modalShow}
+      show={props.modalShow}
       onHide={props.modalClose}
     >
       <Modal.Header closeButton>
@@ -15,68 +15,74 @@ function SignUpComponent(props) {
           Cadastro
           </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body >
+          <Form className="px-5 py-3">
 
-        <Form>
-          <Form.Group controlId="formLoginEmail">
-            <Form.Control
-              name="emailSignUp"
-              value={props.data.emailSignUp}
-              type="email"
-              placeholder="Digite seu email"
-              onChange={props.handleChange}
-            />
-          </Form.Group>
+          <Form.Group controlId="formSignUpName">
+              <Form.Control
+                name="name"
+                value={props.data.name}
+                type="text"
+                placeholder="Nome Completo"
+                onChange={props.handleChange}
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formLoginPassword">
-            <Form.Control
-              name="passwordSignUp"
-              value={props.data.passwordSignUp}
-              type="password"
-              placeholder="Digite sua senha"
-              onChange={props.handleChange}
-            />
-          </Form.Group>
+            <Form.Group controlId="formSignUpEmail">
+              <Form.Control
+                name="emailSignUp"
+                value={props.data.emailSignUp}
+                type="email"
+                placeholder="Digite seu email"
+                onChange={props.handleChange}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <ToggleButtonGroup type="radio" name="options" className="w-100">
-              <ToggleButton>
-                <label>
-                  <input
-                    type="radio"
-                    name="service"
-                    value="cozinha"
-                    checked={props.data.service === "cozinha"}
-                    onClick={props.handleClick}
-                  />
-                  Cozinha
+            <Form.Group controlId="formSignUpPassword">
+              <Form.Control
+                name="passwordSignUp"
+                value={props.data.passwordSignUp}
+                type="password"
+                placeholder="Digite sua senha"
+                onChange={props.handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <ToggleButtonGroup type="radio" name="options" className="w-100">
+                <ToggleButton>
+                  <label>
+                    <input
+                      type="radio"
+                      name="service"
+                      value="cozinha"
+                      checked={props.data.service === "cozinha"}
+                      onClick={props.handleClick}
+                    />
+                    Cozinha
                 </label>
-              </ToggleButton>
+                </ToggleButton>
 
-              <ToggleButton>
-                <label>
-                  <input
-                    type="radio"
-                    name="service"
-                    value="salão"
-                    checked={props.data.service === "salão"}
-                    onClick={props.handleClick}
-                  />
-                  Salão
+                <ToggleButton>
+                  <label>
+                    <input
+                      type="radio"
+                      name="service"
+                      value="salão"
+                      checked={props.data.service === "salão"}
+                      onClick={props.handleClick}
+                    />
+                    Salão
                 </label>
-              </ToggleButton>
-            </ToggleButtonGroup>
+                </ToggleButton>
+              </ToggleButtonGroup>
 
-            <Button variant="primary" type="submit" className="mt-3" block>Entrar</Button>
+              <Button variant="primary" type="submit" className="mt-3" block>Cadastrar</Button>
 
-          </Form.Group>
-
-        </Form>
-
+            </Form.Group>
+          </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.modalClose}>Close</Button>
-      </Modal.Footer>
+  
     </Modal>
   )
 }

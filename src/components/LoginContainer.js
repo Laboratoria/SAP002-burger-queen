@@ -1,7 +1,12 @@
 import React from 'react'
-import { Row, Col, ButtonToolbar, Button } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
+import firebase from './firebaseConfig'
+import withFirebaseAuth from './react-with-firebase-auth'
 import LoginComponent from './LoginComponent'
 import SignUpComponent from './SignUpComponent'
+
+const firebaseAppAuth = firebase.auth()
+const database = firebase.firestore()
 
 class LoginContainer extends React.Component {
   constructor() {
@@ -20,12 +25,7 @@ class LoginContainer extends React.Component {
   }
 
   handleClick(event) {
-    const { name, value, type, checked } = event.target
-    type === "checkbox" ?
-      this.setState({
-        [name]: checked
-      })
-      :
+    const { name, value,  } = event.target
       this.setState({
         [name]: value
       })
@@ -38,6 +38,17 @@ class LoginContainer extends React.Component {
     })
   }
 
+  createUser() {
+    this.props.createUserWithEmailAndPassword
+    (this.state.emailSignUp, this.state.passwordSignUp)
+    .then(resp => {
+      const id = resp.user.id
+      database.collection("users").doc(id).set({
+        email: this.state.emailSignUp,
+        nome: this.state.name
+      })
+    })
+  }
   render() {
     let modalClose = () => this.setState({ modalShow: false });
 
@@ -51,7 +62,6 @@ class LoginContainer extends React.Component {
             data={this.state}
           />
 
-          <ButtonToolbar>
             <Button
               variant="primary"
               onClick={() => this.setState({ modalShow: true })}
@@ -59,7 +69,6 @@ class LoginContainer extends React.Component {
             >
               Cadastro
         </Button>
-          </ButtonToolbar>
 
           <SignUpComponent
               handleChange={this.handleChange}

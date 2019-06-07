@@ -23,7 +23,8 @@ function LoginComponent(props) {
           onChange={props.handleChange}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="mb-3" block>Entrar</Button>
+      <Button
+      variant="primary" type="submit" className="mb-3" block>Entrar</Button>
     </Form>
   )
 }
