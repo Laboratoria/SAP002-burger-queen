@@ -59,14 +59,15 @@ class LoginContainer extends React.Component {
             >
               Cadastro
         </Button>
+          </ButtonToolbar>
 
-            <SignUpComponent
+          <SignUpComponent
               handleChange={this.handleChange}
               handleClick={this.handleClick}
               data={this.state}
-              onHide={modalClose}
+              modalShow={this.state.modalShow}
+              modalClose={modalClose}
             />
-          </ButtonToolbar>
 
         </Col>
       </Row>
