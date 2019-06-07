@@ -43,8 +43,9 @@ body {
 	padding: 2% 4%;
 	border: 1px solid #ddd;
 	margin-bottom: 3%;
-	color: white;
 }
+
+
 
 .header-logo {
   display: flex;
@@ -53,4 +54,5 @@ body {
 
 .myButton {
 	background-color: black;
+	color: #fff;
 }
