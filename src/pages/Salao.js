@@ -1,10 +1,12 @@
 import React from 'react';
 import '../App.css';
 import firebase from "../firebaseConfig";
+import App from '../App'
 import Input from "../components/Input";
 import Button from "../components/Button";
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import addUser from '../firebase/firestore';
 
 const firebaseAppAuth = firebase.auth()
 const database = firebase.firestore()
@@ -90,12 +92,13 @@ class Salao extends React.Component {
     super(props);
     this.state = {
       client: "",
-      listItem: []
+      listItem: [],
+      pedido: []
     };
   }
 
   clientOrder = (item) => {
-    const itemIndex = this.state.listItem.findIndex((produto) => {
+    const itemIndex = this.state.pedido.findIndex((produto) => {
       return produto.name === item.name
     })
     if (itemIndex < 0) {
@@ -104,32 +107,32 @@ class Salao extends React.Component {
         quantidade: 1
       }
       this.setState({
-        listItem: this.state.listItem.concat(newItem)
+        pedido: this.state.pedido.concat(newItem)
       })
     } else {
-      let newOrder = this.state.listItem
+      let newOrder = this.state.pedido
       newOrder[itemIndex].quantidade += 1
       this.setState({
-        listItem: newOrder
+        pedido: newOrder
       })
     }
   }
 
   clickDelete = (item) => {
-    const itemIndex = this.state.listItem.findIndex((produto) => {
+    const itemIndex = this.state.pedido.findIndex((produto) => {
       return produto.name === item.name
     })
-    let newOrder = this.state.listItem
+    let newOrder = this.state.pedido
     newOrder[itemIndex].quantidade -= 1
     const quant = newOrder[itemIndex].quantidade
     if (quant > 0) {
       this.setState({
-        listItem: newOrder
+        pedido: newOrder
       })
     } else {
       newOrder.splice(itemIndex, 1)
       this.setState({
-        listItem: newOrder
+        pedido: newOrder
       })
     }
   }
@@ -141,57 +144,69 @@ class Salao extends React.Component {
     this.setState(newState)
   }
 
-  componentDidMount() {
-    database.collection("pedidos").get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => doc.data())
-        this.setState({ listItem: data })
-      })
-  }
+  // componentDidMount() {
+  //   database.collection("pedidos").get()
+  //     .then((querySnapshot) => {
+  //       const data = querySnapshot.docs.map(doc => doc.data())
+  //       this.setState({ listItem: data })
+  //     })
+  // }
 
 
   //clicar valor atual altera no state e no firebase
-  handleClick = () => {
+  handleClick = (pedido) => {
     const object = {
-      client: this.state.client
+      client: this.state.client,
+      pedido
     }
     database.collection("pedidos").add(object)
     this.setState({
       listItem: this.state.listItem.concat(object)
     })
+    this.reset()
+  }
+
+  reset = () => {
+    this.setState({
+      pedido: [],
+      client: ""
+    })
   }
 
   render() {
-    const valueTotal = this.state.listItem.reduce((acc, cur) => {
+    console.log(this.props.user)
+    const valueTotal = this.state.pedido.reduce((acc, cur) => {
       return acc + (cur.quantidade * cur.price)
     }, 0)
     return (
-      <div>
-        <h2>Salão</h2>
+      <div className="salao">
+        <div className="logout">
+          <div className="pedido">
+            <h3>Salão</h3>
+            <Link className="button-logout logout" to="/">Sair</Link>
+          </div>
+        </div>
         <div className="home">
           {cardapio.map((item, index) => {
-            return <Button key={index} onClick={() => this.clientOrder(item)} text={item.name} />
+            return <Button className="button-cardap" key={index} onClick={() => this.clientOrder(item)} text={item.name} />
           })
           }
         </div>
-        <div className="pedido">
-          <h3>Pedido</h3>
-          <Input value={this.state.client} placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "client")} />
-          <Button onClick={this.handleClick} text="Criar Pedido" />
-          {
-            this.state.listItem.map((item, index) => {
-              return <div key={index}>
-                <p>{item.name} - {item.price * item.quantidade} - {item.quantidade} </p>
-                <Button text="Excluir" onClick={() => this.clickDelete(item)}></Button>
-              </div>
-            })
-          }
-          {
-            this.state.listItem.map((item, index) => {
-              return <p key={index}>{item.client}</p>
-            })
-          }
-          <h3>Valor Total: {valueTotal}</h3>
+        <div className="page">
+          <div className="pedido">
+            <h3>Pedido</h3>
+            <Input value={this.state.client} placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "client")} />
+            <Button className="button" onClick={() => this.handleClick(this.state.pedido)} text="Criar Pedido" />
+            {
+              this.state.pedido.map((item, index) => {
+                return <div key={index}>
+                  <p>{item.name} - R$ {item.price * item.quantidade} - {item.quantidade} unid</p>
+                  <Button className="button" text="Excluir" onClick={() => this.clickDelete(item)}></Button>
+                </div>
+              })
+            }
+            <h3>Valor Total: R$ {valueTotal}</h3>
+          </div>
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ import firebase from "../firebaseConfig";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import withFirebaseAuth from 'react-with-firebase-auth';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import addUser from '../firebase/firestore'
 
 const firebaseAppAuth = firebase.auth()
@@ -20,7 +20,7 @@ class Home extends React.Component {
       displayName: "",
       email: "",
       password: "",
-      value: "Cozinha",
+      value: "",
       redirect: false,
       error: ""
     };
@@ -66,7 +66,7 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    const { email, password, displayName } = this.state;
+    const { email, password, displayName, value } = this.state;
     this.props.createUserWithEmailAndPassword(email, password)
       .then((data) => {
         if (!data) {
@@ -76,6 +76,7 @@ class Home extends React.Component {
         addUser({
           email,
           displayName,
+          value,
         }, uid)
         this.setState({
           redirect: true
@@ -94,17 +95,21 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Input value={this.state.displayName} placeholder="Digite seu nome" onChange={(e) => this.handleChange(e, "displayName")} />
-        <Input value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
-        <Input type="password" value={this.state.password} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} />
-        <span>{this.state.error}</span>
-        <select onChange={(e) => this.handleChange(e, "value")} className="input" value={this.state.value}>
-          <option value="Cozinha">Cozinha</option>
-          <option value="Salao">Salão</option>
-        </select>
-        <Button onClick={this.createUser} text="Criar usuário"></Button>
-        {this.authLogin()}
-        <Button onClick={this.signIn} text="Login" />
+        <div className="page">
+          <div className="form">
+            <Input value={this.state.displayName} placeholder="Digite seu nome" onChange={(e) => this.handleChange(e, "displayName")} />
+            <Input value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
+            <Input type="password" value={this.state.password} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} />
+            <span>{this.state.error}</span>
+            <select onChange={(e) => this.handleChange(e, "value")} className="input" value={this.state.value}>
+              <option value="Cozinha">Cozinha</option>
+              <option value="Salao">Salão</option>
+            </select>
+            <Button className="button" onClick={this.createUser} text="Criar usuário" />
+            {this.authLogin()}
+            <Button className="button" onClick={this.signIn} text="Login" />
+          </div>
+        </div>
       </div>
     );
   }
