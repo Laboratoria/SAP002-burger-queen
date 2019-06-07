@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -30,4 +30,143 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #464646;
+  font-family: 'Roboto', sans-serif;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.font-size-p {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.font-size-m {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.background-image {
+  display: flex;
+  justify-content: center;
+  background-image: url("../src/images/fundo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #C64706;
+  height: 400px;
+  position: relative;
+}
+
+.logo {
+  top: 40%;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+}
+
+.logo img {
+  height: 100%;
+  position: inherit;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choice-login {
+  text-align: center;
+  margin: 20px 10px 0;
+  position: relative;
+  padding: 0 30px 15px;
+  border-bottom: 1px solid #707070;
+  color: #707070;
+}
+
+.choice-login.active {
+  border-bottom: 1px solid #C64706;
+  color: #C1C1C1;
+}
+
+.rounded-border {
+  height: 40px;
+  margin-top: 20px;
+  padding-left: 15px;
+  background-color: #C1C1C1;
+  color: #707070;
+  font-size: 12px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 10px;
+}
+
+.section-sign-in, .section-sign-up {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.sign-in-email, .sign-in-password, .sign-up-name, .sign-up-email, .sign-up-password {
+  width: 100%;
+}
+
+.sign-up-birthday, .sign-up-gender {
+  width: 47%;
+}
+
+.sign-up-state {
+  width: 37%;
+}
+
+.sign-up-city {
+  width: 57%;
+}
+
+.edit-align {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-options {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #C1C1C1;
+}
+/* 
+.btn {
+  width: 140px;
+  height: 35px;
+  margin: 20px 5px 0;
+  background-color: #C64706;
+  color: #C1C1C1;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+} */

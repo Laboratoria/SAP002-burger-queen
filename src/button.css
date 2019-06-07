@@ -1,9 +1,17 @@
 
 
 .button {
-    background-color: yellow;
-    padding: 10px;
+  width: 140px;
+  height: 35px;
+  margin: 20px 5px 0;
+  background-color: #C64706;
+  color: #C1C1C1;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
   
   }
+
+ 
 
   
