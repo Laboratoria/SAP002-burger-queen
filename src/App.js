@@ -1,19 +1,25 @@
 import React from 'react';
 import './App.css';
-import firebase from "./firebaseConfig";
+import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
+import Login from './pages/Login'
+import Order from './pages/Order'
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+  
+
   render() {
     return (
+      <Router>
       <div className="App">
-        <header className="App-header">
-          <h1>#partiuBurgerQueen</h1>
-        </header>
+        <Route path="/" exact component={Login} />
+        <Route path="/order" exact component={Order} />
       </div>
+      </Router>
     );
   }
 }
