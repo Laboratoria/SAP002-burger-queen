@@ -17,7 +17,6 @@ class Home extends React.Component {
       email: "",
       password: "",
       userType: "",
-      listItem: [],
       firstName: "",
       surname: "",
       condition: false
@@ -37,11 +36,17 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password).then(
-      () => {
-        alert("Conta Criada")
-      }
-    );
+    const { email, firstName, surname, userType } = this.state;
+    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(resp => {
+        const id = resp.user.uid;
+        database.collection("users").doc(id).set({
+          email,
+          firstName,
+          surname,
+          userType
+        });
+    });
   }
    
   signIn = () => {
@@ -98,7 +103,7 @@ class Home extends React.Component {
               onChange={(e) => this.handleChange(e, "surname")}
             />
             <select className="input-box">
-			        <option value="" selected disabled hidden>Setor</option>
+			        <option value="" selected disabled>Setor</option>
 			        <option value="kitchen" onChange = {(e) => this.handleChange(e, "userType")}>Cozinha</option>
 			        <option value="salon" onChange = {(e) => this.handleChange(e, "userType")}>Salão</option>
 			      </select>
