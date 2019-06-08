@@ -19,7 +19,8 @@ class Home extends React.Component {
       userType: "",
       listItem: [],
       firstName: "",
-      surname: ""
+      surname: "",
+      condition: false
     };
   }
 
@@ -27,6 +28,12 @@ class Home extends React.Component {
     const newState = this.state;
     newState[element] = event.target.value
     this.setState(newState);
+  }
+
+  handleClick = () => {
+    this.setState({
+      condition: !this.state.condition
+    })
   }
 
   createUser = () => {
@@ -47,10 +54,12 @@ class Home extends React.Component {
       <div className="forms">
         <Tabs>
           <TabList className="nav-container">
-            <Tab className="nav-link-one"> 
+            <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
+        onClick={ this.handleClick }> 
               <p>Login</p>
             </Tab>
-            <Tab className="nav-link-two">   
+            <Tab className={ this.state.condition ? "nav-link disabled" : "nav-link active" }
+        onClick={ this.handleClick }>   
               <p>Criar Conta</p>
             </Tab>
           </TabList>

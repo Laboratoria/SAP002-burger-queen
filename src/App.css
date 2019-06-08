@@ -54,13 +54,11 @@ body {
 }
 
 .nav-container {
-	background-color: red;
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.nav-link-one {
-  background-color: #073561;
+.nav-link {
   width: 50%;
   display: flex;
   justify-content: center;
@@ -69,12 +67,10 @@ body {
   align-items: center;
 }
 
-.nav-link-two {
-  background-color: lightblue;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  height: 40px;
-  margin-bottom: 5px;
-  align-items: center;
+.active {
+	background: green;
+}
+
+.disabled {
+	background: red;
 }
