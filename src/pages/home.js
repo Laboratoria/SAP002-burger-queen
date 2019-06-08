@@ -57,15 +57,12 @@ class Home extends React.Component {
 
   render() {
     const errorMsg = this.props.error;
-    if (errorMsg) {
-      alert(errorMsg) 
-    }
 
     return (
       <div>
-        {/* <p>
+        <p>
           {errorMsg}
-        </p> */}
+        </p>
         <select ref='userType'>
           <option value="saloon">Salão</option>
           <option value="kitchen">Cozinha</option>
