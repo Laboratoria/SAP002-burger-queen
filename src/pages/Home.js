@@ -37,12 +37,17 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password);
+    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password).then(
+      () => {
+        alert("Conta Criada")
+      }
+    );
   }
    
   signIn = () => {
     this.props.signInWithEmailAndPassword(this.state.email, this.state.password).then(
       () => {
+        alert("Entrou")
       }
     )
   }
@@ -53,6 +58,7 @@ class Home extends React.Component {
     return (
       <div className="forms">
         <Tabs>
+          <h1 className="header-logo">Burger Queen</h1>
           <TabList className="nav-container">
             <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
         onClick={ this.handleClick }> 
@@ -64,7 +70,19 @@ class Home extends React.Component {
             </Tab>
           </TabList>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <Input 
+              type="email" 
+              value={email} 
+              placeholder="Digite seu email"
+              onChange={(e) => this.handleChange(e, "email")} 
+            />
+            <Input 
+              type="password" 
+              value={password} 
+              onChange={(e) => this.handleChange(e, "password")} 
+              placeholder="Digite sua senha"
+            />
+           <Button text="Login" onClick={this.signIn}/>
           </TabPanel>
           <TabPanel> 
             <Input 
@@ -90,13 +108,13 @@ class Home extends React.Component {
               placeholder="Digite seu email"
               onChange={(e) => this.handleChange(e, "email")} 
             />
-           <Input 
-             type="password" 
-             value={password} 
-             onChange={(e) => this.handleChange(e, "password")} 
-             placeholder="Digite sua senha"
-           />
-           <Button text="Criar Conta" onClick={this.createUser}/>
+            <Input 
+              type="password" 
+              value={password} 
+              onChange={(e) => this.handleChange(e, "password")} 
+              placeholder="Digite sua senha"
+            />
+            <Button text="Criar Conta" onClick={this.createUser}/>
           </TabPanel>  
          </Tabs>
         </div>
