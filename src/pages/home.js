@@ -30,7 +30,6 @@ class Home extends React.Component {
 
     this.props.createUserWithEmailAndPassword(email, password)
       .then((data) => {
-        console.log(data)
         if (!data) return;
         const { user: { uid } } = data;
         addUser({

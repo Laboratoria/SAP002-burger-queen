@@ -34,24 +34,6 @@ class Kitchen extends React.Component {
 
   render() {
     const orders = this.state.listItem;
-    // console.log('orders: ', orders);
-    // const client = orders.map((pedido) => {
-    //   return pedido.clientName;
-    // })
-
-    // const pedido = orders.map((item) => {
-    //   const order = item.order;
-
-    //   for (let i in order) {
-    //     const title = order[i].title;
-    //     const quantity = order[i].quantity;
-    //     // console.log('quantity: ', quantity);
-    //     // console.log('title: ', title);
-
-    //     // return 'Quantidade: ' + quantity + ' - Produto: ' + title;
-    //   }
-
-    // })
 
     return (
       <section className='order-list'>
@@ -71,11 +53,9 @@ class Kitchen extends React.Component {
               )
             })
           }
-        
       </section>
     )
   }
-
 }
 
 export default Kitchen

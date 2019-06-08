@@ -28,7 +28,7 @@ class Saloon extends React.Component {
       clientName: this.state.clientName,
       order
     }
-    database.collection('Orders').add(object)
+    database.collection('orders').add(object)
     this.setState({
       listItem: this.state.listItem.concat(object)
     })
