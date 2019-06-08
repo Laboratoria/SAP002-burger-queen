@@ -8,24 +8,16 @@ import { BrowserRouter as Router, Route, Redirect, Link }
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
             name: "",
-            place: "",
-            listItem: []
+            place: "salao",
         };
     }
-
-    // componentDidMount() {
-    //     database.collection('laboratoria').get()
-    //         .then((querySnapshot) => {
-    //             const data = querySnapshot.docs.map(doc => doc.data());
-    //             this.setState({ listItem: data });
-    //         });
-    // }
 
     handleChange = (event, element) => {
         const newState = this.state;
@@ -33,61 +25,50 @@ class App extends React.Component {
         this.setState(newState);
     }
 
-    // handleClick = () => {
-    //     const object = {
-    //         email: this.state.email,
-    //         name: this.state.name,
-    //         place: this.state.place,
-    //     }
-    //     database.collection('Usuarios').add(object)
-    //     this.setState({
-    //         listItem: this.state.listItem.concat(object)
-    //     })
-    // }
-
     createUser = () => {
         this.props.createUserWithEmailAndPassword
             (this.state.email, this.state.password)
-            .then((response) => {
-                database.doc(`users/${response.user.uid}`)
-                    .set({
+            .then((resp) => {
+              const id = resp.user.uid;
+                if(resp) {
+                database.collection("users").doc(id).set({
                         email: this.state.email,
                         name: this.state.name,
-                        place: this.state.place,
-
+                        place: this.state.place
+                    })
+                    .then(() => {
+                        this.props.history.push(`/${this.state.place}`);
                     });
-                    
-                alert("Cadastro feito com sucesso!");
-            });
+                }
+            })
+            
     }
 
-
     render() {
-        //console.log(this.props.user);
+        if (this.props.error){
+            if(this.props.error === "The email address is already in use by another account.") {
+                alert("Atenção!! E-mail já cadastrado.");
+            }
+        
+        }
+
         return (
             <div>
-                <h1>Burger Queen Cadastro</h1>
-                <input value={this.state.email}
-                    placeholder="e-mail"
-                    onChange={(e) => this.handleChange(e, "email")} />
+                <h1>Cadastro</h1>
                 <input value={this.state.name}
                     placeholder="nome"
                     onChange={(e) => this.handleChange(e, "name")} />
-                <input value={this.state.place}
-                    placeholder="local"
-                    onChange={(e) => this.handleChange(e, "place")} />
+                <input value={this.state.email}
+                    placeholder="e-mail"
+                    onChange={(e) => this.handleChange(e, "email")} />
                 <input value={this.state.password}
                     placeholder="senha"
-                    onChange={(e) => this.handleChange(e, "password")} />
-
+                    onChange={(e) => this.handleChange(e, "password")} /> <br></br>
+                <select onChange={(e) => this.handleChange(e, "place")} >
+                    <option value="salao">Salão</option>
+                    <option value="cozinha">Cozinha</option>
+                </select>
                 <Button text="Cadastrar" onClick={this.createUser} />
-
-                {/* {
-                    this.state.listItem.map((item, index) => {
-                        return <p key={index}>
-                            {item.email} | {item.name} | {item.place}</p>
-                    })
-                } */}
             </div>
         );
     }
@@ -97,6 +78,3 @@ class App extends React.Component {
 export default withFirebaseAuth({
     firebaseAppAuth,
 })(App);
-
-
-//<Link to="teste link">Oiii</Link>

@@ -1,5 +1,13 @@
 .button {
     background-color: #61dafb;
-    padding: 10px;
-    border-radius: 5px;
+    font-family: 'Work Sans', sans-serif;
+    font-size:17px;
+    padding: 4px;
+    margin: 10px;
+    border-radius: 7px;
+    
+  }
+
+  .button:hover{
+    background-color: #00CED1;
   }

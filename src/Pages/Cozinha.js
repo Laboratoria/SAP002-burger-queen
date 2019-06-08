@@ -49,7 +49,7 @@ class App extends React.Component {
     //console.log(this.props.user);
     return (
       <div>
-        <h1>S A L Ã O</h1>
+          <h1>C O Z I N H A</h1>
           <input value={this.state.banana}
             placeholder="banana"
             onChange={(e) => this.handleChange(e, "banana")} />
@@ -57,7 +57,7 @@ class App extends React.Component {
             placeholder="peixinho"
             onChange={(e) => this.handleChange(e, "peixinho")} />
             <br></br>
-          <Button text="Enviar" onClick={this.handleClick} /><br></br>
+          <Button text="Entregar" onClick={this.handleClick} /><br></br>
           <Link to="/">Sair</Link>
 
           {
