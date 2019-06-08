@@ -10,14 +10,12 @@ body {
 }
 
 .forms {
-	background: #fff;
+	background: rgb(238, 231, 231);
 	margin: 3% auto;
 	max-width: 70%;
 }
 
 .forms { padding: 5%; }
-
-#signup { display: none; }
 
 .forms .tab-group {
 	list-style: none;
@@ -45,8 +43,6 @@ body {
 	margin-bottom: 3%;
 }
 
-
-
 .header-logo {
   display: flex;
   justify-content: center;
@@ -61,8 +57,6 @@ body {
 	background-color: red;
 	display: flex;
 	flex-wrap: wrap;
-	   
-	
 }
 
 .nav-link-one {

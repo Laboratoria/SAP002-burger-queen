@@ -41,21 +41,19 @@ class Home extends React.Component {
   }
 
   render() {
-    const { email, password, listItem, firstName, surname } = this.state;
+    const { email, password, firstName, surname } = this.state;
 
     return (
-      <div>
+      <div className="forms">
         <Tabs>
-          <header className="forms"> 
-          <div className="nav-container">
-          <TabList>
-            <Tab> 
-              <div className="nav-link-one">Login</div>
+          <TabList className="nav-container">
+            <Tab className="nav-link-one"> 
+              <p>Login</p>
             </Tab>
-            <Tab>   
-              <div className="nav-link-two">Criar Conta</div></Tab>
+            <Tab className="nav-link-two">   
+              <p>Criar Conta</p>
+            </Tab>
           </TabList>
-          </div> 
           <TabPanel>
             <h2>Any content 2</h2>
           </TabPanel>
@@ -91,7 +89,6 @@ class Home extends React.Component {
            />
            <Button text="Criar Conta" onClick={this.createUser}/>
           </TabPanel>  
-          </header>
          </Tabs>
         </div>
     )
