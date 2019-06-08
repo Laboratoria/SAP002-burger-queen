@@ -35,29 +35,37 @@ class Home extends React.Component {
         addUser({
           email,
           displayName,
+          userType: this.refs.userType.value
         }, uid)
-      });
-    alert('Usuário cadastrado com sucesso! Faça o login.')
+      })
+      .then((resp) => {
+        if (resp) {
+          const userType = this.refs.userType.value; 
+          this.props.history.push(`/${userType}`)}
+        })
   }
 
   signIn = () => {
-
-    this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((info) => console.log('>>> user isAnonymous ???', info.user.isAnonymous))
-      .then(() => {
-        const userType = this.refs.userType.value;
-        if (userType === 'saloon') {
-          this.props.history.push(`/Saloon`);
-        } else {
-          this.props.history.push(`/Kitchen`);
+    const { email, password, displayName } = this.state;
+    this.props.signInWithEmailAndPassword(email, password)
+      .then((resp) => {
+        if (resp) {
+          const userType = this.refs.userType.value; this.props.history.push(`/${userType}`);
         }
       })
-      .catch(error => alert(error));
   }
 
   render() {
+    const errorMsg = this.props.error;
+    if (errorMsg) {
+      alert(errorMsg) 
+    }
+
     return (
       <div>
+        {/* <p>
+          {errorMsg}
+        </p> */}
         <select ref='userType'>
           <option value="saloon">Salão</option>
           <option value="kitchen">Cozinha</option>
