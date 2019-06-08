@@ -35,10 +35,21 @@ function App() {
       <header className="App-header">
         <Route path="/" exact component={Home} />
         <Route path="/salao" component={Salao} />
+        <Route path="/cozinha" component={Cozinha} />
       </header>
   </div>
  </Router>
   );
+}
+
+function Cozinha() {
+  return (
+    <div>
+      Estamos na cozinha
+    </div>
+
+  )
+
 }
 
 
