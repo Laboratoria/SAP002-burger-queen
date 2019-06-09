@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import Home from "./pages/Home"
-import Salao from "./pages/Salao"
+import Salon from "./pages/Salon"
+import Kitchen from "./pages/Kitchen"
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
 
@@ -10,11 +11,9 @@ function App() {
     <Router>
     <div className="App">
       <header className="App-header">
-       
-
-       <Route path="/" exact component={Home}/>
-       <Route path="/salao" component={Salao}/>
-     
+        <Route path="/" exact component={Home}/>
+        <Route path="/salon" component={Salon}/>
+        <Route path="/kitchen" component={Kitchen}/>
       </header>
     </div>
     </Router>

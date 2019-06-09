@@ -46,15 +46,22 @@ class Home extends React.Component {
           surname,
           userType
         });
+    })
+    .then( () =>{
+      this.props.history.push(`/${this.state.userType}`);
     });
   }
    
   signIn = () => {
-    this.props.signInWithEmailAndPassword(this.state.email, this.state.password).then(
-      () => {
-        alert("Entrou")
-      }
-    )
+    this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
+    .then((resp) => {
+      const id = resp.user.uid;
+      database.collection("users").doc(id).get()
+        .then(resp => {
+          const data = resp.data();
+          this.props.history.push(`/${data.userType}`);
+        })
+    });
   }
 
   render() {
@@ -102,10 +109,10 @@ class Home extends React.Component {
               placeholder="Sobrenome"
               onChange={(e) => this.handleChange(e, "surname")}
             />
-            <select className="input-box">
-			        <option value="" selected disabled>Setor</option>
-			        <option value="kitchen" onChange = {(e) => this.handleChange(e, "userType")}>Cozinha</option>
-			        <option value="salon" onChange = {(e) => this.handleChange(e, "userType")}>Salão</option>
+            <select className="input-box" onChange={(e) => this.handleChange(e, "userType")}>
+			        <option selected disabled>Setor</option>
+			        <option value="kitchen" >Cozinha</option>
+			        <option value="salon">Salão</option>
 			      </select>
             <Input 
               type="email" 

@@ -2,14 +2,14 @@ import React from 'react';
 // import './App.css';
 import firebase from "../firebaseConfig";
 import Button from "../components/Button"
-import Home from "../pages/Home"
+import Home from "./Home"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class App extends React.Component {
+class Salon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,4 +61,4 @@ class App extends React.Component {
 
 
 
-export default withFirebaseAuth({firebaseAppAuth}) (App);
+export default withFirebaseAuth({firebaseAppAuth}) (Salon);
