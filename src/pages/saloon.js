@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from '../firebase/firebase-config';
-import firebaseAuth from 'react-with-firebase-auth';
 import Data from '../data.json';
 import './saloon.css';
 import '../components/Button.css';
@@ -8,18 +7,7 @@ import Button from '../components/Button';
 import { faCoffee, faGlassWhiskey, faHamburger, faCertificate, faPlusCircle, faMinusCircle, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 
 const database = firebase.firestore();
-
-let user = firebaseAuth.currentUser;
-console.log('user: ', user);
-// const userUid = user.uid;
-// console.log('userUid: ', userUid);
-database.collection("users").get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-
-      // console.log(doc.id.data().displayName)
-    });
-  });
+// const firebaseAuth = firebase.auth();
 
 class Saloon extends Component {
   constructor(props) {
@@ -29,7 +17,7 @@ class Saloon extends Component {
       order: []
     }
   }
-
+  
   handleChange = (event, element) => {
     const newState = this.state;
     newState[element] = event.target.value

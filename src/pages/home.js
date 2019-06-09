@@ -42,12 +42,7 @@ class Home extends React.Component {
   }
 
   signIn = () => {
-    // como verificar se o usuário está logado?
-    // console.log(this.state);
-    // console.log('>>>>', this.props.user);
-
     this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((info) => console.log('>>> user isAnonymous ???', info.user.isAnonymous))
       .then(() => {
         const userType = this.refs.userType.value;
         if (userType === 'saloon') {
