@@ -57,7 +57,6 @@ class Home extends React.Component {
         }
       })
       .catch(error => alert(error));
-      // .catch(error => alert(this.setState({ error })))
   }
 
   render() {

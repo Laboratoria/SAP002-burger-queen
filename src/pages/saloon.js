@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import firebase from '../firebase/firebase-config';
 import Data from '../data.json';
 import './saloon.css';
@@ -23,15 +23,24 @@ class Saloon extends Component {
     this.setState(newState);
   }
 
-  handleClick = (order) => {
-    const object = {
-      clientName: this.state.clientName,
-      order: order
+  sendOrder = (order) => {
+    if (this.refs.clientName.value == '') {
+      alert('Insira o nome do Cliente')
+    } else {
+      const object = {
+        clientName: this.state.clientName,
+        order: order
+      }
+      database.collection('Orders').add(object)
+      this.setState({
+        listItem: this.state.listItem.concat(object)
+      })
+        alert('Pedido enviado!')
+        this.refs.orderList.innerHTML = '';
+        this.refs.totalPrice.innerHTML = 0;
+        // TODO: limpar nome do cliente
+        this.refs.clientName.value = '';
     }
-    database.collection('Orders').add(object)
-    this.setState({
-      listItem: this.state.listItem.concat(object)
-    })
   }
 
   handleAdd = (item) => {
@@ -114,6 +123,7 @@ class Saloon extends Component {
         </div>
         <div className='order-list'>
           <h1>Pedido</h1>
+          <div ref='orderList'>
           {
             this.state.order.map((item, i) => {
               return (
@@ -126,14 +136,15 @@ class Saloon extends Component {
                 </div>
               )
             })
-          }
+          } 
+          </div>
 
           <h3>Valor Total do Pedido</h3>
-          <p>R$ {total}</p>
+          <p ref='totalPrice'>R$ {total}</p>
           <input value={this.state.clientName}
-            placeholder='Nome da(o) cliente'
+            placeholder='Nome da(o) cliente' ref='clientName'
             onChange={(e) => this.handleChange(e, 'clientName')} />
-          <Button text='Enviar pedido para cozinha' className='btn item-btn' iconName={faShareSquare} onClick={() => this.handleClick(this.state.order)} />
+          <Button text='Enviar pedido para cozinha' className='btn item-btn' iconName={faShareSquare} onClick={() => this.sendOrder(this.state.order)} />
         </div>
       </section>
     )
