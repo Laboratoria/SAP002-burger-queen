@@ -10,6 +10,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       email: "",
       password: "",
       type: "kitchen"
@@ -22,19 +23,22 @@ class Login extends React.Component {
     this.setState(newState);
   };
 
-  signIn = () => {
+  createUser = () => {
     this.props
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(resp => {
         const id = resp.user.uid;
         database
           .collection("users")
           .doc(id)
-          .get()
-          .then(resp => {
-            const data = resp.data();
-            this.props.history.push(`/${data.type}`);
+          .set({
+            email: this.state.email,
+            name: this.state.name,
+            type: this.state.type
           });
+      })
+      .then(() => {
+        this.props.history.push(`/${this.state.type}`);
       });
   };
 
@@ -43,6 +47,14 @@ class Login extends React.Component {
       <div>
         <h1>#BurgerQueen</h1>
         <Form>
+          <Form.Group controlId="formName">
+            <Form.Control
+              value={this.state.name}
+              onChange={e => this.handleChange(e, "name")}
+              placeholder="Digite seu nome"
+            />
+          </Form.Group>
+
           <Form.Group controlId="formEmail">
             <Form.Control
               value={this.state.email}
@@ -60,18 +72,38 @@ class Login extends React.Component {
               placeholder="Digite sua senha"
             />
           </Form.Group>
-        </Form>
 
-        <Button variant="warning" onClick={this.signIn}>
-          Entrar
+          <Form.Group
+            value={this.state.type}
+            onChange={e => this.handleChange(e, "type")}
+          >
+            <Form.Check
+              inline
+              type="radio"
+              label="Cozinha"
+              value="kitchen"
+              name="radioType"
+              defaultChecked
+            />
+            <Form.Check
+              inline
+              type="radio"
+              label="Salão"
+              value="lounge"
+              name="radioType"
+            />
+          </Form.Group>
+        </Form>
+        <Button variant="warning" onClick={this.createUser}>
+          Cadastrar-me
         </Button>
         <Button
           variant="outline-warning"
           onClick={() => {
-            this.props.history.push("/register");
+            this.props.history.push("/");
           }}
         >
-          Cadastre-se
+          Voltar
         </Button>
       </div>
     );
