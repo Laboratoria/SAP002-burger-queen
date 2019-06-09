@@ -1,21 +1,21 @@
 import React from 'react';
 import './App.css';
-import firebase from "./firebaseConfig";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import Login from './pages/Login'
+// import Modal from './pages/Modal'
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>#partiuBurgerQueen</h1>
-        </header>
-      </div>
+
+function App() {
+return(
+      <Router>
+      
+        <Route path="/" exact component={Login}/>
+        {/* <Route path="/" Component={Room}/> */}
+     
+      </Router>
     );
   }
-}
+
 
 export default App;
+   
