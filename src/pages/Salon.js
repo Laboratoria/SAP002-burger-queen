@@ -55,6 +55,7 @@ class Salon extends React.Component {
         
          
          <p>Salão</p>
+         <p>{user.displayName}</p>
          <Input 
               type="text" 
               value={customerName} 
