@@ -1,5 +1,5 @@
 import React from 'react';
-// import './App.css';
+import '../App.css';
 import Button from '../button';
 // import Counter from './counter.js;'
 import firebase from '../firebaseConfig';
