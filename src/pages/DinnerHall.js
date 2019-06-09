@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    event.preventDefault();
+    // event.preventDefault();
     database.collection('login').get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => doc.data());

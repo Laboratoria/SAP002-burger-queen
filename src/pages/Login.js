@@ -16,7 +16,7 @@ class Login extends React.Component {
       email: '',
       password: '',
       name: '',
-      listItem: []
+      place: ''  
     };
   }
 
@@ -32,24 +32,30 @@ class Login extends React.Component {
     this.props.createUserWithEmailAndPassword
     (this.state.email, this.state.password)
     .then(resp => {
-      console.log(resp)
+      if (resp){
+      const id = resp.user.uid;
+      database.collection("users").doc(id).set({
+        email: this.state.email,
+        place: this.state.place
+        // nome: this.state.nome
+      })
+    .then (() => {
+      this.props.history.push(`/${this.state.place}`);
     });
   }
+})
+  }
+
 
   signIn = (event) => {
     event.preventDefault();
     this.props.signInWithEmailAndPassword
     (this.state.email, this.state.password)
       .then(() => {
-        alert("uhul");
+        console.log("uhul");
+        this.props.history.push(`/${this.state.place}`);
       });
   }
-
-  setPlace(event) {
-    const choosePlace = event.target.value
-    console.log(choosePlace);
-  }
-
 
   // handleClose() {
   //   this.setState({ show: false });
@@ -60,6 +66,9 @@ class Login extends React.Component {
   // }
 
   render() {
+    if (this.props.error) {
+      alert(this.props.error);
+    }
     return (
       <div className="m-5">
         {/* <Button variant="primary" onClick={this.handleShow}>
@@ -86,10 +95,10 @@ class Login extends React.Component {
                   </div>
                   <form className="d-flex justify-content-center">
                     <div className="d-flex flex-row mx-2 align-items-baseline">
-                      <input type="radio" name="optradio" className="white-text mx-2" value="1" onChange={(event) => this.setPlace(event)} /><p className="white-text">Salão</p>
+                      <input type="radio" name="optradio" className="white-text mx-2" value="DinnerHall" onChange={(event) => this.handleChange(event, "place")} /><p className="white-text">Salão</p>
                     </div>
                     <div className="d-flex flex-row mx-2 align-items-baseline">
-                      <input type="radio" name="optradio" className="mx-2 radio-menu" value="2" onChange={(event) => this.setPlace(event)}/><p className="white-text">Cozinha</p>
+                      <input type="radio" name="optradio" className="mx-2 radio-menu" value="DinnerKitchen" onChange={(event) => this.handleChange(event, "place")}/><p className="white-text">Cozinha</p>
                     </div>
                   </form>
                 </div>
