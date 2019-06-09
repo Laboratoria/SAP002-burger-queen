@@ -1,7 +1,8 @@
 import React from "react";
 import firebase from "../firebaseConfig";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import withFirebaseAuth from "react-with-firebase-auth";
+import logo from "../assets/logo-ygroup.png";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -11,8 +12,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: "",
-      type: "kitchen"
+      password: ""
     };
   }
 
@@ -40,40 +40,45 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>#BurgerQueen</h1>
-        <Form>
-          <Form.Group controlId="formEmail">
-            <Form.Control
-              value={this.state.email}
-              type="email"
-              onChange={e => this.handleChange(e, "email")}
-              placeholder="Digite seu email"
-            />
-          </Form.Group>
+      <Container>
+        <Row>
+          <Col sm={{ span: 6, offset: 3 }}>
+            <img src={logo} alt="logo" className="logo mb-5" />
+            <Form>
+              <Form.Group controlId="formEmail">
+                <Form.Control
+                  value={this.state.email}
+                  type="email"
+                  onChange={e => this.handleChange(e, "email")}
+                  placeholder="Digite seu email"
+                />
+              </Form.Group>
 
-          <Form.Group controlId="formPassword">
-            <Form.Control
-              value={this.state.password}
-              type="password"
-              onChange={e => this.handleChange(e, "password")}
-              placeholder="Digite sua senha"
-            />
-          </Form.Group>
-        </Form>
+              <Form.Group controlId="formPassword">
+                <Form.Control
+                  value={this.state.password}
+                  type="password"
+                  onChange={e => this.handleChange(e, "password")}
+                  placeholder="Digite sua senha"
+                />
+              </Form.Group>
+            </Form>
 
-        <Button variant="warning" onClick={this.signIn}>
-          Entrar
-        </Button>
-        <Button
-          variant="outline-warning"
-          onClick={() => {
-            this.props.history.push("/register");
-          }}
-        >
-          Cadastre-se
-        </Button>
-      </div>
+            <Button className="orange" onClick={this.signIn} block>
+              ENTRAR
+            </Button>
+            <Button
+              className="outline-orange"
+              onClick={() => {
+                this.props.history.push("/register");
+              }}
+              block
+            >
+              CADASTRAR-SE{" "}
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

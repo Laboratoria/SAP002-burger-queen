@@ -20,7 +20,6 @@ class Lounge extends React.Component {
       .get()
       .then(querySnapshot => {
         const data = querySnapshot.docs.map(doc => doc.data());
-        // console.log("data", data);
         this.setState({ listItem: data });
       });
   }
