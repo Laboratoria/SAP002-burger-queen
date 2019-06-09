@@ -36,16 +36,20 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    const { email, firstName, surname, userType } = this.state;
+    // const { email, firstName, surname, userType } = this.state;
     this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(resp => {
         const id = resp.user.uid;
+        const user = firebase.auth().currentUser
         database.collection("users").doc(id).set({
-          email,
-          firstName,
-          surname,
-          userType
+          email: this.state.email,
+          firstName: this.state.firstName,
+          surname: this.state.surname,
+          userType: this.state.userType
         });
+        user.updateProfile({
+          displayName: `${this.state.firstName} ${this.state.surname}`
+        })
     })
     .then( () =>{
       this.props.history.push(`/${this.state.userType}`);

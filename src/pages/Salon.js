@@ -2,6 +2,7 @@ import React from 'react';
 // import './App.css';
 import firebase from "../firebaseConfig";
 import Button from "../components/Button"
+import Input from "../components/Input"
 import Home from "./Home"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
@@ -13,7 +14,7 @@ class Salon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      customerName: "",
       password: "",
       userType: "",
       listItem: []
@@ -42,19 +43,26 @@ class Salon extends React.Component {
     alert(this.state.userType)
   }
 
-  
   render() {
-    console.log(this.props.user)
+    const { customerName } = this.state;
+    const user = firebase.auth().currentUser;
+    console.log(user)
+    console.log(user.displayName);
+
     return (
-      <Router>
       <div className="App">
         <header className="App-header">
+        
          
          <p>Salão</p>
+         <Input 
+              type="text" 
+              value={customerName} 
+              placeholder="Digite o nome do cliente"
+              onChange={(e) => this.handleChange(e, "customerName")} 
+            />
         </header>
-      </div>
-      </Router>
-       
+      </div>       
     )
   }
   }
