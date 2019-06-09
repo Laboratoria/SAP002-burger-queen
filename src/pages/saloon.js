@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase/firebase-config';
+import firebaseAuth from 'react-with-firebase-auth';
 import Data from '../data.json';
 import './saloon.css';
 import '../components/Button.css';
@@ -7,6 +8,18 @@ import Button from '../components/Button';
 import { faCoffee, faGlassWhiskey, faHamburger, faCertificate, faPlusCircle, faMinusCircle, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 
 const database = firebase.firestore();
+
+let user = firebaseAuth.currentUser;
+console.log('user: ', user);
+// const userUid = user.uid;
+// console.log('userUid: ', userUid);
+database.collection("users").get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+
+      // console.log(doc.id.data().displayName)
+    });
+  });
 
 class Saloon extends Component {
   constructor(props) {
@@ -23,8 +36,15 @@ class Saloon extends Component {
     this.setState(newState);
   }
 
+  resetOrderList = () => {
+    this.setState({
+      order: [],
+      clientName: ''
+    })
+  }
+
   sendOrder = (order) => {
-    if (this.refs.clientName.value == '') {
+    if (this.refs.clientName.value === '') {
       alert('Insira o nome do Cliente')
     } else {
       const object = {
@@ -35,11 +55,8 @@ class Saloon extends Component {
       this.setState({
         listItem: this.state.listItem.concat(object)
       })
-        alert('Pedido enviado!')
-        this.refs.orderList.innerHTML = '';
-        this.refs.totalPrice.innerHTML = 0;
-        // TODO: limpar nome do cliente
-        this.refs.clientName.value = '';
+      alert('Pedido enviado!')
+      this.resetOrderList();
     }
   }
 
@@ -102,41 +119,41 @@ class Saloon extends Component {
         <div className='items'>
           {
             Data.menu.breakfast.map(item => {
-              return (<Button className='btn item-btn' iconName={faCoffee} text={item.title} price={'- R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
+              return (<Button className='btn item-btn' iconName={faCoffee} text={item.title} price={': R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
             })
           }
           {
             Data.menu.hamburgueres.map(item => {
-              return (<Button className='btn item-btn' iconName={faHamburger} text={item.title} price={'- R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
+              return (<Button className='btn item-btn' iconName={faHamburger} text={item.title} price={': R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
             })
           }
           {
             Data.menu.bebidas.map(item => {
-              return (<Button className='btn item-btn' iconName={faGlassWhiskey} text={item.title} price={'- R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
+              return (<Button className='btn item-btn' iconName={faGlassWhiskey} text={item.title} price={': R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
             })
           }
           {
             Data.menu.acompanhamentos.map(item => {
-              return (<Button className='btn item-btn' iconName={faCertificate} text={item.title} price={'- R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
+              return (<Button className='btn item-btn' iconName={faCertificate} text={item.title} price={': R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
             })
           }
         </div>
         <div className='order-list'>
           <h1>Pedido</h1>
           <div ref='orderList'>
-          {
-            this.state.order.map((item, i) => {
-              return (
-                <div key={i}>
-                  <p>
-                    Produto: {item.title} - Qtd: {item.quantity} - Subtotal: R$ {item.price * item.quantity}
-                  </p>
-                  <Button className='plus-minus-btn' iconName={faPlusCircle} onClick={() => this.handleAdd(item)}></Button>
-                  <Button className='plus-minus-btn' iconName={faMinusCircle} onClick={() => this.handleDelete(item)}></Button>
-                </div>
-              )
-            })
-          } 
+            {
+              this.state.order.map((item, i) => {
+                return (
+                  <div key={i}>
+                    <p>
+                      Produto: {item.title} - Qtd: {item.quantity} - Subtotal: R$ {item.price * item.quantity}
+                    </p>
+                    <Button className='plus-minus-btn' iconName={faPlusCircle} onClick={() => this.handleAdd(item)}></Button>
+                    <Button className='plus-minus-btn' iconName={faMinusCircle} onClick={() => this.handleDelete(item)}></Button>
+                  </div>
+                )
+              })
+            }
           </div>
 
           <h3>Valor Total do Pedido</h3>
