@@ -73,6 +73,17 @@ class Saloon extends React.Component {
       
   }
 
+  sendOrder = () => {
+    const user = firebase.auth().currentUser;
+    database.collection("orders").doc().set({
+      waiter: `${user.displayName}`,
+      customerName: this.state.customerName,
+      orderedItens: this.state.order
+
+    });
+    // alert("teste!")
+  }
+
   render() {
     const { customerName } = this.state;
     const user = firebase.auth().currentUser;
@@ -116,6 +127,7 @@ class Saloon extends React.Component {
             <h1>Total</h1>
       
               <p>Valor Total: {valorTotal}</p>
+              <button onClick={this.sendOrder}>Finalizar pedido</button>
             
       </div>       
     );
