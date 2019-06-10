@@ -6,6 +6,7 @@ import Input from "../components/Input"
 import Home from "./Home"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
+import menu from '../data'
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -15,18 +16,30 @@ class Salon extends React.Component {
     super(props);
     this.state = {
       customerName: "",
-      password: "",
-      userType: "",
-      listItem: []
+      order: []
     };
   }
 
-  componentDidMount() {
-    database.collection('users').get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => doc.data());
-        this.setState({ listItem: data });
+  orderClick = (item) => {
+    console.log(this.state.order)
+    const itemIndex = this.state.order.findIndex((produto) => {
+      return produto.name === item.name;
+    });
+    if (itemIndex < 0) {
+      const newItem = {
+        ...item,
+        quantity: 1
+      };
+      this.setState({
+        order: this.state.order.concat(newItem)
       });
+    } else {
+      let newOrder = this.state.order;
+      newOrder[itemIndex].quantity += 1;
+      this.setState({
+        order: newOrder
+      });
+    }
   }
 
   handleChange = (event, element) => {
@@ -35,25 +48,40 @@ class Salon extends React.Component {
     this.setState(newState);
   }
 
-  handleClick = () => {
-    const object = {
-      userType: this.state.userType
-    }
-    database.collection('users').add({object})
-    alert(this.state.userType)
+  cliqueDeleta = (item) => {
+    const itemIndex = this.state.order.findIndex((produto) => {
+      return produto.name === item.name;
+    });
+     
+    let newOrder = this.state.order;
+      newOrder[itemIndex].quantity -= 1;
+
+     const quantidade = newOrder[itemIndex].quantity;
+      
+     if(quantidade > 0) {
+      this.setState({
+        order: newOrder
+      });
+
+      } else {
+        newOrder.splice(itemIndex, 1)
+        this.setState({
+          order: newOrder
+        });
+      }
+     
+      
   }
 
   render() {
     const { customerName } = this.state;
     const user = firebase.auth().currentUser;
-    console.log(user)
-    console.log(user.displayName);
-
+    const valorTotal = this.state.order.reduce((acc, cur) => {
+     return acc + (cur.quantity * cur.price)
+    }, 0);
+   
     return (
-      <div className="App">
-        <header className="App-header">
-        
-         
+      <div>
          <p>Salão</p>
          <p>{user.displayName}</p>
          <Input 
@@ -62,12 +90,29 @@ class Salon extends React.Component {
               placeholder="Digite o nome do cliente"
               onChange={(e) => this.handleChange(e, "customerName")} 
             />
-        </header>
+            {
+              menu.breakfast.map((produto, i) => {
+                return <button key={i} 
+                  onClick={() => this.orderClick(produto)}>
+                  {produto.name}</button>
+              })
+            }
+            <hr></hr>
+            <h1>Itens comprados</h1>
+            {
+              this.state.order.map((produto, i) =>{
+                return <div key={i}> <p>{produto.name} - {produto.price * produto.quantity} - {produto.quantity}</p>
+              <button onClick={()=> this.cliqueDeleta(produto)}>Deletar</button>
+              </div>})
+            }
+            <hr></hr>
+            <h1>Total</h1>
+      
+              <p>Valor Total: {valorTotal}</p>
+            
       </div>       
-    )
+    );
   }
   }
-
-
 
 export default withFirebaseAuth({firebaseAppAuth}) (Salon);
