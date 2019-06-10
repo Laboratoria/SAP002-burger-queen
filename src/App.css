@@ -1,21 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	
 }
 
 body {
 	background: #073561;
 	font-family: 'open sans', sans-serif;
+	height: 100vh;
+	width: 100%;
+	
 }
 
 .forms {
 	background: rgb(238, 231, 231);
 	margin: 3% auto;
 	max-width: 70%;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #ddd;
 }
 
-.forms { padding: 5%; }
+.forms { 
+	padding: 5%;
+}
 
 .forms .tab-group {
 	list-style: none;
@@ -31,19 +43,21 @@ body {
 	font-size: 16px;
 	width: 100%;
 	padding: 2% 4%;
-	border: 1px solid #ddd;
-	margin-bottom: 3%;
+	border: 1px solid rgb(175, 12, 7);
+	/* margin-bottom: 3%; */
 }
 
 .input-box {
 	font-size: 16px;
 	width: 100%;
 	padding: 2% 4%;
-	border: 1px solid #ddd;
-	margin-bottom: 3%;
+	border: 1px solid rgb(175, 12, 7);
+	/* margin-bottom: 3%; */
+	margin-top: 3%;
 }
 
 .header-logo {
+  background-color: rgb(238, 231, 231);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +65,7 @@ body {
 }
 
 .myButton {
-	background-color: black;
+	background-color:#073561;
 	color: #fff;
 }
 
@@ -70,9 +84,10 @@ body {
 }
 
 .active {
-	background: green;
+	/* background: rgb(175, 12, 7); */
+	background:#073561;
 }
 
 .disabled {
-	background: red;
+	background: rgba(128, 105, 105, 0.856);
 }

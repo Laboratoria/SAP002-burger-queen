@@ -5,6 +5,7 @@ import Input from "../components/Input"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Logo from "../components/Logo";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -18,7 +19,7 @@ class Home extends React.Component {
       userType: "",
       firstName: "",
       surname: "",
-      condition: false
+      condition: true
     };
   }
 
@@ -71,19 +72,18 @@ class Home extends React.Component {
     const { email, password, firstName, surname } = this.state;
 
     return (
-      <div className="forms">
-        <header>
-          <h1 className="header-logo"><img src={require('../images/logo.png')}/></h1>
-        </header>
-        <Tabs>
+      <div>
+        <Logo />
+        <div className="forms">
+               <Tabs>
           <TabList className="nav-container">
             <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
         onClick={ this.handleClick }> 
-              <p>Login</p>
+              <p>LOGIN</p>
             </Tab>
             <Tab className={ this.state.condition ? "nav-link disabled" : "nav-link active" }
         onClick={ this.handleClick }>   
-              <p>Criar Conta</p>
+              <p>CRIAR CONTA</p>
             </Tab>
           </TabList>
           <TabPanel>
@@ -134,6 +134,7 @@ class Home extends React.Component {
             <Button text="Criar Conta" onClick={this.createUser}/>
           </TabPanel>  
          </Tabs>
+        </div>
         </div>
     )
   }

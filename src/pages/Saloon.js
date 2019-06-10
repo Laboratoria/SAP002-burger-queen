@@ -4,7 +4,8 @@ import Button from "../components/Button"
 import Input from "../components/Input"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
-import menu from '../data'
+import menu from '../data';
+import Logo from "../components/Logo";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -85,6 +86,7 @@ class Saloon extends React.Component {
    
     return (
       <div>
+        <Logo />
          <p>Salão</p>
          <p>{user.displayName}</p>
          <Input 
