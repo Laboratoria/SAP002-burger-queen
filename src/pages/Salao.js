@@ -87,13 +87,13 @@ class Salao extends React.Component {
     })
   }
 
-  userUid = () => {
+  componentDidMount() {
     let user = firebaseAppAuth.currentUser;
     database.collection("users").get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (user != null && user.uid === doc.id) {
-            const name = doc.data().displayName
+            let name = doc.data().displayName
             this.setState({
               employee: name
             })
@@ -101,6 +101,21 @@ class Salao extends React.Component {
         })
       })
   }
+
+  // userUid = () => {
+  //   let user = firebaseAppAuth.currentUser;
+  //   database.collection("users").get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         if (user != null && user.uid === doc.id) {
+  //           const name = doc.data().displayName
+  //           this.setState({
+  //             employee: name
+  //           })
+  //         }
+  //       })
+  //     })
+  // }
 
   render() {
     const valueTotal = this.state.request.reduce((acc, cur) => {
@@ -110,7 +125,7 @@ class Salao extends React.Component {
     return (
       <div className="salao">
         <h3>Salão</h3>
-        <p className="name">Funcionário(a): {this.userUid()}{this.state.employee}</p>
+        <p className="name">Funcionário(a): {this.state.employee}</p>
         <div className="logout">
           <div className="request">
             <Link className="button-logout logout" to="/">Sair</Link>

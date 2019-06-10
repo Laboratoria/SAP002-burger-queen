@@ -26,6 +26,18 @@ class Cozinha extends React.Component {
   }
 
   componentDidMount() {
+    let user = firebaseAppAuth.currentUser;
+    database.collection("users").get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (user != null && user.uid === doc.id) {
+            let name = doc.data().displayName
+            this.setState({
+              employee: name
+            })
+          }
+        })
+      })
     database.collection("order").get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => doc.data())
@@ -45,34 +57,37 @@ class Cozinha extends React.Component {
     // })
   }
 
-  userUid = () => {
-    let user = firebaseAppAuth.currentUser;
-    database.collection("users").get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (user != null && user.uid === doc.id) {
-            let name = doc.data().displayName
-            this.setState({
-              employee: name
-            })
-          }
-        })
-      })
-  }
+  // userUid = () => {
+  //   let user = firebaseAppAuth.currentUser;
+  //   database.collection("users").get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         if (user != null && user.uid === doc.id) {
+  //           let name = doc.data().displayName
+  //           this.setState({
+  //             employee: name
+  //           })
+  //         }
+  //       })
+  //     })
+  // }
 
   render() {
-    // console.log(this.props.user)
     return (
       <div>
         <h3>Cozinha</h3>
-        <p className="name">Funcionário(a): {this.userUid()}{this.state.employee}</p>
+        <p className="name">Funcionário(a): {this.state.employee}</p>
         <Link className="button-logout logout" to="/">Sair</Link>
         {
           this.state.listOrder.map((item, index) => {
-            return (<div>
-              <p key={index}>Cliente: {item.client}</p>
-              <p key={index}>Funcionário(a): {item.employee}</p>
-              <p key={index}>Pedido: {item.request.map((menu) => (menu.name) - (menu.quantity))}</p>
+            return (<div className="form">
+              <p className="error" key={index}>Cliente: {item.client}</p>
+              <p className="error" key={index}>Funcionário(a): {item.employee}</p>
+              <p className="error">Pedido</p>
+              {item.request.map((menu) => {
+                return <p className="error" key={index}>{[menu.name, " ", menu.quantity, " - unid"]}</p>
+              })
+              }
             </div>)
           })
         }
