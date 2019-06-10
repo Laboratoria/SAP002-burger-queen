@@ -1,4 +1,6 @@
 import React from 'react'
+import LoginComponent from "./LoginComponent"
+import SignUpComponent from "./SignUpComponent"
 import { Row, Col, Button } from 'react-bootstrap'
 import firebase from '../firebaseConfig'
 
@@ -17,13 +19,8 @@ class LoginContainer extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.authListener = this.authListener.bind(this);
     this.login = this.login.bind(this);
     this.signup = this.signup.bind(this);
-  }
-
-  componentDidMount() {
-    this.authListener();
   }
 
   handleClick(event) {
@@ -40,22 +37,9 @@ class LoginContainer extends React.Component {
     })
   }
 
-  authListener() {
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem('user', user.uid);
-      } else {
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-      }
-    });
-  }
-
   login(e) {
     e.preventDefault();
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    firebase.auth().signInWithEmailAndPassword(this.state.emailLogin, this.state.passwordLogin).then((u)=>{
     }).catch((error) => {
         console.log(error);
       });
@@ -63,7 +47,7 @@ class LoginContainer extends React.Component {
 
   signup(e){
     e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    firebase.auth().createUserWithEmailAndPassword(this.state.emailSignUp, this.state.passwordSignUp).then((u)=>{
     }).then((u)=>{console.log(u)})
     .catch((error) => {
         console.log(error);
