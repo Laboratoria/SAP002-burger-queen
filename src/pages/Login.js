@@ -1,9 +1,10 @@
 import React from 'react';
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
+import InitialHeader from '../components/InicialHeader';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
+import {BrowserRouter as Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -28,6 +29,8 @@ class Login extends React.Component{
     
     render() {
         return (
+            <div>
+            <InitialHeader />
             <section>
                 <form>
                     <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
@@ -36,6 +39,7 @@ class Login extends React.Component{
                     <Link to="order"><Button text="ENTRAR" onClick={this.signIn}/></Link>
                 <Link to="register">AINDA NÃO TEM CONTA? CADASTRE-SE</Link>
             </section>
+            </div>
                 )
         }
     }

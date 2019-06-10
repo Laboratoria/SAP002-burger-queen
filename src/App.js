@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
-import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Saloon from './pages/Saloon'
 import Kitchen from './pages/Kitchen'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 class App extends React.Component {
