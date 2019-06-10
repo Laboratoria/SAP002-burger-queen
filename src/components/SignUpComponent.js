@@ -77,7 +77,14 @@ function SignUpComponent(props) {
                 </ToggleButton>
               </ToggleButtonGroup>
 
-              <Button variant="primary" type="submit" className="mt-3" block>Cadastrar</Button>
+              <Button
+              variant="primary"
+              type="submit"
+              className="mt-3"
+              onClick={props.createUser}
+              block>
+              Cadastrar
+              </Button>
 
             </Form.Group>
           </Form>

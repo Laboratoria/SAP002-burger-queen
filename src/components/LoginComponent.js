@@ -24,7 +24,13 @@ function LoginComponent(props) {
         />
       </Form.Group>
       <Button
-      variant="primary" type="submit" className="mb-3" block>Entrar</Button>
+      variant="primary"
+      type="submit"
+      className="mb-3"
+      onClick={props.database}
+      block>
+      Entrar
+      </Button>
     </Form>
   )
 }
