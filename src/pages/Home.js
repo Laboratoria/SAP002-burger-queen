@@ -72,10 +72,10 @@ class Home extends React.Component {
 
     return (
       <div className="forms">
-        <Tabs>
-          <header>
+        <header>
           <h1 className="header-logo"><img src={require('../images/logo.png')}/></h1>
-          </header>
+        </header>
+        <Tabs>
           <TabList className="nav-container">
             <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
         onClick={ this.handleClick }> 

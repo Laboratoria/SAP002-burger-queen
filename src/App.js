@@ -11,6 +11,7 @@ function App() {
     <Router>
     <div className="App">
       <header className="App-header">
+        
         <Route path="/" exact component={Home}/>
         <Route path="/saloon" component={Saloon}/>
         <Route path="/kitchen" component={Kitchen}/>
