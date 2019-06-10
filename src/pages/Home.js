@@ -5,60 +5,40 @@ import firebase from "../firebaseConfig";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import withFirebaseAuth from 'react-with-firebase-auth';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
-import addUser from '../firebase/firestore'
 
 const firebaseAppAuth = firebase.auth()
+const database = firebase.firestore()
 
 class Home extends React.Component {
-  auth = undefined
   constructor(props) {
     super(props);
-    this.signIn = this.signIn.bind(this)
     this.state = {
       user: undefined,
       displayName: "",
       email: "",
       password: "",
-      value: "",
-      redirect: false,
+      value: "Cozinha",
       error: ""
     };
   }
 
-  componentDidMount() {
-    this.auth = firebase.auth()
-    this.auth.onAuthStateChanged((signedUser) => {
-      if (signedUser) {
-        this.setState({
-          user: signedUser
-        })
-        localStorage.setItem('firebase-auth', this.state.user)
-      } else {
-        this.setState({
-          user: undefined
-        })
-        localStorage.removeItem('firebase-auth')
-      }
-    })
-  }
-
-  signIn = (e) => {
-    e.preventDefault()
+  signIn = () => {
     const { email, password } = this.state;
-    this.auth.signInWithEmailAndPassword(email, password)
-      .then(signedUser => {
-        this.setState({
-          user: signedUser,
-          redirect: true
-        })
+    this.props.signInWithEmailAndPassword(email, password)
+      .then(resp => {
+        const id = resp.user.uid;
+        database.collection("users").doc(id).get()
+          .then((resp) => {
+            const data = resp.data()
+            this.props.history.push(`/${data.value}`)
+          })
       }).catch((error) => {
         this.setState({
           error: error.message
         })
       })
   }
-  //elemento mudança newstate
+
   handleChange = (event, element) => {
     const newState = this.state
     newState[element] = event.target.value
@@ -68,28 +48,21 @@ class Home extends React.Component {
   createUser = () => {
     const { email, password, displayName, value } = this.state;
     this.props.createUserWithEmailAndPassword(email, password)
-      .then((data) => {
-        if (!data) {
-          return;
-        };
-        const { user: { uid } } = data;
-        addUser({
+      .then((resp) => {
+        const id = resp.user.uid;
+        database.collection("users").doc(id).set({
           email,
           displayName,
-          value,
-        }, uid)
+          value
+        })
+          .then(() => {
+            this.props.history.push(`/${value}`)
+          })
+      }).catch((error) => {
         this.setState({
-          redirect: true
+          error: error.message
         })
       })
-  }
-
-  authLogin = () => {
-    if (this.state.value === "Cozinha" && this.state.redirect) {
-      return <Redirect to="/Cozinha" />
-    } if (this.state.value === "Salao" && this.state.redirect) {
-      return <Redirect to="/Salao" />
-    }
   }
 
   render() {
@@ -100,19 +73,17 @@ class Home extends React.Component {
             <Input value={this.state.displayName} placeholder="Digite seu nome" onChange={(e) => this.handleChange(e, "displayName")} />
             <Input value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
             <Input type="password" value={this.state.password} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} />
-            <span>{this.state.error}</span>
             <select onChange={(e) => this.handleChange(e, "value")} className="input" value={this.state.value}>
               <option value="Cozinha">Cozinha</option>
               <option value="Salao">Salão</option>
             </select>
-            <Button className="button" onClick={this.createUser} text="Criar usuário" />
-            {this.authLogin()}
-            <Button className="button" onClick={this.signIn} text="Login" />
+            <p className="error">{this.state.error}</p>
+            <Button className="button" onClick={() => this.createUser()} text="Criar usuário" />
+            <Button className="button" onClick={() => this.signIn()} text="Login" />
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
-
 export default withFirebaseAuth({ firebaseAppAuth, })(Home);

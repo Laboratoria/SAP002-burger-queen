@@ -29,14 +29,14 @@
   justify-content: center;
 }
 
-.pedido {
+.request {
   display: flex;
   flex-direction: column;
   font-size: 18px;
 }
 
 .page {
-  width: 500px;
+  min-width: 55vh;
   padding: 8% 0 0;
   margin: auto;
 }
@@ -91,4 +91,13 @@ body {
 
 .logout {
   margin-bottom: 20px;
+}
+
+.error {
+  color: black;
+}
+
+.name {
+  color: white;
+  font-size: 18px;
 }
