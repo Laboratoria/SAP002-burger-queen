@@ -1,7 +1,7 @@
 import React from 'react';
 // import Modal from  'Modal'
 import firebase from "../firebaseConfig";
-import {Form, Col, Button} from 'react-bootstrap';
+import { Form, Col, Button } from 'react-bootstrap';
 import logo from '../assets/img/logo-large.png';
 import withFirebaseAuth from 'react-with-firebase-auth';
 
@@ -16,7 +16,7 @@ class Login extends React.Component {
       email: '',
       password: '',
       name: '',
-      place: ''  
+      place: ''
     };
   }
 
@@ -30,30 +30,35 @@ class Login extends React.Component {
   createUser = (event) => {
     event.preventDefault();
     this.props.createUserWithEmailAndPassword
-    (this.state.email, this.state.password)
-    .then(resp => {
-      if (resp){
-      const id = resp.user.uid;
-      database.collection("users").doc(id).set({
-        email: this.state.email,
-        place: this.state.place
-        // nome: this.state.nome
+      (this.state.email, this.state.password)
+      .then(resp => {
+        if (resp) {
+          const id = resp.user.uid;
+          database.collection("users").doc(id).set({
+            email: this.state.email,
+            place: this.state.place
+            // nome: this.state.nome
+          })
+            .then(() => {
+              this.props.history.push(`/${this.state.place}`);
+            });
+        }
       })
-    .then (() => {
-      this.props.history.push(`/${this.state.place}`);
-    });
   }
-})
-  }
-
 
   signIn = (event) => {
     event.preventDefault();
     this.props.signInWithEmailAndPassword
-    (this.state.email, this.state.password)
-      .then(() => {
-        console.log("uhul");
-        this.props.history.push(`/${this.state.place}`);
+      (this.state.email, this.state.password)
+      .then((resp) => {
+        console.log(resp);
+        const id = resp.user.uid;
+        database.collection("users").doc(id).get()
+          .then(resp => {
+            const data = resp.data();
+            this.props.history.push(`/${data.place}`);
+          })
+
       });
   }
 
@@ -98,7 +103,7 @@ class Login extends React.Component {
                       <input type="radio" name="optradio" className="white-text mx-2" value="DinnerHall" onChange={(event) => this.handleChange(event, "place")} /><p className="white-text">Salão</p>
                     </div>
                     <div className="d-flex flex-row mx-2 align-items-baseline">
-                      <input type="radio" name="optradio" className="mx-2 radio-menu" value="DinnerKitchen" onChange={(event) => this.handleChange(event, "place")}/><p className="white-text">Cozinha</p>
+                      <input type="radio" name="optradio" className="mx-2 radio-menu" value="DinnerKitchen" onChange={(event) => this.handleChange(event, "place")} /><p className="white-text">Cozinha</p>
                     </div>
                   </form>
                 </div>
