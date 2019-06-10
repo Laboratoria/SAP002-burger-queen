@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
 .App-header {
-  background-color: #282c34;
+  background-color: #dbf789;
   min-height: 97vh;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ h1 {
   font-weight: 300;
   padding: 7px;
   font-size: 20px;
-  background-color: #61dafb;
+  background-color: #99d500;
   color: black;
   border-radius: 7px;
 }
@@ -36,7 +36,7 @@ input {
 
 a {
   text-decoration: none;
-  color: #61dafb;
+  color: #71bc00;
   font-size: 14px;
   
 }

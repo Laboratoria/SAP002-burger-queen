@@ -104,7 +104,7 @@ export default withFirebaseAuth({
 })(App);
 
 
-
+// App
 // import React from 'react';
 // import './App.css';
 // import Home from './pages/Home';
@@ -127,3 +127,99 @@ export default withFirebaseAuth({
 
 
 // export default App;
+
+
+
+
+// S A L Ã O
+// import React from 'react';
+
+
+// const product = [
+//   {
+//     iten: "Café Amaricano",
+//     price: "5.00"
+//   },
+//   {
+//     iten: "Café com Leite",
+//     price: "7.00"
+//   },
+//   {
+//     iten: "Sanduíche de Presunto e Queijo",
+//     price: "10.00"
+//   },
+//   {
+//     iten: "Suco de Fruta Natural",
+//     price: "7.00"
+//   }
+// ];
+
+// class Salao extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       listItem: []
+//     };
+//   }
+
+
+//   clickBuy = (item) => {
+//     const itemIndex = this.state.listItem.findIndex((product) => {
+//       return product.iten === item.iten;
+//     });
+
+//     if (itemIndex < 0) {
+//       const newItem = {
+//         ...item,
+//         quantity: 1
+//       };
+//       this.setState({
+//         listItem: this.state.listItem.concat(newItem)
+//       });
+//     } else {
+//       let newBuy = this.state.listItem;
+//       newBuy[itemIndex].quantity += 1;
+//       this.setState({
+//         listItem: newBuy
+//       });
+//     }
+
+//   }
+
+//   render() {
+//     const totaltoPay = this.state.listItem.reduce((acc, cur)
+//       => {
+//       return acc + (cur.quantity * cur.price)
+//     }, 0);
+
+//     return (
+//       <React.Fragment>
+//         {
+//           products.map((product, index => {
+//             return <button key={index}
+//               onClick={() => this.clickBuy(product)}>
+//               {product.iten}</button>
+//           })
+//         }
+//         <hr ></hr>
+//         <h1>Itens</h1>
+//         {
+//           this.state.listItem.map((product, index) => {
+//             return <p key={index}>{product.iten} -
+//             {product.price * product.quantity} -
+//             {product.quantity}</p>
+//           })
+//         }
+//         <hr></hr>
+//         <h1>Total</h1>
+//         <p>Valor Total: {totaltoPay}</p>
+
+
+//       </React.Fragment >
+//     );
+//   }
+// }
+
+
+
+// export default (Salao);

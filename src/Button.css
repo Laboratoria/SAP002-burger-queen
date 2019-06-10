@@ -1,5 +1,5 @@
 .button {
-    background-color: #61dafb;
+    background-color: #99d500;
     font-family: 'Work Sans', sans-serif;
     font-size:17px;
     padding: 4px;
@@ -9,5 +9,5 @@
   }
 
   .button:hover{
-    background-color: #00CED1;
+    background-color: #71bc00;
   }

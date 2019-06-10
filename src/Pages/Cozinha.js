@@ -8,7 +8,7 @@ from 'react-router-dom';
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class App extends React.Component {
+class Cozinha extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,13 +18,13 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    database.collection('Pedidos').get()
-    .then((querySnapshot) => {
-      const data = querySnapshot.docs.map(doc => doc.data());
-      this.setState({ listItem: data });
-    });
-  }
+  // componentDidMount() {
+  //   database.collection('Pedidos').get()
+  //   .then((querySnapshot) => {
+  //     const data = querySnapshot.docs.map(doc => doc.data());
+  //     this.setState({ listItem: data });
+  //   });
+  // }
 
   handleChange = (event, element) => {
     const newState = this.state;
@@ -46,18 +46,18 @@ class App extends React.Component {
  
 
   render() {
-    //console.log(this.props.user);
+    
     return (
       <div>
           <h1>C O Z I N H A</h1>
           <input value={this.state.banana}
-            placeholder="banana"
+            placeholder="preparar"
             onChange={(e) => this.handleChange(e, "banana")} />
-          <input value={this.state.peixinho}
+          {/* <input value={this.state.peixinho}
             placeholder="peixinho"
-            onChange={(e) => this.handleChange(e, "peixinho")} />
+            onChange={(e) => this.handleChange(e, "peixinho")} /> */}
             <br></br>
-          <Button text="Entregar" onClick={this.handleClick} /><br></br>
+          <Button text="Pedido Pronto" onClick={this.handleClick} /><br></br>
           <Link to="/">Sair</Link>
 
           {
@@ -74,7 +74,4 @@ class App extends React.Component {
 
 export default withFirebaseAuth({
   firebaseAppAuth,
-})(App);
-
-
-//<Link to="teste link">Oiii</Link>
+})(Cozinha);
