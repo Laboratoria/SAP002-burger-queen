@@ -1,5 +1,4 @@
 import React from 'react';
-// import './App.css';
 import firebase from "../firebaseConfig";
 import Button from "../components/Button"
 import Input from "../components/Input"
@@ -74,7 +73,9 @@ class Home extends React.Component {
     return (
       <div className="forms">
         <Tabs>
-          <h1 className="header-logo">Burger Queen</h1>
+          <header>
+          <h1 className="header-logo"><img src={require('../images/logo.png')}/></h1>
+          </header>
           <TabList className="nav-container">
             <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
         onClick={ this.handleClick }> 
