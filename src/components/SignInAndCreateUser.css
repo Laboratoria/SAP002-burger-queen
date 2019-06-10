@@ -1,0 +1,44 @@
+.container-signin {
+  text-align: center;
+}
+
+.logo {
+  height: 25vh;
+}
+
+.div-logo {
+  padding: 20px;
+}
+
+.tabs {
+  border: none;
+  color: #E3E9F0;
+  text-decoration: none;
+  text-align: center;
+  padding: 30px 0px;
+}
+
+.nav-link {
+  color: #E3E9F0;
+  text-decoration: none  !important;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: #1B7B46;
+}
+
+label.form-check-label {
+  padding: 10px;
+  color: #E3E9F0;
+}
+
+label.form-check-label:hover {
+  color: #E3E9F0;
+}
+
+.btn-div {
+  padding: 30px;
+}
