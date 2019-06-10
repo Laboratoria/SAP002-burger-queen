@@ -18,7 +18,7 @@ class Cozinha extends React.Component {
       request: []
     };
   }
-  //elemento mudança newstate
+
   handleChange = (event, element) => {
     const newState = this.state
     newState[element] = event.target.value
@@ -45,8 +45,6 @@ class Cozinha extends React.Component {
       })
   }
 
-
-  //clicar valor atual altera no state e no firebase
   handleClick = () => {
     // const object = {
     //   pedido: this.state.pedido
@@ -74,18 +72,22 @@ class Cozinha extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="div-page">
         <h3>Cozinha</h3>
         <p className="name">Funcionário(a): {this.state.employee}</p>
-        <Link className="button-logout logout" to="/">Sair</Link>
+        <div className="logout">
+          <div className="request">
+            <Link className="button-logout logout" to="/">Sair</Link>
+          </div>
+        </div>
         {
           this.state.listOrder.map((item, index) => {
-            return (<div className="form">
-              <p className="error" key={index}>Cliente: {item.client}</p>
-              <p className="error" key={index}>Funcionário(a): {item.employee}</p>
-              <p className="error">Pedido</p>
-              {item.request.map((menu) => {
-                return <p className="error" key={index}>{[menu.name, " ", menu.quantity, " - unid"]}</p>
+            return (<div className="form cozinha" key={index}>
+              <p className="menu" >Cliente: {item.client}</p>
+              <p className="menu" >Funcionário(a): {item.employee}</p>
+              <p className="menu">Pedido</p>
+              {item.request.map((menu, index) => {
+                return <p className="menu" key={index}>-{[menu.name, " ", menu.quantity, " - unid"]}</p>
               })
               }
             </div>)

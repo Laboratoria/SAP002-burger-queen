@@ -123,7 +123,7 @@ class Salao extends React.Component {
     }, 0)
 
     return (
-      <div className="salao">
+      <div className="div-page">
         <h3>Salão</h3>
         <p className="name">Funcionário(a): {this.state.employee}</p>
         <div className="logout">
