@@ -31,14 +31,25 @@ class SignInAndCreateUser extends React.Component {
     console.log(newState)
   }
 
-  createUser = () => {
+  createUser = (event) => {
+    event.preventDefault()
+    const name = this.state.name;
+    const email = this.state.email;
+    const password = this.state.password;
+    const occupationArea = this.state.occupationArea;
+
     this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
 
       })
   }
 
-  signIn = () => {
+  signIn = (event) => {
+    event.preventDefault()
+    const name = this.state.name;
+    const email = this.state.email;
+    const password = this.state.password;
+    const occupationArea = this.state.occupationArea;
     this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
 
@@ -82,12 +93,14 @@ class SignInAndCreateUser extends React.Component {
                   <Form>
                     <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalEmail">
                       <Col xs={6} md={6} lg={12}>
-                        <Form.Control size="lg" type="email" placeholder="Email" />
+                        <Form.Control size="lg" type="email" placeholder="Email" value={this.state.email}
+                          onChange={(event) => this.handleChange(event, "email")} />
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalPassword">
                       <Col xs={6} md={6} lg={12}>
-                        <Form.Control type="password" placeholder="Senha (mínimo 6 caracteres)" />
+                        <Form.Control type="password" placeholder="Senha (mínimo 6 caracteres)" value={this.state.password}
+                          onChange={(event) => this.handleChange(event, "password")} />
                       </Col>
                     </Form.Group>
                     <Col xs={6} md={6} lg={12} className="justify-content-md-center btn-div">
@@ -101,17 +114,20 @@ class SignInAndCreateUser extends React.Component {
                   <Form>
                     <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalName">
                       <Col xs={6} md={6} lg={12}>
-                        <Form.Control type="text" placeholder="Nome" />
+                        <Form.Control type="text" placeholder="Nome" value={this.state.name}
+                          onChange={(event) => this.handleChange(event, "name")} />
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalEmail">
                       <Col xs={6} md={6} lg={12}>
-                        <Form.Control size="lg" type="email" placeholder="Email" />
+                        <Form.Control size="lg" type="email" placeholder="Email" value={this.state.email}
+                          onChange={(event) => this.handleChange(event, "email")} />
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalPassword">
                       <Col xs={6} md={6} lg={12}>
-                        <Form.Control type="password" placeholder="Senha (mínimo 6 caracteres)" />
+                        <Form.Control type="password" placeholder="Senha (mínimo 6 caracteres)" value={this.state.password}
+                          onChange={(event) => this.handleChange(event, "password")} />
                       </Col>
                     </Form.Group>
                     <fieldset>
@@ -121,18 +137,24 @@ class SignInAndCreateUser extends React.Component {
                             <Form.Check
                               type="radio"
                               label="Salão"
-                              name="formHorizontalRadios"
                               id="formHorizontalRadios1"
                               className="check"
+                              name="occupationArea"
+                              value="saloon"
+                              onChange={(event) => this.handleChange(event, "occupationArea")}
+                              checked={this.state.occupationArea === "saloon"}
                             />
                           </Col>
                           <Col sm={6}>
                             <Form.Check
                               type="radio"
                               label="Cozinha"
-                              name="formHorizontalRadios"
                               id="formHorizontalRadios1"
                               className="check"
+                              name="occupationArea"
+                              value="kitchen"
+                              onChange={(event) => this.handleChange(event, "occupationArea")}
+                              checked={this.state.occupationArea === "kitchen"}
                             />
                           </Col>
                         </Form.Group>

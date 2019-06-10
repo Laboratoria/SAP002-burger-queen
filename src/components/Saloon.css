@@ -64,7 +64,7 @@ padding: 0%;
 }
 
 .disabled {
-  cursor: none !important;
+  cursor: auto !important;
 }
 
 .tabs-saloon{
@@ -87,5 +87,9 @@ padding: 0%;
 
 .item-checked {
   text-align: center;
+}
+
+.list-group {
+  margin: 0;
 }
 

@@ -14,24 +14,158 @@ import { Form, FormCheck, FormControl, Row, Col, Container, ListGroup, Card, Car
 
 const firebaseAppAuth = firebase.auth();
 
+const products = [
+	{
+		name: "Café Americano",
+		price: 5.00,
+		type: "breakfast"
+	},
+	{
+		name: "Café com leite",
+		price: 7.00,
+		type: "breakfast"
+	},
+	{
+		name: "Sanduíche de presunto e queijo",
+		price: 10.00,
+		type: "breakfast"
+	},
+	{
+		name: "Suco de fruta natural",
+		price: 7.00,
+		type: "breakfast"
+	},
+	{
+		name: "Hambúrguer simples",
+		price: 10.00,
+		type: "lunch"
+	},
+	{
+		name: "Hambúrguer duplo",
+		price: 15.00,
+		type: "lunch"
+	},
+	{
+		name: "Carne Bovina",
+		price: 0,
+		type: "lunch"
+	},
+	{
+		name: "Frango",
+		price: 0,
+		type: "lunch"
+	},
+	{
+		name: "Vegetariano",
+		price: 0,
+		type: "lunch"
+	},
+	{
+		name: "Ovo",
+		price: 1.00,
+		type: "lunch"
+	},
+	{
+		name: "Queijo",
+		price: 1.00,
+		type: "lunch"
+	},
+	{
+		name: "Batata frita",
+		price: 5.00,
+		type: "lunch"
+	},
+	{
+		name: "Anéis de cebola",
+		price: 5.00,
+		type: "lunch"
+	},
+	{
+		name: "Água 500ml",
+		price: 5.00,
+		type: "lunch"
+	},
+	{
+		name: "Água 750ml",
+		price: 7.00,
+		type: "lunch"
+	},
+	{
+		name: "Bebida gaseificada 500ml",
+		price: 7.00,
+		type: "lunch"
+	},
+	{
+		name: "Bebida gaseificada 750ml",
+		price: 10.00,
+		type: "lunch"
+	}
+];
+
 class Saloon extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: "",
-			password: ""
+			buy: []
 		};
 	}
 
-	handleChange = (event, element) => {
-		const newState = this.state;
-		newState[element] = event.target.value
-		this.setState(newState);
+	// handleChange = (event, element) => {
+	// 	const newState = this.state;
+	// 	newState[element] = event.target.value
+	// 	this.setState(newState);
+	// }
+
+	productAdd = (item) => {
+		const itemIndex = this.state.buy.findIndex((product) => {
+			return product.name === item.name;
+		});
+
+		if (itemIndex < 0) {
+			const newItem = {
+				...item,
+				quantity: 1
+			};
+			this.setState({
+				buy: this.state.buy.concat(newItem)
+			});
+		} else {
+			let newBuy = this.state.buy;
+			newBuy[itemIndex].quantity += 1;
+			this.setState({
+				buy: newBuy
+			});
+		}
 	}
 
+	productDelete = (item) => {
+		const itemIndex = this.state.buy.findIndex((product) => {
+			return product.name === item.name;
+		});
 
+		let newBuy = this.state.buy;
+		newBuy[itemIndex].quantity -= 1;
+
+		const quantity = newBuy[itemIndex].quantity;
+
+		if (quantity > 0) {
+			this.setState({
+				buy: newBuy
+			});
+		} else {
+			newBuy.splice(itemIndex, 1);
+			this.setState({
+				buy: newBuy
+			});
+		}
+	}
 
 	render(props) {
+
+		const total = this.state.buy.reduce((acc, curr) => {
+			return acc + (curr.quantity * curr.price)
+		}, 0);
+
 		return (
 			<div className="div-header">
 				<Container>
@@ -53,7 +187,6 @@ class Saloon extends React.Component {
 							</div>
 						</div>
 
-
 						<div className="div-itens" >
 							<div className="tabs-saloon">
 								<Tabs defaultActiveKey="breakfast" transition={false} id="noanim-tab-example" className="tabs">
@@ -69,38 +202,29 @@ class Saloon extends React.Component {
 														<ListGroup.Item disabled>Preço R$ </ListGroup.Item>
 													</Col>
 												</Row>
-												<Row>
-													<Col sm={8}>
-														<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Café Americano</ListGroup.Item>
-													</Col>
-													<Col sm={4}>
-														<ListGroup.Item>10,00</ListGroup.Item>
-													</Col>
-												</Row>
-												<Row>
-													<Col sm={8}>
-														<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Café com leite</ListGroup.Item>
-													</Col>
-													<Col sm={4}>
-														<ListGroup.Item>15,00</ListGroup.Item>
-													</Col>
-												</Row>
-												<Row>
-													<Col sm={8}>
-														<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Sanduíche de queijo e presunto</ListGroup.Item>
-													</Col>
-													<Col sm={4}>
-														<ListGroup.Item>1,00</ListGroup.Item>
-													</Col>
-												</Row>
-												<Row>
-													<Col sm={8}>
-														<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Suco de fruta</ListGroup.Item>
-													</Col>
-													<Col sm={4}>
-														<ListGroup.Item>1,00</ListGroup.Item>
-													</Col>
-												</Row>
+												<div className="return-item">
+													{
+														products.map((product, index) => {
+															if (product.type === "breakfast") {
+																return <ListGroup>
+																	<Row>
+																		<Col sm={8}>
+																			<ListGroup.Item
+																				key={index}>
+																				<FontAwesomeIcon
+																					icon={faPlusCircle}
+																					onClick={() => this.productAdd(product)}
+																				/> {product.name}</ListGroup.Item>
+																		</Col>
+																		<Col sm={4}>
+																			<ListGroup.Item>{product.price}</ListGroup.Item>
+																		</Col>
+																	</Row>
+																</ListGroup>
+															}
+														})
+													}
+												</div>
 											</ListGroup>
 										</div>
 									</Tab>
@@ -116,121 +240,28 @@ class Saloon extends React.Component {
 													<ListGroup.Item disabled>Preço R$</ListGroup.Item>
 												</Col>
 											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item disabled>Hamburgueres</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Hamburguer Simples</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>10,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Hamburguer Duplo</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>15,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Carne Bovina</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Frango</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Vegetariano</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item disabled>Adicionais</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Ovo</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>1,0</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Queijo</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>1,0</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item disabled>Acompanhamentos</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Batata Frita</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>5,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Anéis de Cebola</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>5,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item disabled>Bebidas</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Água 500ml</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>5,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Água 750ml</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>7,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Bebida gaseificada 500ml</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>7,00</ListGroup.Item>
-												</Col>
-											</Row>
-											<Row>
-												<Col sm={8}>
-													<ListGroup.Item><FontAwesomeIcon icon={faPlusCircle} /> Bebida gaseificada 750ml</ListGroup.Item>
-												</Col>
-												<Col sm={4}>
-													<ListGroup.Item>10,00</ListGroup.Item>
-												</Col>
-											</Row>
+											<div className="return-item">
+												{
+													products.map((product, index) => {
+														if (product.type === "lunch") {
+															return <ListGroup>
+																<Row>
+																	<Col sm={8}>
+																		<ListGroup.Item key={index} >
+																			<FontAwesomeIcon
+																				icon={faPlusCircle}
+																				onClick={() => this.productAdd(product)}
+																			/> {product.name}</ListGroup.Item>
+																	</Col>
+																	<Col sm={4}>
+																		<ListGroup.Item>{product.price}</ListGroup.Item>
+																	</Col>
+																</Row>
+															</ListGroup>
+														}
+													})
+												}
+											</div>
 										</ListGroup>
 									</Tab>
 								</Tabs>
@@ -240,6 +271,21 @@ class Saloon extends React.Component {
 								<ListGroup>
 									<ListGroup.Item className="item-checked" disabled>Pedido(s)</ListGroup.Item>
 								</ListGroup>
+								{
+									this.state.buy.map((product, index) => {
+										return <ListGroup>
+											<ListGroup.Item key={index} ><FontAwesomeIcon
+												icon={faMinusCircle}
+												onClick={() => this.productDelete(product)}
+											/>{product.quantity} - {product.name} - {product.price * product.quantity}</ListGroup.Item>
+										</ListGroup>
+									})
+								}
+								<ListGroup>
+									<ListGroup.Item className="item-checked" disabled>Total a Pagar</ListGroup.Item>
+									<ListGroup.Item className="item-checked">R$ {total}</ListGroup.Item>
+								</ListGroup>
+
 								<Col xs={6} md={6} lg={12} className="justify-content-md-center btn-col">
 									<Button text="Confirmar Pedido(s)" />
 								</Col>
