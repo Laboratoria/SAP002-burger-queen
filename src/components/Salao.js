@@ -126,4 +126,6 @@ class Salao extends React.Component {
   }
 }
 
-export default Salao;
+export default withFirebaseAuth({
+  firebaseAppAuth,
+})(Home);
