@@ -1,9 +1,7 @@
 import React from 'react';
-// import './App.css';
 import firebase from "../firebaseConfig";
 import Button from "../components/Button"
 import Input from "../components/Input"
-import Home from "./Home"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import menu from '../data'
@@ -21,9 +19,8 @@ class Saloon extends React.Component {
   }
 
   orderClick = (item) => {
-    console.log(this.state.order)
-    const itemIndex = this.state.order.findIndex((produto) => {
-      return produto.name === item.name;
+    const itemIndex = this.state.order.findIndex((product) => {
+      return product.name === item.name;
     });
     if (itemIndex < 0) {
       const newItem = {
@@ -48,17 +45,17 @@ class Saloon extends React.Component {
     this.setState(newState);
   }
 
-  cliqueDeleta = (item) => {
-    const itemIndex = this.state.order.findIndex((produto) => {
-      return produto.name === item.name;
+  clickDelete = (item) => {
+    const itemIndex = this.state.order.findIndex((product) => {
+      return product.name === item.name;
     });
      
     let newOrder = this.state.order;
       newOrder[itemIndex].quantity -= 1;
 
-     const quantidade = newOrder[itemIndex].quantity;
+     const quantity = newOrder[itemIndex].quantity;
       
-     if(quantidade > 0) {
+     if(quantity > 0) {
       this.setState({
         order: newOrder
       });
@@ -68,9 +65,7 @@ class Saloon extends React.Component {
         this.setState({
           order: newOrder
         });
-      }
-     
-      
+      } 
   }
 
   sendOrder = () => {
@@ -79,15 +74,12 @@ class Saloon extends React.Component {
       waiter: `${user.displayName}`,
       customerName: this.state.customerName,
       orderedItens: this.state.order
-
     });
-    // alert("teste!")
   }
 
   render() {
-    const { customerName } = this.state;
     const user = firebase.auth().currentUser;
-    const valorTotal = this.state.order.reduce((acc, cur) => {
+    const totalPrice = this.state.order.reduce((acc, cur) => {
      return acc + (cur.quantity * cur.price)
     }, 0);
    
@@ -97,38 +89,36 @@ class Saloon extends React.Component {
          <p>{user.displayName}</p>
          <Input 
               type="text" 
-              value={customerName} 
+              value={this.state.customerName} 
               placeholder="Digite o nome do cliente"
               onChange={(e) => this.handleChange(e, "customerName")} 
             />
             {
-              menu.breakfast.map((produto, i) => {
+              menu.breakfast.map((product, i) => {
                 return <button key={i} 
-                  onClick={() => this.orderClick(produto)}>
-                  {produto.name}</button>
+                  onClick={() => this.orderClick(product)}>
+                  {product.name}</button>
               })
             }
             {
-              menu.mainMenu.map((produto, i) => {
+              menu.mainMenu.map((product, i) => {
                 return <button key={i} 
-                  onClick={() => this.orderClick(produto)}>
-                  {produto.name}</button>
+                  onClick={() => this.orderClick(product)}>
+                  {product.name}</button>
               })
             }
             <hr></hr>
             <h1>Itens comprados</h1>
             {
-              this.state.order.map((produto, i) =>{
-                return <div key={i}> <p>{produto.name} - {produto.price * produto.quantity} - {produto.quantity}</p>
-              <button onClick={()=> this.cliqueDeleta(produto)}>Deletar</button>
+              this.state.order.map((product, i) =>{
+                return <div key={i}> <p>{product.name} - {product.price * product.quantity} - {product.quantity}</p>
+              <button onClick={()=> this.clickDelete(product)}>Deletar</button>
               </div>})
             }
             <hr></hr>
             <h1>Total</h1>
-      
-              <p>Valor Total: {valorTotal}</p>
+              <p>Valor Total: {totalPrice}</p>
               <button onClick={this.sendOrder}>Finalizar pedido</button>
-            
       </div>       
     );
   }
