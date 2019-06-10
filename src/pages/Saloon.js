@@ -97,6 +97,13 @@ class Saloon extends React.Component {
                   {produto.name}</button>
               })
             }
+            {
+              menu.mainMenu.map((produto, i) => {
+                return <button key={i} 
+                  onClick={() => this.orderClick(produto)}>
+                  {produto.name}</button>
+              })
+            }
             <hr></hr>
             <h1>Itens comprados</h1>
             {
