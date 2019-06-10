@@ -116,7 +116,7 @@ class Home extends React.Component {
             <select className="input-box" onChange={(e) => this.handleChange(e, "userType")}>
 			        <option selected disabled>Setor</option>
 			        <option value="kitchen" >Cozinha</option>
-			        <option value="salon">Salão</option>
+			        <option value="saloon">Salão</option>
 			      </select>
             <Input 
               type="email" 

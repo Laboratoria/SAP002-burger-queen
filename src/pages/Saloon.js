@@ -11,7 +11,7 @@ import menu from '../data'
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class Salon extends React.Component {
+class Saloon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,4 +115,4 @@ class Salon extends React.Component {
   }
   }
 
-export default withFirebaseAuth({firebaseAppAuth}) (Salon);
+export default withFirebaseAuth({firebaseAppAuth}) (Saloon);
