@@ -13,6 +13,9 @@ class Cozinha extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      hour: new Date().getHours(),
+      min: new Date().getMinutes(),
+      sec: new Date().getSeconds(),
       employee: "",
       listOrder: [],
       request: []
@@ -25,7 +28,28 @@ class Cozinha extends React.Component {
     this.setState(newState)
   }
 
+  newHour = () => {
+    function digHour(dig) {
+      return (dig < 10) ? '0' + dig : dig;
+    }
+    const date = new Date()
+    let hourNew = [date.getHours()].map(digHour)
+    let minNew = [date.getMinutes()].map(digHour)
+    let secNew = [date.getSeconds()].map(digHour)
+    console.log([date.getSeconds()].map(digHour))
+    this.setState({
+      hour: hourNew,
+      min: minNew,
+      sec: secNew
+    })
+  }
+
+
   componentDidMount() {
+    this.timerID = setInterval(
+      () => this.newHour(),
+      1000
+    );
     let user = firebaseAppAuth.currentUser;
     database.collection("users").get()
       .then((querySnapshot) => {
@@ -44,6 +68,8 @@ class Cozinha extends React.Component {
         this.setState({ listOrder: data })
       })
   }
+
+
 
   handleClick = () => {
     // const object = {
@@ -75,6 +101,7 @@ class Cozinha extends React.Component {
       <div className="div-page">
         <h3>Cozinha</h3>
         <p className="name">Funcionário(a): {this.state.employee}</p>
+        <p className="name">Horário: {this.state.hour}:{this.state.min}:{this.state.sec}</p>
         <div className="logout">
           <div className="request">
             <Link className="button-logout logout" to="/">Sair</Link>
@@ -83,6 +110,7 @@ class Cozinha extends React.Component {
         {
           this.state.listOrder.map((item, index) => {
             return (<div className="form cozinha" key={index}>
+              <p className="menu" >Horário: {item.hour}</p>
               <p className="menu" >Cliente: {item.client}</p>
               <p className="menu" >Funcionário(a): {item.employee}</p>
               <p className="menu">Pedido</p>
