@@ -13,7 +13,6 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: undefined,
       displayName: "",
       email: "",
       password: "",
@@ -82,7 +81,7 @@ class Home extends React.Component {
             <Button className="button" onClick={() => this.signIn()} text="Login" />
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

@@ -14,6 +14,7 @@ class Salao extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      hour: "",
       employee: "",
       client: "",
       listItem: [],
@@ -67,8 +68,17 @@ class Salao extends React.Component {
     this.setState(newState)
   }
 
+  newHour = () => {
+    function hour(dig) {
+      return (dig < 10) ? '0' + dig : dig;
+    }
+    const date = new Date();
+    return [date.getHours(), date.getMinutes()].map(hour).join(':');
+  }
+
   handleClick = (request) => {
     const object = {
+      hour: this.newHour(),
       employee: this.state.employee,
       client: this.state.client,
       request
@@ -87,7 +97,7 @@ class Salao extends React.Component {
     })
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     let user = firebaseAppAuth.currentUser;
     database.collection("users").get()
       .then((querySnapshot) => {
@@ -101,21 +111,6 @@ class Salao extends React.Component {
         })
       })
   }
-
-  // userUid = () => {
-  //   let user = firebaseAppAuth.currentUser;
-  //   database.collection("users").get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         if (user != null && user.uid === doc.id) {
-  //           const name = doc.data().displayName
-  //           this.setState({
-  //             employee: name
-  //           })
-  //         }
-  //       })
-  //     })
-  // }
 
   render() {
     const valueTotal = this.state.request.reduce((acc, cur) => {
@@ -131,8 +126,16 @@ class Salao extends React.Component {
             <Link className="button-logout logout" to="/">Sair</Link>
           </div>
         </div>
+        <p>Café da manhã</p>
         <div className="home">
-          {menu.menu.map((item, index) => {
+          {menu.menu.breakfast.map((item, index) => {
+            return <Button className="button-cardap" key={index} onClick={() => this.clientOrder(item)} text={item.name} />
+          })
+          }
+        </div>
+        <p>Cardápio do dia</p>
+        <div className="home">
+          {menu.menu.day.map((item, index) => {
             return <Button className="button-cardap" key={index} onClick={() => this.clientOrder(item)} text={item.name} />
           })
           }
