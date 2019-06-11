@@ -19,7 +19,7 @@ class Login extends React.Component {
                         className="sign-in"
                         checked
                     />
-                    <label for="tab-1" class="tab">
+                    <label for="tab-1" className="tab">
                         Entrar
                     </label>
                     <input id="tab-2" type="radio" name="tab" className="sign-up" />
@@ -60,7 +60,7 @@ class Login extends React.Component {
                             </div>
                         </div>
                         <div className="group">
-                            <input type="submit" className="button" value="Entrar" />
+                            <input type="submit" className="button button-color" value="Entrar" />
                         </div>
                         <div className="hr" />
                         <div className="foot-lnk">
@@ -111,7 +111,7 @@ class Login extends React.Component {
                             </div>
                         </div>
                         <div className="group">
-                            <input type="submit" className="button" value="Cadastrar" />
+                            <input type="submit" className="button button-color" value="Cadastrar" />
                         </div>
                         <div className="hr" />
                         <div className="foot-lnk">

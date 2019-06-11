@@ -41,14 +41,42 @@ a {
     max-width: 768px;
     min-height: 1024px;
     position: relative;
-    background-color: aqua;
+    background-image: url("../image/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form {
+    margin: 30px 0 0 0;
+}
+
+.group {
+    padding: 0 0 10px 0;
 }
 
 .logo{
     text-align: center;
     padding: 50px 40px 50px 40px;
+    color: var(--color-zinnwaldite-brown);
+}
+
+.logo h1 {
+    font-size: 100px;
+    font-family: var(--font-courgette);
+}
+
+.logo h3 {
+    font-size: 40px;
+    letter-spacing: 35px;
+    margin-left: 25px;
+    font-family: var(--font-quicksand);
+    font-weight: 300;
+}
+
+.login-wrap{
+    margin: 50px 0 0 0;
 }
 
 .login-html {
@@ -89,6 +117,8 @@ a {
     margin: 0 15px 10px 0;
     display: inline-block;
     border-bottom: 2px solid transparent;
+    font-family: var(--font-quicksand);
+    font-weight: 700;
 }
 
 .checking .group {
@@ -103,8 +133,8 @@ a {
 
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab {
-    color: #fff;
-    border-color: #1161ee;
+    color: var(--color-zinnwaldite-brown);
+    border-color: var(--color-rosewood);
 }
 
 .login-form {
@@ -120,10 +150,14 @@ a {
 
 .login-form .group .label,
 .login-form .group .input,
-.login-form .group .button {
+.login-form .group .button{
     width: 100%;
-    color: #fff;
+    color: var(--color-zinnwaldite-brown);
     display: block;
+}
+
+.button-color {
+    color: var(--color-white) !important;
 }
 
 .login-form .group .input,
@@ -131,7 +165,7 @@ a {
     border: none;
     padding: 15px 20px;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(222, 124, 90, 0.5);
 }
 
 .login-form .group input[data-type="password"] {
@@ -140,12 +174,14 @@ a {
 }
 
 .login-form .group .label {
-    color: #aaa;
+    color: var(--color-zinnwaldite-brown);
+    font-family: var(--font-quicksand);
+    font-weight: 600;
     font-size: 12px;
 }
 
 .login-form .group .button {
-    background: #1161ee;
+    background: var(--color-zinnwaldite-brown);
 }
 
 .login-form .group label .icon {
@@ -181,11 +217,13 @@ a {
 }
 
 .login-form .group .check:checked + label {
-    color: #fff;
+    color: var(--color-zinnwaldite-brown);
+    font-family: var(--font-quicksand);
+    font-weight: 600;
 }
 
 .login-form .group .check:checked + label .icon {
-    background: #1161ee;
+    background: var(--color-zinnwaldite-brown);
 }
 
 .login-form .group .check:checked + label .icon:before {
@@ -213,11 +251,13 @@ a {
 .hr {
     height: 2px;
     margin: 60px 0 50px 0;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--color-rosewood);
 }
 
 .foot-lnk {
     text-align: center;
+    font-family: var(--font-quicksand);
+    font-weight: 700;
 }
 
 @media screen and (max-width: 1024px) {
