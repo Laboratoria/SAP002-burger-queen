@@ -1,5 +1,5 @@
 import React from 'react';
-// import './App.css';
+import '../Salao.css';
 import Button from '../button';
 // import Counter from './counter.js;'
 import firebase from '../firebaseConfig';
@@ -18,12 +18,16 @@ class Salao extends React.Component{
     super(props);
     this.state = {
      
-      name: "",
-      nameItem: "",  
-      preço:"" ,
-      listIntem: []
+      name: "", 
+      listIntem: [],     
+      comprar: []
 
     }
+    // {
+    //   nome,
+    //   nomef,
+    //   comprar
+    // }
   }
   componentDidMount(){
     database.collection('laboratoria').get()
@@ -33,7 +37,6 @@ class Salao extends React.Component{
 
     });
   }
-
   handleChange = (event, element) => {
     const newState = this.state;
     newState[element]=event.target.value
@@ -45,32 +48,44 @@ class Salao extends React.Component{
       name: this.state.name,     
         }
 
-    database.collection('laboratoria').add(object)
-    this.setState({
-      listIntem: this.state.listIntem.concat(object).reverse()
+    // database.collection('laboratoria').add(object)
+    // this.setState({
+    //   listIntem: this.state.listIntem.concat(object).reverse()
       
-      })
+    //   })
     }
 
-    handleOK = ()=> {
-      const object = {
-        nameItem: this.state.nameItem,
-        preço: this.state.preço,    
-            
+  clickComprar = (item) => {
+    const itemIndex = this.state.comprar.findIndex((DataMenuOne) =>
+       {
+          return DataMenuOne.nameItem === item.nameItem
+      })
+      if(itemIndex < 0) {
+        const newItem = {
+          ...item,
+          quantidade: 1
+        };
+        this.setState({
+          comprar: this.state.comprar.concat(newItem)
+        });
+      } else {
+        let newCompra = this.state.comprar;
+        newCompra[itemIndex].quantidade +=1;
+        this.setState({
+          comprar: newCompra
+        });
       }
-  
-      database.collection('laboratoria').add(object)
-      this.setState({
-        listProduct: this.state.listProduct.concat(object)
-        
-        })
-      }      
-    
+    }
+   
     render() {
-      console.log(this.props.user)
+      const valorTotal = this.state.comprar.reduce((acc, cur) => 
+      {
+        return acc + (cur.quantidade * cur.price)
+      }, 0);
+    
             return(
         <div className="App">
-           <header className="App-header">          
+           <header className="App-header teste">          
                <input value={this.state.name} placeholder="Digite o nome do cliente" onChange={(e)=> this.handleChange(e,"name")} />
                 <Button text="publicar" onClick ={this.handleClick}/>
              {
@@ -78,19 +93,31 @@ class Salao extends React.Component{
                  return <p> Cliente: {item.name} </p>
                })
              }
-            <p>------------------------</p>
+            <hr></hr>
             <div>
                 {DataMenuOne.map((item, i)=>{                
                   return <div> 
                             <p>
-                              {item.nameItem} - {item.preço} 
-                              <Button text="ok" onClick ={this.handleOK}/>                            
+                              <button key={i} onClick={()=> {this.clickComprar(item)}}>{item.nameItem} - {item.price} </button>
                             </p>                            
                          </div>
                   }
                 )}          
-            </div>     
-           
+            </div> 
+
+            <div >
+              <p>Lista de compras </p>
+              {
+                this.state.comprar.map((produto, i)=>{
+                  return <p key={i}> {produto.quantidade} - {produto.nameItem} : {produto.price * produto.quantidade}  
+                  </p>
+                })
+
+              }
+                <hr></hr>
+                <h1>Total</h1>
+                <p>Valor Toral: {valorTotal}</p>
+            </div>
            </header>
        </div>
       )

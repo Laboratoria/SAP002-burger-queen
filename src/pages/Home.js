@@ -4,7 +4,8 @@ import Button from '../button';
 // import Counter from './counter.js;'
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';const firebaseAppAuth = firebase.auth();
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+const firebaseAppAuth = firebase.auth();
 
 const database = firebase.firestore();
 
@@ -20,6 +21,15 @@ class Home extends React.Component {
 
    }
  }  
+  showLogin = () => {
+  document.querySelector("divLogin").className="hide";
+  document.querySelector("divLogin").className="show";  
+  }
+
+  showCadastro = () => {
+  document.getElementById("divCadastro").className="hide";
+  document.getElementById("divCadastro").className="show";
+  }
  
   handleChange = (event, element) => {
    const newState = this.state;
@@ -68,22 +78,33 @@ class Home extends React.Component {
 
    return (
      <div className="App">
-       <header className="App-header">
+       <header className="App-header background ">
          <div className="background-image">
            <figure className="logo"><img scr="../images/logo.png"></img></figure>
          </div>
          <main className="container">
-           <form className="section-sign-in">
+            <ul className="edit-align">
+              <li className="sign-in font-size-m choice-login active" onClick={this.showLogin} >LOGIN</li>
+              <li className="sign-up font-size-m choice-login" onClick={this.showCadastro}>CADASTRO</li>
+            </ul>
+            <form className="section-sign-in divLogin">
+            
+             <input className="sign-in-email rounded-border" value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
+             <input className="sign-in-password rounded-border" value={this.state.senha} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "senha")} />
+             <section>
+               <Button className="sign-in-button " text="LOGAR" onClick={this.signIn} />
+             </section>
+           </form>
+           <form className="section-sign-in divCadastro ">
              <input className="sign-up-name rounded-border" value={this.state.name} placeholder="name completo" onChange={(e) => this.handleChange(e, "name")} />
              <input className="sign-in-email rounded-border" value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
              <input className="sign-in-password rounded-border" value={this.state.senha} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "senha")} />
              <select onChange={(e) => this.handleChange(e, "tipo")} className="sign-up-gender rounded-border">
-               <option value="salao" >Salão</option>
-               <option value="cozinha">Cozinha</option>
+               <option value="Salao" >Salão</option>
+               <option value="Cozinha">Cozinha</option>
              </select>
              <section>
                <Button className="sign-in-button " text="CADASTRAR" onClick={this.createUser} />
-               <Button className="sign-in-button " text="LOGAR" onClick={this.signIn} />
              </section>
            </form>
          </main>
