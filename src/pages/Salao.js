@@ -18,7 +18,8 @@ class Salao extends React.Component {
       employee: "",
       client: "",
       listItem: [],
-      request: []
+      request: [],
+      status: ""
     };
   }
 
@@ -78,6 +79,7 @@ class Salao extends React.Component {
 
   handleClick = (request) => {
     const object = {
+      status: "kitchen",
       hour: this.newHour(),
       employee: this.state.employee,
       client: this.state.client,

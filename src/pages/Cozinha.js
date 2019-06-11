@@ -41,13 +41,6 @@ class Cozinha extends React.Component {
     })
   }
 
-  componentDidMount() {
-    // this.timerID = setInterval(
-    //   () => this.newHour(),
-    //   1000
-    // );
-  }
-
   componentDidUpdate() {
     let user = firebaseAppAuth.currentUser;
     database.collection("users").get()
@@ -61,46 +54,22 @@ class Cozinha extends React.Component {
           }
         })
       })
+  }
+
+  componentDidMount() {
     database.collection("order").get()
       .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => doc.data())
+        const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
         this.setState({ listOrder: data })
-
       })
   }
 
 
-
-  handleClick = () => {
-    database.collection("order").get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id)
-        })
-      })
-    // const object = {
-    //   pedido: this.state.pedido
-    // }
-    // database.collection("pedidos").add(object)
-    // this.setState({
-    //   listItem: this.state.listItem.concat(object)
-    // })
+  handleClick = (id) => {
+    database.collection("order").doc(id).update({
+      status: "salao"
+    })
   }
-
-  // userUid = () => {
-  //   let user = firebaseAppAuth.currentUser;
-  //   database.collection("users").get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         if (user != null && user.uid === doc.id) {
-  //           let name = doc.data().displayName
-  //           this.setState({
-  //             employee: name
-  //           })
-  //         }
-  //       })
-  //     })
-  // }
 
   render() {
 
@@ -116,17 +85,19 @@ class Cozinha extends React.Component {
         </div>
         {
           this.state.listOrder.map((item, index) => {
-            return (<div className="form cozinha" key={index}>
-              <p className="menu" >Horário: {item.hour}</p>
-              <p className="menu" >Cliente: {item.client}</p>
-              <p className="menu" >Funcionário(a): {item.employee}</p>
-              <p className="menu">Pedido</p>
-              {item.request.map((menu, index) => {
-                return <p key={index} className="menu">-{[menu.name, " ", menu.quantity, " - unid"]}</p>
-              })
-              }
-              <Button className="button" text="Pedido Pronto" onClick={() => this.handleClick()}></Button>
-            </div>)
+            if (item.status === "kitchen") {
+              return (<div className="form cozinha" key={index}>
+                <p className="menu" >Horário: {item.hour}</p>
+                <p className="menu" >Cliente: {item.client}</p>
+                <p className="menu" >Funcionário(a): {item.employee}</p>
+                <p className="menu">Pedido</p>
+                {item.request.map((menu, index) => {
+                  return <p key={index} className="menu">-{[menu.name, " ", menu.quantity, " - unid"]}</p>
+                })
+                }
+                <Button className="button" text="Pedido Pronto" onClick={() => this.handleClick(item.id)}></Button>
+              </div>)
+            }
           })
         }
       </div >
