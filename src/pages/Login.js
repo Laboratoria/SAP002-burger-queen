@@ -4,7 +4,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import InitialHeader from '../components/InicialHeader';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import {BrowserRouter as Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -24,21 +24,31 @@ class Login extends React.Component{
     }
 
     signIn = () => {
-        this.props.signInWithEmailAndPassword(this.state.email, this.state.password);
+        this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            this.props.history.push(`/${this.state.type}`)
+        })
     }
     
     render() {
         return (
             <div>
-            <InitialHeader />
-            <section>
-                <form>
-                    <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
-                    <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
-                </form>
-                    <Link to="order"><Button text="ENTRAR" onClick={this.signIn}/></Link>
-                <Link to="register">AINDA NÃO TEM CONTA? CADASTRE-SE</Link>
-            </section>
+                <InitialHeader />
+                <section className="Align">
+                    <form className="Login-register-form">
+                        <h4>FAÇA SEU LOGIN</h4>
+                        <Input type="email" placeholder="E-MAIL" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
+                        <Input type="password" placeholder="SENHA" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
+                    </form>
+                    <div className="Align-beside">
+                        <p>Mantenha-me conectado</p>
+                        <p>Esqueci minha senha</p>
+                    </div>
+                    <div>
+                        <Button text="ENTRAR" onClick={this.signIn}/>
+                        <Link to="register" className="Link">NÃO TEM CONTA? CADASTRE-SE</Link>
+                    </div>
+                </section>
             </div>
                 )
         }

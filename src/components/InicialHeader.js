@@ -4,9 +4,9 @@ import logo from '../images/logo.png';
 
 function InitialHeader() {
     return (
-        <header>
-            <h2>SISTEMA INTERNO DE PEDIDOS</h2>
-            <img src={logo} alt="BURGER QUEEN"/>
+        <header className="Align">
+            <h2 className="Text-initial-header">SISTEMA INTERNO DE PEDIDOS</h2>
+            <img className="Logo-initial-header" src={logo} alt="BURGER QUEEN"/>
         </header>
     );
     

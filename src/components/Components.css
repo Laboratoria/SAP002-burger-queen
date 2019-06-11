@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #707070;
+}
+
+.Align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Text-initial-header {
+    margin: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+}
+
+.Logo-initial-header {
+    margin-top: 50px;
+    width: 40%;
+}
+
+.Align h4{
+    text-align: center;
+    margin: 0;
+}
+
+.Login-register-form {
+    margin-top: 60px;
+}
+
+.Input {
+    height: 60px;
+    width: 350px;
+    display: block;
+    margin-top: 20px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #707070; 
+    padding-left: 20px;
+}
+
+.Align-beside {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Button {
+    height: 60px;
+    width: 250px;
+    margin: 30px 0 20px;
+    display: block;
+    background-color: transparent;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    font-size: 30px;
+    color: #707070;
+}
+
+.Link {
+    text-decoration: none;
+    color: #707070;
+    font-weight: 700;
+}
