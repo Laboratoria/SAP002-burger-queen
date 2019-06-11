@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase/firebase-config';
+import withFirebaseAuth from 'react-with-firebase-auth';
 import Data from '../data.json';
 import './saloon.css';
 import '../components/Button.css';
@@ -7,15 +8,25 @@ import Button from '../components/Button';
 import { faCoffee, faGlassWhiskey, faHamburger, faCertificate, faPlusCircle, faMinusCircle, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 
 const database = firebase.firestore();
-// const firebaseAuth = firebase.auth();
+const firebaseAppAuth = firebase.auth();
 
 class Saloon extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listItem: [],
-      order: []
+      order: [],
+      name: ""
     }
+    firebaseAppAuth.onAuthStateChanged(user => {
+      if (user) {
+        database.collection("users").doc(user.uid).get()
+        .then(doc => {
+          const data = doc.data();
+          const name = data.displayName;
+          this.setState({name})
+        }); 
+      }
+    });
   }
 
   handleChange = (event, element) => {
@@ -37,12 +48,10 @@ class Saloon extends Component {
     } else {
       const object = {
         clientName: this.state.clientName,
-        order: order
+        order: order,
+        waiter: this.state.name
       }
       database.collection('Orders').add(object)
-      this.setState({
-        listItem: this.state.listItem.concat(object)
-      })
       alert('Pedido enviado!')
       this.resetOrderList();
     }
@@ -51,8 +60,6 @@ class Saloon extends Component {
   handleAdd = (item) => {
     const itemIndex = this.state.order.findIndex(
       (produto) => {
-        console.log(produto.title === item.title);
-
         return produto.title === item.title;
       });
 
@@ -100,10 +107,10 @@ class Saloon extends Component {
     const total = this.state.order.reduce((acc, cur) => {
       return acc + (cur.quantity * cur.price)
     }, 0);
-
+    
     return (
       <section className='order'>
-        <h1>Olá, você está no Salão</h1>
+        <h1>Olá {this.state.name}, você está no Salão</h1>
         <h2>Café da manhã: </h2>
         <div className='items'>
           {
@@ -161,4 +168,4 @@ class Saloon extends Component {
 
 }
 
-export default Saloon
+export default Saloon;
