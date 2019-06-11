@@ -67,3 +67,58 @@ const element = <FontAwesomeIcon icon={faCoffee} />
 npm install -g firebase-tools
 
 firebase deploy --only functions
+
+---
+
+```
+git commit -am "jdsjkd"
+```
+
+```
+git tag v1.0.0
+```
+---
+
+# Deploy
+
+```
+npm run build
+```
+
+irá criar a pasta build.
+
+mude a configuração no arquivo `firebase.json` para que ele abra o **hosting** na pasta **build** ao invés de public:
+
+
+```
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ],
+    "source": "functions"
+  },
+  "hosting": {
+    "public": "build", // mudar aqui 
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+```
+
+```
+firebase deploy --only hosting
+```
