@@ -16,7 +16,7 @@ class Saloon extends React.Component {
     this.state = {
       customerName: "",
       order: [],
-      totalPrice: ""
+      totalPrice: 0
     };
   }
 
@@ -34,14 +34,16 @@ class Saloon extends React.Component {
       };
       this.setState({
         order: this.state.order.concat(newItem),
-        totalPrice: totalPrice
+        totalPrice: totalPrice,
+        totalPrice: this.state.totalPrice += totalPrice
       });
     } else {
       let newOrder = this.state.order;
       newOrder[itemIndex].quantity += 1;
       this.setState({
         order: newOrder,
-        totalPrice: totalPrice
+        totalPrice: totalPrice,
+        totalPrice: this.state.totalPrice += totalPrice
       });
     }
   }
