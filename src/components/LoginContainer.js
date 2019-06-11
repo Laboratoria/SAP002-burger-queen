@@ -3,8 +3,6 @@ import LoginComponent from "./LoginComponent"
 import SignUpComponent from "./SignUpComponent"
 import { Row, Col, Button } from 'react-bootstrap'
 import firebase from '../firebaseConfig'
-// import { database } from 'firebase';
-
 
 class LoginContainer extends React.Component {
   constructor() {
@@ -48,14 +46,15 @@ class LoginContainer extends React.Component {
   }
 
   signup(e){
-    const database = firebase.firestore();
+
+  
 
     e.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(this.state.emailSignUp, this.state.passwordSignUp)
     .then(resp => {
       if (resp){
         const id = resp.user.uid;
-        database.collection("users").doc(id).set({
+        firebase.firestore().collection('users').doc(id).set({
           email: this.state.emailSignUp,
           nome: this.state.name,
           serviço: this.state.service
