@@ -17,7 +17,7 @@ class Saloon extends Component {
       order: []
     }
   }
-  
+
   handleChange = (event, element) => {
     const newState = this.state;
     newState[element] = event.target.value
@@ -104,12 +104,16 @@ class Saloon extends Component {
     return (
       <section className='order'>
         <h1>Olá, você está no Salão</h1>
+        <h2>Café da manhã: </h2>
         <div className='items'>
           {
             Data.menu.breakfast.map(item => {
               return (<Button className='btn item-btn' iconName={faCoffee} text={item.title} price={': R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
             })
           }
+        </div>
+        <h2>Outros: </h2>
+        <div className='items'>
           {
             Data.menu.hamburgueres.map(item => {
               return (<Button className='btn item-btn' iconName={faHamburger} text={item.title} price={': R$' + item.price} key={item.id} onClick={() => this.handleAdd(item)}></Button>)
