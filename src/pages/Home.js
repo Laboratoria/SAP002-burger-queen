@@ -75,17 +75,17 @@ class Home extends React.Component {
       <div>
         <Logo />
         <div className="forms">
-               <Tabs>
-          <TabList className="nav-container">
-            <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
-        onClick={ this.handleClick }> 
+          <Tabs>
+            <TabList className="nav-container">
+              <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
+                onClick={ this.handleClick }> 
               <p>LOGIN</p>
-            </Tab>
-            <Tab className={ this.state.condition ? "nav-link disabled" : "nav-link active" }
-        onClick={ this.handleClick }>   
+              </Tab>
+              <Tab className={ this.state.condition ? "nav-link disabled" : "nav-link active" }
+                onClick={ this.handleClick }>   
               <p>CRIAR CONTA</p>
-            </Tab>
-          </TabList>
+              </Tab>
+            </TabList>
           <TabPanel>
             <Input 
               type="email" 
@@ -99,7 +99,7 @@ class Home extends React.Component {
               onChange={(e) => this.handleChange(e, "password")} 
               placeholder="Digite sua senha"
             />
-           <Button text="Login" onClick={this.signIn}/>
+            <Button text="Login" onClick={this.signIn}/>
           </TabPanel>
           <TabPanel> 
             <Input 
