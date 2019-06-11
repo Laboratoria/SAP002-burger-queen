@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../firebase/firebase-config';
 import Button from '../components/Button';
+import './kitchen.css';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const database = firebase.firestore();
@@ -16,7 +17,7 @@ class Kitchen extends React.Component {
   }
 
   componentDidMount() {
-    database.collection('Orders').get()
+    database.collection('orders').get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => doc.data());
         this.setState({ listItem: data });
@@ -28,7 +29,7 @@ class Kitchen extends React.Component {
       clientName: this.state.clientName,
       order: order
     }
-    database.collection('Orders').add(object)
+    database.collection('orders').add(object)
     this.setState({
       listItem: this.state.listItem.concat(object)
     })
@@ -48,15 +49,16 @@ class Kitchen extends React.Component {
         {
           orders.map((client, index) => {
             return (
-              <div>
-                <h2>Pedido {index + 1} - Cliente: {client.clientName}</h2>
+              <div className='order-kitchen'>
+                <h2>Pedido {index + 1}</h2>
+                <p>Cliente: {client.clientName}</p>
+                <p>Atendente: {client.waiter}</p>
                 {
                   client.order.map((pedido) => {
                     return <p>Qtd: {pedido.quantity} - {pedido.title}</p>
                   })
                 }
-                <Button className='plus-minus-btn' iconName={faCheckCircle} onClick={() => this.handleDelete(client)}></Button>
-                <hr />
+                <Button className='order-ready' iconName={faCheckCircle} text='Pedido Pronto!' onClick={() => this.handleDelete(client)}></Button>
               </div>
             )
           })
