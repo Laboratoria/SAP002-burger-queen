@@ -6,6 +6,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import menu from '../data';
 import Logo from "../components/Logo";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -16,7 +17,8 @@ class Saloon extends React.Component {
     this.state = {
       customerName: "",
       order: [],
-      totalPrice: 0
+      totalPrice: 0,
+      condition: true
     };
   }
 
@@ -88,6 +90,12 @@ class Saloon extends React.Component {
     });
   }
 
+  handleClick = () => {
+    this.setState({
+      condition: !this.state.condition
+    })
+  }
+
   render() {
     const user = firebase.auth().currentUser;
     const totalPrice = this.state.order.reduce((acc, cur) => {
@@ -96,9 +104,37 @@ class Saloon extends React.Component {
    
     return (
       <div>
-        
         <Logo />
         <div className="forms">
+        <Tabs>
+        <TabList className="nav-container">
+          <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
+                onClick={ this.handleClick }><h3>Menu Principal</h3></Tab>
+          <Tab className={ this.state.condition ? "nav-link disabled"  : "nav-link active"}
+                onClick={ this.handleClick }><h3>Café da Manhã</h3></Tab>
+        </TabList>
+        <TabPanel>
+        <ul className="titles">{
+                 menu.mainMenu.map((product, i) => {
+                  return <li key={i} 
+                    onClick={() => this.orderClick(product)}>
+                    {product.name}</li>
+                })
+              }
+              </ul >
+       
+        </TabPanel>
+        <TabPanel>
+        <ul className="titles">{
+                 menu.breakfast.map((product, i) => {
+                  return <li key={i} 
+                    onClick={() => this.orderClick(product)}>
+                    {product.name}</li>
+                })
+              }</ul>
+        </TabPanel>
+        </Tabs>
+       
          <p>Garçom:{user.displayName}</p>
          <Input 
               type="text" 
@@ -107,23 +143,10 @@ class Saloon extends React.Component {
               onChange={(e) => this.handleChange(e, "customerName")} 
           />
             <hr></hr>
-              <h1 className="titles">Café da Manhã</h1>
-              <ul className="titles">{
-                 menu.breakfast.map((product, i) => {
-                  return <li key={i} 
-                    onClick={() => this.orderClick(product)}>
-                    {product.name}</li>
-                })
-              }</ul>
-              <h1 className="titles">Menu Principal</h1>
-              <ul className="titles">{
-                 menu.mainMenu.map((product, i) => {
-                  return <li key={i} 
-                    onClick={() => this.orderClick(product)}>
-                    {product.name}</li>
-                })
-              }
-              </ul >
+              
+              
+              
+            
               <h1>Itens comprados</h1>
             {
               this.state.order.map((product, i) =>{
@@ -136,6 +159,7 @@ class Saloon extends React.Component {
               <p>Valor Total: {totalPrice}</p>
               <button onClick={this.sendOrder}>Finalizar pedido</button>
               </div>
+              
       </div>       
     );
   }

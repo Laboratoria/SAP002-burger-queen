@@ -79,11 +79,11 @@ class Home extends React.Component {
             <TabList className="nav-container">
               <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
                 onClick={ this.handleClick }> 
-              <p>LOGIN</p>
+              <h3>LOGIN</h3>
               </Tab>
               <Tab className={ this.state.condition ? "nav-link disabled" : "nav-link active" }
                 onClick={ this.handleClick }>   
-              <p>CRIAR CONTA</p>
+              <h3>CRIAR CONTA</h3>
               </Tab>
             </TabList>
           <TabPanel>
