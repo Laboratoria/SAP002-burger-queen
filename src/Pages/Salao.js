@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import './Salao.css'
 import firebase from "../firebaseConfig";
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { BrowserRouter as Router, Route, Redirect, Link }
@@ -28,6 +29,67 @@ const product = [
   }
 ];
 
+const product24 = [
+  {
+    iten: "Hamburguer Simples Bovino",
+    price: "10.00"
+  },
+  {
+    iten: "Hamburguer Simples Frango",
+    price: "10.00"
+  },{
+    iten: "Hamburguer Simples Vegetariano",
+    price: "10.00"
+  },
+  {
+    iten: "Hamburguer Duplo Bovino",
+    price: "15.00"
+  },
+  {
+    iten: "Hamburguer Duplo Frango",
+    price: "15.00"
+  },
+  {
+    iten: "Hamburguer Duplo Vegetariano",
+    price: "15.00"
+  },
+  {
+    iten: "Batata Frita",
+    price: "5.00"
+  },
+  {
+    iten: "Anéis de Cebola",
+    price: "5.00"
+  },
+  {
+    iten: "Água 500ml",
+    price: "5.00"
+  },
+  {
+    iten: "Água 750ml",
+    price: "7.00"
+  },
+  {
+    iten: "Refrigerante 500ml",
+    price: "7.00"
+  },
+  {
+    iten: "Refrigerante 750ml",
+    price: "10.00"
+  },
+];
+
+const productAdd = [
+  {
+    iten: "Queijo",
+    price: "1.00"
+  },
+  {
+    iten: "Ovo",
+    price: "1.00"
+  },
+];
+
 class Salao extends React.Component {
   constructor(props) {
     super(props);
@@ -39,11 +101,11 @@ class Salao extends React.Component {
   }
 
   // componentDidMount() {
-  //   database.collection('Pedidos').get()
-  //     .then((querySnapshot) => {
-  //       const data = querySnapshot.docs.map(doc => doc.data());
-  //       this.setState({ listItem: data });
-  //     });
+  //   database.collection('users').get()
+  //   .then((querySnapshot) => {
+  //     const data = querySnapshot.docs.map(doc => doc.data());
+  //     this.setState({ listItem: data });
+  //   });
   // }
 
   handleChange = (event, element) => {
@@ -60,7 +122,7 @@ class Salao extends React.Component {
     }
     database.collection('Pedidos').add(object)
     this.setState({
-      listItem: this.state.listItem.concat(object)
+      listItem: this.state.listItem
     })
   }
 
@@ -88,27 +150,26 @@ class Salao extends React.Component {
 
   }
 
-  // cliqueDeleta = (opcao) => {
-  //   const itemIndex = this.state.listItem.findIndex((product) => {
-  //     return product.item === opcao.item;
-  //   });
-  //   let newlistItem = this.state.listItem;
-  //   newlistItem[itemIndex].quantidade -= 1;
+  clickDel = (option) => {
+    const itemIndex = this.state.listItem.findIndex((product) => {
+      return product.item === option.item;
+    });
+    let newlistItem = this.state.listItem;
+    newlistItem[itemIndex].quantity -= 1;
 
-  //   const quantidade = newlistItem[itemIndex].quantidade;
+    const quantity = newlistItem[itemIndex].quantity;
 
-  //   if (quantidade > 0) {
-  //     this.setState({
-  //       listItem: newlistItem
-  //     });
-  //   } else {
-  //     newlistItem.splice(itemIndex, 1);
-  //     this.setState({
-  //       listItem: newlistItem
-  //     });
-  //   }
-  // }
-
+    if (quantity > 0) {
+      this.setState({
+        listItem: newlistItem
+      });
+    } else {
+      newlistItem.splice(itemIndex, 1);
+      this.setState({
+        listItem: newlistItem
+      });
+    }
+  }
 
   render() {
 
@@ -118,7 +179,7 @@ class Salao extends React.Component {
 
     return (
       <React.Fragment>
-
+        <div className= "column1">
         <input value={this.state.client}
           placeholder="Nome do Cliente"
           onChange={(e) => this.handleChange(e, "client")} />
@@ -126,43 +187,50 @@ class Salao extends React.Component {
           placeholder="Nome do Funcionário"
           onChange={(e) => this.handleChange(e, "employee")} />
 
-        {/* {
-          this.state.listItem.map((item, index) => {
-            return <p key={index}>{item.client} | {item.employee} </p>
-          })
-        } */}
-
+        <h1>Café da Manhã</h1>
         {
           product.map((product, index) => {
             return <button key={index}
               onClick={() => this.clickBuy(product)}>{product.iten}</button>
           })
         }
-
+        <h1>Almoço e Jantar</h1>
+        {
+          product24.map((product24, index) => {
+            return <button key={index}
+              onClick={() => this.clickBuy(product24)}>{product24.iten}</button>
+          })
+        }
+        <h1>Adicionais</h1>
+        {
+          productAdd.map((productAdd, index) => {
+            return <button key={index}
+              onClick={() => this.clickBuy(productAdd)}>{productAdd.iten}</button>
+          })
+        }
+        </div>
+        <div className = "column2">
+        <h3>Lista de Pedido</h3>     
         {
           this.state.listItem.map((product, index) => {
-            return <p key={index}>{product.iten} -
-            {product.price * product.quantity} -
+            return <div key={index}>
+              <p>{product.iten} R$
+            {product.price * product.quantity} Quant.
             {product.quantity}</p>
-            
-          })
-          
+              <Button type='red' text="Excluir Item" onClick={() => this.clickDel(product)} />
+            </div>
+          })         
         }
-        <p>Valor Total: {totaltoPay}</p>
-      
+        <h2>Valor Total: {totaltoPay}</h2>
+        </div>
+        
+
         <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
-        {/*<Button onClick={() => this.cliqueDeleta(product)}>Excluir</Button>*/}
-
-
-
-
 
       </React.Fragment >
     );
   }
 }
-
-
 
 export default withFirebaseAuth({
   firebaseAppAuth,

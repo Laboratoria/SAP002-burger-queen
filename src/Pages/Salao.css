@@ -56,3 +56,27 @@ a:hover {
   text-decoration: none;
   color:gray;
 }
+
+div.column1{
+  background-color: #dbf789;
+  min-height: 97vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbf789;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+}
+
+div.column2{
+  background-color: white;
+  border-radius: 7px;
+  font-size: 16px;
+  float: right;
+  margin-top: 1px;
+  width: 50%;
+  
+}

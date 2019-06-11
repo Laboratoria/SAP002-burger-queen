@@ -53,7 +53,9 @@ class Home extends React.Component {
         placeholder="senha"
         onChange={(e) => this.handleChange(e, "password")} />
       <br></br>
-      <Button text="Entrar" onClick={this.signIn} />
+      <Button type="green" text="Entrar" onClick={this.signIn}>
+        
+      </Button>
       <br></br>
       <Link to="/Cadastro">Cadastre-se</Link>
       </div >
