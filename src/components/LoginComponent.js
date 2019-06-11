@@ -27,7 +27,7 @@ function LoginComponent(props) {
       variant="primary"
       type="submit"
       className="mb-3"
-      onClick={props.database}
+      onClick={props.login}
       block>
       Entrar
       </Button>
