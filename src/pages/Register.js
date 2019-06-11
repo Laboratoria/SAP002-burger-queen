@@ -4,6 +4,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import InitialHeader from '../components/InicialHeader';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import '../components/Components.css'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
@@ -58,7 +59,7 @@ class Register extends React.Component{
                         </select>
 
                     </form>
-                    <div>
+                    <div className="Align">
                         <Button text="CADASTRAR" onClick={this.createUser}/>
                         <Link to="/" className="Link">NÃO QUERO ME CADASTRAR AGORA</Link>                
                     </div>

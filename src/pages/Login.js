@@ -4,6 +4,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import InitialHeader from '../components/InicialHeader';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import '../components/Components.css'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
@@ -44,7 +45,7 @@ class Login extends React.Component{
                         <p>Mantenha-me conectado</p>
                         <p>Esqueci minha senha</p>
                     </div>
-                    <div>
+                    <div  className="Align">
                         <Button text="ENTRAR" onClick={this.signIn}/>
                         <Link to="register" className="Link">NÃO TEM CONTA? CADASTRE-SE</Link>
                     </div>
