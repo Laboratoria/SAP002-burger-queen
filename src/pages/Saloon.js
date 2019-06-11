@@ -143,20 +143,16 @@ class Saloon extends React.Component {
               onChange={(e) => this.handleChange(e, "customerName")} 
           />
             <hr></hr>
-              
-              
-              
-            
-              <h1>Itens comprados</h1>
+              <h3 className="resume">Itens comprados</h3>
             {
               this.state.order.map((product, i) =>{
-                return <div key={i}> <p>{product.name} - {product.price * product.quantity} - {product.quantity}</p>
+                return <div key={i}> <p>{product.name} R${product.price * product.quantity} qt{product.quantity}</p>
               <button onClick={()=> this.clickDelete(product)}>Deletar</button>
               </div>})
             }
             <hr></hr>
-            <h1>Total</h1>
-              <p>Valor Total: {totalPrice}</p>
+            <h3 className="resume">Total</h3>
+              <p>Valor Total: R${totalPrice}</p>
               <button onClick={this.sendOrder}>Finalizar pedido</button>
               </div>
               

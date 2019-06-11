@@ -27,8 +27,7 @@ body {
   color: rgb(175, 12, 7);
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
+  padding-left: 5%;
 }
 
 .forms { 
@@ -83,10 +82,16 @@ body {
 }
 
 .active {
-	/* background: rgb(175, 12, 7); */
 	background:#073561;
 }
 
 .disabled {
 	background: rgba(128, 105, 105, 0.856);
+}
+
+.resume {
+  color: rgb(175, 12, 7);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
