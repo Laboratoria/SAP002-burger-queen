@@ -15,7 +15,6 @@ class Cozinha extends React.Component {
     this.state = {
       hour: new Date().getHours(),
       min: new Date().getMinutes(),
-      sec: new Date().getSeconds(),
       employee: "",
       listOrder: [],
       request: []
@@ -35,21 +34,21 @@ class Cozinha extends React.Component {
     const date = new Date()
     let hourNew = [date.getHours()].map(digHour)
     let minNew = [date.getMinutes()].map(digHour)
-    let secNew = [date.getSeconds()].map(digHour)
-    console.log([date.getSeconds()].map(digHour))
+    console.log(minNew)
     this.setState({
       hour: hourNew,
-      min: minNew,
-      sec: secNew
+      min: minNew
     })
   }
 
-
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.newHour(),
-      1000
-    );
+    // this.timerID = setInterval(
+    //   () => this.newHour(),
+    //   1000
+    // );
+  }
+
+  componentDidUpdate() {
     let user = firebaseAppAuth.currentUser;
     database.collection("users").get()
       .then((querySnapshot) => {
@@ -66,12 +65,19 @@ class Cozinha extends React.Component {
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => doc.data())
         this.setState({ listOrder: data })
+
       })
   }
 
 
 
   handleClick = () => {
+    database.collection("order").get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id)
+        })
+      })
     // const object = {
     //   pedido: this.state.pedido
     // }
@@ -97,11 +103,12 @@ class Cozinha extends React.Component {
   // }
 
   render() {
+
     return (
-      <div className="div-page">
+      <div className="div-page" >
         <h3>Cozinha</h3>
         <p className="name">Funcionário(a): {this.state.employee}</p>
-        <p className="name">Horário: {this.state.hour}:{this.state.min}:{this.state.sec}</p>
+        <p className="name">Horário: {this.state.hour}:{this.state.min}</p>
         <div className="logout">
           <div className="request">
             <Link className="button-logout logout" to="/">Sair</Link>
@@ -115,13 +122,14 @@ class Cozinha extends React.Component {
               <p className="menu" >Funcionário(a): {item.employee}</p>
               <p className="menu">Pedido</p>
               {item.request.map((menu, index) => {
-                return <p className="menu" key={index}>-{[menu.name, " ", menu.quantity, " - unid"]}</p>
+                return <p key={index} className="menu">-{[menu.name, " ", menu.quantity, " - unid"]}</p>
               })
               }
+              <Button className="button" text="Pedido Pronto" onClick={() => this.handleClick()}></Button>
             </div>)
           })
         }
-      </div>
+      </div >
     );
   }
 }
