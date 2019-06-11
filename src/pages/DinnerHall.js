@@ -2,14 +2,16 @@ import React from 'react';
 import firebase from "../firebaseConfig";
 import { Tab, Tabs, Navbar, Col, Button, Row, Container, Card } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
-import Ativo1 from "../assets/img/Ativo1"
+import logo from "../assets/img/logo-small.png"
+import 'bootstrap/dist/css/bootstrap.css';
+
 const database = firebase.firestore();
 
 const breakfastMenu = [
   {
     nome: "Café americano",
-    preco: 5.00
-    foto: "../"
+    preco: 5.00,
+    foto: "https://.com/loraineamaral/burger-queen/blob/master/src/assets/img/cafe-americano.png"
   },
   {
     nome: "Café com leite",
@@ -69,6 +71,12 @@ const regularMenu = [
 ];
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      order: []
+    };
+  }
 
   componentDidMount() {
     // event.preventDefault();
@@ -79,32 +87,48 @@ class App extends React.Component {
       });
   }
 
+  clientOrder = (item) => {
+
+    console.log(item)
+  }
+
   render() {
+    console.log(this.state.order)
     return (
-      <div className="">
-
-        <Navbar bg="light" expand="lg" className="mb-5">
-          <Navbar.Brand href="#home">Logo</Navbar.Brand>
-          <Button variant="outline-success">Sair</Button>
-        </Navbar>
-
-        <Container >
+      <div className="bg-red div-height">
+        <div className="bg-white">
+          <Navbar variant="outline-light" expand="lg" className="mb-5 border">
+            <Navbar.Brand href="#home">
+              <img src={logo} alt="Logo" className="w-50" />
+            </Navbar.Brand>
+            <Button variant="outline-danger" className="bg-red red-text ml-auto">Sair</Button>
+          </Navbar>
+        </div>
+        <Container className="">
           <Row>
 
-            <Col className="mr-1 p-0">
-              <Card>
+            <Col className="mr-1 p-0 ">
+              <Card className="red-text" >
                 <Card.Body>
-                  <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-                    <Tab eventKey="home" title="Café da Manhã">
-                    {breakfastMenu.map(product => {
-                      return <button>{product.nome}</button>
-                    })
-                  }
+
+
+                  <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" bsClass="red-text" className="mb-3 red-text">
+                    <Tab className="red-text" eventKey="home" title="Café da Manhã">
+                      
+                      {breakfastMenu.map((product, i) => {
+                        return <button key={i} className="d-flex flex-column" onClick={() => this.clientOrder(product)}
+                        >{product.nome}</button>
+                      })
+                      }
                     </Tab>
-                    <Tab eventKey="profile" title="Almoço/Jantar">
-                      <p>almoço e jantar</p>
+                    <Tab className="red-text" eventKey="profile" title="Almoço/Jantar">
+                      {regularMenu.map((product, i) => {
+                        return <button key={i} className="d-flex flex-column">{product.nome}</button>
+                      })
+                      }
                     </Tab>
                   </Tabs>
+
                 </Card.Body>
               </Card>
             </Col>
@@ -112,7 +136,7 @@ class App extends React.Component {
             <Col className="ml-1 p-0">
               <Card>
                 <Card.Body>
-                  <p>Pedido</p>
+                  <p className="red-text">Pedido</p>
                 </Card.Body>
               </Card>
             </Col>

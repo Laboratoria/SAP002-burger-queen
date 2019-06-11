@@ -1,5 +1,5 @@
 import React from 'react';
-// import Modal from  'Modal'
+import Modal from  './Modal'
 import firebase from "../firebaseConfig";
 import { Form, Col, Button } from 'react-bootstrap';
 import logo from '../assets/img/logo-large.png';
@@ -16,7 +16,8 @@ class Login extends React.Component {
       email: '',
       password: '',
       name: '',
-      place: ''
+      place: '',
+      show: false
     };
   }
 
@@ -62,13 +63,13 @@ class Login extends React.Component {
       });
   }
 
-  // handleClose() {
-  //   this.setState({ show: false });
-  // }
+  handleClose = () => {
+    this.setState({ show: false });
+  }
 
-  // handleShow() {
-  //   this.setState({ show: true });
-  // }
+  handleShow = () => {
+    this.setState({ show: true });
+  }
 
   render() {
     if (this.props.error) {
@@ -76,9 +77,6 @@ class Login extends React.Component {
     }
     return (
       <div className="m-5">
-        {/* <Button variant="primary" onClick={this.handleShow}>
-          Launch demo modal
-        </Button> */}
         <Col>
           <header className="d-flex justify-content-center">
             <img src={logo} alt="Logo" className="red-border py-3 px-5" />
@@ -109,13 +107,15 @@ class Login extends React.Component {
                 </div>
                 <div className="d-flex flex-column justify-content-around">
                   <button type="submit" className="m-2 bg-white red-text red-border p-2" onClick={(event) => this.signIn(event)}>Entrar</button>
-                  <button type="button" className="mx-2 mt-3 bg-red white-text border-0" onClick={(event) => this.createUser(event)}><u>Cadastrar</u></button>
+                  <button type="button" className="mx-2 mt-3 bg-red white-text border-0" onClick={this.handleShow}><u>Cadastrar</u></button>
                 </div>
               </Form>
             </form>
           </body>
         </Col>
+      <Modal handleClose={this.handleClose} handleShow={this.handleShow} show={this.state.show} />
       </div>
+
     )
   }
 }

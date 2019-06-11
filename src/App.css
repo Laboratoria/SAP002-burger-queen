@@ -25,6 +25,7 @@
 .bg-white{
   background-color: white;
 }
-/* .radio-menu{
-  border: 1px solid white;
-} */
+
+.div-height{
+  height: 100vh;
+}
