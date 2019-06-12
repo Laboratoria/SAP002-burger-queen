@@ -47,9 +47,9 @@ class Home extends React.Component {
           surname: this.state.surname,
           userType: this.state.userType
         });
-        user.updateProfile({
-          displayName: `${this.state.firstName} ${this.state.surname}`
-        })
+        // user.updateProfile({
+        //   displayName: `${this.state.firstName} ${this.state.surname}`
+        // })
     })
     .then( () =>{
       this.props.history.push(`/${this.state.userType}`);
@@ -77,11 +77,11 @@ class Home extends React.Component {
         <div className="main-body">
           <Tabs>
             <TabList className="nav-container">
-              <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
+              <Tab className={ this.state.condition ? "nav-link active left" : "nav-link disabled left" }
                 onClick={ this.handleClick }> 
               <h3>LOGIN</h3>
               </Tab>
-              <Tab className={ this.state.condition ? "nav-link disabled" : "nav-link active" }
+              <Tab className={ this.state.condition ? "nav-link disabled right" : "nav-link active right" }
                 onClick={ this.handleClick }>   
               <h3>CRIAR CONTA</h3>
               </Tab>

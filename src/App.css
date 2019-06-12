@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap&subset=latin-ext');
 
 * {
 	margin: 0;
@@ -13,13 +14,16 @@ body {
 }
 
 .main-body {
-	background: rgb(238, 231, 231);
+	background: rgb(250, 250, 250, 0.7);
 	margin: 3% auto;
+	margin-top: 15%;
 	max-width: 85%;
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	padding: 5%;
 	color: #ddd;
+	border-radius: 20px;
+	
 }
 
 /* .tab-title {
@@ -30,45 +34,66 @@ body {
 } */
 
 .input-box {
-	background-color: rgb(238, 231, 231);
+	background-color: #B1BFCC;
 	font-size: 16px;
 	width: 100%;
 	padding: 2% 4%;
-	border: 1px solid rgb(175, 12, 7);
+	border-bottom: 2px solid rgb(175, 12, 7);
+    border-top: none;
+    border-left: none;
+    border-right: none;
 	margin-top: 3%;
+	
 }
 
 .header-logo {
-  background-color: rgb(238, 231, 231);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 8vh;
+  height: 15vh;
+  font-family: 'Bungee Inline', cursive;
+  font-size: 70px;
+  color: rgb(175, 12, 7);
+  margin-top: 10%;
 }
 
 .submit-button {
 	background-color:#073561;
 	color: #fff;
+	border: none;
+	border-radius: 20px;
 }
 
 .nav-container {
 	display: flex;
 	flex-wrap: wrap;
+	
 }
 
 .nav-link {
   width: 50%;
   display: flex;
   justify-content: center;
-  border: 2px solid rgb(175, 12, 7);
 }
 
 .active {
 	background:#073561;
+	
 }
 
 .disabled {
-	background: rgba(128, 105, 105, 0.856);
+	background: #B1BFCC;
+	
+}
+
+.left {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.right {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
 
 .resume {

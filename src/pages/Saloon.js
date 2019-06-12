@@ -90,6 +90,19 @@ class Saloon extends React.Component {
     });
   }
 
+//   firebaseAppAuth.onAuthStateChanged(user => {
+//     if (user) {
+//       database.collection("users").doc(user.uid).get()
+//         .then(doc => {
+//           const data = doc.data();
+//           const name = data.displayName;
+//           this.setState({ name })
+//         });
+//     }
+//   });
+// }
+
+
   handleClick = () => {
     this.setState({
       condition: !this.state.condition
