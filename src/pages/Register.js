@@ -1,8 +1,9 @@
 import React from "react";
 import firebase from "../firebaseConfig";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import withFirebaseAuth from "react-with-firebase-auth";
 import logo from "../assets/logo-ygroup.png";
+import ErrorAlert from "../components/Alert";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -14,7 +15,8 @@ class Register extends React.Component {
       name: "",
       email: "",
       password: "",
-      type: "kitchen"
+      type: "kitchen",
+      show: false
     };
   }
 
@@ -22,6 +24,12 @@ class Register extends React.Component {
     const newState = this.state;
     newState[elem] = event.target.value;
     this.setState(newState);
+  };
+
+  handleCloseError = () => {
+    this.setState({
+      show: false
+    });
   };
 
   createUser = () => {
@@ -40,19 +48,29 @@ class Register extends React.Component {
       })
       .then(() => {
         this.props.history.push(`/${this.state.type}`);
+      })
+      .catch(error => {
+        this.setState({
+          show: true
+        });
       });
   };
 
   render() {
+    const { show } = this.state;
     return (
       <Container>
+        <ErrorAlert show={show} handleCloseError={this.handleCloseError}>
+          {this.props.error}
+        </ErrorAlert>
         <Row>
           <Col sm={{ span: 6, offset: 3 }}>
             <img src={logo} alt="logo" className="logo mb-5" />
+
             <Form>
               <Form.Group controlId="formName">
                 <Form.Control
-                  value={this.state.name}
+                  value={show.name}
                   onChange={e => this.handleChange(e, "name")}
                   placeholder="Digite seu nome"
                 />
@@ -60,7 +78,7 @@ class Register extends React.Component {
 
               <Form.Group controlId="formEmail">
                 <Form.Control
-                  value={this.state.email}
+                  value={show.email}
                   type="email"
                   onChange={e => this.handleChange(e, "email")}
                   placeholder="Digite seu email"
@@ -69,7 +87,7 @@ class Register extends React.Component {
 
               <Form.Group controlId="formPassword">
                 <Form.Control
-                  value={this.state.password}
+                  value={show.password}
                   type="password"
                   onChange={e => this.handleChange(e, "password")}
                   placeholder="Digite sua senha"
@@ -77,7 +95,7 @@ class Register extends React.Component {
               </Form.Group>
 
               <Form.Group
-                value={this.state.type}
+                value={show.type}
                 onChange={e => this.handleChange(e, "type")}
               >
                 <Form.Check
@@ -101,7 +119,8 @@ class Register extends React.Component {
               CADASTRAR-SE{" "}
             </Button>
             <Button
-              className="outline-orange"
+              type="submit"
+              className="outline-orange mb-5"
               onClick={() => {
                 this.props.history.push("/");
               }}

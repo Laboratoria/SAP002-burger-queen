@@ -6,6 +6,25 @@ import withFirebaseAuth from "react-with-firebase-auth";
 const database = firebase.firestore();
 const firebaseAppAuth = firebase.auth();
 
+const menu = [
+  {
+    item: "Café Americano",
+    price: 5
+  },
+  {
+    item: "Café com Leite",
+    price: 7
+  },
+  {
+    item: "Sanduíche de Presunto e Queijo",
+    price: 10
+  },
+  {
+    item: "Suco de fruta Natural",
+    price: 7
+  }
+];
+
 class Lounge extends React.Component {
   constructor(props) {
     super(props);
