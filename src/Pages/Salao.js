@@ -20,7 +20,7 @@ const product = [
     price: "7.00"
   },
   {
-    iten: "Sanduíche de Presunto e Queijo",
+    iten: "Sanduíche Presunto/Queijo",
     price: "10.00"
   },
   {
@@ -77,7 +77,7 @@ const product24 = [
     iten: "Refrigerante 750ml",
     price: "10.00"
   },
-  
+
 ];
 
 const productAdd = [
@@ -127,7 +127,6 @@ class Salao extends React.Component {
     })
   }
 
-
   clickBuy = (item) => {
     const itemIndex = this.state.listItem.findIndex((product) => {
       return product.iten === item.iten;
@@ -148,7 +147,6 @@ class Salao extends React.Component {
         listItem: newBuy
       });
     }
-
   }
 
   clickDel = (option) => {
@@ -180,53 +178,55 @@ class Salao extends React.Component {
 
     return (
       <div>
-      
-          <input value={this.state.client}
-            placeholder="Nome do Cliente"
-            onChange={(e) => this.handleChange(e, "client")} />
-          <input value={this.state.employee}
-            placeholder="Nome do Funcionário"
-            onChange={(e) => this.handleChange(e, "employee")} />
+
+        <input value={this.state.client}
+          placeholder="Nome do Cliente"
+          onChange={(e) => this.handleChange(e, "client")} />
+        <input value={this.state.employee}
+          placeholder="Nome do Funcionário"
+          onChange={(e) => this.handleChange(e, "employee")} />
         <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
         <Link to="/">Sair</Link>
-      
+        <hr />
+
         <div className="column1">
-        <h1>Café da Manhã</h1>
-        {
-          product.map((product, index) => {
-            return <button key={index}
-              onClick={() => this.clickBuy(product)}>{product.iten}</button>
-          })
-        }
-        <h1>Almoço e Jantar</h1>
-        {
-          product24.map((product24, index) => {
-            return <button key={index}
-              onClick={() => this.clickBuy(product24)}>{product24.iten}</button>
-          })
-        }
-        <h1>Adicionais</h1>
-        {
-          productAdd.map((productAdd, index) => {
-            return <button key={index}
-              onClick={() => this.clickBuy(productAdd)}>{productAdd.iten}</button>
-          })
-        }
-      </div>
-      <div className="column2">
-        <h3><b>Lista de Pedido</b></h3>
-        {
-          this.state.listItem.map((product, index) => {
-            return <div key={index}>
-              <p>{product.iten} R$
+          <h1>Café da Manhã</h1>
+          {
+            product.map((product, index) => {
+              return <button key={index}
+                onClick={() => this.clickBuy(product)}>{product.iten}</button>
+            })
+          }
+          <h1>Almoço e Jantar</h1>
+          {
+            product24.map((product24, index) => {
+              return <button key={index}
+                onClick={() => this.clickBuy(product24)}>{product24.iten}</button>
+            })
+          }
+          <h1>Adicionais</h1>
+          {
+            productAdd.map((productAdd, index) => {
+              return <button key={index}
+                onClick={() => this.clickBuy(productAdd)}>{productAdd.iten}</button>
+            })
+          }
+        </div>
+        <div className="column2">
+          <h3><b>Lista de Pedido</b></h3>
+          {
+            this.state.listItem.map((product, index) => {
+              return <div className="lista" key={index}>
+                <p>{product.iten} R$
             {product.price * product.quantity} Quant.
-            {product.quantity}</p>
-              <Button type='red' text="Excluir Item" onClick={() => this.clickDel(product)} />
-            </div>
-          })
-        }
-        <h2><b>Valor Total: {totaltoPay}</b></h2>
-      </div>
+            {product.quantity}
+                  <Button type='red' text="X" onClick={() => this.clickDel(product)} /></p>
+
+              </div>
+            })
+          }
+          <h2><b>Total: {totaltoPay},00</b></h2>
+        </div>
       </div >
     );
   }

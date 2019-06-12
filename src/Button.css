@@ -15,8 +15,14 @@
   .red {
     background-color: red;
     color: white;
+    padding: 7px;
+    margin: 1px;
   }
 
   .red:hover {
     background-color: #CD0000;
+    padding: 7px;
+    margin: 1px;
   }
+
+
