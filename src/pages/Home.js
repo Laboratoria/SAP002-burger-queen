@@ -74,7 +74,7 @@ class Home extends React.Component {
     return (
       <div>
         <Logo />
-        <div className="forms">
+        <div className="main-body">
           <Tabs>
             <TabList className="nav-container">
               <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
