@@ -7,8 +7,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  
 }
 
 body{
@@ -49,7 +47,7 @@ input {
 a {
   text-decoration: none;
   color: red;
-  font-size: 14px;
+  font-size: 18px;
   
 }
 

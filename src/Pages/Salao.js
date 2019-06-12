@@ -35,19 +35,20 @@ const product24 = [
     price: "10.00"
   },
   {
-    iten: "Hamburguer Simples Frango",
-    price: "10.00"
-  }, {
-    iten: "Hamburguer Simples Vegetariano",
-    price: "10.00"
-  },
-  {
     iten: "Hamburguer Duplo Bovino",
     price: "15.00"
   },
   {
+    iten: "Hamburguer Simples Frango",
+    price: "10.00"
+  },
+  {
     iten: "Hamburguer Duplo Frango",
     price: "15.00"
+  }, 
+  {
+    iten: "Hamburguer Simples Vegetariano",
+    price: "10.00"
   },
   {
     iten: "Hamburguer Duplo Vegetariano",
@@ -99,6 +100,16 @@ class Salao extends React.Component {
       employee: "",
       listItem: []
     };
+    firebaseAppAuth.onAuthStateChanged(user => {
+      if (user) {
+        database.collection("users").doc(user.uid).get()
+        .then(doc => {
+          const name = doc.data().name;
+          this.setState({employee: name}) 
+        })
+      }
+    })
+
   }
 
   // componentDidMount() {
@@ -125,6 +136,8 @@ class Salao extends React.Component {
     this.setState({
       listItem: this.state.listItem
     })
+    alert("Pedido enviado com sucesso!");
+     
   }
 
   clickBuy = (item) => {
@@ -178,15 +191,19 @@ class Salao extends React.Component {
 
     return (
       <div>
-
+        <div className="top">
+        <h3>Cliente</h3>
         <input value={this.state.client}
           placeholder="Nome do Cliente"
           onChange={(e) => this.handleChange(e, "client")} />
+          <h3>Garçom</h3>
         <input value={this.state.employee}
           placeholder="Nome do Funcionário"
           onChange={(e) => this.handleChange(e, "employee")} />
         <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
+        
         <Link to="/">Sair</Link>
+        </div>
         <hr />
 
         <div className="column1">
@@ -220,8 +237,7 @@ class Salao extends React.Component {
                 <p>{product.iten} R$
             {product.price * product.quantity} Quant.
             {product.quantity}
-                  <Button type='red' text="X" onClick={() => this.clickDel(product)} /></p>
-
+                  <Button type='red' text="x" onClick={() => this.clickDel(product)} /></p>
               </div>
             })
           }
@@ -231,7 +247,7 @@ class Salao extends React.Component {
     );
   }
 }
-
+ 
 export default withFirebaseAuth({
   firebaseAppAuth,
 })(Salao);
