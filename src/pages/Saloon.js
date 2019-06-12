@@ -1,4 +1,6 @@
 import React from 'react';
+// import Breakfast from '../breakfast.json';
+// import AllDay from '../allday.json'
 
 class Saloon extends React.Component{
     constructor(props) {

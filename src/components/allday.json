@@ -1,0 +1,76 @@
+[
+    {
+        "hamburger": [
+            {
+                "type": "SIMPLES",
+                "price": 10,
+                "img": "../images/"
+            },
+
+            {
+                "type": "DUPLO",
+                "price": 15,
+                "img": "../images/"
+            }
+        ],
+        
+        "hamburgerType": [
+            "CARNE BOVINA", "FRANGO", "VEGETARIANO"
+        ],
+
+        "extra": [
+            {
+                "type": "QUEIJO",
+                "price": "1",
+                "img": "../images/"
+            },
+
+            {
+                "type": "OVO",
+                "price": "1",
+                "img": "../images/"
+            }
+        ],
+
+        "sideDish": [
+            {
+                "type": "BATATA FRITA",
+                "price": "5",
+                "img": "../images/"                
+            },
+
+            {
+                "type": "ANÉIS DE CEBOLA",
+                "price": "5",
+                "img": "../images/"
+            }
+        ],
+
+        "drinks": [
+            {
+                "type": "ÁGUA 500ML",
+                "price": 5,
+                "img": "../images/"
+            },
+
+            {
+                "type": "ÁGUA 750ML",
+                "price": 7,
+                "img": "../images/"
+            },
+
+            {
+                "type": "BEBIDA GASEIFICADA 500ML",
+                "price": 7,
+                "img": "../images/"
+            },
+
+            {
+                "type": "BEBIDA GASEIFICADA 750ML",
+                "price": 10,
+                "img": "../images/"
+            }
+        ]
+
+    }
+]

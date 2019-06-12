@@ -40,12 +40,12 @@ body {
 }
 
 .Input {
-    height: 60px;
+    height: 50px;
     width: 350px;
     display: block;
     margin-top: 20px;
     background-color: transparent;
-    border: 0;
+    border: none;
     border-bottom: 1px solid #707070; 
     padding-left: 20px;
 }
@@ -71,4 +71,32 @@ body {
     text-decoration: none;
     color: #707070;
     font-weight: 700;
+}
+
+input[type=radio]:checked + .Toggle span {
+    right: 4px;
+    background-color: black; 
+}
+
+.Toggle {
+    height: 34px;
+    width: 60px;
+    padding: 4px;
+    display: flex;
+    position: relative;
+    background-color: white;
+    box-sizing: border-box;
+    border: 1px solid #707070;
+    border-radius: 50px;
+}
+
+.Toggle span {
+    height: 24px;
+    width: 24px;
+    right: 30px;
+    display: block;
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
 }

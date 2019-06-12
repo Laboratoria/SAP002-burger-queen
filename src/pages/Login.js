@@ -26,9 +26,9 @@ class Login extends React.Component{
 
     signIn = () => {
         this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => {
-            this.props.history.push(`/${this.state.type}`)
-        })
+        // .then(() => {
+        //     this.props.history.push(`/${this.state.type}`)
+        // })
     }
     
     render() {
