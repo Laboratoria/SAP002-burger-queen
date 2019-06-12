@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from  './Modal'
+import Modal from './Modal'
 import firebase from "../firebaseConfig";
 import { Form, Col, Button } from 'react-bootstrap';
 import logo from '../assets/img/logo-large.png';
@@ -16,6 +16,8 @@ class Login extends React.Component {
       email: '',
       password: '',
       name: '',
+      passwordlogin: '',
+      emaillogin: '',
       place: '',
       show: false
     };
@@ -30,15 +32,15 @@ class Login extends React.Component {
 
   createUser = (event) => {
     event.preventDefault();
-    this.props.createUserWithEmailAndPassword
-      (this.state.email, this.state.password)
+    const { email, password } = this.state;
+    this.props.createUserWithEmailAndPassword(email, password)
       .then(resp => {
         if (resp) {
           const id = resp.user.uid;
           database.collection("users").doc(id).set({
+            name: this.state.name,
             email: this.state.email,
             place: this.state.place
-            // nome: this.state.nome
           })
             .then(() => {
               this.props.history.push(`/${this.state.place}`);
@@ -50,7 +52,7 @@ class Login extends React.Component {
   signIn = (event) => {
     event.preventDefault();
     this.props.signInWithEmailAndPassword
-      (this.state.email, this.state.password)
+      (this.state.emaillogin, this.state.passwordlogin)
       .then((resp) => {
         console.log(resp);
         const id = resp.user.uid;
@@ -72,9 +74,9 @@ class Login extends React.Component {
   }
 
   render() {
-    if (this.props.error) {
-      alert(this.props.error);
-    }
+    // if (this.props.error) {
+    //   alert(this.props.error);
+    // }
     return (
       <div className="m-5">
         <Col>
@@ -86,25 +88,12 @@ class Login extends React.Component {
               <Form className="w-50 m-5" >
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label className="white-text">E-mail</Form.Label>
-                  <Form.Control className="white-text" value={this.state.email} onChange={(event) => this.handleChange(event, "email")} type="email" placeholder="Digite seu E-mail" />
+                  <Form.Control className="white-text" value={this.state.emaillogin} onChange={(event) => this.handleChange(event, "emaillogin")} type="email" placeholder="Digite seu E-mail" />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label className="white-text">Senha</Form.Label>
-                  <Form.Control className="white-text" value={this.state.password} onChange={(event) => this.handleChange(event, "password")} type="password" placeholder="Digite sua Senha" />
+                  <Form.Control className="white-text" value={this.state.passwordlogin} onChange={(event) => this.handleChange(event, "passwordlogin")} type="password" placeholder="Digite sua Senha" />
                 </Form.Group>
-                <div className="d-flex justify-content-center flex-column">
-                  <div className="d-flex justify-content-center my-2">
-                    <p className="white-text">Escolha o Ambiente:</p>
-                  </div>
-                  <form className="d-flex justify-content-center">
-                    <div className="d-flex flex-row mx-2 align-items-baseline">
-                      <input type="radio" name="optradio" className="white-text mx-2" value="DinnerHall" onChange={(event) => this.handleChange(event, "place")} /><p className="white-text">Salão</p>
-                    </div>
-                    <div className="d-flex flex-row mx-2 align-items-baseline">
-                      <input type="radio" name="optradio" className="mx-2 radio-menu" value="DinnerKitchen" onChange={(event) => this.handleChange(event, "place")} /><p className="white-text">Cozinha</p>
-                    </div>
-                  </form>
-                </div>
                 <div className="d-flex flex-column justify-content-around">
                   <button type="submit" className="m-2 bg-white red-text red-border p-2" onClick={(event) => this.signIn(event)}>Entrar</button>
                   <button type="button" className="mx-2 mt-3 bg-red white-text border-0" onClick={this.handleShow}><u>Cadastrar</u></button>
@@ -113,7 +102,13 @@ class Login extends React.Component {
             </form>
           </body>
         </Col>
-      <Modal handleClose={this.handleClose} handleShow={this.handleShow} show={this.state.show} />
+        <Modal
+          handleChange={this.handleChange}
+          handleClose={this.handleClose}
+          handleShow={this.handleShow}
+          createUser={this.createUser}
+          show={this.state.show}
+          data={this.state} />
       </div>
 
     )

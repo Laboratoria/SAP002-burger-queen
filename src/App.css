@@ -10,12 +10,17 @@
 
  .red-text{
   font-family: 'Acme', sans-serif;
-  color: rgb(144, 0, 0);
+  color: rgb(144, 0, 0)!important;
  }
 
  .white-text{
   font-family: 'Acme', sans-serif;
   color: white
+ }
+
+ .dark-text{
+  font-family: 'Acme', sans-serif;
+  color:black
  }
 
  .bg-red{
@@ -27,5 +32,51 @@
 }
 
 .div-height{
-  height: 100vh;
+  height: 100%;
+}
+
+.img-size{
+  width: 100px;
+  height: 100px;
+  
+  }
+
+.icon-border{
+  border-radius: 50%;
+  border: 1px solid black;
+  padding: 8px 13px;
+  margin: 5px;
+  color: black
+
+}
+
+.text-small{
+  font-size: 0.8rem;
+}
+
+.btn-border{
+  border: 2px solid rgb(144, 0, 0);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.nav-tabs a  {
+  color: rgb(144, 0, 0);
+}
+
+.border-card{
+  border: 2px solid rgb(73, 80, 87);
+
+}
+
+.input-border{
+  border: none;
+  border-bottom: 2px solid gray;
+  color: gray
+  
+}
+
+::placeholder{
+  color: black
+  
 }

@@ -1,82 +1,26 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
 import { Tab, Tabs, Navbar, Col, Button, Row, Container, Card } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import logo from "../assets/img/logo-small.png"
 import 'bootstrap/dist/css/bootstrap.css';
+import breakfastMenu from "../components/breakfastMenu"
+import regularMenu from "../components/regularMenu"
+import withFirebaseAuth from 'react-with-firebase-auth';
 
+
+const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
-
-const breakfastMenu = [
-  {
-    nome: "Café americano",
-    preco: 5.00,
-    foto: "https://.com/loraineamaral/burger-queen/blob/master/src/assets/img/cafe-americano.png"
-  },
-  {
-    nome: "Café com leite",
-    preco: 7.00
-  },
-  {
-    nome: "Sanduíche de presunto e queijo",
-    preco: 10.00
-  },
-  {
-    nome: "Suco de fruta natural",
-    preco: 7.00
-  }
-];
-
-const regularMenu = [
-  {
-    nome: "Hambúrguer simples",
-    preco: 10.00
-  },
-  {
-    nome: "Hambúrguer duplo",
-    preco: 15.00
-  },
-  {
-    nome: "Batata frita",
-    preco: 5.00
-  },
-  {
-    nome: "Anéis de cebola",
-    preco: 5.00
-  },
-  {
-    nome: "Água 500 ml",
-    preco: 5.00
-  },
-  {
-    nome: "Água 750 ml",
-    preco: 7.00
-  },
-  {
-    nome: "Bebida gaseificada 500 ml",
-    preco: 7.00
-  },
-  {
-    nome: "Bebida gaseificada 750 ml",
-    preco: 10.00
-  },
-  {
-    nome: "Ovo",
-    preco: 1.00
-  },
-  {
-    nome: "Queijo",
-    preco: 1.00
-  },
-];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: []
+      order: [],
+      user: ""
     };
   }
+
+
 
   componentDidMount() {
     // event.preventDefault();
@@ -100,8 +44,9 @@ class App extends React.Component {
           <Navbar variant="outline-light" expand="lg" className="mb-5 border">
             <Navbar.Brand href="#home">
               <img src={logo} alt="Logo" className="w-50" />
+              <span className="ml-5 red-text">Olá, {}</span>
             </Navbar.Brand>
-            <Button variant="outline-danger" className="bg-red red-text ml-auto">Sair</Button>
+            <button  onClick={this.logout} className="red-text py-1 px-2 ml-auto btn-border">Sair</button>
           </Navbar>
         </div>
         <Container className="">
@@ -112,18 +57,53 @@ class App extends React.Component {
                 <Card.Body>
 
 
-                  <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" bsClass="red-text" className="mb-3 red-text">
-                    <Tab className="red-text" eventKey="home" title="Café da Manhã">
-                      
+                  <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" bsClass="red-text" className="mb-3 red-text">
+                    <Tab bsClass="red-text" eventKey="home" title="Café da Manhã">
                       {breakfastMenu.map((product, i) => {
-                        return <button key={i} className="d-flex flex-column" onClick={() => this.clientOrder(product)}
-                        >{product.nome}</button>
+                        return (
+                          
+                          <Card className="m-1 d-inline-flex">
+                          <Card.Body className="d-flex flex-column ">
+
+                            <img src={product.foto} alt="Logo" className="img-size" />
+
+                            <Card.Text className="d-flex flex-column dark-text text-center text-small">
+                              <span className="">{product.nome}</span>
+                              <span className=""> R$ {product.preco},00 </span>
+                              </Card.Text>
+                                <div className="d-flex">
+                              <button className="mx-1 border-sucess icon-border bg-white" key={i} onClick={() => this.clientOrder(product)}><i class="fas fa-plus"></i></button>
+                              <button className="mx-1 icon-border bg-white" key={i} onClick={() => this.clientOrder(product)}><i class="fas fa-minus"></i></button>
+                              </div>
+                          </Card.Body>
+                        </Card>
+
+                        )
                       })
                       }
                     </Tab>
                     <Tab className="red-text" eventKey="profile" title="Almoço/Jantar">
+
                       {regularMenu.map((product, i) => {
-                        return <button key={i} className="d-flex flex-column">{product.nome}</button>
+                        return (
+
+                          <Card className="m-1 d-inline-flex ">
+                            <Card.Body className="d-flex flex-column">
+
+                              <img src={product.foto} alt="Logo" className="img-size" />
+
+                              <Card.Text className="d-flex flex-column dark-text text-center text-small">
+                                <span className="">{product.nome}</span>
+                                <span className=""> R$ {product.preco},00 </span>
+                                </Card.Text>
+                                  <div className="d-flex flex-row">
+                                <button className="bg-white btn-border" key={i} onClick={() => this.clientOrder(product)}><i class="fas fa-plus"></i></button>
+                                <button className="bg-white btn-border" key={i} onClick={() => this.clientOrder(product)}><i class="fas fa-minus"></i></button>
+                                </div>
+                            </Card.Body>
+                          </Card>
+
+                        )
                       })
                       }
                     </Tab>
@@ -137,6 +117,7 @@ class App extends React.Component {
               <Card>
                 <Card.Body>
                   <p className="red-text">Pedido</p>
+                  <input className="input-border red-text" type="text" placeholder="Nome do Cliente"></input>
                 </Card.Body>
               </Card>
             </Col>
@@ -149,4 +130,6 @@ class App extends React.Component {
   }
 }
 
-export default (App);
+export default withFirebaseAuth({
+  firebaseAppAuth,
+})(App);
