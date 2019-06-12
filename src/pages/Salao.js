@@ -14,6 +14,7 @@ class Salao extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      readyHour: "",
       hour: "",
       employee: "",
       client: "",
@@ -77,10 +78,20 @@ class Salao extends React.Component {
     return [date.getHours(), date.getMinutes(), date.getSeconds()].map(hour).join(':');
   }
 
+  componentDidMount() {
+  }
+
+  newDay = () => {
+    const day = new Date()
+    return [day.getDate(), day.getMonth() + 1, day.getFullYear()].join('/')
+  }
+
   handleClick = (request) => {
     const object = {
+      readyHour: "",
       status: "kitchen",
       hour: this.newHour(),
+      date: this.newDay(),
       employee: this.state.employee,
       client: this.state.client,
       request
