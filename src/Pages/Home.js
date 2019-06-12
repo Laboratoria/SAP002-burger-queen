@@ -49,7 +49,7 @@ class Home extends React.Component {
       <input value={this.state.email}
         placeholder="email"
         onChange={(e) => this.handleChange(e, "email")} />
-      <input value={this.state.password}
+      <input type="password" value={this.state.password}
         placeholder="senha"
         onChange={(e) => this.handleChange(e, "password")} />
       <br></br>

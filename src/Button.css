@@ -14,8 +14,9 @@
 
   .red {
     background-color: red;
+    color: white;
   }
 
   .red:hover {
-    background-color: red
+    background-color: #CD0000;
   }

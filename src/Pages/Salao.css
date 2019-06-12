@@ -1,5 +1,78 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
+div.column1{
+  float: left;
+  margin: 10px;
+  width: 50%;
+
+}
+
+div.column2{
+  background-color: white;
+  float: right;
+  margin: 10px;
+  width: 40%;
+  border-radius: 5px;
+  
+}
+.App-header {
+  background-color: #dbf789;
+}
+
+body{
+  font-family: 'Work Sans', sans-serif;
+}
+
+h1 {
+
+  padding: 5px;
+  font-size: 15px;
+  background-color: #99d500;
+  color: black;
+  border-radius: 5px;
+}
+
+h2 {
+  
+  padding: 7px;
+  font-size: 22px;
+  color: red;
+  border-radius: 7px;
+}
+
+h3 {
+  font-size: 18px;
+  color: black;
+}
+
+input {
+  border-radius: 7px;
+  padding: 7px;
+  margin: 10px;
+ }
+
+
+
+button {
+  background-color: lightgrey;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
+  padding: 7px;
+  margin: 1px;
+  border-radius: 7px;
+}
+
+button:hover {
+  background-color: #EEC900;
+    
+}
+
+
+
+
+
+/* @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
 .App-header {
   background-color: #dbf789;
   min-height: 97vh;
@@ -80,3 +153,11 @@ div.column2{
   width: 50%;
   
 }
+.button {
+  background-color: #99d500;
+    font-family: 'Work Sans', sans-serif;
+    font-size:14px;
+    padding: 6px;
+    margin: 10px;
+    border-radius: 7px;
+} */

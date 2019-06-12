@@ -37,7 +37,7 @@ const product24 = [
   {
     iten: "Hamburguer Simples Frango",
     price: "10.00"
-  },{
+  }, {
     iten: "Hamburguer Simples Vegetariano",
     price: "10.00"
   },
@@ -77,6 +77,7 @@ const product24 = [
     iten: "Refrigerante 750ml",
     price: "10.00"
   },
+  
 ];
 
 const productAdd = [
@@ -178,15 +179,18 @@ class Salao extends React.Component {
     }, 0);
 
     return (
-      <React.Fragment>
-        <div className= "column1">
-        <input value={this.state.client}
-          placeholder="Nome do Cliente"
-          onChange={(e) => this.handleChange(e, "client")} />
-        <input value={this.state.employee}
-          placeholder="Nome do Funcionário"
-          onChange={(e) => this.handleChange(e, "employee")} />
-
+      <div>
+      
+          <input value={this.state.client}
+            placeholder="Nome do Cliente"
+            onChange={(e) => this.handleChange(e, "client")} />
+          <input value={this.state.employee}
+            placeholder="Nome do Funcionário"
+            onChange={(e) => this.handleChange(e, "employee")} />
+        <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
+        <Link to="/">Sair</Link>
+      
+        <div className="column1">
         <h1>Café da Manhã</h1>
         {
           product.map((product, index) => {
@@ -208,9 +212,9 @@ class Salao extends React.Component {
               onClick={() => this.clickBuy(productAdd)}>{productAdd.iten}</button>
           })
         }
-        </div>
-        <div className = "column2">
-        <h3>Lista de Pedido</h3>     
+      </div>
+      <div className="column2">
+        <h3><b>Lista de Pedido</b></h3>
         {
           this.state.listItem.map((product, index) => {
             return <div key={index}>
@@ -219,15 +223,11 @@ class Salao extends React.Component {
             {product.quantity}</p>
               <Button type='red' text="Excluir Item" onClick={() => this.clickDel(product)} />
             </div>
-          })         
+          })
         }
-        <h2>Valor Total: {totaltoPay}</h2>
-        </div>
-        
-
-        <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
-
-      </React.Fragment >
+        <h2><b>Valor Total: {totaltoPay}</b></h2>
+      </div>
+      </div >
     );
   }
 }
