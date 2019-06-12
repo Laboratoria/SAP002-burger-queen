@@ -13,8 +13,6 @@ class Cozinha extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
       employee: "",
       listOrder: [],
       request: []
@@ -25,20 +23,6 @@ class Cozinha extends React.Component {
     const newState = this.state
     newState[element] = event.target.value
     this.setState(newState)
-  }
-
-  newHour = () => {
-    function digHour(dig) {
-      return (dig < 10) ? '0' + dig : dig;
-    }
-    const date = new Date()
-    let hourNew = [date.getHours()].map(digHour)
-    let minNew = [date.getMinutes()].map(digHour)
-    console.log(minNew)
-    this.setState({
-      hour: hourNew,
-      min: minNew
-    })
   }
 
   componentDidUpdate() {
@@ -60,24 +44,42 @@ class Cozinha extends React.Component {
     database.collection("order").get()
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+
+        function compare(a, b) {
+          let orderOne = parseFloat((a.hour).replace(':').replace(/[^\d.-]/g, ''))
+          let orderTwo = parseFloat((b.hour).replace(':').replace(/[^\d.-]/g, ''))
+          if (orderOne < orderTwo) {
+            return -1;
+          }
+          if (orderOne > orderTwo) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }
+        data.sort(compare)
         this.setState({ listOrder: data })
       })
   }
 
 
   handleClick = (id) => {
-    database.collection("order").doc(id).update({
-      status: "salao"
+    // database.collection("order").doc(id).update({
+    //   status: "salao"
+    // })
+    this.state.listOrder.map((item, index) => {
+      if (id === item.id) {
+        console.log('ex')
+      }
     })
+
   }
 
   render() {
-
     return (
       <div className="div-page" >
         <h3>Cozinha</h3>
         <p className="name">Funcionário(a): {this.state.employee}</p>
-        <p className="name">Horário: {this.state.hour}:{this.state.min}</p>
         <div className="logout">
           <div className="request">
             <Link className="button-logout logout" to="/">Sair</Link>

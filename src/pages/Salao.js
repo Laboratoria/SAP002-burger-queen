@@ -74,7 +74,7 @@ class Salao extends React.Component {
       return (dig < 10) ? '0' + dig : dig;
     }
     const date = new Date();
-    return [date.getHours(), date.getMinutes()].map(hour).join(':');
+    return [date.getHours(), date.getMinutes(), date.getSeconds()].map(hour).join(':');
   }
 
   handleClick = (request) => {
