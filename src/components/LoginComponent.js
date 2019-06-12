@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 function LoginComponent(props) {
   return (
     <Form>
+    <h1 className="text-center my-5">Login</h1>
       <Form.Group controlId="formLoginEmail">
         <Form.Control
           name="emailLogin"

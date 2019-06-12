@@ -1,8 +1,9 @@
 import React from 'react'
-import LoginComponent from "./LoginComponent"
-import SignUpComponent from "./SignUpComponent"
-import { Row, Col, Button } from 'react-bootstrap'
 import firebase from '../firebaseConfig'
+import LoginComponent from "../components/LoginComponent"
+import SignUpComponent from "../components/SignUpComponent"
+import { Row, Col, Button } from 'react-bootstrap'
+
 
 class LoginContainer extends React.Component {
   constructor() {
@@ -20,7 +21,7 @@ class LoginContainer extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.login = this.login.bind(this);
-    this.signup = this.signup.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   handleClick(event) {
@@ -37,35 +38,38 @@ class LoginContainer extends React.Component {
     })
   }
 
-  login(e) {
-    e.preventDefault();
-    firebase.auth().signInWithEmailAndPassword(this.state.emailLogin, this.state.passwordLogin).then((u)=>{
-    }).catch((error) => {
-        console.log(error);
-      });
+  login(event) {
+    event.preventDefault();
+    firebase.auth().signInWithEmailAndPassword(this.state.emailLogin, this.state.passwordLogin)
+      .then(resp => {
+        const id = resp.user.uid;
+        firebase.firestore().collection("users").doc(id).get()
+          .then(resp => {
+            this.props.history.push(`/${resp.serviço}`)
+          })
+      })
+
   }
 
-  signup(e){
-
-  
-
-    e.preventDefault();
+  createUser(event) {
+    event.preventDefault();
     firebase.auth().createUserWithEmailAndPassword(this.state.emailSignUp, this.state.passwordSignUp)
-    .then(resp => {
-      if (resp){
+      .then(resp => {
         const id = resp.user.uid;
-        firebase.firestore().collection('users').doc(id).set({
-          email: this.state.emailSignUp,
-          nome: this.state.name,
-          serviço: this.state.service
-      })
+        if (resp) {
+          firebase.firestore().collection('users').doc(id)
+          .set({
+            email: this.state.emailSignUp,
+            nome: this.state.name,
+            serviço: this.state.service
+          })
         }
-    })
-    // .then(() => this.props.history.push(`${this.state.service}`) )
+        this.props.history.push(`/${this.state.service}`)
+      })
   }
 
   render() {
-    if (this.props.error){
+    if (this.props.error) {
       alert(this.props.error)
     }
     let modalClose = () => this.setState({ modalShow: false });
@@ -78,7 +82,7 @@ class LoginContainer extends React.Component {
             handleChange={this.handleChange}
             handleClick={this.handleClick}
             data={this.state}
-            onClick={this.login}
+            login={this.login}
           />
 
           <Button
@@ -95,7 +99,7 @@ class LoginContainer extends React.Component {
             data={this.state}
             modalShow={this.state.modalShow}
             modalClose={modalClose}
-            createUser={this.signup}
+            createUser={this.createUser}
           />
 
         </Col>
