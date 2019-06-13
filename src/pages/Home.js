@@ -4,8 +4,9 @@ import Button from "../components/Button"
 import Input from "../components/Input"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Logo from "../components/Logo";
+import TabMenu from "../components/Tab"
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -75,19 +76,13 @@ class Home extends React.Component {
       <div>
         <Logo />
         <div className="main-body">
-          <Tabs>
-            <TabList className="nav-container">
-              <Tab className={ this.state.condition ? "nav-link active tab-left" : "nav-link disabled rab-left" }
-                onClick={ this.handleClick }> 
-              <h3>LOGIN</h3>
-              </Tab>
-              <Tab className={ this.state.condition ? "nav-link disabled tab-right" : "nav-link active tab-right" }
-                onClick={ this.handleClick }>   
-              <h3>CRIAR CONTA</h3>
-              </Tab>
-            </TabList>
-          <TabPanel>
-            <Input 
+          {
+            <TabMenu 
+            text1="LOGIN"
+            text2="CRIAR CONTA"
+            content1= {
+              <div>
+              <Input 
               type="email" 
               value={email} 
               placeholder="Digite seu email"
@@ -99,10 +94,12 @@ class Home extends React.Component {
               onChange={(e) => this.handleChange(e, "password")} 
               placeholder="Digite sua senha"
             />
-            <Button text="Login" onClick={this.signIn}/>
-          </TabPanel>
-          <TabPanel> 
-            <Input 
+           <Button text="Login" onClick={this.signIn}/>
+           </div>
+            }
+            content2= {
+              <div>
+              <Input 
               type="text" 
               value={firstName} 
               placeholder="Nome"
@@ -132,8 +129,10 @@ class Home extends React.Component {
               placeholder="Digite sua senha"
             />
             <Button text="Criar Conta" onClick={this.createUser}/>
-          </TabPanel>  
-         </Tabs>
+            </div>
+            }
+            />
+           }
         </div>
         </div>
     )

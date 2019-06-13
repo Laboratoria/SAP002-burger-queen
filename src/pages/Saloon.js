@@ -6,7 +6,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import menu from '../data';
 import Logo from "../components/Logo";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import TabMenu from '../components/Tab';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -90,19 +90,6 @@ class Saloon extends React.Component {
     });
   }
 
-//   firebaseAppAuth.onAuthStateChanged(user => {
-//     if (user) {
-//       database.collection("users").doc(user.uid).get()
-//         .then(doc => {
-//           const data = doc.data();
-//           const name = data.displayName;
-//           this.setState({ name })
-//         });
-//     }
-//   });
-// }
-
-
   handleClick = () => {
     this.setState({
       condition: !this.state.condition
@@ -119,56 +106,64 @@ class Saloon extends React.Component {
       <div>
         <Logo />
         <div className="main-body">
-        <Tabs>
-        <TabList className="nav-container">
-          <Tab className={ this.state.condition ? "nav-link active tab-left" : "nav-link disabled tab-left" }
-                onClick={ this.handleClick }><h3>Menu Principal</h3></Tab>
-          <Tab className={ this.state.condition ? "nav-link disabled tab-right"  : "nav-link active tab-right"}
-                onClick={ this.handleClick }><h3>Café da Manhã</h3></Tab>
-        </TabList>
-        <TabPanel>
-        <ul className="titles">{
-                 menu.mainMenu.map((product, i) => {
-                  return <li key={i} 
-                    onClick={() => this.orderClick(product)}>
-                    {product.name}</li>
+          {
+            <TabMenu 
+              text1="Menu Principal"
+              text2="Café da Manhã"
+              content1= {
+          <div>
+            <ul className="itens-list">{
+              menu.mainMenu.map((product, i) => {
+              return <li key={i} 
+              >
+                <i class="fas fa-plus-circle" onClick={() => this.orderClick(product)}></i>
+                {product.name}</li>
+              })
+             }
+              </ul >
+          </div>
+          }
+          content2= {
+            <div>
+              <ul className="itens-list">{
+                menu.breakfast.map((product, i) => {
+                return <li key={i}>
+                  <i class="fas fa-plus-circle" onClick={() => this.orderClick(product)}></i>
+                  {product.name}</li>
                 })
               }
-              </ul >
-       
-        </TabPanel>
-        <TabPanel>
-        <ul className="titles">{
-                 menu.breakfast.map((product, i) => {
-                  return <li key={i} 
-                    onClick={() => this.orderClick(product)}>
-                    {product.name}</li>
-                })
-              }</ul>
-        </TabPanel>
-        </Tabs>
-       
-         <p>Garçom:{user.displayName}</p>
-         <Input 
-              type="text" 
-              value={this.state.customerName} 
-              placeholder="Digite o nome do cliente"
-              onChange={(e) => this.handleChange(e, "customerName")} 
+              </ul>
+            </div>
+            }
           />
-            <hr></hr>
-              <h3 className="resume">Itens comprados</h3>
+          }
+        <hr className="divide-line"></hr>
+       
+          <h3 className="resume">Itens comprados</h3>
+          <ul className="itens-list">
             {
               this.state.order.map((product, i) =>{
-                return <div key={i}> <p>{product.name} R${product.price * product.quantity} qt{product.quantity}</p>
-              <button onClick={()=> this.clickDelete(product)}>Deletar</button>
-              </div>})
+                return <li key={i}> 
+                <i class="fas fa-minus-circle" onClick={()=> this.clickDelete(product)}></i>
+                {product.quantity} {product.name} R${product.price * product.quantity} 
+              </li>})
             }
-            <hr></hr>
+            </ul>
+           
             <h3 className="resume">Total</h3>
-              <p>Valor Total: R${totalPrice}</p>
-              <button onClick={this.sendOrder}>Finalizar pedido</button>
-              </div>
-              
+              <p className="resume">R${totalPrice}</p>
+                {/* <p>Garçom:{user.displayName}</p> */}
+              <Input 
+                type="text" 
+                value={this.state.customerName} 
+                placeholder="Digite o nome do cliente"
+                onChange={(e) => this.handleChange(e, "customerName")} 
+              />
+              <Button 
+                onClick={this.sendOrder}
+                text="Finalizar pedido"
+              />
+            </div>             
       </div>       
     );
   }
