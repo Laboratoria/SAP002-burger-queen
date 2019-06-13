@@ -1,13 +1,14 @@
 import firebase from "firebase";
 
+
 const config = {
-  apiKey: "<sua-chave>",
-  authDomain: "<sua-chave>",
-  databaseURL: "<sua-chave>",
-  projectId: "<sua-chave>",
-  storageBucket: "<sua-chave>",
-  messagingSenderId: "<sua-chave>",
-  appId: "<sua-chave>"
+  apiKey: "AIzaSyDbQfdWnQBzd36ldGcRfVsBr5jP-K9i9vY",
+  authDomain: "burguer-queem.firebaseapp.com",
+  databaseURL: "https://burguer-queem.firebaseio.com",
+  projectId: "burguer-queem",
+  storageBucket: "burguer-queem.appspot.com",
+  messagingSenderId: "354892525268",
+  appId: "1:354892525268:web:986b9e5c1b76c3fa"
 };
 
 firebase.initializeApp(config);

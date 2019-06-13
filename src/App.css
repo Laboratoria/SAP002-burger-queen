@@ -1,33 +1,57 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #dbf789;
+  min-height: 97vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+body{
+  font-family: 'Work Sans', sans-serif;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-weight: 300;
+  padding: 7px;
+  font-size: 20px;
+  background-color: #99d500;
+  color: black;
+  border-radius: 7px;
+}
+
+h2 {
+  font-weight: 300;
+  padding: 7px;
+  font-size: 22px;
+  color: red;
+  border-radius: 7px;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: 18px;
+  color: black;
+}
+
+
+input {
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px;
+ }
+
+a {
+  text-decoration: none;
+  color: red;
+  font-size: 18px;
+  
+}
+
+a:hover {
+  text-decoration: none;
+  color:gray;
 }

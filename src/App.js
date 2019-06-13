@@ -1,21 +1,30 @@
 import React from 'react';
 import './App.css';
-import firebase from "./firebaseConfig";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+import Home from './Pages/Home';
+import Salao from './Pages/Salao';
+import Cadastro from './Pages/Cadastro';
+import Cozinha from './Pages/Cozinha';
+import { Link } from 'react-router-dom';
+import logo from './Images/logo.png';
+import { BrowserRouter as Router, Route, Redirect } from
+  'react-router-dom';
 
-  render() {
-    return (
+
+function App() {
+  return (
+    <Router>
       <div className="App">
         <header className="App-header">
-          <h1>#partiuBurgerQueen</h1>
+        <img src={logo} alt="logo Burguer Queen"/>
+          <Route path="/" exact component={Home} />
+          <Route path="/salao" exact component={Salao} />
+          <Route path="/cozinha" exact component={Cozinha} />
+          <Route path="/cadastro" exact component={Cadastro} />
         </header>
       </div>
-    );
-  }
+    </Router>
+  );
 }
+
 
 export default App;
