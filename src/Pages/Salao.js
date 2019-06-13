@@ -12,11 +12,11 @@ const database = firebase.firestore();
 
 const product = [
   {
-    iten: "Café Americano",
+    iten: "Café",
     price: "5.00"
   },
   {
-    iten: "Café com Leite",
+    iten: "Café c/ Leite",
     price: "7.00"
   },
   {
@@ -24,14 +24,14 @@ const product = [
     price: "10.00"
   },
   {
-    iten: "Suco de Fruta Natural",
+    iten: "Suco Fruta",
     price: "7.00"
   }
 ];
 
 const product24 = [
   {
-    iten: "Hamburguer Simples Bovino",
+    iten: "Hamburguer Bovino",
     price: "10.00"
   },
   {
@@ -39,15 +39,15 @@ const product24 = [
     price: "15.00"
   },
   {
-    iten: "Hamburguer Simples Frango",
+    iten: "Hamburguer Frango",
     price: "10.00"
   },
   {
     iten: "Hamburguer Duplo Frango",
     price: "15.00"
-  }, 
+  },
   {
-    iten: "Hamburguer Simples Vegetariano",
+    iten: "Hamburguer Vegetariano",
     price: "10.00"
   },
   {
@@ -59,7 +59,7 @@ const product24 = [
     price: "5.00"
   },
   {
-    iten: "Anéis de Cebola",
+    iten: "Anéis Cebola",
     price: "5.00"
   },
   {
@@ -78,19 +78,26 @@ const product24 = [
     iten: "Refrigerante 750ml",
     price: "10.00"
   },
-
-];
-
-const productAdd = [
   {
-    iten: "Queijo",
+    iten: "Adic. Queijo",
     price: "1.00"
   },
   {
-    iten: "Ovo",
+    iten: "Adic. Ovo",
     price: "1.00"
   },
 ];
+
+// const productAdd = [
+//   {
+//     iten: "Queijo",
+//     price: "1.00"
+//   },
+//   {
+//     iten: "Ovo",
+//     price: "1.00"
+//   },
+// ];
 
 class Salao extends React.Component {
   constructor(props) {
@@ -103,22 +110,13 @@ class Salao extends React.Component {
     firebaseAppAuth.onAuthStateChanged(user => {
       if (user) {
         database.collection("users").doc(user.uid).get()
-        .then(doc => {
-          const name = doc.data().name;
-          this.setState({employee: name}) 
-        })
+          .then(doc => {
+            const name = doc.data().name;
+            this.setState({ employee: name })
+          })
       }
     })
-
   }
-
-  // componentDidMount() {
-  //   database.collection('users').get()
-  //   .then((querySnapshot) => {
-  //     const data = querySnapshot.docs.map(doc => doc.data());
-  //     this.setState({ listItem: data });
-  //   });
-  // }
 
   handleChange = (event, element) => {
     const newState = this.state;
@@ -137,7 +135,7 @@ class Salao extends React.Component {
       listItem: this.state.listItem
     })
     alert("Pedido enviado com sucesso!");
-     
+    window.location.href = 'salao'
   }
 
   clickBuy = (item) => {
@@ -170,7 +168,6 @@ class Salao extends React.Component {
     newlistItem[itemIndex].quantity -= 1;
 
     const quantity = newlistItem[itemIndex].quantity;
-
     if (quantity > 0) {
       this.setState({
         listItem: newlistItem
@@ -188,24 +185,21 @@ class Salao extends React.Component {
     const totaltoPay = this.state.listItem.reduce((acc, cur) => {
       return acc + (cur.quantity * cur.price)
     }, 0);
-
     return (
       <div>
         <div className="top">
-        <h3>Cliente</h3>
-        <input value={this.state.client}
-          placeholder="Nome do Cliente"
-          onChange={(e) => this.handleChange(e, "client")} />
+          <h3>Cliente</h3>
+          <input value={this.state.client}
+            placeholder="Nome do Cliente"
+            onChange={(e) => this.handleChange(e, "client")} />
           <h3>Garçom</h3>
-        <input value={this.state.employee}
-          placeholder="Nome do Funcionário"
-          onChange={(e) => this.handleChange(e, "employee")} />
-        <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
-        
-        <Link to="/">Sair</Link>
+          <input value={this.state.employee}
+            placeholder="Nome do Funcionário"
+            onChange={(e) => this.handleChange(e, "employee")} />
+          <Button text="Enviar para Cozinha" onClick={this.handleClick}></Button>
+          <Link to="/">Sair</Link>
         </div>
         <hr />
-
         <div className="column1">
           <h1>Café da Manhã</h1>
           {
@@ -221,13 +215,13 @@ class Salao extends React.Component {
                 onClick={() => this.clickBuy(product24)}>{product24.iten}</button>
             })
           }
-          <h1>Adicionais</h1>
+          {/* <h1>Adicionais</h1>
           {
             productAdd.map((productAdd, index) => {
               return <button key={index}
                 onClick={() => this.clickBuy(productAdd)}>{productAdd.iten}</button>
             })
-          }
+          } */}
         </div>
         <div className="column2">
           <h3><b>Lista de Pedido</b></h3>
@@ -247,7 +241,7 @@ class Salao extends React.Component {
     );
   }
 }
- 
+
 export default withFirebaseAuth({
   firebaseAppAuth,
 })(Salao);

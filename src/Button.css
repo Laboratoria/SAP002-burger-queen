@@ -2,8 +2,8 @@
     background-color: #99d500;
     font-family: 'Work Sans', sans-serif;
     font-size:14px;
-    padding: 6px;
-    margin: 10px;
+    padding: 11px;
+    margin: 5px;
     border-radius: 7px;
     
   }
@@ -15,14 +15,14 @@
   .red {
     background-color: red;
     color: white;
-    padding: 7px;
-    margin: 1px;
+    padding: 4px;
+    margin: 3px;
   }
 
   .red:hover {
     background-color: #CD0000;
-    padding: 7px;
-    margin: 1px;
+    padding: 4px;
+    margin: 3px;
   }
 
 

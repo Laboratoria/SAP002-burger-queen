@@ -1,28 +1,23 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
 div.top{
-  height: 100%;
-  min-height: 100%;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
+  display: flex; 
   align-items: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 
 div.column1{
   float: left;
   margin: 10px;
-  width: 55%;
+  width: 56%;
 }
 
 div.column2{
   background-color: GhostWhite;
   float: right;
-  margin: 10px;
-  width: 40%;
-  border-radius: 5px;
+  margin: 20px;
+  width: 37%;
+  border-radius: 7px;
 }
 .App-header {
   background-color: #dbf789;
@@ -31,34 +26,6 @@ div.column2{
 body{
   font-family: 'Work Sans', sans-serif;
 }
-
-h1 {
-
-  padding: 5px;
-  font-size: 15px;
-  background-color: #99d500;
-  color: black;
-  border-radius: 5px;
-}
-
-h2 {
-  
-  padding: 7px;
-  font-size: 22px;
-  color: red;
-  border-radius: 7px;
-}
-
-h3 {
-  font-size: 18px;
-  color: black;
-}
-
-input {
-  border-radius: 7px;
-  padding: 7px;
-  margin: 10px;
- }
 
  div.lista {
   font-size: 15px;
@@ -70,7 +37,7 @@ button {
   background-color: lightgrey;
   font-family: 'Work Sans', sans-serif;
   font-size: 13px;
-  padding: 7px;
+  padding: 15px;
   margin: 5px;
   border-radius: 7px;
 }
