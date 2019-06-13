@@ -121,9 +121,9 @@ class Saloon extends React.Component {
         <div className="main-body">
         <Tabs>
         <TabList className="nav-container">
-          <Tab className={ this.state.condition ? "nav-link active" : "nav-link disabled" }
+          <Tab className={ this.state.condition ? "nav-link active tab-left" : "nav-link disabled tab-left" }
                 onClick={ this.handleClick }><h3>Menu Principal</h3></Tab>
-          <Tab className={ this.state.condition ? "nav-link disabled"  : "nav-link active"}
+          <Tab className={ this.state.condition ? "nav-link disabled tab-right"  : "nav-link active tab-right"}
                 onClick={ this.handleClick }><h3>Café da Manhã</h3></Tab>
         </TabList>
         <TabPanel>
