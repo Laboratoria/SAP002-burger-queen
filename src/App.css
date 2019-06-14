@@ -89,6 +89,7 @@ body {
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
+   margin: 8px;
 }
 
 .fa-plus-circle {
@@ -102,4 +103,9 @@ body {
 .itens-list {
    list-style: none;
    color: rgb(175, 12, 7);
+}
+
+.divide-line {
+   border-top: 2px dashed rgb(175, 12, 7);
+   margin: 15px;
 }

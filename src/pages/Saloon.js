@@ -20,32 +20,35 @@ class Saloon extends React.Component {
       totalPrice: 0,
       name: ''
     };
- 
   }
 
   orderClick = (item) => {
     const itemIndex = this.state.order.findIndex((product) => {
       return product.name === item.name;
     });
-    const totalPrice = this.state.order.reduce((acc, cur) => {
-      return acc + (cur.quantity * cur.price)
-     }, 0);
+    
     if (itemIndex < 0) {
       const newItem = {
         ...item,
         quantity: 1
       };
-      this.setState({
+      let totalPrice = this.state.order.reduce((acc, cur) => {
+        return acc + (cur.quantity * cur.price)
+       }, 0);
+      this.setState(prevState => ({
         order: this.state.order.concat(newItem),
-        totalPrice: totalPrice
-      });
+        totalPrice: prevState.totalPrice + totalPrice
+    }));
     } else {
       let newOrder = this.state.order;
       newOrder[itemIndex].quantity += 1;
-      this.setState({
+      let totalPrice = this.state.order.reduce((acc, cur) => {
+        return acc + (cur.quantity * cur.price)
+       }, 0);
+      this.setState(prevState => ({
         order: newOrder,
-        totalPrice: totalPrice
-      });
+        totalPrice: prevState.totalPrice + totalPrice
+    }));
     }
   }
 
@@ -87,20 +90,14 @@ class Saloon extends React.Component {
     });
   }
 
-  handleClick = () => {
-    this.setState({
-      condition: !this.state.condition
-    })
-  }
-
   render() {
     const user = firebase.auth().currentUser;
-        database.collection("users").doc(user.uid).get()
-          .then(doc => {
-            const data = doc.data();
-            const name = data.firstName;
-            this.setState({ name })
-          });
+      database.collection("users").doc(user.uid).get()
+        .then(doc => {
+          const data = doc.data();
+          const name = data.firstName;
+          this.setState({ name })
+        });
       
     const totalPrice = this.state.order.reduce((acc, cur) => {
      return acc + (cur.quantity * cur.price)
@@ -108,7 +105,6 @@ class Saloon extends React.Component {
    
     return (
       <div>
-       
         <Logo />
         <div className="main-body">
           {
@@ -133,7 +129,7 @@ class Saloon extends React.Component {
               <ul className="itens-list">{
                 menu.breakfast.map((product, i) => {
                 return <li key={i}>
-                  <i class="fas fa-plus-circle" onClick={() => this.orderClick(product)}></i>
+                  <i className="fas fa-plus-circle" onClick={() => this.orderClick(product)}></i>
                   {product.name}</li>
                 })
               }
@@ -142,19 +138,17 @@ class Saloon extends React.Component {
             }
           />
           }
-        <hr className="divide-line"></hr>
-       
+        <hr className="divide-line"></hr>   
           <h3 className="resume">Itens comprados</h3>
           <ul className="itens-list">
             {
               this.state.order.map((product, i) =>{
                 return <li key={i}> 
-                <i class="fas fa-minus-circle" onClick={()=> this.clickDelete(product)}></i>
+                <i className="fas fa-minus-circle" onClick={()=> this.clickDelete(product)}></i>
                 {product.quantity} {product.name} R${product.price * product.quantity} 
               </li>})
             }
-            </ul>
-           
+            </ul>  
             <h3 className="resume">Total</h3>
               <p className="resume">R${totalPrice}</p>
               <Input 
