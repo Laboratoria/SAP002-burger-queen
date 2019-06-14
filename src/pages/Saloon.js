@@ -18,8 +18,9 @@ class Saloon extends React.Component {
       customerName: "",
       order: [],
       totalPrice: 0,
-      condition: true
+      name: ''
     };
+ 
   }
 
   orderClick = (item) => {
@@ -36,16 +37,14 @@ class Saloon extends React.Component {
       };
       this.setState({
         order: this.state.order.concat(newItem),
-        totalPrice: totalPrice,
-        totalPrice: this.state.totalPrice += totalPrice
+        totalPrice: totalPrice
       });
     } else {
       let newOrder = this.state.order;
       newOrder[itemIndex].quantity += 1;
       this.setState({
         order: newOrder,
-        totalPrice: totalPrice,
-        totalPrice: this.state.totalPrice += totalPrice
+        totalPrice: totalPrice
       });
     }
   }
@@ -80,13 +79,11 @@ class Saloon extends React.Component {
   }
 
   sendOrder = () => {
-    const user = firebase.auth().currentUser;
     database.collection("orders").doc().set({
-      waiter: `${user.displayName}`,
+      waiter: this.state.name,
       customerName: this.state.customerName,
       orderedItens: this.state.order,
-      totalPrice: this.state.totalPrice
-
+      totalPrice: this.state.totalPrice,
     });
   }
 
@@ -98,12 +95,20 @@ class Saloon extends React.Component {
 
   render() {
     const user = firebase.auth().currentUser;
+        database.collection("users").doc(user.uid).get()
+          .then(doc => {
+            const data = doc.data();
+            const name = data.firstName;
+            this.setState({ name })
+          });
+      
     const totalPrice = this.state.order.reduce((acc, cur) => {
      return acc + (cur.quantity * cur.price)
     }, 0);
    
     return (
       <div>
+       
         <Logo />
         <div className="main-body">
           {
@@ -152,7 +157,6 @@ class Saloon extends React.Component {
            
             <h3 className="resume">Total</h3>
               <p className="resume">R${totalPrice}</p>
-                {/* <p>Garçom:{user.displayName}</p> */}
               <Input 
                 type="text" 
                 value={this.state.customerName} 

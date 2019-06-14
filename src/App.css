@@ -41,7 +41,7 @@ body {
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 15vh;
+   height: 5vh;
    font-family: 'Bungee Inline', cursive;
    font-size: 70px;
    color: rgb(175, 12, 7);
@@ -61,19 +61,17 @@ body {
 }
 
 .nav-link {
-  width: 50%;
-  display: flex;
-  justify-content: center;
+   width: 50%;
+   display: flex;
+   justify-content: center;
 }
 
 .active {
-	background:#073561;
-	
+	background:#073561;	
 }
 
 .disabled {
-	background: #B1BFCC;
-	
+	background: #B1BFCC;	
 }
 
 .tab-left {
@@ -91,7 +89,6 @@ body {
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
-   /* justify-content: center; */
 }
 
 .fa-plus-circle {
