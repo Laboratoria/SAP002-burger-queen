@@ -6,6 +6,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import menu from '../data';
 import Logo from "../components/Logo";
+import TabMenu from '../components/Tab';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -15,7 +16,9 @@ class Saloon extends React.Component {
     super(props);
     this.state = {
       customerName: "",
-      order: []
+      order: [],
+      totalPrice: 0,
+      name: ''
     };
   }
 
@@ -23,20 +26,29 @@ class Saloon extends React.Component {
     const itemIndex = this.state.order.findIndex((product) => {
       return product.name === item.name;
     });
+    
     if (itemIndex < 0) {
       const newItem = {
         ...item,
         quantity: 1
       };
-      this.setState({
-        order: this.state.order.concat(newItem)
-      });
+      let totalPrice = this.state.order.reduce((acc, cur) => {
+        return acc + (cur.quantity * cur.price)
+       }, 0);
+      this.setState(prevState => ({
+        order: this.state.order.concat(newItem),
+        totalPrice: prevState.totalPrice + totalPrice
+    }));
     } else {
       let newOrder = this.state.order;
       newOrder[itemIndex].quantity += 1;
-      this.setState({
-        order: newOrder
-      });
+      let totalPrice = this.state.order.reduce((acc, cur) => {
+        return acc + (cur.quantity * cur.price)
+       }, 0);
+      this.setState(prevState => ({
+        order: newOrder,
+        totalPrice: prevState.totalPrice + totalPrice
+    }));
     }
   }
 
@@ -70,16 +82,23 @@ class Saloon extends React.Component {
   }
 
   sendOrder = () => {
-    const user = firebase.auth().currentUser;
     database.collection("orders").doc().set({
-      waiter: `${user.displayName}`,
+      waiter: this.state.name,
       customerName: this.state.customerName,
-      orderedItens: this.state.order
+      orderedItens: this.state.order,
+      totalPrice: this.state.totalPrice,
     });
   }
 
   render() {
     const user = firebase.auth().currentUser;
+      database.collection("users").doc(user.uid).get()
+        .then(doc => {
+          const data = doc.data();
+          const name = data.firstName;
+          this.setState({ name })
+        });
+      
     const totalPrice = this.state.order.reduce((acc, cur) => {
      return acc + (cur.quantity * cur.price)
     }, 0);
@@ -87,40 +106,62 @@ class Saloon extends React.Component {
     return (
       <div>
         <Logo />
-         <p>Salão</p>
-         <p>{user.displayName}</p>
-         <Input 
-              type="text" 
-              value={this.state.customerName} 
-              placeholder="Digite o nome do cliente"
-              onChange={(e) => this.handleChange(e, "customerName")} 
-            />
-            {
-              menu.breakfast.map((product, i) => {
-                return <button key={i} 
-                  onClick={() => this.orderClick(product)}>
-                  {product.name}</button>
-              })
-            }
-            {
+        <div className="main-body">
+          {
+            <TabMenu 
+              text1="Menu Principal"
+              text2="Café da Manhã"
+              content1= {
+          <div>
+            <ul className="itens-list">{
               menu.mainMenu.map((product, i) => {
-                return <button key={i} 
-                  onClick={() => this.orderClick(product)}>
-                  {product.name}</button>
+              return <li key={i} 
+              >
+                <i class="fas fa-plus-circle" onClick={() => this.orderClick(product)}></i>
+                {product.name}</li>
               })
+             }
+              </ul >
+          </div>
+          }
+          content2= {
+            <div>
+              <ul className="itens-list">{
+                menu.breakfast.map((product, i) => {
+                return <li key={i}>
+                  <i className="fas fa-plus-circle" onClick={() => this.orderClick(product)}></i>
+                  {product.name}</li>
+                })
+              }
+              </ul>
+            </div>
             }
-            <hr></hr>
-            <h1>Itens comprados</h1>
+          />
+          }
+        <hr className="divide-line"></hr>   
+          <h3 className="resume">Itens comprados</h3>
+          <ul className="itens-list">
             {
               this.state.order.map((product, i) =>{
-                return <div key={i}> <p>{product.name} - {product.price * product.quantity} - {product.quantity}</p>
-              <button onClick={()=> this.clickDelete(product)}>Deletar</button>
-              </div>})
+                return <li key={i}> 
+                <i className="fas fa-minus-circle" onClick={()=> this.clickDelete(product)}></i>
+                {product.quantity} {product.name} R${product.price * product.quantity} 
+              </li>})
             }
-            <hr></hr>
-            <h1>Total</h1>
-              <p>Valor Total: {totalPrice}</p>
-              <button onClick={this.sendOrder}>Finalizar pedido</button>
+            </ul>  
+            <h3 className="resume">Total</h3>
+              <p className="resume">R${totalPrice}</p>
+              <Input 
+                type="text" 
+                value={this.state.customerName} 
+                placeholder="Digite o nome do cliente"
+                onChange={(e) => this.handleChange(e, "customerName")} 
+              />
+              <Button 
+                onClick={this.sendOrder}
+                text="Finalizar pedido"
+              />
+            </div>             
       </div>       
     );
   }
