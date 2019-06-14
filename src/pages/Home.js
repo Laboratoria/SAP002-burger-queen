@@ -6,8 +6,8 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import withFirebaseAuth from 'react-with-firebase-auth';
 
-const firebaseAppAuth = firebase.auth()
-const database = firebase.firestore()
+const firebaseAppAuth = firebase.auth();
+const database = firebase.firestore();
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Home extends React.Component {
       displayName: "",
       email: "",
       password: "",
-      value: "Cozinha",
+      value: "Kitchen",
       error: ""
     };
   }
@@ -28,8 +28,8 @@ class Home extends React.Component {
         const id = resp.user.uid;
         database.collection("users").doc(id).get()
           .then((resp) => {
-            const data = resp.data()
-            this.props.history.push(`/${data.value}`)
+            const data = resp.data();
+            this.props.history.push(`/${data.value}`);
           })
       }).catch((error) => {
         this.setState({
@@ -73,8 +73,8 @@ class Home extends React.Component {
             <Input value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
             <Input type="password" value={this.state.password} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} />
             <select onChange={(e) => this.handleChange(e, "value")} className="input" value={this.state.value}>
-              <option value="Cozinha">Cozinha</option>
-              <option value="Salao">Salão</option>
+              <option value="Kitchen">Cozinha</option>
+              <option value="Hall">Salão</option>
             </select>
             <p className="error">{this.state.error}</p>
             <Button className="button" onClick={() => this.createUser()} text="Criar usuário" />

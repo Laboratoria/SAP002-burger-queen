@@ -1,3 +1,9 @@
 .itens {
   padding: 5px;
 }
+
+@media only screen and (max-height:768px) and (max-width: 768px) {
+  .itens {
+    padding: 0;
+  }
+}

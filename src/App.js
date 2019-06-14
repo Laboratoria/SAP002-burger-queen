@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Home from './pages/Home'
-import Salao from './pages/Salao'
-import Cozinha from './pages/Cozinha'
+import Hall from './pages/Hall'
+import Kitchen from './pages/Kitchen'
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCrown } from '@fortawesome/free-solid-svg-icons'
@@ -15,8 +15,8 @@ function App() {
           <h1 className="title">Burger Queen</h1>
           <FontAwesomeIcon className="icon" icon={faCrown} size="2x" />
           <Route path="/" exact component={Home} />
-          <Route path="/Salao" component={Salao} />
-          <Route path="/Cozinha" component={Cozinha} />
+          <Route path="/Hall" component={Hall} />
+          <Route path="/Kitchen" component={Kitchen} />
         </header>
       </div>
     </Router>
