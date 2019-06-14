@@ -12,89 +12,89 @@ const database = firebase.firestore();
 
 const product = [
   {
-    iten: "Café",
+    name: "Café",
     price: "5.00"
   },
   {
-    iten: "Café c/ Leite",
+    name: "Café c/ Leite",
     price: "7.00"
   },
   {
-    iten: "Sanduíche Presunto/Queijo",
+    name: "Sanduíche Presunto/Queijo",
     price: "10.00"
   },
   {
-    iten: "Suco Fruta",
+    name: "Suco Fruta",
     price: "7.00"
   }
 ];
 
 const product24 = [
   {
-    iten: "Hamburguer Bovino",
+    name: "Hamburguer Bovino",
     price: "10.00"
   },
   {
-    iten: "Hamburguer Duplo Bovino",
+    name: "Hamburguer Duplo Bovino",
     price: "15.00"
   },
   {
-    iten: "Hamburguer Frango",
+    name: "Hamburguer Frango",
     price: "10.00"
   },
   {
-    iten: "Hamburguer Duplo Frango",
+    name: "Hamburguer Duplo Frango",
     price: "15.00"
   },
   {
-    iten: "Hamburguer Vegetariano",
+    name: "Hamburguer Vegetariano",
     price: "10.00"
   },
   {
-    iten: "Hamburguer Duplo Vegetariano",
+    name: "Hamburguer Duplo Vegetariano",
     price: "15.00"
   },
   {
-    iten: "Batata Frita",
+    name: "Batata Frita",
     price: "5.00"
   },
   {
-    iten: "Anéis Cebola",
+    name: "Anéis Cebola",
     price: "5.00"
   },
   {
-    iten: "Água 500ml",
+    name: "Água 500ml",
     price: "5.00"
   },
   {
-    iten: "Água 750ml",
+    name: "Água 750ml",
     price: "7.00"
   },
   {
-    iten: "Refrigerante 500ml",
+    name: "Refrigerante 500ml",
     price: "7.00"
   },
   {
-    iten: "Refrigerante 750ml",
+    name: "Refrigerante 750ml",
     price: "10.00"
   },
   {
-    iten: "Adic. Queijo",
+    name: "Adic. Queijo",
     price: "1.00"
   },
   {
-    iten: "Adic. Ovo",
+    name: "Adic. Ovo",
     price: "1.00"
   },
 ];
 
 // const productAdd = [
 //   {
-//     iten: "Queijo",
+//     name: "Queijo",
 //     price: "1.00"
 //   },
 //   {
-//     iten: "Ovo",
+//     name: "Ovo",
 //     price: "1.00"
 //   },
 // ];
@@ -140,7 +140,7 @@ class Salao extends React.Component {
 
   clickBuy = (item) => {
     const itemIndex = this.state.listItem.findIndex((product) => {
-      return product.iten === item.iten;
+      return product.name === item.name;
     });
 
     if (itemIndex < 0) {
@@ -162,7 +162,7 @@ class Salao extends React.Component {
 
   clickDel = (option) => {
     const itemIndex = this.state.listItem.findIndex((product) => {
-      return product.item === option.item;
+      return product.name === option.name;
     });
     let newlistItem = this.state.listItem;
     newlistItem[itemIndex].quantity -= 1;
@@ -192,7 +192,7 @@ class Salao extends React.Component {
           <input value={this.state.client}
             placeholder="Nome do Cliente"
             onChange={(e) => this.handleChange(e, "client")} />
-          <h3>Garçom</h3>
+          <h3>Garçom/Garçonete</h3>
           <input value={this.state.employee}
             placeholder="Nome do Funcionário"
             onChange={(e) => this.handleChange(e, "employee")} />
@@ -205,21 +205,21 @@ class Salao extends React.Component {
           {
             product.map((product, index) => {
               return <button key={index}
-                onClick={() => this.clickBuy(product)}>{product.iten}</button>
+                onClick={() => this.clickBuy(product)}>{product.name}</button>
             })
           }
           <h1>Almoço e Jantar</h1>
           {
             product24.map((product24, index) => {
               return <button key={index}
-                onClick={() => this.clickBuy(product24)}>{product24.iten}</button>
+                onClick={() => this.clickBuy(product24)}>{product24.name}</button>
             })
           }
           {/* <h1>Adicionais</h1>
           {
             productAdd.map((productAdd, index) => {
               return <button key={index}
-                onClick={() => this.clickBuy(productAdd)}>{productAdd.iten}</button>
+                onClick={() => this.clickBuy(productAdd)}>{productAdd.name}</button>
             })
           } */}
         </div>
@@ -228,7 +228,7 @@ class Salao extends React.Component {
           {
             this.state.listItem.map((product, index) => {
               return <div className="lista" key={index}>
-                <p>{product.iten} R$
+                <p>{product.name} R$
             {product.price * product.quantity} Quant.
             {product.quantity}
                   <Button type='red' text="x" onClick={() => this.clickDel(product)} /></p>
