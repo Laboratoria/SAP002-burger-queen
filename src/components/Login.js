@@ -25,7 +25,7 @@ class Login extends React.Component {
                             <option value="salon">Salão</option>
                         </select>
                         <input type="submit" value="Entrar"></input>
-                        <h3 className="signup-link">Faça seu cadastro</h3>
+                        <h3 className="signup-link">Não tem cadastro? Entre aqui</h3>
                     </form>
                 </div>
             </main>
