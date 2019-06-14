@@ -30,9 +30,7 @@
 }
 
 .request {
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
+  margin: 1vh;
 }
 
 .page {
@@ -77,6 +75,14 @@ body {
   color: black;
   cursor: pointer;
   text-decoration: none;
+  margin-top: 10px;
+}
+
+.login-name {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 1vw;
 }
 
 .button-logout {
@@ -90,7 +96,9 @@ body {
 }
 
 .logout {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .error {
@@ -104,9 +112,68 @@ body {
 
 .menu {
   color: black;
-  font-size: 24px;
+  font-size: 20px;
+}
+
+.menu-title {
+  font-size: 18px;
 }
 
 .cozinha {
   min-width: 60vw;
+}
+
+.order {
+  text-align: left;
+}
+
+.ready {
+  padding: 3vh;
+  font-size: 20px;
+}
+
+@media only screen and (max-height:768px) and (max-width: 768px) {
+  .form {
+    position: relative;
+    background: #FFFFFF;
+    min-width: 55vh;
+    margin: 0px auto 0.67em;
+    padding: 18px;
+    text-align: center;
+  }
+  .icon, .title {
+    font-size: 15px;
+  }
+  .button, .button-logout {
+    padding: 8px;
+    font-size: 7px;
+  }
+  .logout {
+    margin-bottom: 8px;
+  }
+  .name {
+    font-size: 10px;
+  }
+  .menu-title {
+    font-size: 14px;
+    margin: 3px 0 3px 0;
+  }
+  .menu-order {
+    font-size: 10px;
+  }
+  .button-cardap {
+    width: 30vh;
+    height: 8vw;
+    font-size: 8px;
+    margin: 1vh;
+    text-align: center;
+    padding: 1vh;
+  }
+  .page {
+    padding: 4% 0 0;
+    min-width: 65vh;
+  }
+  .menu {
+    font-size: 8px;
+  }
 }
