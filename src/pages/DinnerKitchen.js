@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
-import {Form, Col} from 'react-bootstrap';
-import logo from '../assets/img/logo-large.png';
+// import {Form, Col} from 'react-bootstrap';
+// import logo from '../assets/img/logo-large.png';
 import withFirebaseAuth from 'react-with-firebase-auth';
 
 const firebaseAppAuth = firebase.auth();
@@ -37,3 +37,4 @@ class DinnerKitchen extends React.Component {
 export default withFirebaseAuth({
   firebaseAppAuth,
 })(DinnerKitchen);
+

@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './Modal'
 import firebase from "../firebaseConfig";
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col} from 'react-bootstrap';
 import logo from '../assets/img/logo-large.png';
 import withFirebaseAuth from 'react-with-firebase-auth';
 
