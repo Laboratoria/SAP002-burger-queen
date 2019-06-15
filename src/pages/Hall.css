@@ -1,0 +1,21 @@
+.menu-header {   
+display: flex;
+/* align-items: center; */
+justify-content: left;
+font-size: calc(10px + 2vmin);
+padding: 20px;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #ffff;
+    border-style: outset;
+    border-radius: 12px;
+    padding: 7px;
+}
+
+.menu a:hover {
+    background: #FF9F1C;
+
+}

@@ -1,0 +1,30 @@
+.btn-login {
+	background: #FF9F1C 100%;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #FF9F1C;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:12px 21px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.btn-login:hover {
+	background:-moz-linear-gradient(top, #FF9F1C 5%, #ffec64 100%);
+	background:-webkit-linear-gradient(top, #FF9F1C 5%, #ffec64 100%);
+	background:-o-linear-gradient(top, #FF9F1C 5%, #ffec64 100%);
+	background:-ms-linear-gradient(top, #FF9F1C 5%, #ffec64 100%);
+	background:linear-gradient(to bottom, #FF9F1C 5%, #ffec64 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF9F1C', endColorstr='#ffec64',GradientType=0);
+	background-color:#FF9F1C;
+}
+.btn-login:active {
+	position:relative;
+	top:1px;
+}

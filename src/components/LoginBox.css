@@ -1,0 +1,53 @@
+.inner-container{
+    visibility: hidden;
+    transition-duration: 0.2s ease-out;
+}
+
+.inner-container {
+    visibility: visible;
+    border-style: outset;
+    border-radius: 12px;
+    padding: 7px;    
+}
+
+.header {
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 17px;
+    margin-left: 35px;
+    margin-right: 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;
+    border-bottom: 2px solid #FF9F1C;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+   
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+label{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    padding-left: 5px;
+    text-align: left;
+
+}
+
+.login-input {
+    height: 2.1em;
+    border-radius: 5px;
+    border:none;
+    transition: border 0.4s ease-out;
+}

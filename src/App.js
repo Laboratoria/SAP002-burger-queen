@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import Login from './pages/Login';
-import Salao from './pages/Hall';
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import Hall from './pages/Hall';
+import Kitchen from './pages/Kitchen'
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
 function App() {
   return (
@@ -10,13 +11,16 @@ function App() {
     <div className="App">
       <header className="App-header">
        <Route path="/" exact component={Login}/>
-       <Route path="/Hall" component={Salao}/>
+       <Route path="/hall" component={Hall}/>
+       <Route path="/kitchen" component={Kitchen}/>
         
       </header> 
     </div>
     </Router>
   );
 }
+
+
 
 
 

@@ -1,13 +1,13 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA0AU52xMxCaRk5kuM9DW5mHlGmletyf0A",
-  authDomain: "burger-queen-ccb0b.firebaseapp.com",
-  databaseURL: "https://burger-queen-ccb0b.firebaseio.com",
-  projectId: "burger-queen-ccb0b",
-  storageBucket: "burger-queen-ccb0b.appspot.com",
-  messagingSenderId: "356813117239",
-  appId: "1:356813117239:web:f7daf3fbc69d5ae7"
+  apiKey: "AIzaSyAYQJlgKPZfpSvSBAS-KTN_z84ee7sizPk",
+  authDomain: "burger-teste.firebaseapp.com",
+  databaseURL: "https://burger-teste.firebaseio.com",
+  projectId: "burger-teste",
+  storageBucket: "burger-teste.appspot.com",
+  messagingSenderId: "459466966536",
+  appId: "1:459466966536:web:51893e69626102a6"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);;
