@@ -18,7 +18,7 @@ class Saloon extends React.Component {
       customerName: "",
       order: [],
       totalPrice: 0,
-      name: ''
+      waiter: ''
     };
   }
 
@@ -32,23 +32,15 @@ class Saloon extends React.Component {
         ...item,
         quantity: 1
       };
-      let totalPrice = this.state.order.reduce((acc, cur) => {
-        return acc + (cur.quantity * cur.price)
-       }, 0);
-      this.setState(prevState => ({
-        order: this.state.order.concat(newItem),
-        totalPrice: prevState.totalPrice + totalPrice
-    }));
+      this.setState({
+        order: this.state.order.concat(newItem)
+    });
     } else {
       let newOrder = this.state.order;
       newOrder[itemIndex].quantity += 1;
-      let totalPrice = this.state.order.reduce((acc, cur) => {
-        return acc + (cur.quantity * cur.price)
-       }, 0);
-      this.setState(prevState => ({
-        order: newOrder,
-        totalPrice: prevState.totalPrice + totalPrice
-    }));
+      this.setState({
+        order: newOrder
+    });
     }
   }
 
@@ -82,11 +74,16 @@ class Saloon extends React.Component {
   }
 
   sendOrder = () => {
+    const { waiter, customerName, order } = this.state;  
+    const totalPrice = this.state.order.reduce((acc, cur) => {
+      return acc + (cur.quantity * cur.price)
+     }, 0);
+ 
     database.collection("orders").doc().set({
-      waiter: this.state.name,
-      customerName: this.state.customerName,
-      orderedItens: this.state.order,
-      totalPrice: this.state.totalPrice,
+      waiter,
+      customerName,
+      orderedItens: order,
+      totalPrice
     });
   }
 
@@ -95,8 +92,8 @@ class Saloon extends React.Component {
       database.collection("users").doc(user.uid).get()
         .then(doc => {
           const data = doc.data();
-          const name = data.firstName;
-          this.setState({ name })
+          const waiter = data.name;
+          this.setState({ waiter })
         });
       
     const totalPrice = this.state.order.reduce((acc, cur) => {

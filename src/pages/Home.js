@@ -16,7 +16,7 @@ class Home extends React.Component {
       email: '',
       password: '',
       userType: '',
-      firstName: ''
+      name: ''
     };
   }
 
@@ -27,13 +27,13 @@ class Home extends React.Component {
   }
 
   createUser = () => {
-    const { email, firstName, userType } = this.state;
+    const { email, name, userType } = this.state;
     this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(resp => {
         const id = resp.user.uid;
         database.collection("users").doc(id).set({
           email,
-          firstName,
+          name,
           userType
         });
     })
@@ -55,7 +55,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { email, password, firstName, surname } = this.state;
+    const { email, password, name } = this.state;
 
     return (
       <div>
@@ -86,9 +86,9 @@ class Home extends React.Component {
               <div>
               <Input 
               type="text" 
-              value={firstName} 
+              value={name} 
               placeholder="Nome"
-              onChange={(e) => this.handleChange(e, "firstName")}
+              onChange={(e) => this.handleChange(e, "name")}
             />
             <select className="input-box" onChange={(e) => this.handleChange(e, "userType")}>
 			        <option selected disabled>Setor</option>
