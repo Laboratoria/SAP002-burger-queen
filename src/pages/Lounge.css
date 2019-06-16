@@ -41,9 +41,13 @@ body {
 }
 
 .nav-link {
-  color: #ff8400 !important;
+  color: grey !important;
 }
 
 .size-lg {
   font-size: 1.4rem;
+}
+
+.order-title {
+  background-color: #e5effc !important;
 }

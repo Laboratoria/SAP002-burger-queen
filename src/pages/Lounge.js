@@ -20,6 +20,7 @@ import {
   faMinusCircle
 } from "@fortawesome/free-solid-svg-icons";
 
+const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 const menu_breakfast = menu.breakfast;
 const menu_lunch = menu.lunch;
@@ -28,38 +29,60 @@ class Lounge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: []
+      orderItens: [],
+      client: "",
+      waiter: ""
     };
   }
 
-  // componentDidMount() {
-  //   database
-  //     .collection("menu")
-  //     .get()
-  //     .then(querySnapshot => {
-  //       const data = querySnapshot.docs.map(doc => doc.data());
-  //       this.setState({ listItem: data });
-  //     });
-  // }
+  componentDidMount() {
+    firebaseAppAuth.onAuthStateChanged(user => {
+      if (user) {
+        database
+          .collection("users")
+          .where("email", "==", user.email)
+          .get()
+          .then(querySnapshot => {
+            const data = querySnapshot.docs.map(doc => doc.data());
+            if (data[0].type !== "lounge") {
+              this.props.history.replace("/kitchen");
+            }
+            this.setState({ waiter: data[0].name });
+          });
+      } else {
+        this.props.history.replace("/");
+      }
+    });
+  }
 
-  // handleChange = (event, elem) => {
-  //   const newState = this.state;
-  //   newState[elem] = event.target.value;
-  //   this.setState(newState);
-  // };
+  handleChange = (event, elem) => {
+    const newState = this.state;
+    newState[elem] = event.target.value;
+    this.setState(newState);
+  };
 
-  // handleClick = () => {
-  //   const object = {
-  //     email: this.state.email,
-  //     password: this.state.password
-  //   };
-  //   database.collection("testenologin").add(object);
-  //   this.setState({
-  //     listItem: this.state.listItem.concat(object)
-  //   });
-  // };
+  submitOrder = () => {
+    const order = {
+      client: this.state.client,
+      itens: this.state.orderItens,
+      waiter: this.state.waiter,
+      status: "preparation-queue"
+    };
+
+    database
+      .collection("orders")
+      .doc()
+      .set(order)
+      .then(response => {
+        this.setState({
+          client: "",
+          orderItens: []
+        });
+      });
+  };
+
   orderProduct = product => {
-    const prod_index = this.state.order.findIndex(food => {
+    const prod_index = this.state.orderItens.findIndex(food => {
       return food.item === product.item;
     });
     if (prod_index < 0) {
@@ -68,34 +91,34 @@ class Lounge extends React.Component {
         quantity: 1
       };
       this.setState({
-        order: this.state.order.concat(sum)
+        orderItens: this.state.orderItens.concat(sum)
       });
     } else {
-      let new_order = this.state.order;
+      let new_order = this.state.orderItens;
       new_order[prod_index].quantity += 1;
       this.setState({
-        order: new_order
+        orderItens: new_order
       });
     }
   };
 
   deleteProduct = product => {
-    const prod_index = this.state.order.findIndex(food => {
+    const prod_index = this.state.orderItens.findIndex(food => {
       return food.item === product.item;
     });
-    let new_order = this.state.order;
+    let new_order = this.state.orderItens;
     new_order[prod_index].quantity -= 1;
 
     const quantity = new_order[prod_index].quantity;
 
     if (quantity > 0) {
       this.setState({
-        order: new_order
+        orderItens: new_order
       });
     } else {
       new_order.splice(prod_index, 1);
       this.setState({
-        order: new_order
+        orderItens: new_order
       });
     }
   };
@@ -106,7 +129,7 @@ class Lounge extends React.Component {
       .signOut()
       .then(function() {})
       .then(() => {
-        this.props.history.push("/");
+        this.props.history.replace("/");
       })
       .catch(function(error) {
         console.log("Ops! Error");
@@ -114,15 +137,15 @@ class Lounge extends React.Component {
   };
 
   render() {
-    const totalAmount = this.state.order.reduce((acc, curr) => {
+    const totalAmount = this.state.orderItens.reduce((acc, curr) => {
       return acc + curr.quantity * curr.price;
     }, 0);
 
     return (
       <Container fluid>
         <Row className="orange d-flex justify-content-between">
-          <Col className="align-self-center pr-4 text-center text-white size-lg">
-            Olá
+          <Col className="align-self-center text-center text-white">
+            {this.state.waiter && <span> Olá, {this.state.waiter}</span>}
           </Col>
           <Col
             md={8}
@@ -130,7 +153,7 @@ class Lounge extends React.Component {
           >
             <img src={logo} alt="logo" className="logo-nav" />
           </Col>
-          <Col className="text-right align-self-center pr-4 size-lg">
+          <Col className="text-right align-self-center size-lg">
             <FontAwesomeIcon
               icon={faSignOutAlt}
               className="text-white"
@@ -139,9 +162,13 @@ class Lounge extends React.Component {
           </Col>
         </Row>
 
-        <Row>
-          <Col className="mt-1">
-            <Tabs defaultActiveKey="breakfast" id="options-menu">
+        <Row className="mt-2">
+          <Col>
+            <Tabs
+              className="category-title"
+              defaultActiveKey="breakfast"
+              id="options-menu"
+            >
               <Tab eventKey="breakfast" title="CAFÉ DA MANHÃ">
                 <Row className="mt-3 d-flex justify-content-around">
                   {menu_breakfast.map((food, i) => {
@@ -217,18 +244,20 @@ class Lounge extends React.Component {
 
           <Col>
             <Card className="text-dark">
-              <Card.Header className="del-ic font-weight-bold text-center">
+              <Card.Header className="del-ic font-weight-bold text-center order-title">
                 PEDIDOS
                 <Form.Group controlId="clientNames">
                   <Form.Control
+                    value={this.state.client}
                     type="text"
                     placeholder="Insira Nome do Cliente"
                     className="text-primary"
+                    onChange={e => this.handleChange(e, "client")}
                   />
                 </Form.Group>
               </Card.Header>
               <Card.Body>
-                {this.state.order.map((food, i) => {
+                {this.state.orderItens.map((food, i) => {
                   return (
                     <Row key={i}>
                       <Col>
@@ -250,14 +279,33 @@ class Lounge extends React.Component {
                               onClick={() => this.deleteProduct(food)}
                             />
                           </Col>
+
+                          <Col sm={12}>
+                            <hr />
+                          </Col>
                         </Row>
                       </Col>
                     </Row>
                   );
                 })}
               </Card.Body>
-              <Card.Footer className="font-weight-bold bg-dark text-white">
+              <Card.Footer className="font-weight-bold bg-dark text-white text-center">
                 TOTAL R${totalAmount.toFixed(2)}
+              </Card.Footer>
+              <Card.Footer>
+                {" "}
+                <Button
+                  className="btn-block"
+                  onClick={this.submitOrder}
+                  disabled={
+                    this.state.orderItens.length === 0 ||
+                    this.state.client === ""
+                      ? true
+                      : false
+                  }
+                >
+                  Enviar
+                </Button>
               </Card.Footer>
             </Card>
           </Col>
