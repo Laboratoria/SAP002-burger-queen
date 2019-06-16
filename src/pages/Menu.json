@@ -1,0 +1,74 @@
+{
+  "breakfast": [
+    {
+      "item": "Café Americano",
+      "price": 5.0
+    },
+    {
+      "item": "Café com Leite",
+      "price": 7.0
+    },
+    {
+      "item": "Sanduíche de Pres. e Queijo",
+      "price": 10.0
+    },
+    {
+      "item": "Suco de fruta Natural",
+      "price": 7.0
+    }
+  ],
+  "lunch": [
+    {
+      "item": "Hambúrguer simples",
+      "price": 10.0
+    },
+    {
+      "item": "Hambúrguer duplo",
+      "price": 15.0
+    },
+    {
+      "item": "Bovina",
+      "price": 0.0
+    },
+    {
+      "item": "Frango",
+      "price": 0.0
+    },
+    {
+      "item": "Vegetariano",
+      "price": 0.0
+    },
+    {
+      "item": "Batata frita",
+      "price": 5.0
+    },
+    {
+      "item": "Anéis de Cebola",
+      "price": 5.0
+    },
+    {
+      "item": "Água 500ml",
+      "price": 5.0
+    },
+    {
+      "item": "Água 750ml",
+      "price": 7.0
+    },
+    {
+      "item": "Bebida gaseificada 500ml",
+      "price": 7.0
+    },
+    {
+      "item": "Bebida gaseificada 750ml",
+      "price": 10.0
+    },
+    {
+      "item": "Adicional Queijo",
+      "price": 1.0
+    },
+    {
+      "item": "Adicional Ovo",
+      "price": 1.0
+    }
+  ]
+}

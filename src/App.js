@@ -8,31 +8,20 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
   return (
     <Router>
-      <div className="bg-intro text-center">
+      <div>
         <Route path="/" exact component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/lounge" component={Lounge} />
+        <Route path="/kitchen" component={Kitchen} />
       </div>
-
-      <Route path="/lounge" component={Lounge} />
-      <Route path="/kitchen" component={Kitchen} />
     </Router>
-    // <Router>
-    //   <div className="text-center">
-    //     <header className="App-bg">
-    //       <Route path="/" exact component={Login} />
-    //       <Route path="/register" component={Register} />
-    //       <Route path="/lounge" component={Lounge} />
-    //       <Route path="/kitchen" component={Kitchen} />
-    //     </header>
-    //   </div>
-    // </Router>
   );
 }
 
 function Kitchen() {
   return (
     <div>
-      <h1>Estamos na Cozinha</h1>
+      <h1>Monte a comida</h1>
     </div>
   );
 }

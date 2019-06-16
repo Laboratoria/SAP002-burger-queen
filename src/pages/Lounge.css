@@ -1,0 +1,49 @@
+body {
+  background-color: #f9f9f9 !important;
+  font-size: 0.9rem !important;
+}
+
+.navbar {
+  display: flex;
+  padding: 0.5rem 1rem;
+}
+
+.orange {
+  background-color: #ff8400 !important;
+  border-color: #ff8400 !important;
+}
+
+.logo-nav {
+  height: 7vh;
+  width: auto;
+}
+
+.add-ic {
+  color: #ff8400;
+  font-size: 1.3rem;
+}
+
+.nav-tabs {
+  color: #ff8400;
+  background-color: #fff;
+  border-color: 0;
+}
+
+.del-ic {
+  color: #0077ff;
+  font-size: 1.3rem;
+}
+
+.nav-link.active {
+  color: #ff8400 !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem;
+}
+
+.nav-link {
+  color: #ff8400 !important;
+}
+
+.size-lg {
+  font-size: 1.4rem;
+}
