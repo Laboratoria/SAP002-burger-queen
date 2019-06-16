@@ -1,11 +1,11 @@
-import React from 'react';
-import '../App.css';
+import React from "react";
+import "../App.css";
 import firebase from "../firebaseConfig";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import withFirebaseAuth from 'react-with-firebase-auth';
+import withFirebaseAuth from "react-with-firebase-auth";
 import menu from "../menu.json"
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -44,6 +44,7 @@ class Hall extends React.Component {
       })
     }
   }
+
 
   clickDelete = (item) => {
     const itemIndex = this.state.request.findIndex((produto) => {
@@ -121,6 +122,10 @@ class Hall extends React.Component {
       })
   }
 
+  signOutLogin = () => {
+    firebaseAppAuth.signOut()
+  }
+
   render() {
     const valueTotal = this.state.request.reduce((acc, cur) => {
       return acc + (cur.quantity * cur.price)
@@ -130,9 +135,9 @@ class Hall extends React.Component {
       <div className="div-page">
         <div className="login-name">
           <p className="title">Salão - <span className="name">Funcionário(a): {this.state.employee}</span></p>
-          <div className="logout">
+          <div className="log">
             <div className="request">
-              <Link className="button-logout logout" to="/">Sair</Link>
+              <Link className="button-log log" to="/" onClick={() => this.signOutLogin()}>Sair</Link>
             </div>
           </div>
         </div>

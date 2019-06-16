@@ -98,14 +98,18 @@ class Kitchen extends React.Component {
     item.parentNode.removeChild(item);
   }
 
+  signOutLogin = () => {
+    firebaseAppAuth.signOut()
+  }
+
   render() {
     return (
       <div className="div-page" >
         <div className="login-name">
           <p className="title">Cozinha - <span className="name">Funcionário(a): {this.state.employee}</span></p>
-          <div className="logout">
+          <div className="log">
             <div className="request">
-              <Link className="button-logout logout" to="/">Sair</Link>
+              <Link className="button-log log" to="/" onClick={() => this.signOutLogin()}>Sair</Link>
             </div>
           </div>
         </div>

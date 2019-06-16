@@ -10,31 +10,16 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class Home extends React.Component {
+class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      displayName: "",
       email: "",
       password: "",
+      value: "Kitchen",
       error: ""
     };
-  }
-
-  signIn = () => {
-    const { email, password } = this.state;
-    this.props.signInWithEmailAndPassword(email, password)
-      .then(resp => {
-        const id = resp.user.uid;
-        database.collection("users").doc(id).get()
-          .then((resp) => {
-            const data = resp.data();
-            this.props.history.push(`/${data.value}`);
-          })
-      }).catch((error) => {
-        this.setState({
-          error: error.message
-        })
-      })
   }
 
   handleChange = (event, element) => {
@@ -43,20 +28,42 @@ class Home extends React.Component {
     this.setState(newState)
   }
 
+  createUser = () => {
+    const { email, password, displayName, value } = this.state;
+    this.props.createUserWithEmailAndPassword(email, password)
+      .then((resp) => {
+        const id = resp.user.uid;
+        database.collection("users").doc(id).set({
+          email,
+          displayName,
+          value
+        })
+      }).catch((error) => {
+        this.setState({
+          error: error.message
+        })
+      })
+  }
+
   render() {
     return (
       <div>
         <div className="page">
           <div className="form">
+            <Input value={this.state.displayName} placeholder="Digite seu nome" onChange={(e) => this.handleChange(e, "displayName")} />
             <Input value={this.state.email} placeholder="Digite seu email" onChange={(e) => this.handleChange(e, "email")} />
             <Input type="password" value={this.state.password} placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} />
+            <select onChange={(e) => this.handleChange(e, "value")} className="input" value={this.state.value}>
+              <option value="Kitchen">Cozinha</option>
+              <option value="Hall">Salão</option>
+            </select>
             <p className="error">{this.state.error}</p>
-            <Button className="button login" onClick={() => this.signIn()} text="Login" />
-            <Link className="link" to="/Create">Não possui cadastro? Crie seu usuário</Link>
+            <Link className="button-log log login" to={`/` + this.state.value} onClick={() => this.createUser()}>Criar Usuário</Link>
+            <Link className="link" to="/">Já possui cadastro? Faça seu Login</Link>
           </div>
         </div>
       </div>
     );
   }
 }
-export default withFirebaseAuth({ firebaseAppAuth, })(Home);
+export default withFirebaseAuth({ firebaseAppAuth, })(Create);

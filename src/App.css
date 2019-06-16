@@ -51,7 +51,7 @@
   background: #FFFFFF;
   max-width: 360px;
   margin: 0 auto 100px;
-  padding: 45px;
+  padding: 36px;
   text-align: center;
 }
 
@@ -63,11 +63,11 @@ body {
 }
 
 .button {
-  width: 100%;
-  font-size: 14px;
+  min-width: 100%;
+  font-size: 80%;
 }
 
-.button, .button-logout, .button-cardap {
+.button, .button-log, .button-cardap {
   text-transform: uppercase;
   background: yellow;
   border: 0;
@@ -85,20 +85,26 @@ body {
   margin: 1vw;
 }
 
-.button-logout {
-  font-size: 14px;
+.button-log {
+  font-size: 80%;
 }
 
 .button-cardap {
   width: 150px;
   height: 100%;
-  font-size: 16px;
+  font-size: 80%;
 }
 
-.logout {
+.log {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1px;
+}
+
+.login {
+  margin-bottom: 3vh;
+  margin-top: 0;
 }
 
 .error {
@@ -132,48 +138,61 @@ body {
   font-size: 20px;
 }
 
+.link {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  padding: 1vh;
+}
+
 @media only screen and (max-height:768px) and (max-width: 768px) {
   .form {
     position: relative;
     background: #FFFFFF;
-    min-width: 55vh;
+    width: 65vh;
     margin: 0px auto 0.67em;
-    padding: 18px;
+    padding: 12px;
     text-align: center;
   }
   .icon, .title {
-    font-size: 15px;
+    font-size: 12px;
   }
-  .button, .button-logout {
+  .home {
+    align-items: flex-end;
+  }
+  .button, .button-log {
     padding: 8px;
-    font-size: 7px;
+    font-size: 40%;
   }
-  .logout {
-    margin-bottom: 8px;
+  .log {
+    margin: 0;
   }
   .name {
     font-size: 10px;
   }
   .menu-title {
-    font-size: 14px;
+    font-size: 10px;
     margin: 3px 0 3px 0;
   }
   .menu-order {
-    font-size: 10px;
+    font-size: 8px;
   }
   .button-cardap {
-    width: 30vh;
-    height: 8vw;
-    font-size: 8px;
+    max-width: 30vh;
+    min-height: 12vw;
+    font-size: 40%;
     margin: 1vh;
     text-align: center;
     padding: 1vh;
   }
   .page {
     padding: 4% 0 0;
-    min-width: 65vh;
   }
   .menu {
-    font-size: 8px;
+    font-size: 6px;
+  }
+  .link {
+    font-size: 6px;
   }
 }
