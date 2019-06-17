@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "../firebaseConfig";
 import menu from "./Menu";
-import "./Lounge.css";
+import "./InsidePages.css";
 import logo from "../assets/logo-white.png";
 import {
   Button,
@@ -126,8 +126,7 @@ class Lounge extends React.Component {
   };
 
   signOut = () => {
-    firebase
-      .auth()
+    firebaseAppAuth
       .signOut()
       .then(function() {})
       .then(() => {
@@ -146,7 +145,7 @@ class Lounge extends React.Component {
     return (
       <Container fluid>
         <Row className="orange d-flex justify-content-between">
-          <Col className="align-self-center text-center text-white">
+          <Col className="align-self-center text-white pl-4 text-uppercase font-weight-bold">
             {this.state.waiter && <span> Olá, {this.state.waiter}</span>}
           </Col>
           <Col
