@@ -66,7 +66,9 @@ class Lounge extends React.Component {
       client: this.state.client,
       itens: this.state.orderItens,
       waiter: this.state.waiter,
-      status: "preparation-queue"
+      startOrder: new Date(),
+      finishOrder: "",
+      status: "awaiting"
     };
 
     database
@@ -132,7 +134,7 @@ class Lounge extends React.Component {
         this.props.history.replace("/");
       })
       .catch(function(error) {
-        console.log("Ops! Error");
+        console.log("Ops! Aconteceu um erro!");
       });
   };
 

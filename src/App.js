@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Login from "./pages/Login";
 import Lounge from "./pages/Lounge";
+import Kitchen from "./pages/Kitchen";
 import Register from "./pages/Register";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -15,14 +16,6 @@ function App() {
         <Route path="/kitchen" component={Kitchen} />
       </div>
     </Router>
-  );
-}
-
-function Kitchen() {
-  return (
-    <div>
-      <h1>Monte a comida</h1>
-    </div>
   );
 }
 
