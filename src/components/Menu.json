@@ -23,13 +23,28 @@
         "name": "Hambúrguer Simples",
         "price": 10.00,
         "flavors": [
-            "Frango",
-            "Carne Bovina",
-            "Vegetariano"
+            {
+                "name": "Hambúrguer Simples Frango",
+                "price": 10.00
+            },
+            {
+                "name": "Hambúrguer Simples Carne Bovina",
+                "price": 10.00
+            },
+            {
+                "name": "Hambúrguer Simples Vegetariano",
+                "price": 10.00
+            }
         ],
         "extras": [
-            "Ovo",
-            "Queijo"
+            {
+                "name": "Ovo",
+                "price": 1.00
+            },
+            {
+                "name": "Queijo",
+                "price": 1.00
+            }
         ],
         "type": "lunch",
         "burger": true
@@ -38,13 +53,28 @@
         "name": "Hambúrguer Duplo",
         "price": 15.00,
         "flavors": [
-            "Frango",
-            "Carne Bovina",
-            "Vegetariano"
+            {
+                "name": "Hambúrguer Duplo Frango",
+                "price": 10.00
+            },
+            {
+                "name": "Hambúrguer Duplo Carne Bovina",
+                "price": 10.00
+            },
+            {
+                "name": "Hambúrguer Duplo Vegetariano",
+                "price": 10.00
+            }
         ],
         "extras": [
-            "Ovo",
-            "Queijo"
+            {
+                "name": "Ovo",
+                "price": 1.00
+            },
+            {
+                "name": "Queijo",
+                "price": 1.00
+            }
         ],
         "type": "lunch",
         "burger": true

@@ -1,8 +1,51 @@
-p .welcome-kitchen {
-  text-align: center;
-  margin-top: 4em;
+.div-header-kitchen {
+  padding: 5px;
+  width: 100%;
+  height: 10vh;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.div-logo-kitchen {
+  width: 30%;
+  height: 10vh;
+  display: inline-flex;
+  justify-content: left;
+}
+
+.logo-kitchen {
+  width: 70%;
+  height: auto;
+  margin: 0;
 }
 
 .kitchen {
+  text-align: center;
   margin-top: 2em;
+  height: auto;
+  width: 40%;
+  align-items: center;
+}
+
+.logo-size {
+  height: 2vh !important;
+}
+
+.welcome {
+  margin-top: 10px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.card-border {
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.btn-confirm-kitchen {
+ 
 }

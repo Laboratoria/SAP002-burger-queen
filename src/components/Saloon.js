@@ -12,94 +12,6 @@ import { Form, Row, Col, Container, ListGroup, Tabs, Tab, Button } from 'react-b
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-// const products = [
-//   {
-//     name: "Café Americano",
-//     price: 5.00,
-//     type: "breakfast"
-//   },
-//   {
-//     name: "Café com leite",
-//     price: 7.00,
-//     type: "breakfast"
-//   },
-//   {
-//     name: "Sanduíche de presunto e queijo",
-//     price: 10.00,
-//     type: "breakfast"
-//   },
-//   {
-//     name: "Suco de fruta natural",
-//     price: 7.00,
-//     type: "breakfast"
-//   },
-//   {
-//     name: "Hambúrguer simples",
-//     price: 10.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Hambúrguer duplo",
-//     price: 15.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Carne Bovina",
-//     price: 0,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Frango",
-//     price: 0,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Vegetariano",
-//     price: 0,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Ovo",
-//     price: 1.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Queijo",
-//     price: 1.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Batata frita",
-//     price: 5.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Anéis de cebola",
-//     price: 5.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Água 500ml",
-//     price: 5.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Água 750ml",
-//     price: 7.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Bebida gaseificada 500ml",
-//     price: 7.00,
-//     type: "lunch"
-//   },
-//   {
-//     name: "Bebida gaseificada 750ml",
-//     price: 10.00,
-//     type: "lunch"
-//   }
-// ];
-
 class Saloon extends React.Component {
   constructor(props) {
     super(props);
@@ -171,15 +83,12 @@ class Saloon extends React.Component {
       items: this.state.buy,
       client: this.state.client
     }
-    database.collection('request').add(object)
-    // this.setState({
-    //   listBuy: this.state.buy.concat(object)
-
-    // })
-    //   .then(response => {
-    //     const userId = response.user.uid;
-    //     this.props.history.push(`/${this.state.occupationArea}/${userId}`);
-    //   })
+    database.collection("request").add(object)
+    this.setState({
+      client: "",
+      buy: []
+    })
+    alert("Pedido Enviado à Cozinha com Sucesso");
   }
 
   saveClient = (event, element) => {
@@ -211,21 +120,18 @@ class Saloon extends React.Component {
                           onChange={(event) => this.saveClient(event, "client")} />
                       </Form.Group>
                     </Col>
-                    <Col sm={4} className="">
-                      <Button variant="success" className="btn-client-name" onClick={this.saveClient}>Salvar</Button>
-                    </Col>
                   </Row>
                 </Form>
               </div>
               <div className="div-user-name">
-                <FontAwesomeIcon icon={faUserCircle} className="user-name" />
+                <FontAwesomeIcon icon={faUserCircle} className="user-name-icon" />
                 <p className="name-user">{this.state.name}</p>
               </div>
             </div>
             <div className="div-itens" >
               <div className="tabs-saloon">
                 <Tabs defaultActiveKey="breakfast" transition={false} id="noanim-tab-example" className="tabs">
-                  <Tab eventKey="breakfast" title="Café da Manhã" className="nav-link tab-content-saloon">
+                  <Tab eventKey="breakfast" title="Café da Manhã" className="tab-content-saloon">
                     <div list-saloon>
                       <ListGroup>
                         <Row>
@@ -251,7 +157,7 @@ class Saloon extends React.Component {
                                         /> {product.name}</ListGroup.Item>
                                     </Col>
                                     <Col sm={4}>
-                                      <ListGroup.Item> {product.price}</ListGroup.Item>
+                                      <ListGroup.Item>R$ {product.price.toFixed(2)}</ListGroup.Item>
                                     </Col>
                                   </Row>
                                 </ListGroup>
@@ -262,7 +168,7 @@ class Saloon extends React.Component {
                       </ListGroup>
                     </div>
                   </Tab>
-                  <Tab eventKey="lunches" title="Lanches e Bebidas" className="nav-link tab-content-saloon">
+                  <Tab eventKey="lunches" title="Lanches e Bebidas" className="tab-content-saloon">
                     <ListGroup>
                       <Row>
                         <Col sm={8}>
@@ -297,17 +203,25 @@ class Saloon extends React.Component {
                                   <Col sm={8}>
                                     <ListGroup.Item> {product.name}
                                     </ListGroup.Item>
-                                    <ListGroup.Item ><FontAwesomeIcon
-                                      icon={faPlusCircle}
-                                      onClick={() => this.productAdd(product)}
-                                    />{product.flavors}</ListGroup.Item>
-                                    <ListGroup.Item ><FontAwesomeIcon
-                                      icon={faPlusCircle}
-                                      onClick={() => this.productAdd(product)}
-                                    />{product.extras}</ListGroup.Item>
+                                    {
+                                      product.flavors.map((flavor, index) => {
+                                        return <ListGroup.Item key={index} ><FontAwesomeIcon
+                                          icon={faPlusCircle}
+                                          onClick={() => this.productAdd(flavor)}
+                                        />{flavor.name}</ListGroup.Item>
+                                      })
+                                    }
+                                    {
+                                      product.extras.map((extra, index) => {
+                                        return <ListGroup.Item key={index} ><FontAwesomeIcon
+                                          icon={faPlusCircle}
+                                          onClick={() => this.productAdd(extra)}
+                                        />{extra.name}</ListGroup.Item>
+                                      })
+                                    }
                                   </Col>
                                   <Col sm={4}>
-                                    <ListGroup.Item>{product.price}</ListGroup.Item>
+                                    <ListGroup.Item>R$ {product.price.toFixed(2)}</ListGroup.Item>
                                   </Col>
                                 </Row>
                               </ListGroup>
@@ -325,12 +239,21 @@ class Saloon extends React.Component {
                 </ListGroup>
                 {
                   this.state.buy.map((product, index) => {
-                    return <ListGroup>
-                      <ListGroup.Item key={index} ><FontAwesomeIcon
-                        icon={faMinusCircle}
-                        onClick={() => this.productDelete(product)}
-                      />{product.quantity} - {product.name} - {product.flavors} - {product.extras} - {product.price * product.quantity}</ListGroup.Item>
-                    </ListGroup>
+                    if (product.burger !== true) {
+                      return <ListGroup>
+                        <ListGroup.Item key={index} ><FontAwesomeIcon
+                          icon={faMinusCircle}
+                          onClick={() => this.productDelete(product)}
+                        />{product.quantity} - {product.name} - {product.price * product.quantity}</ListGroup.Item>
+                      </ListGroup>
+                      // } else if (product.burger === true) {
+                      //   return <ListGroup>
+                      //     <ListGroup.Item key={index} ><FontAwesomeIcon
+                      //       icon={faMinusCircle}
+                      //       onClick={() => this.productDelete(product)}
+                      //     />{product.quantity} - {product.flavors} - {product.price * product.quantity}</ListGroup.Item>
+                      //   </ListGroup>
+                    }
                   })
                 }
                 <ListGroup>
@@ -341,7 +264,7 @@ class Saloon extends React.Component {
                   <ListGroup.Item className="item-checked" disabled>Nome do(a) Cliente: {this.state.client}</ListGroup.Item>
                 </ListGroup>
                 <Col xs={6} md={6} lg={12} className="justify-content-md-center btn-col">
-                  <ButtonConfirm text="Confirmar Pedido(s)" onClick={this.confirmBuy} />
+                  <ButtonConfirm className="justify-content-md-center btn-confirm" text="Confirmar Pedido(s)" onClick={this.confirmBuy} />
                 </Col>
               </div>
             </div>

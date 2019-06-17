@@ -32,12 +32,12 @@ class SignInAndCreateUser extends React.Component {
       .then(response => {
         const userId = response.user.uid;
         database.collection("users")
-        .doc(userId)
-        .set({
-          name: this.state.name,
-          email: this.state.email,
-          occupationArea: this.state.occupationArea
-        });
+          .doc(userId)
+          .set({
+            name: this.state.name,
+            email: this.state.email,
+            occupationArea: this.state.occupationArea
+          });
       })
       .then(response => {
         const userId = response.user.uid;
@@ -54,8 +54,8 @@ class SignInAndCreateUser extends React.Component {
       .then(response => {
         const userId = response.user.uid;
         database.collection("users")
-        .doc(userId)
-        .get()
+          .doc(userId)
+          .get()
           .then(response => {
             const data = response.data()
             this.props.history.push(`/${data.occupationArea}/${response.id}`);
@@ -70,7 +70,7 @@ class SignInAndCreateUser extends React.Component {
     return (
       <div>
         <Container className="container-signin">
-          <Col xs={6} md={6} lg={12} >
+          <Col>
             <div className="div-logo">
               <img src={logoBurgerQueen} className="justify-content-md-center logo" alt="logo do Burger Queen, coroa acima do nome" />
             </div>
@@ -78,18 +78,18 @@ class SignInAndCreateUser extends React.Component {
               <Tab eventKey="login" title="Login" className="justify-content-md-center nav-link">
                 <Form>
                   <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalEmail">
-                    <Col xs={6} md={6} lg={12}>
+                    <Col xs={6} md={6} lg={12} sm={12}>
                       <Form.Control size="lg" type="email" placeholder="Email" value={this.state.email}
                         onChange={(event) => this.handleChange(event, "email")} />
                     </Col>
                   </Form.Group>
                   <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalPassword">
-                    <Col xs={6} md={6} lg={12}>
+                    <Col xs={6} md={6} lg={12} sm={12}>
                       <Form.Control type="password" placeholder="Senha (mínimo 6 caracteres)" value={this.state.password}
                         onChange={(event) => this.handleChange(event, "password")} />
                     </Col>
                   </Form.Group>
-                  <Col xs={6} md={6} lg={12} className="justify-content-md-center btn-div">
+                  <Col xs={6} md={6} lg={12} sm={12} className="justify-content-md-center btn-div">
                     <Button text="Entrar" onClick={this.signIn} />
                   </Col>
                 </Form>
@@ -97,19 +97,19 @@ class SignInAndCreateUser extends React.Component {
               <Tab eventKey="create-user" title="Criar Conta" className="nav-link">
                 <Form>
                   <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalName">
-                    <Col xs={6} md={6} lg={12}>
+                    <Col xs={6} md={6} lg={12} sm={12}>
                       <Form.Control type="text" placeholder="Nome" value={this.state.name}
                         onChange={(event) => this.handleChange(event, "name")} />
                     </Col>
                   </Form.Group>
                   <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalEmail">
-                    <Col xs={6} md={6} lg={12}>
+                    <Col xs={6} md={6} lg={12} sm={12}>
                       <Form.Control size="lg" type="email" placeholder="Email" value={this.state.email}
                         onChange={(event) => this.handleChange(event, "email")} />
                     </Col>
                   </Form.Group>
                   <Form.Group as={Row} className="justify-content-md-center" controlId="formHorizontalPassword">
-                    <Col xs={6} md={6} lg={12}>
+                    <Col xs={6} md={6} lg={12} sm={12}>
                       <Form.Control type="password" placeholder="Senha (mínimo 6 caracteres)" value={this.state.password}
                         onChange={(event) => this.handleChange(event, "password")} />
                     </Col>
@@ -144,7 +144,7 @@ class SignInAndCreateUser extends React.Component {
                       </Form.Group>
                     </Form.Row>
                   </fieldset>
-                  <Col xs={6} md={6} lg={12} className="justify-content-md-center">
+                  <Col xs={6} md={6} lg={12} sm={12} className="justify-content-md-center btn-div">
                     <Button text="Criar Conta" onClick={this.createUser} />
                   </Col>
                 </Form>

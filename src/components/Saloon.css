@@ -16,7 +16,7 @@ padding: 0%;
 
 .div-logo-saloon {
   width: 30%;
-  height: 15vh;
+  height: 10vh;
   display: inline-flex;
   justify-content: left;
 }
@@ -49,19 +49,19 @@ padding: 0%;
   text-align: right;
 }
 
-.user-name {
+.user-name-icon{
   width: 30%;
   height: auto;
-  padding-top: 3rem;
+  padding-top: 1rem;
+  font-size: 20px;
+}
+
+.name-user{
+  font-size: 25px;
 }
 
 .svg-inline--fa.fa-w-16 {
   width: 2em;
-}
-
-.btn-col {
- text-align: center;
- margin-top: 10px;
 }
 
 .list-group-item {
@@ -76,6 +76,10 @@ padding: 0%;
 
 .tabs-saloon{
   width: 60%;
+}
+
+.tabs {
+  font-size: 22px;
 }
 
 .tab-content-saloon {
@@ -109,7 +113,7 @@ padding: 0%;
   margin: 0;
 }
 
-/* .name-user {
-  padding: 0 10px;
-} */
-
+.btn-col {
+  text-align: center;
+  margin-top: 10px;
+}

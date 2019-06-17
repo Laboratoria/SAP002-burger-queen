@@ -11,12 +11,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <Route path="/" exact component={SignInAndCreateUser} />
-          <Route path="/saloon/:id" component={Saloon} />
-          {/* <Route path="/saloon" component={RedirectTo} /> */}
-          <Route path="/kitchen/:id" component={Kitchen} />
-        </header>
+        <Route path="/" exact component={SignInAndCreateUser} />
+        <Route path="/saloon/:id" component={Saloon} />
+        {/* <Route path="/saloon" component={RedirectTo} /> */}
+        <Route path="/kitchen/:id" component={Kitchen} />
       </div>
     </Router>
   );
