@@ -15,16 +15,16 @@ class Hall extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <Button
           variant="primary"
           type="submit"
           className="mt-3"
           onClick={this.logout}
           block>
-          cozinha
+          salão
 </Button>
-      </div>
+      </>
 
     )
   }

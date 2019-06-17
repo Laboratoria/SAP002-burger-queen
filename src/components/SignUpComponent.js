@@ -8,8 +8,7 @@ function SignUpComponent(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       show={props.modalShow}
-      onHide={props.modalClose}
-    >
+      onHide={props.modalClose}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Cadastro
@@ -89,7 +88,6 @@ function SignUpComponent(props) {
             </Form.Group>
           </Form>
       </Modal.Body>
-  
     </Modal>
   )
 }
