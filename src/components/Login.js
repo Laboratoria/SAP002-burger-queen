@@ -34,6 +34,7 @@ class Login extends Component {
             database.collection("users").doc(id).get()
             .then(resp => {
                 const data = resp.data();
+                console.log(data)
                 this.props.history.push(`/${data.place}`);
             })
     

@@ -3,11 +3,11 @@ import './Signup.css'
 import { Link } from 'react-router-dom'
 import firebase from '../firebaseConfig'
 import withFirebaseAuth from 'react-with-firebase-auth'
-import { createBrowserHistory } from 'history'
+
 
 const firebaseAppAuth = firebase.auth()
 const database = firebase.firestore()
-const history = createBrowserHistory()
+
 
 class Signup extends Component {
     constructor(props){
@@ -84,7 +84,7 @@ class Signup extends Component {
                         </select>
                         <input type="submit" value="Cadastrar" onClick={this.createUser}></input>
                         <div className="signup-link">
-                            <Link to="/login">Já Tem Cadastro? Entre Aqui</Link>
+                            <Link to="/">Já Tem Cadastro? Entre Aqui</Link>
                         </div>
                     </form>
                 </div>

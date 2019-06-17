@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import firebase from '../firebaseConfig'
 import withFirebaseAuth from 'react-with-firebase-auth'
+import './Salon.css'
 
 const firebaseAppAuth = firebase.auth()
 const database = firebase.firestore()
@@ -13,15 +14,17 @@ class Salon extends Component {
             password: '',
             place: "kitchen",
             listItem: []
-        }
+        };
     }
 
     
 
     logoutUser = (event) => {
+        console.log("teste", this.props)
         event.preventDefault()
-        firebase.auth().signOut()
-        .then(function() {
+        this.props.signOut()
+        .then(() => {
+            this.props.history.push('/')
         // Sign-out successful.
         })
         .catch(function(error) {
@@ -32,8 +35,12 @@ class Salon extends Component {
     render() {
         return (
             <main className="page">
-                <h1>Estamos no salão</h1>
-                <button onClick={this.logoutUser}>Sair</button>
+                <div className="container">
+                    <div className="salon-header">
+                        <h1>Salão</h1>
+                        <button onClick={this.logoutUser}>Sair</button>
+                    </div>
+                </div>
             </main>
         )
     }
