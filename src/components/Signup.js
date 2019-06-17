@@ -3,9 +3,11 @@ import './Signup.css'
 import { Link } from 'react-router-dom'
 import firebase from '../firebaseConfig'
 import withFirebaseAuth from 'react-with-firebase-auth'
+import { createBrowserHistory } from 'history'
 
 const firebaseAppAuth = firebase.auth()
 const database = firebase.firestore()
+const history = createBrowserHistory()
 
 class Signup extends Component {
     constructor(props){
@@ -16,6 +18,14 @@ class Signup extends Component {
             place: "kitchen"
         }
         this.handleChange = this.handleChange.bind(this)
+    }
+
+    componentDidMount() {
+        database.collection('laboratoria').get()
+        .then((querySnapshot) => {
+            const data = querySnapshot.docs.map(doc => doc.data());
+            this.setState({ listItem: data });
+        });
     }
 
     handleChange = (event, element) => {

@@ -12,21 +12,33 @@ class Salon extends Component {
             email: '',
             password: '',
             place: "kitchen",
-            user: null
+            listItem: []
         }
-        
     }
 
+    
 
+    logoutUser = (event) => {
+        event.preventDefault()
+        firebase.auth().signOut()
+        .then(function() {
+        // Sign-out successful.
+        })
+        .catch(function(error) {
+        // An error happened
+        });
+    }
 
     render() {
         return (
             <main className="page">
                 <h1>Estamos no salão</h1>
-                <button>Sair</button>
+                <button onClick={this.logoutUser}>Sair</button>
             </main>
         )
     }
 }
 
-export default Salon
+export default withFirebaseAuth({
+    firebaseAppAuth,
+})(Salon)

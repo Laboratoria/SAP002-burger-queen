@@ -3,9 +3,11 @@ import './Login.css'
 import { Link } from 'react-router-dom'
 import firebase from '../firebaseConfig'
 import withFirebaseAuth from 'react-with-firebase-auth'
+import { withRouter } from "react-router-dom";
 
 const firebaseAppAuth = firebase.auth()
 const database = firebase.firestore()
+
 
 class Login extends Component {
     constructor(props){

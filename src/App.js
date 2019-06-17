@@ -11,7 +11,8 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/login" exact component={Login}/>
+          <Route path="/" exact component={Index}/>
+          <Route path="/login" component={Login}/>
           <Route path="/signup" component={Signup}/>
           <Route path="/kitchen" component={Kitchen}/>
           <Route path="/salon" component={Salon}/>
@@ -19,6 +20,14 @@ class App extends React.Component {
       </Router>  
     )
   }
+}
+
+function Index () {
+  return (
+    <div>
+      <Login/>
+    </div>
+  )
 }
 
 export default App
