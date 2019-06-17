@@ -10,7 +10,7 @@ class Kitchen extends React.Component {
 
   logout() {
     firebase.auth().signOut()
-    .then(this.props.history.push(`/login`))
+    .then(this.props.history.push(`/`))
   }
 
   render() {
