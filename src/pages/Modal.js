@@ -11,7 +11,7 @@ function Modal(props) {
     <>
       <ModalBootstrap show={props.show} onHide={props.handleClose}>
         <ModalBootstrap.Header closeButton>
-          <ModalBootstrap.Title className="dark-text">Faça aqui seu cadastro:</ModalBootstrap.Title>
+          <ModalBootstrap.Title className="grey-text">Faça aqui seu cadastro:</ModalBootstrap.Title>
         </ModalBootstrap.Header>
 
         <ModalBootstrap.Body>

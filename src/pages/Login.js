@@ -51,8 +51,7 @@ class Login extends React.Component {
 
   signIn = (event) => {
     event.preventDefault();
-    this.props.signInWithEmailAndPassword
-      (this.state.emaillogin, this.state.passwordlogin)
+    this.props.signInWithEmailAndPassword(this.state.emaillogin, this.state.passwordlogin)
       .then((resp) => {
         console.log(resp);
         const id = resp.user.uid;

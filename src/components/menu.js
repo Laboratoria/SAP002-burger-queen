@@ -3,16 +3,14 @@ import { Card, Tab, Tabs} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import breakfastMenu from "../components/breakfastMenu"
 import regularMenu from "../components/regularMenu"
-import App from "../pages/DinnerHall"
-
 
   function Menu (props) {
 
     return (
-      <Card className="red-text" >
+      <Card className="" >
       <Card.Body>
 
-        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 red-text">
+        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3 grey-text">
           <Tab eventKey="home" title="Café da Manhã">
             {breakfastMenu.map((product, i, j) => {
               return (
@@ -22,13 +20,13 @@ import App from "../pages/DinnerHall"
 
                     <img src={product.foto} alt="Logo" className="img-size" />
 
-                    <Card.Text className="d-flex flex-column dark-text text-center text-small">
+                    <Card.Text className="d-flex flex-column grey-text-reg text-center text-small">
                       <span className="">{product.nome}</span>
                       <span className=""> R$ {product.preco},00 </span>
                     </Card.Text>
                     <div className="d-flex">
-                      <button className="mx-1 border-sucess icon-border bg-white" key={i} onClick={() => props.clientOrder(product)}><i className="fas fa-plus"></i></button>
-                      <button className="mx-1 icon-border bg-white" key={j} onClick={() => props.clientOrder(product)}><i className="fas fa-minus"></i></button>
+                      <button className="mx-1 btn btn-success" key={i} onClick={() => props.addItem(product)}><i className="fas fa-plus"></i></button>
+                      <button className="mx-1 btn btn-danger" key={j} onClick={() => props.delItem(product)}><i className="fas fa-minus"></i></button>
                     </div>
                   </Card.Body>
                 </Card>
@@ -37,8 +35,7 @@ import App from "../pages/DinnerHall"
             })
             }
           </Tab>
-          <Tab className="red-text" eventKey="profile" title="Almoço/Jantar">
-
+          <Tab className="" eventKey="profile" title="Almoço/Jantar">
             {regularMenu.map((product, i, j) => {
               return (
 
@@ -47,13 +44,13 @@ import App from "../pages/DinnerHall"
 
                     <img src={product.foto} alt="Logo" className="img-size" />
 
-                    <Card.Text className="d-flex flex-column dark-text text-center text-small">
+                    <Card.Text className="d-flex flex-column grey-text text-center text-small">
                       <span className="">{product.nome}</span>
                       <span className=""> R$ {product.preco},00 </span>
                     </Card.Text>
                     <div className="d-flex">
-                      <button className="mx-1 border-sucess icon-border bg-white" key={i} onClick={() => props.clientOrder(product)}><i className="fas fa-plus"></i></button>
-                      <button className="mx-1 icon-border bg-white" key={j} onClick={() => props.clientOrder(product)}><i className="fas fa-minus"></i></button>
+                      <button className="mx-1 btn btn-success" key={i} onClick={() => props.addItem(product)}><i className="fas fa-plus"></i></button>
+                      <button className="mx-1 btn btn-danger" key={j} onClick={() => props.delItem(product)}><i className="fas fa-minus"></i></button>
                     </div>
                   </Card.Body>
                 </Card>

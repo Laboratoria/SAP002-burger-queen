@@ -18,13 +18,23 @@
   color: white
  }
 
- .dark-text{
+ .grey-text{
   font-family: 'Acme', sans-serif;
-  color:black
+  color:rgb(73, 80, 87)
+ }
+
+ .grey-text-reg{
+   font-family: 'Lato';
+   color: rgb(73, 80, 87);
+   font-weight: bold;
  }
 
  .bg-red{
   background-color: rgb(144, 0, 0);
+ }
+
+ .bg-grey{
+   background-color:  rgb(242, 244, 247)
  }
 
 .bg-white{
@@ -37,17 +47,7 @@
 
 .img-size{
   width: 100px;
-  height: 100px;
-  
-  }
-
-.icon-border{
-  border-radius: 50%;
-  border: 1px solid black;
-  padding: 8px 13px;
-  margin: 5px;
-  color: black
-
+  height: 100px;  
 }
 
 .text-small{
@@ -66,17 +66,15 @@
 
 .border-card{
   border: 2px solid rgb(73, 80, 87);
-
 }
 
 .input-border{
   border: none;
-  border-bottom: 2px solid gray;
-  color: gray
+  border-bottom: 2px solid rgb(73, 80, 87);
+  color: black
   
 }
 
 ::placeholder{
-  color: black
-  
+  color: rgb(73, 80, 87);  
 }
