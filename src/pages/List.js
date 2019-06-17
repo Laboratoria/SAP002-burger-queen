@@ -42,8 +42,8 @@ class List extends React.Component {
         const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
         function compare(a, b) {
-          let orderOne = parseFloat((a.hour).replace(':').replace(/[^\d.-]/g, ''));
-          let orderTwo = parseFloat((b.hour).replace(':').replace(/[^\d.-]/g, ''));
+          let orderOne = parseFloat((a.time).replace(':').replace(/[^\d.-]/g, ''));
+          let orderTwo = parseFloat((b.time).replace(':').replace(/[^\d.-]/g, ''));
           if (orderOne < orderTwo) {
             return -1;
           } if (orderOne > orderTwo) {
@@ -70,7 +70,7 @@ class List extends React.Component {
   }
 
   returnPage = () => {
-    this.props.history.push(`/${this.state.status}`)
+    this.props.history.push(`/${this.state.value}`)
   }
 
   render() {
@@ -89,13 +89,14 @@ class List extends React.Component {
           this.state.listOrder.map((item, index) => {
             if (item.status === "hall") {
               return (<div id={index} className="form cozinha" key={index}>
-                <p className="menu">NÚMERO DO PEDIDO: {item.number} </p>
-                <p className="menu">DATA: {[item.day, "/", item.month, "/", item.year]} - HORÁRIO: {item.hour} - TEMPO DE PREPARO: {item.readyHour}</p>
-                <p className="menu order">CLIENTE: {item.client}</p>
-                <p className="menu order">FUNCIONÁRIO(A): {item.employee}</p>
+                <p className="menu number">NÚMERO DO PEDIDO: {item.number} </p>
+                <p className="menu">DATA: {[item.day, "/", item.month, "/", item.year]} - HORÁRIO: {item.hour}</p>
+                <p className="menu">TEMPO DE PREPARO: {item.readyHour}</p>
+                <p className="menu">CLIENTE: {item.client}</p>
+                <p className="menu">FUNCIONÁRIO(A): {item.employee}</p>
                 <p className="menu">PEDIDO {item.order}</p>
                 {item.request.map((menu, index) => {
-                  return <p key={index} className="menu order">- {[menu.quantity, " unid: ", menu.name, " "]}</p>
+                  return <p key={index} className="menu">- {[menu.quantity, " unid: ", menu.name, " "]}</p>
                 })
                 }
               </div>)

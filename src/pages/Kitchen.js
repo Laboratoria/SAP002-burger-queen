@@ -79,9 +79,9 @@ class Kitchen extends React.Component {
     const date = new Date(null);
     date.setSeconds(this.hoursToSeconds(hourNow) - this.hoursToSeconds(hour))
     const secondsToHms = date.toISOString().substr(11, 8);
-    console.log(secondsToHms)
     database.collection("order").doc(id).update({
       status: "hall",
+      time: hourNow,
       readyHour: secondsToHms,
       number: index + 1
     });
@@ -110,16 +110,16 @@ class Kitchen extends React.Component {
           this.state.listOrder.map((item, index) => {
             if (item.status === "kitchen") {
               return (<div id={index} className="form cozinha" key={index}>
-                <p className="menu">NÚMERO DO PEDIDO: {index + 1} </p>
+                <p className="menu number">NÚMERO DO PEDIDO: {index + 1} </p>
                 <p className="menu">DATA: {[item.day, "/", item.month, "/", item.year]} - HORÁRIO: {item.hour} </p>
-                <p className="menu order">CLIENTE: {item.client}</p>
-                <p className="menu order">FUNCIONÁRIO(A): {item.employee}</p>
+                <p className="menu">CLIENTE: {item.client}</p>
+                <p className="menu">FUNCIONÁRIO(A): {item.employee}</p>
                 <p className="menu">PEDIDO {item.order}</p>
                 {item.request.map((menu, index) => {
-                  return <p key={index} className="menu order">- {[menu.quantity, " unid: ", menu.name, " "]}</p>
+                  return <p key={index} className="menu">- {[menu.quantity, " unid: ", menu.name, " "]}</p>
                 })
                 }
-                <Button key={index} className="ready button" text="Pedido Pronto" onClick={() => this.handleClick(item.id, index, item.hour)} />
+                <Button key={index} className="ready button" text="Concluído" onClick={() => this.handleClick(item.id, index, item.hour)} />
               </div>)
             }
           })

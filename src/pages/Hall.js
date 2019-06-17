@@ -16,6 +16,7 @@ class Hall extends React.Component {
     this.state = {
       number: "",
       readyHour: "",
+      time: "",
       hour: "",
       employee: "",
       client: "",
@@ -84,6 +85,7 @@ class Hall extends React.Component {
     const { employee, client, listItem } = this.state;
     const date = new Date();
     const object = {
+      time: "",
       number: "",
       readyHour: "",
       status: "kitchen",
