@@ -20,7 +20,7 @@ const product = [
     price: "7.00"
   },
   {
-    name: "Sanduíche Presunto/Queijo",
+    name: "Sanduíche Pres/Queijo",
     price: "10.00"
   },
   {
@@ -125,17 +125,21 @@ class Salao extends React.Component {
   }
 
   handleClick = () => {
+    const now = new Date
     const object = {
       client: this.state.client,
       employee: this.state.employee,
       listItem: this.state.listItem,
+      hour: now.getHours() + ":" + now.getMinutes()
     }
     database.collection('Pedidos').add(object)
+    .then(() => {this.setState({listItem:[]})})
     this.setState({
       listItem: this.state.listItem
     })
-    alert("Pedido enviado com sucesso!");
-    window.location.href = 'salao'
+    //alert("Pedido enviado com sucesso!")
+    //window.location.href = 'salao'
+    
   }
 
   clickBuy = (item) => {

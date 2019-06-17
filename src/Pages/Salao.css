@@ -18,7 +18,15 @@ div.column2{
   margin: 20px;
   width: 37%;
   border-radius: 7px;
+  padding: 2px;
 }
+
+div.down{
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
 .App-header {
   background-color: #dbf789;
 }
