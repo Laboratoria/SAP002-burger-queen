@@ -16,6 +16,20 @@
     padding: 0;
 }
 
+.salon-page{
+    width: 100%;
+    margin: 100px auto;
+    max-width: 768px;
+    min-height: 1024px;
+    position: relative;
+    background-image: url("../image/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    overflow: auto;
+}
+
 .container {
     width: 568px;
     margin: 90px auto;
@@ -50,4 +64,52 @@
 
 .salon-header button:hover {
     background-color: var(--color-alabama-crimson);
+}
+
+.waiter-info label {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: var(--color-zinnwaldite-brown);
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+}
+
+.filter-list {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 20px 0;
+    display: block;
+    font-size: 18px;
+    font-family: var(--font-quicksand);
+    border-radius: 25px;
+    border: none;
+    background: rgba(222, 124, 90, 0.4);
+    color: var(--color-zinnwaldite-brown);
+    font-weight: 200;
+    box-sizing: border-box;
+}
+
+.menu-list {
+    width: auto;
+    background-color: var(--color-rosewood);
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    margin: 8px 0;
+    border: none;
+    font-family: var(--font-quicksand);
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 25px;
+}
+
+.order-button {
+    margin-left: 30px;
+    border: none;
+    padding: 5px 20px;
+    background-color: var(--color-terra-cotta);
+    color: black;
+    text-transform: uppercase;
+    font-family: var(--font-quicksand);
+    font-weight: 700;
 }
