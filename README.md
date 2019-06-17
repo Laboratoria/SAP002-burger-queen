@@ -231,6 +231,61 @@ Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá
 
 ***
 
+## Imagens
+![img3](images/img3.png)
+![img2](images/img2.png)
+![img4](images/img4.png)
+![img](images/img.png)
+![img1](images/img1.png)
+
+## Road Map
+### v1.0.0
+#### Breaking changes
+#### History 1
+
+- Arquivo criado no Firebase
+- Configuração do firebase adicionada ao projeto
+-  Criar tipo de usuário (cozinha / salão), cadastrando com nome, email e senha e salvando automaticamente no database
+- Autenticação com email e senha pelo firebase
+- Components Input e Button criados na pasta components
+- Pasta pages criada com arquivo Javascript Home(tela de login), Salão e Cozinha
+- Redireciona para tela correta para cada tipo de usuário
+- Route direcionando para a página de cada tipo de usuário (salão/cozinha)
+- Link redirecionando para tela inicial (Home)
+- Import de ícone de logo de [fontawesome](https://fontawesome.com)
+
+### v2.0.0
+#### Breaking changes
+#### History 2
+
+- Redireciona para tela correta para cada tipo de usuário 
+- Arquivo JSON criado para o cardápio e trazido com import na página Salao 
+- Página Salao exibindo botões com menu
+- Components Input e Button import 
+- Traz o nome do usuário logado através do displayName salvo no database
+- Os botões selecionados exibem na tela o item escolhido com valor e quantidade exibindo no final a soma do valor total, aparecendo junto um botão de delete para cada item caso o cliente queira excluir
+- Input para colocar o nome do usuário e Button para criar o pedido depois de confirmada a escolha da compra
+- Função reset para zerar a tela depois que o botão Criar pedido foi clicado
+- Envia informações do pedido para uma pasta Order criada no database, informando o nome do cliente, o pedido escolhido(com nome, preço e quantidade), a hora em que o pedido foi feito, o empregado que realizou o pedido, e o status do pedido(kitchen) 
+- Link redirecionando para tela inicial (Home)
+
+### v3.0.0
+#### Breaking changes
+#### History 3
+
+- Página Kitchen exibindo pedidos realizados na ordem em que foram tirados salvos no database
+- Components Input e Button import
+- Traz o nome do usuário logado através do displayName salvo no database
+- Exibe o número do pedido, data e horário em que foi feito o pedido, nome do cliente, nome do funcionário que retirou o pedido e  a lista com os itens do pedido
+- Button para concluir o pedido e enviar para a lista de pedidos prontos mudando o status no database na pasta Order para hall, gravando a hora que foi concluído, o cálculo do tempo de preparo (cálculo funciona com diferença de um dia para outro - pedido feito antes da meia noite e pronto no dia seguinte calcula as horas corretas), e o número do pedido
+- Criação da página List que traz a lista de pedidos prontos na ordem que foram concluídos 
+- Link que redireciona para a página List que exibe a lista de pedidos prontos (tanto na página Kitchen como na Hall - antiga Salao)
+- Button redirecionando para tela inicial (Home), fazendo logout (tanto na página Kitchen quanto Hall)
+- Criação da tela Create separando a criação do usuário da página Home que faz apenas o login
+- CSS responsivo para tela de notebook e tablet
+
+
+
 ## 6. Dicas e leituras complementares
 
 ### Primeros passos

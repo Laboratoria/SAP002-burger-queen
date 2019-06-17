@@ -11,6 +11,9 @@
 
 @media only screen and (max-height:768px) and (max-width: 768px) {
   .input {
+    /* padding: 8px 4px;
+    font-size: 12px;
+    margin-bottom: 9px; */
     padding: 6px 3px 6px 3px;
     font-size: 7px;
     margin-bottom: 9px;

@@ -49,7 +49,8 @@
 .form {
   position: relative;
   background: #FFFFFF;
-  max-width: 360px;
+  width: 360px;
+  /* width: 360px; */
   margin: 0 auto 100px;
   padding: 36px;
   text-align: center;
@@ -154,6 +155,12 @@ body {
 
 @media only screen and (max-height:768px) and (max-width: 768px) {
   .form {
+    /* position: relative;
+    background: #fff;
+    width: 54vh;
+    margin: 0 auto .67em;
+    padding: 20px;
+    text-align: center; */
     position: relative;
     background: #FFFFFF;
     width: 65vh;
@@ -162,6 +169,7 @@ body {
     text-align: center;
   }
   .icon, .title {
+    /* font-size: 25px; */
     font-size: 12px;
   }
   .home {
@@ -170,6 +178,7 @@ body {
   .button, .button-log {
     padding: 8px;
     font-size: 40%;
+    /* font-size: 55%; */
   }
   .log {
     margin: 0;
@@ -179,15 +188,18 @@ body {
   }
   .menu-title {
     font-size: 10px;
+    /* font-size: 14px; */
     margin: 3px 0 3px 0;
   }
   .menu-order {
     font-size: 8px;
+    /* font-size: 12px; */
   }
   .button-cardap {
     max-width: 30vh;
     min-height: 12vw;
     font-size: 40%;
+    /* font-size: 70%; */
     margin: 1vh;
     text-align: center;
     padding: 1vh;
@@ -197,6 +209,7 @@ body {
   }
   .menu {
     font-size: 6px;
+    /* font-size: 12px; */
   }
   .link {
     font-size: 6px;

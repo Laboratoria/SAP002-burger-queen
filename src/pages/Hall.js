@@ -5,7 +5,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import withFirebaseAuth from "react-with-firebase-auth";
 import menu from "../menu.json"
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();

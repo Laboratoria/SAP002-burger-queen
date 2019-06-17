@@ -3,7 +3,6 @@ import "../App.css";
 import firebase from "../firebaseConfig";
 import Button from "../components/Button";
 import withFirebaseAuth from "react-with-firebase-auth";
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -64,6 +63,14 @@ class List extends React.Component {
       })
   }
 
+  handleClick = (id, index) => {
+    database.collection("order").doc(id).update({
+      status: "ok"
+    });
+    const item = document.getElementById(index);
+    item.parentNode.removeChild(item);
+  }
+
   signOutLogin = () => {
     firebaseAppAuth.signOut()
     this.props.history.push(`/`)
@@ -99,6 +106,7 @@ class List extends React.Component {
                   return <p key={index} className="menu">- {[menu.quantity, " unid: ", menu.name, " "]}</p>
                 })
                 }
+                <Button key={index} className="ready button" text="Entregue" onClick={() => this.handleClick(item.id, index)} />
               </div>)
             }
           })
