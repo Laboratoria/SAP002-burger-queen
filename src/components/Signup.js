@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Signup.css'
+import { Link } from 'react-router-dom'
 
 class Signup extends Component {
     render() {
@@ -27,7 +28,9 @@ class Signup extends Component {
                             <option value="salon">Salão</option>
                         </select>
                         <input type="submit" value="Cadastrar"></input>
-                        <p className="signup-link">Já Tem Cadastro? Entre Aqui</p>
+                        <div className="signup-link">
+                            <Link to="/login">Já Tem Cadastro? Entre Aqui</Link>
+                        </div>
                     </form>
                 </div>
             </main>

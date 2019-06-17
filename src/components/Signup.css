@@ -109,8 +109,9 @@ input[type=submit] {
 }
 
 .signup-link {
-    text-align: center;
-    margin: 40px 0;
+    margin: 30px 0;
+    text-decoration: none;
+    color: var(--color-zinnwaldite-brown);
 }
 
 
