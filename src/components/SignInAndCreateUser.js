@@ -31,14 +31,15 @@ class SignInAndCreateUser extends React.Component {
     this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(response => {
         const userId = response.user.uid;
-        database.collection("users").doc(userId).set({
+        database.collection("users")
+        .doc(userId)
+        .set({
           name: this.state.name,
           email: this.state.email,
           occupationArea: this.state.occupationArea
         });
       })
       .then(response => {
-        console.log(response)
         const userId = response.user.uid;
         this.props.history.push(`/${this.state.occupationArea}/${userId}`);
       })
@@ -52,7 +53,9 @@ class SignInAndCreateUser extends React.Component {
     this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(response => {
         const userId = response.user.uid;
-        database.collection("users").doc(userId).get()
+        database.collection("users")
+        .doc(userId)
+        .get()
           .then(response => {
             const data = response.data()
             this.props.history.push(`/${data.occupationArea}/${response.id}`);

@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Café Americano",
+        "price": 5.00,
+        "type": "breakfast"
+    },
+    {
+        "name": "Café com leite",
+        "price": 7.00,
+        "type": "breakfast"
+    },
+    {
+        "name": "Sanduíche de presunto e queijo",
+        "price": 10.00,
+        "type": "breakfast"
+    },
+    {
+        "name": "Suco de fruta natural",
+        "price": 7.00,
+        "type": "breakfast"
+    },
+    {
+        "name": "Hambúrguer Simples",
+        "price": 10.00,
+        "flavors": [
+            "Frango",
+            "Carne Bovina",
+            "Vegetariano"
+        ],
+        "extras": [
+            "Ovo",
+            "Queijo"
+        ],
+        "type": "lunch",
+        "burger": true
+    },
+    {
+        "name": "Hambúrguer Duplo",
+        "price": 15.00,
+        "flavors": [
+            "Frango",
+            "Carne Bovina",
+            "Vegetariano"
+        ],
+        "extras": [
+            "Ovo",
+            "Queijo"
+        ],
+        "type": "lunch",
+        "burger": true
+    },
+    {
+        "name": "Batata frita",
+        "price": 5.00,
+        "type": "lunch"
+    },
+    {
+        "name": "Anéis de cebola",
+        "price": 5.00,
+        "type": "lunch"
+    },
+    {
+        "name": "Água 500ml",
+        "price": 5.00,
+        "type": "lunch"
+    },
+    {
+        "name": "Água 750ml",
+        "price": 7.00,
+        "type": "lunch"
+    },
+    {
+        "name": "Bebida gaseificada 500ml",
+        "price": 7.00,
+        "type": "lunch"
+    },
+    {
+        "name": "Bebida gaseificada 750ml",
+        "price": 10.00,
+        "type": "lunch"
+    }
+]

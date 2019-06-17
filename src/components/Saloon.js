@@ -1,110 +1,112 @@
 import React from 'react';
-import Button from './Button';
+import ButtonConfirm from './Button';
 import './Saloon.css';
+import products from './Menu.json'
 import logoBurgerQueen from '../assets/logo-burger-queen.png';
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle, faPlusCircle, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Form, Row, Col, Container, ListGroup, Tabs, Tab, } from 'react-bootstrap';
+import { Form, Row, Col, Container, ListGroup, Tabs, Tab, Button } from 'react-bootstrap';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-const products = [
-  {
-    name: "Café Americano",
-    price: 5.00,
-    type: "breakfast"
-  },
-  {
-    name: "Café com leite",
-    price: 7.00,
-    type: "breakfast"
-  },
-  {
-    name: "Sanduíche de presunto e queijo",
-    price: 10.00,
-    type: "breakfast"
-  },
-  {
-    name: "Suco de fruta natural",
-    price: 7.00,
-    type: "breakfast"
-  },
-  {
-    name: "Hambúrguer simples",
-    price: 10.00,
-    type: "lunch"
-  },
-  {
-    name: "Hambúrguer duplo",
-    price: 15.00,
-    type: "lunch"
-  },
-  {
-    name: "Carne Bovina",
-    price: 0,
-    type: "lunch"
-  },
-  {
-    name: "Frango",
-    price: 0,
-    type: "lunch"
-  },
-  {
-    name: "Vegetariano",
-    price: 0,
-    type: "lunch"
-  },
-  {
-    name: "Ovo",
-    price: 1.00,
-    type: "lunch"
-  },
-  {
-    name: "Queijo",
-    price: 1.00,
-    type: "lunch"
-  },
-  {
-    name: "Batata frita",
-    price: 5.00,
-    type: "lunch"
-  },
-  {
-    name: "Anéis de cebola",
-    price: 5.00,
-    type: "lunch"
-  },
-  {
-    name: "Água 500ml",
-    price: 5.00,
-    type: "lunch"
-  },
-  {
-    name: "Água 750ml",
-    price: 7.00,
-    type: "lunch"
-  },
-  {
-    name: "Bebida gaseificada 500ml",
-    price: 7.00,
-    type: "lunch"
-  },
-  {
-    name: "Bebida gaseificada 750ml",
-    price: 10.00,
-    type: "lunch"
-  }
-];
+// const products = [
+//   {
+//     name: "Café Americano",
+//     price: 5.00,
+//     type: "breakfast"
+//   },
+//   {
+//     name: "Café com leite",
+//     price: 7.00,
+//     type: "breakfast"
+//   },
+//   {
+//     name: "Sanduíche de presunto e queijo",
+//     price: 10.00,
+//     type: "breakfast"
+//   },
+//   {
+//     name: "Suco de fruta natural",
+//     price: 7.00,
+//     type: "breakfast"
+//   },
+//   {
+//     name: "Hambúrguer simples",
+//     price: 10.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Hambúrguer duplo",
+//     price: 15.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Carne Bovina",
+//     price: 0,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Frango",
+//     price: 0,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Vegetariano",
+//     price: 0,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Ovo",
+//     price: 1.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Queijo",
+//     price: 1.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Batata frita",
+//     price: 5.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Anéis de cebola",
+//     price: 5.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Água 500ml",
+//     price: 5.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Água 750ml",
+//     price: 7.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Bebida gaseificada 500ml",
+//     price: 7.00,
+//     type: "lunch"
+//   },
+//   {
+//     name: "Bebida gaseificada 750ml",
+//     price: 10.00,
+//     type: "lunch"
+//   }
+// ];
 
 class Saloon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       buy: [],
-      name: ""
+      name: "",
+      client: ""
     };
   }
 
@@ -164,6 +166,29 @@ class Saloon extends React.Component {
     }
   }
 
+  confirmBuy = () => {
+    const object = {
+      items: this.state.buy,
+      client: this.state.client
+    }
+    database.collection('request').add(object)
+    // this.setState({
+    //   listBuy: this.state.buy.concat(object)
+
+    // })
+    //   .then(response => {
+    //     const userId = response.user.uid;
+    //     this.props.history.push(`/${this.state.occupationArea}/${userId}`);
+    //   })
+  }
+
+  saveClient = (event, element) => {
+    const newState = this.state;
+    console.log(newState)
+    newState[element] = event.target.value
+    this.setState(newState);
+  }
+
   render(props) {
     const total = this.state.buy.reduce((acc, curr) => {
       return acc + (curr.quantity * curr.price)
@@ -179,9 +204,17 @@ class Saloon extends React.Component {
               </div>
               <div className="client-name-input">
                 <Form>
-                  <Form.Group as={Row} className="form-client-name" controlId="formHorizontalName">
-                    <Form.Control type="text" placeholder="Nome do Cliente" />
-                  </Form.Group>
+                  <Row>
+                    <Col sm={8}>
+                      <Form.Group as={Col} className="form-client-name" controlId="formHorizontalName">
+                        <Form.Control type="text" placeholder="Nome do Cliente" value={this.state.client}
+                          onChange={(event) => this.saveClient(event, "client")} />
+                      </Form.Group>
+                    </Col>
+                    <Col sm={4} className="">
+                      <Button variant="success" className="btn-client-name" onClick={this.saveClient}>Salvar</Button>
+                    </Col>
+                  </Row>
                 </Form>
               </div>
               <div className="div-user-name">
@@ -218,7 +251,7 @@ class Saloon extends React.Component {
                                         /> {product.name}</ListGroup.Item>
                                     </Col>
                                     <Col sm={4}>
-                                      <ListGroup.Item>{product.price}</ListGroup.Item>
+                                      <ListGroup.Item> {product.price}</ListGroup.Item>
                                     </Col>
                                   </Row>
                                 </ListGroup>
@@ -242,7 +275,7 @@ class Saloon extends React.Component {
                       <div className="return-item">
                         {
                           products.map((product, index) => {
-                            if (product.type === "lunch") {
+                            if (product.type === "lunch" && product.burger !== true) {
                               return <ListGroup>
                                 <Row>
                                   <Col sm={8}>
@@ -250,7 +283,28 @@ class Saloon extends React.Component {
                                       <FontAwesomeIcon
                                         icon={faPlusCircle}
                                         onClick={() => this.productAdd(product)}
-                                      /> {product.name}</ListGroup.Item>
+                                      /> {product.name}
+                                    </ListGroup.Item>
+                                  </Col>
+                                  <Col sm={4}>
+                                    <ListGroup.Item>{product.price}</ListGroup.Item>
+                                  </Col>
+                                </Row>
+                              </ListGroup>
+                            } else if (product.type === "lunch" && product.burger === true) {
+                              return <ListGroup>
+                                <Row>
+                                  <Col sm={8}>
+                                    <ListGroup.Item> {product.name}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item ><FontAwesomeIcon
+                                      icon={faPlusCircle}
+                                      onClick={() => this.productAdd(product)}
+                                    />{product.flavors}</ListGroup.Item>
+                                    <ListGroup.Item ><FontAwesomeIcon
+                                      icon={faPlusCircle}
+                                      onClick={() => this.productAdd(product)}
+                                    />{product.extras}</ListGroup.Item>
                                   </Col>
                                   <Col sm={4}>
                                     <ListGroup.Item>{product.price}</ListGroup.Item>
@@ -267,7 +321,7 @@ class Saloon extends React.Component {
               </div>
               <div className="list-itens">
                 <ListGroup>
-                  <ListGroup.Item className="item-checked" disabled>Pedido(s)</ListGroup.Item>
+                  <ListGroup.Item className="header-item-checked" disabled>Pedido(s)</ListGroup.Item>
                 </ListGroup>
                 {
                   this.state.buy.map((product, index) => {
@@ -275,7 +329,7 @@ class Saloon extends React.Component {
                       <ListGroup.Item key={index} ><FontAwesomeIcon
                         icon={faMinusCircle}
                         onClick={() => this.productDelete(product)}
-                      />{product.quantity} - {product.name} - {product.price * product.quantity}</ListGroup.Item>
+                      />{product.quantity} - {product.name} - {product.flavors} - {product.extras} - {product.price * product.quantity}</ListGroup.Item>
                     </ListGroup>
                   })
                 }
@@ -283,8 +337,11 @@ class Saloon extends React.Component {
                   <ListGroup.Item className="item-checked" disabled>Total a Pagar</ListGroup.Item>
                   <ListGroup.Item className="item-checked">R$ {total}</ListGroup.Item>
                 </ListGroup>
+                <ListGroup>
+                  <ListGroup.Item className="item-checked" disabled>Nome do(a) Cliente: {this.state.client}</ListGroup.Item>
+                </ListGroup>
                 <Col xs={6} md={6} lg={12} className="justify-content-md-center btn-col">
-                  <Button text="Confirmar Pedido(s)" />
+                  <ButtonConfirm text="Confirmar Pedido(s)" onClick={this.confirmBuy} />
                 </Col>
               </div>
             </div>

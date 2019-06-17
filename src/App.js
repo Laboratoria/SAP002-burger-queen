@@ -15,7 +15,7 @@ function App() {
           <Route path="/" exact component={SignInAndCreateUser} />
           <Route path="/saloon/:id" component={Saloon} />
           {/* <Route path="/saloon" component={RedirectTo} /> */}
-          <Route path="/kitchen" component={Kitchen} />
+          <Route path="/kitchen/:id" component={Kitchen} />
         </header>
       </div>
     </Router>
