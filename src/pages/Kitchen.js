@@ -14,30 +14,46 @@ class Kitchen extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-      listItem: [],
+      listItem: []
+      // waiter: ''
       };
     }
 
-  componentDidMount() {
-    database.collection('orders').get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => ({...doc.data()}));
-        this.setState({ listItem: data });
-        console.log(data)
+    componentDidMount() {
+      database.collection('orders').get()
+        .then((querySnapshot) => {
+          const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+          this.setState({ listItem: data });
+          console.log(data)
+          console.log(this.state.listItem)
         });
+    }
 
-      }
-
-      render() {
-
-    
-      return <React.Fragment>
-            <h1>{
-            
-            }</h1> 
-        </React.Fragment>
-
-      }
+    render() {
+      const orders = this.state.listItem;
+      return (
+          <div>
+            {orders.map((orders, index) => {
+             return (<div key={index}><p>Cliente: {orders.customerName}</p> <p>Preço Total: {orders.totalPrice}</p>
+             <p>Garçom: {orders.waiter}</p>
+             {
+                        orders.orderedItens.map((order, index) => {
+                          return (
+                            <tbody key={'tr' + index}>
+                              <tr>
+                                <td>{order.quantity} </td>
+                                <td>{order.name}</td>
+                              </tr>
+                            </tbody>
+                          )
+                        })
+                      }
+             </div>)
+            })}
+          </div>
+      );
+  }
   
 }
 
