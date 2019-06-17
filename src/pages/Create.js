@@ -38,6 +38,7 @@ class Create extends React.Component {
           displayName,
           value
         })
+        this.props.history.push(`/${value}`);
       }).catch((error) => {
         this.setState({
           error: error.message
@@ -58,7 +59,7 @@ class Create extends React.Component {
               <option value="Hall">Salão</option>
             </select>
             <p className="error">{this.state.error}</p>
-            <Link className="button-log log login" to={`/` + this.state.value} onClick={() => this.createUser()}>Criar Usuário</Link>
+            <Button className="button login" onClick={() => this.createUser()} text="Criar Usuário" />
             <Link className="link" to="/">Já possui cadastro? Faça seu Login</Link>
           </div>
         </div>

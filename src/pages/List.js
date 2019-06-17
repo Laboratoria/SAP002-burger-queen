@@ -8,12 +8,12 @@ import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class Kitchen extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      readyHour: "",
       employee: "",
+      value: "",
       listOrder: [],
       request: []
     };
@@ -26,8 +26,10 @@ class Kitchen extends React.Component {
         querySnapshot.forEach((doc) => {
           if (user != null && user.uid === doc.id) {
             const name = doc.data().displayName;
+            const local = doc.data().value;
             this.setState({
-              employee: name
+              employee: name,
+              value: local
             })
           }
         })
@@ -62,56 +64,33 @@ class Kitchen extends React.Component {
       })
   }
 
-  newHour = () => {
-    function hour(dig) {
-      return (dig < 10) ? '0' + dig : dig;
-    }
-    const date = new Date();
-    return [date.getHours(), date.getMinutes(), date.getSeconds()].map(hour).join(":");
-  }
-
-  hoursToSeconds = (hour) => {
-    return (hour[0] + hour[1]) * 3600 + (hour[3] + hour[4]) * 60 + (hour[6] + hour[7]) * 1;
-  }
-
-  handleClick = (id, index, hour) => {
-    const hourNow = this.newHour();
-    const date = new Date(null);
-    date.setSeconds(this.hoursToSeconds(hourNow) - this.hoursToSeconds(hour))
-    const secondsToHms = date.toISOString().substr(11, 8);
-    console.log(secondsToHms)
-    database.collection("order").doc(id).update({
-      status: "hall",
-      readyHour: secondsToHms,
-      number: index + 1
-    });
-    const item = document.getElementById(index);
-    item.parentNode.removeChild(item);
-  }
-
   signOutLogin = () => {
     firebaseAppAuth.signOut()
     this.props.history.push(`/`)
+  }
+
+  returnPage = () => {
+    this.props.history.push(`/${this.state.status}`)
   }
 
   render() {
     return (
       <div className="div-page" >
         <div className="login-name">
-          <p className="title">Cozinha - <span className="name">Funcionário(a): {this.state.employee}</span></p>
+          <p className="title">Pedidos Prontos - <span className="name">Funcionário(a): {this.state.employee}</span></p>
           <div className="log">
             <div className="request">
               <Button className="button-log log" text="Sair" onClick={this.signOutLogin} />
             </div>
-            <Link className="button-log log" to="/List">Lista de Pedidos Prontos</Link>
+            <Button className="button-log log" text="Voltar" onClick={this.returnPage} />
           </div>
         </div>
         {
           this.state.listOrder.map((item, index) => {
-            if (item.status === "kitchen") {
+            if (item.status === "hall") {
               return (<div id={index} className="form cozinha" key={index}>
-                <p className="menu">NÚMERO DO PEDIDO: {index + 1} </p>
-                <p className="menu">DATA: {[item.day, "/", item.month, "/", item.year]} - HORÁRIO: {item.hour} </p>
+                <p className="menu">NÚMERO DO PEDIDO: {item.number} </p>
+                <p className="menu">DATA: {[item.day, "/", item.month, "/", item.year]} - HORÁRIO: {item.hour} - TEMPO DE PREPARO: {item.readyHour}</p>
                 <p className="menu order">CLIENTE: {item.client}</p>
                 <p className="menu order">FUNCIONÁRIO(A): {item.employee}</p>
                 <p className="menu">PEDIDO {item.order}</p>
@@ -119,7 +98,6 @@ class Kitchen extends React.Component {
                   return <p key={index} className="menu order">- {[menu.quantity, " unid: ", menu.name, " "]}</p>
                 })
                 }
-                <Button key={index} className="ready button" text="Pedido Pronto" onClick={() => this.handleClick(item.id, index, item.hour)} />
               </div>)
             }
           })
@@ -129,4 +107,4 @@ class Kitchen extends React.Component {
   }
 }
 
-export default withFirebaseAuth({ firebaseAppAuth, })(Kitchen);
+export default withFirebaseAuth({ firebaseAppAuth, })(List);

@@ -14,6 +14,7 @@ class Hall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      number: "",
       readyHour: "",
       hour: "",
       employee: "",
@@ -83,6 +84,7 @@ class Hall extends React.Component {
     const { employee, client, listItem } = this.state;
     const date = new Date();
     const object = {
+      number: "",
       readyHour: "",
       status: "kitchen",
       hour: this.newHour(),
@@ -124,6 +126,7 @@ class Hall extends React.Component {
 
   signOutLogin = () => {
     firebaseAppAuth.signOut()
+    this.props.history.push(`/`)
   }
 
   render() {
@@ -137,8 +140,9 @@ class Hall extends React.Component {
           <p className="title">Salão - <span className="name">Funcionário(a): {this.state.employee}</span></p>
           <div className="log">
             <div className="request">
-              <Link className="button-log log" to="/" onClick={() => this.signOutLogin()}>Sair</Link>
+              <Button className="button-log log" text="Sair" onClick={this.signOutLogin} />
             </div>
+            <Link className="button-log log" to="/List">Lista de Pedidos Prontos</Link>
           </div>
         </div>
         <p className="menu-title">Café da manhã</p>
