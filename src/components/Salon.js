@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import firebase from '../firebaseConfig'
 import withFirebaseAuth from 'react-with-firebase-auth'
+import { Link } from 'react-router-dom'
 import './Salon.css'
 
 const firebaseAppAuth = firebase.auth()
@@ -86,7 +87,7 @@ state = {
     return (
     <div>
         <Filter handleFilter={this.handleFilter} />
-        {list.map((option) => <div className="menu"><p className="menu-list">{option}<button className="order-button" onClick={this.openModal} style={{ cursor: "pointer" }}>Pedir</button></p></div>)}
+        {list.map((option) => <div className="menu"><p className="menu-list">{option}<Link to={{pathname: "/order", state: { modal: true },}} className="order-button">Pedir</Link></p></div>)}
     </div>
     );
     };
@@ -98,6 +99,25 @@ const Filter = (props) => (
         }}/>
 </div>
 );
+
+const Order = ({ location }) => {
+const { state = {} } = location;
+const { modal } = state;
+    return (
+    <div className={modal ? "modal" : undefined}>
+        {modal && <Link to="/salon">Close</Link>}
+        <div>
+        <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+        </ul>
+        </div>
+    </div>
+    );
+};
 
 
 
