@@ -6,12 +6,13 @@ import Kitchen from './components/Kitchen'
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 import firebase from './firebaseConfig'
 
+
 class App extends React.Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <Route path="/" exact component={Login}/>
+          <Route path="/" exact component={Salon}/>
           <Route path="/signup" component={Signup}/>
           <Route path="/kitchen" component={Kitchen}/>
           <Route path="/salon" component={Salon}/>
