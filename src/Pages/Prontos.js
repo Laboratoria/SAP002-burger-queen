@@ -10,7 +10,7 @@ const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
 
-class Cozinha extends React.Component {
+class Prontos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,35 +24,20 @@ class Cozinha extends React.Component {
     database.collection('Pedidos').get()
       .then((querySnapshot) => {
         const doc = querySnapshot.docs.map(doc => {
-          if (!doc.data().finishedTime) {
+          if(doc.data().finishedTime) {
             return {
               data: doc.data(),
               id: doc.id
             }
           }
-        })
-        .filter(item => item);
-        console.log(doc)
-        const compare = (a, b) => {
-          let firstOrder = parseFloat((a.data.hour).replace(':').replace(/[^\d.-]/g, ''));
-          let secondOrder = parseFloat((b.data.hour).replace(':').replace(/[^\d.-]/g, ''));
-          if (firstOrder < secondOrder) {
-            return -1;
-          } else if (firstOrder > secondOrder) {
-            return 1;
-          } else {
-            return 0;
-          }
-        }
-        
-        this.setState({ listItem: doc.sort(compare) });
-        console.log(doc.sort(compare))
+        }).filter(item => item);
+        this.setState({ listItem: doc });
       });
   }
 
   handleClick = (id) => {
     const now = new Date();
-    const hour = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    const hour = now.getHours() + ":" + now.getMinutes()
     database.collection('Pedidos').doc(id).update({
       finishedTime: hour
     })
@@ -64,7 +49,7 @@ class Cozinha extends React.Component {
       <div>
         <Link to="/">Sair</Link>
         <hr />
-        <h3><b>COZINHA - Lista de Pedidos do Dia</b></h3>
+        <h3><b>SALÃO - Lista de Pedidos Prontos</b></h3>
         {this.state.listItem.map((item, index) => {
           return <div className="column3" key={index}>
             <p><b>Hora: </b>{item.data.hour}</p>
@@ -73,7 +58,7 @@ class Cozinha extends React.Component {
               return <p key={index}>{item.name} - {item.quantity}</p>
             })}
             </div>
-            <Button text="Pedido Pronto" onClick={() => this.handleClick(item.id)}></Button>
+            
           </div>
         })}
       </div>
@@ -84,4 +69,4 @@ class Cozinha extends React.Component {
 
 export default withFirebaseAuth({
   firebaseAppAuth,
-})(Cozinha);
+})(Prontos);

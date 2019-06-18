@@ -125,12 +125,16 @@ class Salao extends React.Component {
   }
 
   handleClick = () => {
+     function pattern(dig){
+      return (dig < 10) ? '0' + dig: dig;
+    }
     const now = new Date
     const object = {
       client: this.state.client,
       employee: this.state.employee,
       listItem: this.state.listItem,
-      hour: now.getHours() + ":" + now.getMinutes()
+      hour: pattern(now.getHours()) + ":" + pattern(now.getMinutes()) + ":" + pattern(now.getSeconds())
+
     }
     database.collection('Pedidos').add(object)
     .then(() => {this.setState({listItem:[]})})

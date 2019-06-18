@@ -21,6 +21,13 @@ div.column2{
   padding: 2px;
 }
 
+div.column3{
+  background-color: GhostWhite;
+  margin: 30px;
+  border-radius: 7px;
+  padding: 2px;
+}
+
 div.down{
   display: flex; 
   align-items: center;
