@@ -1,11 +1,13 @@
 import React from 'react';
+import { Button } from 'reactstrap';
+import Icon from './Icon';
 
-function Button(props) {
+function Botao(props) {
   return (
-    <button onClick={props.onClick}>
-      {props.text}
-    </button>
+    <Button color={props.color} className={props.className} onClick={props.onClick}>
+      <Icon name={props.icon}></Icon> {props.text}
+    </Button>
   );
 }
 
-export default Button;
+export default Botao;

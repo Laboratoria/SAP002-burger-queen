@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container, Row, Col, Card, CardBody, Form, FormGroup } from 'reactstrap';
+import Login from '../layouts/Login';
+import Footer from '../layouts/FooterLink';
+import Button from '../components/Button';
+import Input from '../components/Input';
+import Radio from '../components/Radio';
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import login from '../img/login.jpg';
-import { Container, Row, Col, Card, CardImg, CardText, CardBody, CardTitle, CardLink, Button, Form, FormGroup, Input, Badge } from 'reactstrap';
 
 const database = firebase.firestore();
 const firebaseAppAuth = firebase.auth();
@@ -62,57 +65,31 @@ class SignUp extends React.Component {
     return (
       <Container className='d-flex justify-content-center' fluid>
         <Card className='card' style={{ width: '35rem' }}>
-            <CardImg variant='top' src={login} className='img-responsive' />
-            <CardBody>
-              <CardTitle className='d-flex justify-content-center'>
-                <h1>Cadastro</h1>
-              </CardTitle>
-              <CardText>
-                <Form>
-                  <FormGroup className='input-group form-group'>
-                    <div className='input-group-prepend'>
-                      <span className='input-group-text'><i className='fas fa-user'></i></span>
-                    </div>
-                    <Input type='text' className='form-control' value={this.state.name}
-                      placeholder='Digite seu nome' onChange={this.handleChangeName} />
-                  </FormGroup>
-                  <FormGroup className='input-group form-group'>
-                    <div className='input-group-prepend'>
-                      <span className='input-group-text'><i className='fas fa-at'></i></span>
-                    </div>
-                    <Input type='email' className='form-control' value={this.state.email}
-                      placeholder='Digite seu e-mail' onChange={this.handleChangeEmail} />
-                  </FormGroup>
-                  <FormGroup className='input-group form-group'>
-                    <div className='input-group-prepend'>
-                      <span className='input-group-text'><i className='fas fa-key'></i></span>
-                    </div>
-                    <Input type='password' className='form-control' value={this.state.senha}
-                      placeholder='Digite sua senha' onChange={this.handleChangePassword} />
-                  </FormGroup>
-                  <FormGroup>
-                    <Container>
-                      <Row>
-                        <Col><h5>Usuário:</h5></Col>
-                        <Col>
-                          <Input type='radio' name='user' value='cozinha' onChange={this.handleChangeType} /> Cozinha
-			    	    	    </Col>
-                        <Col>
-                          <Input type='radio' name='user' value='salon' onChange={this.handleChangeType} /> Salão
-			    	    	    </Col>
-                      </Row>
-                    </Container>
-                  </FormGroup>
-                  <FormGroup className='d-flex justify-content-center'>
-                    <Button onClick={this.createUser} color='warning'><i className="fas fa-user-plus"></i> Cadastrar</Button>
-                  </FormGroup>
-                </Form>
-              </CardText>
-              <CardLink>
-                <p className='d-flex justify-content-center'>Já tem acesso?<Link to='/'>Entrar</Link></p>
-              </CardLink>
-            </CardBody>
-          </Card>
+          <Login title='Cadastro' />
+          <CardBody>
+            <Form>
+              <Input type='text' icon='fas fa-user' value={this.state.name}
+                placeholder='Digite seu nome' onChange={this.handleChangeName} />
+              <Input type='email' icon='fas fa-at' value={this.state.email}
+                placeholder='Digite seu e-mail' onChange={this.handleChangeEmail} />
+              <Input type='password' icon='fas fa-key' value={this.state.senha}
+                placeholder='Digite sua senha' onChange={this.handleChangePassword} />
+              <FormGroup>
+                <Container>
+                  <Row>
+                    <Col><h5>Usuário:</h5></Col>
+                    <Radio text='Cozinha' name='user' value='kitchen' onChange={this.handleChangeType} />
+                    <Radio text='Salão' name='user' value='salon' onChange={this.handleChangeType} />
+                  </Row>
+                </Container>
+              </FormGroup>
+              <FormGroup className='d-flex justify-content-center'>
+                <Button text='Cadastrar' color='warning' icon='fas fa-user-plus' onClick={this.createUser} />
+              </FormGroup>
+            </Form>
+            <Footer msg='Já tem acesso?' link='/' text='Entrar' />
+          </CardBody>
+        </Card>
       </Container>
     );
   }
