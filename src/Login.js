@@ -1,7 +1,7 @@
 import React from 'react'
-import firebase from '../firebaseConfig'
-import LoginComponent from "../components/LoginComponent"
-import SignUpComponent from "../components/SignUpComponent"
+import firebase from './firebaseConfig'
+import LoginComponent from "./components/LoginComponent"
+import SignUpComponent from "./components/SignUpComponent"
 import { Row, Col, Button } from 'react-bootstrap'
 
 

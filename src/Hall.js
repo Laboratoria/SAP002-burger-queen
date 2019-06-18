@@ -1,8 +1,8 @@
 import React from "react"
-import firebase from '../firebaseConfig'
-import { Button } from 'react-bootstrap'
+import firebase from './firebaseConfig'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
-class Kitchen extends React.Component {
+class Hall extends React.Component {
   constructor() {
     super();
     this.logout = this.logout.bind(this);
@@ -15,19 +15,26 @@ class Kitchen extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
+      <Container>
+  <Row>
+    <Col>1 of 2</Col>
+    <Col>2 of 2</Col>
+  </Row>
         <Button
           variant="primary"
           type="submit"
           className="mt-3"
           onClick={this.logout}
           block>
-          cozinha
+          salão
 </Button>
-      </div>
+</Container>
+      </>
 
     )
   }
 }
 
-export default Kitchen
+
+export default Hall

@@ -1,8 +1,8 @@
 import React from "react"
 import firebase from './firebaseConfig'
-import Login from "./components/Login"
-import Hall from "./components/Hall"
-import Kitchen from "./components/Kitchen"
+import Login from "./Login"
+import Hall from "./Hall"
+import Kitchen from "./Kitchen"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
