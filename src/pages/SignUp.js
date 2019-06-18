@@ -104,7 +104,7 @@ class SignUp extends React.Component {
                     </Container>
                   </FormGroup>
                   <FormGroup className='d-flex justify-content-center'>
-                    <Button onClick={this.createUser} color='warning'><i class="fas fa-user-plus"></i> Cadastrar</Button>
+                    <Button onClick={this.createUser} color='warning'><i className="fas fa-user-plus"></i> Cadastrar</Button>
                   </FormGroup>
                 </Form>
               </CardText>

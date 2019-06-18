@@ -66,7 +66,7 @@ class Home extends React.Component {
                     placeholder='Digite sua senha' onChange={this.handleChangePassword} />
                 </FormGroup>
                 <FormGroup className='d-flex justify-content-center'>
-                  <Button onClick={this.signIn} color='warning'><i class="fas fa-sign-in-alt"></i> Entrar</Button>
+                  <Button onClick={this.signIn} color='warning'><i class='fas fa-sign-in-alt'></i> Entrar</Button>
                 </FormGroup>
               </Form>
             </CardText>
