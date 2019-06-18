@@ -7,7 +7,7 @@ import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle, faPlusCircle, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Form, Row, Col, Container, ListGroup, Tabs, Tab, Button } from 'react-bootstrap';
+import { Form, Row, Col, Container, ListGroup, Tabs, Tab } from 'react-bootstrap';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -81,7 +81,8 @@ class Saloon extends React.Component {
   confirmBuy = () => {
     const object = {
       items: this.state.buy,
-      client: this.state.client
+      client: this.state.client,
+      created: Date.now()
     }
     database.collection("request").add(object)
     this.setState({
@@ -246,13 +247,6 @@ class Saloon extends React.Component {
                           onClick={() => this.productDelete(product)}
                         />{product.quantity} - {product.name} - {product.price * product.quantity}</ListGroup.Item>
                       </ListGroup>
-                      // } else if (product.burger === true) {
-                      //   return <ListGroup>
-                      //     <ListGroup.Item key={index} ><FontAwesomeIcon
-                      //       icon={faMinusCircle}
-                      //       onClick={() => this.productDelete(product)}
-                      //     />{product.quantity} - {product.flavors} - {product.price * product.quantity}</ListGroup.Item>
-                      //   </ListGroup>
                     }
                   })
                 }

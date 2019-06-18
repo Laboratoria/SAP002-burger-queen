@@ -1,13 +1,13 @@
 import React from 'react';
 import ButtonConfirm from './Button';
-import products from './Menu.json';
+import timer from './Timer';
 import './Kitchen.css';
 import logoBurgerQueen from '../assets/logo-burger-queen.png';
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Row, Col, Container, ListGroup, Card } from 'react-bootstrap';
+import { Col, Container, ListGroup, Card, Row } from 'react-bootstrap';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -18,8 +18,15 @@ class Kitchen extends React.Component {
     this.state = {
       name: "",
       client: "",
-      request: []
+      request: [],
+      seconds: 0
     };
+  }
+
+  tick() {
+    this.setState(state => ({
+      seconds: state.seconds + 1
+    }));
   }
 
   componentDidMount() {
@@ -39,8 +46,20 @@ class Kitchen extends React.Component {
       .then((querySnapshot) => {
         const data = querySnapshot.docs.map(doc => doc.data());
         console.log(data)
-        this.setState({ request: data });
+        this.setState({
+          request: data,
+          seconds: 0
+        });
       })
+      .then(() => {
+        this.interval = setInterval(() => this.tick(), 1000);
+      });
+
+    // this.interval = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   // componentDidMount(snapshot) {
@@ -54,25 +73,6 @@ class Kitchen extends React.Component {
   //       const data = querySnapshot.docs.map(doc => doc.data());
   //     }
   // }
-
-
-  // request = () => {
-  //   database.collection("request")
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       const data = querySnapshot.docs.map(doc => doc.data());
-  //       console.log(data)
-  //       this.setState({ request: data });
-  //     });
-  // database.collection("request").get()
-  //   .then(response => {
-  //     const order = response.data();
-  //     console.log(order)
-  //     this.setState({
-  //       order,
-  //     })
-  //   })
-
 
   render(props) {
     const requestList = this.state.request;
@@ -91,7 +91,7 @@ class Kitchen extends React.Component {
             <p className="name-user">{this.state.name}</p>
           </div>
         </div>
-        <div>
+        <div className="list-items-kitchen">
           {
             requestList.map((cardItems, index) => {
               return <Card className="card-border" border="danger" key={index} style={{ width: '30rem' }} >
@@ -105,7 +105,14 @@ class Kitchen extends React.Component {
                     })
                   }
                 </Card.Body>
-                <ButtonConfirm className="btn-confirm-kitchen" />
+                <Row>
+                  <Col sm={8} className="justify-content-md-center btn-confirm-kitchen">
+                    <ButtonConfirm className="justify-content-md-center" text="Feito" onClick={this.confirmDone} />
+                  </Col>
+                  <Col sm={4}>
+                    <p>{this.state.seconds}</p>
+                  </Col>
+                </Row>
               </Card>
             })
           }

@@ -35,6 +35,12 @@
   margin-top: 10px;
 }
 
+.list-items-kitchen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .text-align-center {
   text-align: center;
 }
@@ -46,6 +52,6 @@
   margin: 5px;
 }
 
-.btn-confirm-kitchen {
- 
-}
+/* .btn-confirm-kitchen {
+ margin-right: 10px;
+} */
