@@ -1,14 +1,27 @@
 body {
     background-color: #262B2F;
+    padding: 0;
+    margin: 0;
 }
 
 .card {
     background-color: #EAEAEA;
-    width: 30rem;
-    margin: 2%;
+    margin: 1rem 0rem 1rem 1rem;
 }
 
 .input-group-prepend span{
     background-color: #FFC312;
     color: #262B2F;
+}
+
+AccordionToggle{
+    color: #FFC312;
+}
+
+
+.btn-circle {
+    width: 20px;
+    height: 20px;
+    padding: 0.5px;
+    font-size: 12px;
 }
