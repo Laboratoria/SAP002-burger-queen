@@ -1,0 +1,18 @@
+.input {
+  outline: 0;
+  background: rgb(232, 240, 254);
+  min-width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px 7.5px 15px 7.5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+@media only screen and (max-height:768px) and (max-width: 768px) {
+  .input {
+    padding: 6px 3px 6px 3px;
+    font-size: 7px;
+    margin-bottom: 9px;
+  }
+}

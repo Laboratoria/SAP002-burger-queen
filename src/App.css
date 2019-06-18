@@ -1,33 +1,204 @@
 .App {
+  display: flex;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+  flex-direction: column;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: black;
+  min-height: 98vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.icon {
+  color: yellow;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.title {
+  font-size: 30px;
+  text-align: initial;
+}
+
+.home {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.request {
+  margin: 1vh;
+}
+
+.page {
+  min-width: 55vh;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.div-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  position: relative;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 36px;
+  text-align: center;
+}
+
+body {
+  background: yellow;
+  font-family: "Roboto", sans-serif;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.button {
+  min-width: 100%;
+  font-size: 80%;
+}
+
+.button, .button-log, .button-cardap {
+  text-transform: uppercase;
+  background: yellow;
+  border: 0;
+  padding: 12px;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.login-name {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 1vw;
+}
+
+.button-log {
+  font-size: 80%;
+}
+
+.button-cardap {
+  width: 150px;
+  height: 100%;
+  font-size: 80%;
+}
+
+.log {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1px;
+}
+
+.login {
+  margin-bottom: 3vh;
+  margin-top: 0;
+}
+
+.error {
+  color: black;
+}
+
+.name {
+  color: white;
+  font-size: 18px;
+}
+
+.menu {
+  color: black;
+  font-size: 20px;
+}
+
+.menu-title {
+  font-size: 18px;
+}
+
+.cozinha {
+  min-width: 60vw;
+}
+
+.number {
+  background-color: black;
+  color: white;
+  padding: 1vh;
+}
+
+.order {
+  text-align: left;
+}
+
+.ready {
+  padding: 3vh;
+  font-size: 20px;
+}
+
+.link {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  padding: 1vh;
+}
+
+@media only screen and (max-height:768px) and (max-width: 768px) {
+  .form {
+    position: relative;
+    background: #FFFFFF;
+    width: 65vh;
+    margin: 0px auto 0.67em;
+    padding: 12px;
+    text-align: center;
   }
-  to {
-    transform: rotate(360deg);
+  .icon, .title {
+    font-size: 12px;
+  }
+  .home {
+    align-items: flex-end;
+  }
+  .button, .button-log {
+    padding: 8px;
+    font-size: 40%;
+  }
+  .log {
+    margin: 0;
+  }
+  .name {
+    font-size: 10px;
+  }
+  .menu-title {
+    font-size: 10px;
+    margin: 3px 0 3px 0;
+  }
+  .menu-order {
+    font-size: 8px;
+  }
+  .button-cardap {
+    max-width: 30vh;
+    min-height: 12vw;
+    font-size: 40%;
+    margin: 1vh;
+    text-align: center;
+    padding: 1vh;
+  }
+  .page {
+    padding: 4% 0 0;
+  }
+  .menu {
+    font-size: 6px;
+  }
+  .link {
+    font-size: 6px;
   }
 }

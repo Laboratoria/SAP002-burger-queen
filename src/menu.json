@@ -1,0 +1,80 @@
+{
+  "menu": {
+    "breakfast": [
+      {
+        "name": "café com leite",
+        "price": 5
+      },
+      {
+        "name": "café americano",
+        "price": 7
+      },
+      {
+        "name": "sanduiche de presunto e queijo",
+        "price": 10
+      },
+      {
+        "name": "suco de fruta natural",
+        "price": 7
+      }
+    ],
+    "day": [
+      {
+        "name": "hamburguer bovino simples",
+        "price": 10
+      },
+      {
+        "name": "hamburguer bovino duplo",
+        "price": 15
+      },
+      {
+        "name": "hamburguer de frango simples",
+        "price": 10
+      },
+      {
+        "name": "hamburguer de frango duplo",
+        "price": 15
+      },
+      {
+        "name": "hamburguer vegetariano simples",
+        "price": 10
+      },
+      {
+        "name": "hamburguer vegetariano duplo",
+        "price": 15
+      },
+      {
+        "name": "adicional de queijo",
+        "price": 1
+      },
+      {
+        "name": "adicional de ovo",
+        "price": 1
+      },
+      {
+        "name": "batata frita",
+        "price": 5
+      },
+      {
+        "name": "anéis de cebola",
+        "price": 5
+      },
+      {
+        "name": "água 500ml",
+        "price": 5
+      },
+      {
+        "name": "água 750ml",
+        "price": 7
+      },
+      {
+        "name": "bebida gaseificada 500ml",
+        "price": 7
+      },
+      {
+        "name": "bebida gaseificada 750ml",
+        "price": 10
+      }
+    ]
+  }
+}
