@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <Route path="/" exact component={Salon}/>
+          <Route path="/" exact component={Login}/>
           <Route path="/signup" component={Signup}/>
           <Route path="/kitchen" component={Kitchen}/>
           <Route path="/salon" component={Salon}/>
