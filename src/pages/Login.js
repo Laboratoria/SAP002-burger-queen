@@ -8,6 +8,7 @@ import '../components/Components.css'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const firebaseAppAuth = firebase.auth();
+const database = firebase.firestore();
 
 class Login extends React.Component{
     constructor(props) {
@@ -24,10 +25,25 @@ class Login extends React.Component{
         this.setState(newState);
     }
 
+    async getUser(id) {
+        const doc = await database.collection("users").doc(id).get();
+        const user = doc.data();
+        return user;
+    }
+
     signIn = () => {
         this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-            this.props.history.push(`/${this.state.type}`)
+            const id = firebaseAppAuth.currentUser.uid;
+            this.getUser(id)
+            .then((data) => {
+                sessionStorage.setItem('user', id);
+                sessionStorage.setItem('name', data.name);
+                sessionStorage.setItem('type', data.type);
+            })
+
+
+            this.props.history.push(`/`)
         })
     }
     

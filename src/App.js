@@ -1,4 +1,5 @@
 import React from 'react';
+import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Saloon from './pages/Saloon'
@@ -12,13 +13,12 @@ class App extends React.Component {
     this.state = {};
   }
 
-  
-
   render() {
     return (
       <Router>
       <div className="App">
-        <Route path="/" exact component={Login} />
+        <Route path="/" exact component={Dashboard} />
+        <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
         <Route path="/saloon" exact component={Saloon} />
         <Route path="/kitchen" exact component={Kitchen} />
