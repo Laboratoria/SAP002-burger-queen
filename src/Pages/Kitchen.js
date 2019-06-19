@@ -71,6 +71,7 @@ class Kitchen extends React.Component {
           return <div className="column3" key={index}>
             <p><b>Hora: </b>{opcao.data.hour}</p>
             <p><br /><b>Cliente:</b> {opcao.data.cliente}</p>
+            <p><b>Func: </b>{opcao.data.funcionario}</p>
             <div>{opcao.data.comprar.map((opcao, index) => {
               return <p key={index}>{opcao.item} - {opcao.quantidade}</p>
             })}
