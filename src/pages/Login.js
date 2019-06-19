@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './Modal'
 import firebase from "../firebaseConfig";
-import { Form, Col} from 'react-bootstrap';
+import {Form, Col} from 'react-bootstrap';
 import logo from '../assets/img/logo-large.png';
 import withFirebaseAuth from 'react-with-firebase-auth';
 
@@ -19,7 +19,8 @@ class Login extends React.Component {
       passwordlogin: '',
       emaillogin: '',
       place: '',
-      show: false
+      show: false,
+      id: ""
     };
   }
 
@@ -53,11 +54,12 @@ class Login extends React.Component {
     event.preventDefault();
     this.props.signInWithEmailAndPassword(this.state.emaillogin, this.state.passwordlogin)
       .then((resp) => {
-        console.log(resp);
         const id = resp.user.uid;
+
         database.collection("users").doc(id).get()
           .then(resp => {
             const data = resp.data();
+
             this.props.history.push(`/${data.place}`);
           })
 
@@ -79,8 +81,8 @@ class Login extends React.Component {
     return (
       <div className="m-5">
         <Col>
-          <header className="d-flex justify-content-center">
-            <img src={logo} alt="Logo" className="red-border py-3 px-5" />
+          <header className="d-flex justify-content-center red-border">
+            <img src={logo} alt="Logo" className="py-3 px-5 my-3" />
           </header>
           <body>
             <form className="d-flex justify-content-center bg-red mt-5 red-border ">
@@ -94,7 +96,7 @@ class Login extends React.Component {
                   <Form.Control className="white-text" value={this.state.passwordlogin} onChange={(event) => this.handleChange(event, "passwordlogin")} type="password" placeholder="Digite sua Senha" />
                 </Form.Group>
                 <div className="d-flex flex-column justify-content-around">
-                  <button type="submit" className="m-2 bg-white red-text red-border p-2" onClick={(event) => this.signIn(event)}>Entrar</button>
+                  <button type="submit" className="m-2 bg-white red-text red-border p-2" onClick={(event) => this.signIn(event)}b>Entrar</button>
                   <button type="button" className="mx-2 mt-3 bg-red white-text border-0" onClick={this.handleShow}><u>Cadastrar</u></button>
                 </div>
               </Form>

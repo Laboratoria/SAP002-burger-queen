@@ -9,15 +9,17 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class App extends React.Component {
+class Hall extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
     this.state = {
       order: [],
-      client: ''
+      client: '',
+      name: ''
     };
   }
+
 
   handleChange = (event, element) => {
     event.preventDefault();
@@ -33,9 +35,9 @@ class App extends React.Component {
 
   componentDidMount() {
     database.collection('users').get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => doc.data());
-        this.setState({ listItem: data });
+    .then((querySnapshot) => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      this.setState({ listItem: data });  
       })
   }
 
@@ -86,6 +88,18 @@ class App extends React.Component {
 
   sendOrder = (event) => {
     event.preventDefault();
+  //   database.collection("users").doc.get
+  //   if(resp) {
+  //     const id = resp.user.uid;
+  //     database.collection("users").doc(id).get({
+  //       name: this.state.name,
+     
+  //     })
+  //       .then(() => {
+  //        console.log(id)
+  //       });
+  // }
+
     if (this.state.client === "") {
       alert("Insira o nome do cliente")
     } else {
@@ -107,6 +121,7 @@ class App extends React.Component {
       <div className="p-0 m-0 div-height">
         <Nav
           logout={this.logout}
+          data={this.state}
         />
 
         <Container className="">
@@ -133,9 +148,9 @@ class App extends React.Component {
 
                         <tbody>
                           <tr className="grey-text-reg text-small">
-                            <td key={i}>{product.nome} </td>
-                            <td key={j}>{product.quantity}</td>
-                            <td key={k}>{product.preco * product.quantity},00</td>
+                            <td className="text-left col-md-8" key={i}>{product.nome} </td>
+                            <td className="text-cente col-md-2" key={j}>{product.quantity}</td>
+                            <td className="text-right col-md-2" key={k}>{product.preco * product.quantity},00</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -161,4 +176,4 @@ class App extends React.Component {
 
 export default withFirebaseAuth({
   firebaseAppAuth,
-})(App);
+})(Hall);

@@ -1,12 +1,12 @@
 import React from 'react';
 import firebase from "../firebaseConfig";
 // import {Form, Col} from 'react-bootstrap';
-// import logo from '../assets/img/logo-large.png';
+import Nav from "../components/nav"
 import withFirebaseAuth from 'react-with-firebase-auth';
 
 const firebaseAppAuth = firebase.auth();
 
-class DinnerKitchen extends React.Component {
+class Kitchen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +27,10 @@ class DinnerKitchen extends React.Component {
 
   render() {
     return (
-      <div className="m-5">
-        <p>This is the Dinner Kitchen</p>
+      <div className="p-0 m-0 div-height">
+        <Nav
+          logout={this.logout}
+        />
       </div>
     );
   }
@@ -36,5 +38,5 @@ class DinnerKitchen extends React.Component {
 
 export default withFirebaseAuth({
   firebaseAppAuth,
-})(DinnerKitchen);
+})(Kitchen);
 
