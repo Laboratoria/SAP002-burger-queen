@@ -56,12 +56,13 @@ class Cozinha extends React.Component {
     database.collection('Pedidos').doc(id).update({
       finishedTime: hour
     })
-    //window.location.href = 'cozinha'
+    window.location.href = 'cozinha'
   }
 
   render() {
     return (
       <div>
+        <Link to="/Prontos">Pedidos Prontos</Link>
         <Link to="/">Sair</Link>
         <hr />
         <h3><b>COZINHA - Lista de Pedidos do Dia</b></h3>

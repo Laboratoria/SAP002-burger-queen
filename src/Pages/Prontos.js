@@ -41,12 +41,13 @@ class Prontos extends React.Component {
     database.collection('Pedidos').doc(id).update({
       finishedTime: hour
     })
-    //window.location.href = 'cozinha'
+    //window.location.href = 'prontos'
   }
 
   render() {
     return (
       <div>
+        <Link to="/Cozinha">Voltar</Link>
         <Link to="/">Sair</Link>
         <hr />
         <h3><b>SALÃO - Lista de Pedidos Prontos</b></h3>
@@ -57,6 +58,7 @@ class Prontos extends React.Component {
             <div>{item.data.listItem.map((item, index) => {
               return <p key={index}>{item.name} - {item.quantity}</p>
             })}
+            <p><b>Finalizado: </b>{item.data.finishedTime}</p>
             </div>
             
           </div>

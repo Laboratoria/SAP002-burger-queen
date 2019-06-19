@@ -142,7 +142,7 @@ class Salao extends React.Component {
       listItem: this.state.listItem
     })
     //alert("Pedido enviado com sucesso!")
-    //window.location.href = 'salao'
+    window.location.href = 'salao'
     
   }
 
