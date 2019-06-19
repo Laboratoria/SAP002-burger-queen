@@ -64,6 +64,15 @@ padding: 0%;
   width: 2em;
 }
 
+.logout-icon {
+ margin-top: 1em;
+}
+
+.out {
+ font-size: 20px;
+ margin-left: 1rem;
+}
+
 .list-group-item {
   background-color: rgba(31, 37, 51, 0.95);
   font-size: 20px;

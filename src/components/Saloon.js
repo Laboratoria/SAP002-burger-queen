@@ -6,7 +6,7 @@ import logoBurgerQueen from '../assets/logo-burger-queen.png';
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinusCircle, faPlusCircle, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faPlusCircle, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Form, Row, Col, Container, ListGroup, Tabs, Tab } from 'react-bootstrap';
 
 const firebaseAppAuth = firebase.auth();
@@ -79,17 +79,24 @@ class Saloon extends React.Component {
   }
 
   confirmBuy = () => {
-    const object = {
-      items: this.state.buy,
-      client: this.state.client,
-      created: Date.now()
+    if (this.refs.client.value === "") {
+      alert("Insira o nome do Cliente");
+    } else {
+      const object = {
+        items: this.state.buy,
+        client: this.state.client,
+        attendant: this.state.name,
+        createdTime: this.timeConfirmBuy(),
+        timeDone: "",
+        // created: Date.now()
+      }
+      database.collection("request").add(object)
+      this.setState({
+        client: "",
+        buy: []
+      })
+      alert("Pedido Enviado à Cozinha com Sucesso");
     }
-    database.collection("request").add(object)
-    this.setState({
-      client: "",
-      buy: []
-    })
-    alert("Pedido Enviado à Cozinha com Sucesso");
   }
 
   saveClient = (event, element) => {
@@ -97,6 +104,20 @@ class Saloon extends React.Component {
     console.log(newState)
     newState[element] = event.target.value
     this.setState(newState);
+  }
+
+  timeConfirmBuy = () => {
+    const time = Date().split(' ')[4];
+    return time
+  }
+
+  signOut = () => {
+    firebaseAppAuth.signOut()
+      .then(() => {
+        this.props.history.push(`/`)
+      }).catch((error) => {
+        alert(this.props.error)
+      });
   }
 
   render(props) {
@@ -117,7 +138,7 @@ class Saloon extends React.Component {
                   <Row>
                     <Col sm={8}>
                       <Form.Group as={Col} className="form-client-name" controlId="formHorizontalName">
-                        <Form.Control type="text" placeholder="Nome do Cliente" value={this.state.client}
+                        <Form.Control ref="client" type="text" placeholder="Nome do Cliente" value={this.state.client}
                           onChange={(event) => this.saveClient(event, "client")} />
                       </Form.Group>
                     </Col>
@@ -127,6 +148,10 @@ class Saloon extends React.Component {
               <div className="div-user-name">
                 <FontAwesomeIcon icon={faUserCircle} className="user-name-icon" />
                 <p className="name-user">{this.state.name}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon icon={faSignOutAlt} onClick={() => this.signOut()} className="logout-icon" />
+                <p className="out">Sair</p>
               </div>
             </div>
             <div className="div-itens" >

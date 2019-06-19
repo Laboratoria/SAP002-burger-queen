@@ -1,12 +1,11 @@
 import React from 'react';
 import ButtonConfirm from './Button';
-import timer from './Timer';
 import './Kitchen.css';
 import logoBurgerQueen from '../assets/logo-burger-queen.png';
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, ListGroup, Card, Row } from 'react-bootstrap';
 
 const firebaseAppAuth = firebase.auth();
@@ -18,8 +17,10 @@ class Kitchen extends React.Component {
     this.state = {
       name: "",
       client: "",
+      created: "",
       request: [],
-      seconds: 0
+      seconds: 0,
+      // start: Date.now()
     };
   }
 
@@ -48,11 +49,26 @@ class Kitchen extends React.Component {
         console.log(data)
         this.setState({
           request: data,
-          seconds: 0
+          seconds: 0,
         });
       })
-      .then(() => {
-        this.interval = setInterval(() => this.tick(), 1000);
+      .then(response => {
+
+
+        // const actualDate = Date.now(response);
+        // console.log(actualDate)
+        // const secondsActualDate = Math.round((actualDate / 1000 / 60 / 60) * 100) / 100;
+        // console.log(secondsActualDate)
+        // const DateSubmitBuy = this.timePreparing(this.state.created)
+        // console.log(DateSubmitBuy)
+        // const sumDate = secondsActualDate - DateSubmitBuy
+        // console.log(sumDate)
+
+        // const date = new Date(sumDate)
+        // const hh = date.toString(sumDate)
+        // console.log(hh)
+
+        // this.interval = setInterval(() => this.tick(), 1000);
       });
 
     // this.interval = setInterval(() => this.tick(), 1000);
@@ -73,9 +89,45 @@ class Kitchen extends React.Component {
   //       const data = querySnapshot.docs.map(doc => doc.data());
   //     }
   // }
+  timePreparing = (created) => {
+    // const countTime = this.state.start - created
+    // console.log(countTime)
+
+    // const date = new Date();
+    // const year = date.getFullYear();
+    // const month = date.getMonth();
+    // const day = date.getDate();
+    const time = Date(created).split(' ')[4];
+    return time
+    // return `${day}/${month}/${year} - ${time}`;
+
+
+    // const date = new Date(countTime)
+    // return date.toString()
+
+    // return Math.round((created / 1000 / 60 / 60) * 100) / 100;
+  }
+
+  timeDoneKitchen = () => {
+    const time = Date().split(' ')[4];
+    return time
+  }
+
+  signOut = () => {
+    firebaseAppAuth.signOut()
+      .then(() => {
+        this.props.history.push(`/`)
+      }).catch((error) => {
+        alert(this.props.error)
+      });
+  }
+
+
 
   render(props) {
     const requestList = this.state.request;
+
+
     console.log(requestList)
     return (
       <Container fluid>
@@ -89,6 +141,10 @@ class Kitchen extends React.Component {
           <div className="div-user-name">
             <FontAwesomeIcon icon={faUserCircle} className="user-name-icon" />
             <p className="name-user">{this.state.name}</p>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faSignOutAlt} onClick={() => this.signOut()} className="logout-icon" />
+            <p className="out">Sair</p>
           </div>
         </div>
         <div className="list-items-kitchen">
@@ -106,11 +162,11 @@ class Kitchen extends React.Component {
                   }
                 </Card.Body>
                 <Row>
-                  <Col sm={8} className="justify-content-md-center btn-confirm-kitchen">
+                  <Col sm={6} className="justify-content-md-center btn-confirm-kitchen">
                     <ButtonConfirm className="justify-content-md-center" text="Feito" onClick={this.confirmDone} />
                   </Col>
-                  <Col sm={4}>
-                    <p>{this.state.seconds}</p>
+                  <Col sm={6}>
+                    <p>{this.state.seconds} - {cardItems.createdTime}</p>
                   </Col>
                 </Row>
               </Card>
