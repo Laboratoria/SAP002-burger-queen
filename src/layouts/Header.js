@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardImg, Row } from 'reactstrap';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import Button from '../components/Button';
 import capa from '../img/capa.jpg';
 

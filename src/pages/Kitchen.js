@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import Icon from '../components/Icon';
 import firebase from '../firebaseConfig';
 import { createBrowserHistory } from 'history';
+import moment from 'moment';
 
 const createHistory = createBrowserHistory();
 const database = firebase.firestore();
@@ -16,7 +17,8 @@ class Kitchen extends React.Component {
     this.state = {
       cooker: '',
       orders: [],
-      prepareds: []
+      prepareds: [],
+      startDate: moment()
     };
 
     firebaseAppAuth.onAuthStateChanged(user => {
@@ -42,8 +44,8 @@ class Kitchen extends React.Component {
   }
 
   clickOk = (id, order) => {
-    const now = new Date();
-    const hour = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+    const hour = this.state.startDate.format('HH:mm:ss');
+    const time = parseInt(hour) - parseInt(order.hour);
     let prepared = {
       items: order.items,
       client: order.client,
@@ -52,6 +54,7 @@ class Kitchen extends React.Component {
       order: order.hour,
       date: order.date,
       prepared: hour,
+      time,
       cooker: this.state.cooker
     };
     database.collection('prepareds').doc(id).set(prepared)
@@ -66,11 +69,11 @@ class Kitchen extends React.Component {
         <Header name={this.state.cooker} />
         <Card>
           <CardHeader>
-            <h3><Icon name='fas fa-clipboard-list' /> Fila de espera:</h3>
+            <h3><Icon name='fas fa-clipboard-list' /> Fila de espera</h3>
           </CardHeader>
           <Row>
               {this.state.orders.map((order, index) => {
-            return <Card key={index} className="card-espera">
+            return <Card key={index} className='card-espera'>
               <CardHeader className='d-flex justify-content-between'>
                 Cliente: {order.client} <strong><Icon name='far fa-clock' /> {order.hour}</strong></CardHeader>
               <CardBody>{order.items.map((item, index) => {
@@ -78,24 +81,24 @@ class Kitchen extends React.Component {
               })} <Button text='Pronto' color='warning' icon='far fa-check-circle'
                 onClick={() => this.clickOk(`${order.date}-${order.hour}`, order)} />
               </CardBody>
-              <CardFooter><strong>Atendente: {order.waiter}</strong> </CardFooter>
+              <CardFooter><strong>Atendente {order.waiter}</strong> </CardFooter>
             </Card>
           })}
           </Row>
         </Card>
         <Card>
           <CardHeader>
-            <h3><Icon name='fas fa-clipboard-check' /> Finalizados:</h3>
+            <h3><Icon name='fas fa-clipboard-check' /> Finalizados</h3>
           </CardHeader>
           <Row>
             {this.state.prepareds.map((prepared, index) => {
-              return <Card key={index} className="card-espera">
+              return <Card key={index} className='card-espera'>
                 <CardHeader className='d-flex justify-content-between'>
                   Cliente: {prepared.client} <strong><Icon name='far fa-clock' /> {prepared.order}</strong></CardHeader>
                 <CardBody>{prepared.items.map((item, index) => {
                   return <p key={index}>{item.quantidade} x {item.nome}</p>
                 })} </CardBody>
-                <CardFooter><strong>{prepared.waiter} - Entregue às: {prepared.prepared}</strong></CardFooter>
+                <CardFooter><strong>Preparado às {prepared.prepared}</strong></CardFooter>
               </Card>
             })}
           </Row>

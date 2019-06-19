@@ -11,6 +11,7 @@ import Icon from '../components/Icon';
 import menu from '../menu';
 import firebase from '../firebaseConfig';
 import { createBrowserHistory } from 'history';
+import moment from 'moment';
 
 const createHistory = createBrowserHistory();
 const database = firebase.firestore();
@@ -23,7 +24,8 @@ class Salon extends React.Component {
       buy: [],
       client: '',
       table: '',
-      waiter: ''
+      waiter: '',
+      startDate: moment()
     };
 
     firebaseAppAuth.onAuthStateChanged(user => {
@@ -89,18 +91,18 @@ class Salon extends React.Component {
     } else if (this.state.buy.length === 0) {
       alert('Por favor, insira os itens do pedido.');
     } else {
-      const now = new Date();
-      const hour = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-      const date = `${now.getDate()}-${now.getMonth()}-${now.getFullYear()}`;
+      const day = this.state.startDate.format('DD-MM-YYYY')
+      const hour = this.state.startDate.format('HH:mm:ss')
+      const date = this.state.startDate.format('DD-MM-YYYY-HH:mm:ss')
       let order = {
         items: this.state.buy,
         client: this.state.client,
         table: this.state.table,
         waiter: this.state.waiter,
         hour: hour,
-        date: date
+        date: day
       };
-      database.collection('orders').doc(`${date}-${hour}`).set(order)
+      database.collection('orders').doc(`${date}`).set(order)
         .then(() => alert('Pedido feito!') + createHistory.go(0));
     }
   };
