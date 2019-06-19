@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import firebase from '../firebaseConfig'
 import withFirebaseAuth from 'react-with-firebase-auth'
 import { Link } from 'react-router-dom'
+import './Kitchen.css'
 
 const firebaseAppAuth = firebase.auth()
 const database = firebase.firestore()
@@ -33,9 +34,13 @@ class Kitchen extends Component {
 
     render() {
         return (
-            <main className="page">
-                <h1>Estamos na cozinha</h1>
-                <button onClick={this.logoutUser}>Sair</button>
+            <main className="kitchen-page">
+                <div className="container">
+                    <div className="kitchen-header">
+                        <h1>Cozinha</h1>
+                        <button onClick={this.logoutUser}>Sair</button>
+                    </div>
+                </div>
             </main>
         )
     }
