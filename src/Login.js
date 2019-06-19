@@ -16,7 +16,6 @@ class LoginContainer extends React.Component {
       passwordSignUp: "",
       service: "",
       modalShow: false
-
     };
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -45,7 +44,7 @@ class LoginContainer extends React.Component {
         const id = resp.user.uid;
         firebase.firestore().collection("users").doc(id).get()
           .then(resp => {
-            this.props.history.push(`/${resp.serviço}`)
+            this.props.history.push(`/${resp.serviço}/?id=${id}`)
           })
       })
 
@@ -64,16 +63,13 @@ class LoginContainer extends React.Component {
             serviço: this.state.service
           })
         }
-        this.props.history.push(`/${this.state.service}`)
+        this.props.history.push(`/${this.state.service}/?${id}`)
       })
   }
 
   render() {
-    if (this.props.error) {
-      alert(this.props.error)
-    }
     let modalClose = () => this.setState({ modalShow: false });
-
+    
     return (
       <Row className="justify-content-md-center mt-5">
         <Col md={4}>

@@ -5,15 +5,14 @@ function CardMenu(props){
   return(
 
 <Card
-style={{ width: '18rem' }}
+style={{ width: '10rem' }}
 onClick={props.sendToCart}
+className="m-1 text-center" 
 >
-  <Card.Img variant="top" src="holder.js/100px180" />
+  {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+  <Card.Header>{props.item.nome}</Card.Header>
   <Card.Body>
-    <Card.Title>{props.data.name}</Card.Title>
-    <Card.Text>
-    {props.data.price}
-    </Card.Text>
+    <Card.Text>R$ {props.item.preço} </Card.Text>
   </Card.Body>
 </Card>
 

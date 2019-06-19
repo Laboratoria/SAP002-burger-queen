@@ -67,8 +67,8 @@ function SignUpComponent(props) {
                     <input
                       type="radio"
                       name="service"
-                      value="salão"
-                      checked={props.data.service === "salão"}
+                      value="salao"
+                      checked={props.data.service === "salao"}
                       onClick={props.handleClick}
                     />
                     Salão

@@ -36,8 +36,8 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <Route exact path="/salão" component={Hall} />
-          <Route exact path="/cozinha" component={Kitchen} />
+          <Route exact path="/salao/?:id" component={Hall} />
+          <Route exact path="/cozinha/?:id" component={Kitchen} />
           <Route exact path="/" component={Login} />
         </Router>
       </>

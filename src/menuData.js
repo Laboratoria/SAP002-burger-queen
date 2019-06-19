@@ -17,7 +17,7 @@ const menuData = [
     id: "3",
     menu: "manha",
     tipo: "lanches",
-    nome: "Sanduíche de presunto e queijo",
+    nome: "Misto",
     preço: 10.00
   },
   {
@@ -64,14 +64,14 @@ const menuData = [
     id: "10",
     menu: "tarde",
     tipo: "bebidas",
-    nome: "Bebida gaseificada 500ml",
+    nome: "Refri 500ml",
     preço: 7.00
   },
   {
     id: "11",
     menu: "tarde",
     tipo: "bebidas",
-    nome: "Bebida gaseificada 750ml",
+    nome: "Refri 750ml",
     preço: 10.00
   },
   {
