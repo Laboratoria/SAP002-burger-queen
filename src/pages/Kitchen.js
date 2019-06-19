@@ -37,16 +37,17 @@ class Lounge extends React.Component {
         database
           .collection("orders")
           .where("status", ">=", "awaiting")
-          .where("status", "<=", "preparing")
+          // .where("status", "<=", "preparing")
           .orderBy("status")
           .orderBy("startOrder")
           .get()
           .then(querySnapshot => {
             const data = querySnapshot.docs.map(doc => doc.data());
+            console.log("data", data);
 
             let orderItens = [];
 
-            data.forEach(element => {
+            data.map(element => {
               console.log(element.itens);
               orderItens.push({
                 client: element.client,
@@ -54,7 +55,7 @@ class Lounge extends React.Component {
                 finishOrder: element.finishOrder
                   ? element.finishOrder.toDate().toString()
                   : "",
-                // itens: element.itens,
+                itens: element.itens,
                 status: element.status,
                 waiter: element.waiter
               });
@@ -68,35 +69,33 @@ class Lounge extends React.Component {
     });
   }
 
-  handleChange = (event, elem) => {
-    const newState = this.state;
-    newState[elem] = event.target.value;
-    this.setState(newState);
+  changeOrderStatus = (order, index) => {
+    const newState = this.state.orders;
+    console.log("newState", newState);
+
+    if (order.status === "awaiting") {
+      order.status = "preparing";
+    } else if (order.status === "preparing") {
+      order.status = "done";
+    }
+    newState[index] = order;
+
+    this.setState({
+      orders: newState
+    });
   };
 
-  changeOrderStatus = order => {};
+  getButtonName = status => {
+    if (status === "awaiting") return "Aguardando";
+    else if (status === "preparing") return "Em preparação";
+    else if (status === "done") return "Pronto";
+  };
 
-  //   submitOrder = () => {
-  //     const order = {
-  //       client: this.state.client,
-  //       itens: this.state.orderItens,
-  //       waiter: this.state.waiter,
-  //       startOrder: new Date(),
-  //       finishOrder: "",
-  //       status: "preparation-queue"
-  //     };
-
-  //     database
-  //       .collection("orders")
-  //       .doc()
-  //       .set(order)
-  //       .then(response => {
-  //         this.setState({
-  //           client: "",
-  //           orderItens: []
-  //         });
-  //       });
-  //   };
+  getButtonColor = status => {
+    if (status === "awaiting") return "secondary";
+    else if (status === "preparing") return "warning";
+    else if (status === "done") return "success";
+  };
 
   signOut = () => {
     firebaseAppAuth
@@ -131,17 +130,36 @@ class Lounge extends React.Component {
         <Row>
           {this.state.orders.map((order, i) => {
             return (
-              <Col className="mt-4" md={6} lg={4} key={i}>
+              <Col className="mt-4" md={4} lg={3} key={i}>
                 <Card>
                   <Card.Header className="bg-primary text-white font-italic">
-                    Cliente: {order.client}
+                    Cliente: {order.client.toUpperCase()}
                   </Card.Header>
-                  <Card.Text className="mt-1 text-primary text-center">
+                  <Card.Text className="mt-2 text-primary text-center">
                     PEDIDOS
                   </Card.Text>
-                  <Card.Body>{order.itens}</Card.Body>
-                  {/* <Button variant="dark">Go somewhere</Button> */}
-                  <Card.Footer className="text-muted">
+                  {order.itens.map((food, i) => {
+                    return (
+                      <Card.Body className="py-0" key={i}>
+                        <Row>
+                          <Col sm={1} className="font-weight-bold">
+                            {food.quantity}
+                          </Col>
+                          <Col className="pr-0">{food.item}</Col>
+                        </Row>
+                      </Card.Body>
+                    );
+                  })}
+                  <Button
+                    className="mt-1"
+                    variant={this.getButtonColor(order.status)}
+                    onClick={() => this.changeOrderStatus(order, i)}
+                    key={i}
+                  >
+                    {this.getButtonName(order.status)}
+                  </Button>
+
+                  <Card.Footer className="mt-0 blue-neutral text-muted">
                     <Row>
                       <Col>00:00</Col>
                       <Col className="text-right font-italic font-weight-bold">

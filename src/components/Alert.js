@@ -8,11 +8,11 @@ export default ({ children, show, handleCloseError }) => (
       <div className="parent">
         <Alert
           className="child"
-          variant="danger"
+          variant="warning"
           onClose={handleCloseError}
           dismissible
         >
-          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <Alert.Heading>Atenção!</Alert.Heading>
           <p>{children}</p>
         </Alert>
       </div>
