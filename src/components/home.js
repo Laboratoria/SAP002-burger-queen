@@ -54,7 +54,7 @@ class Login extends Component {
           <button type="button" disable= {this.state.estaLogando} className="btn btn-primary" onClick={ this.autenticaUsuario }>Submit</button>	
 
           {/*colocar link da tela de cadastro*/}
-          <Link className='container' to=''>Caso nao tenha cadastro clique aqui</Link>
+          <Link className='cadastro' to='/cadastro'>Caso nao tenha cadastro clique aqui</Link>
         </div>
       )
 		}
