@@ -1,0 +1,25 @@
+.table-text-light{
+  font-family: 'Roboto';
+  color:#E6D1CA
+}
+  
+.send-button{
+  background-color: #E97D3F;
+  border: none;
+  padding: 5px 10px 5px 10px; 
+  color:#1D110D;
+  font-size: 1.5em;
+  border-radius: 7px;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+.Hall-input{
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid #E6D1CA;
+  color: #E6D1CA;
+  font-size: 1.5em;
+  margin:30px auto 40px auto;
+}  

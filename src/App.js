@@ -1,19 +1,27 @@
 import React from 'react';
 import './App.css';
-import firebase from "./firebaseConfig";
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import Kitchen from './pages/Kitchen';
+import Hall from './pages/Hall';
+import Home from './pages/Home';
+
+import firebaseApp from "./firebaseConfig";
+import './components/Menu.css';
+import Signup from './pages/Signup';
+
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>#partiuBurgerQueen</h1>
-        </header>
-      </div>
+      <Router>
+        <Route path="/" exact component={Home} />
+        <Route path="/salao" component={Hall} />
+        <Route path="/cozinha" component={Kitchen} />
+        <Route path="/signup" component={Signup} />
+
+      </Router>
     );
   }
 }

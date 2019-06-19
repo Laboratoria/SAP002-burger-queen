@@ -1,0 +1,26 @@
+.Header {
+  background-color: #623A2E;
+  color: #E97D3F;
+  width: 100%;
+  font-family: 'Roboto'
+}
+.Header-logo {
+  width: 75px;
+}
+  
+.Header-logo-img{
+  width: 100%;
+}
+  
+.Header-logo-text{
+  line-height: 1em;  
+  font-size: 2em;
+  align-self: center;
+}
+  
+.Header-logo-container{
+  display:flex;
+  flex-direction: row;
+  padding: 1em
+}
+  
