@@ -1,6 +1,8 @@
-import firebase from "firebase";
+const Rebase = require('re-base')
+const firebase = require('firebase')
 
-const config = {
+
+const firebaseConfig = {
   apiKey: "AIzaSyAGP5abkzFY9VN2niIVuc6kQcSchTK3RjE",
   authDomain: "burger-queen-77776.firebaseapp.com",
   databaseURL: "https://burger-queen-77776.firebaseio.com",
@@ -10,6 +12,10 @@ const config = {
   appId: "1:2633920867:web:aa50118883bd793b"
 };
 
-firebase.initializeApp(config);
 
-export default firebase;
+const app = firebase.initializeApp(firebaseConfig);
+const config = Rebase.createClass(app.database());
+
+export const auth = app.auth()
+
+export default config;

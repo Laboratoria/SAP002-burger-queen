@@ -1,0 +1,43 @@
+body {
+  font: 400 15px Lato, sans-serif;
+  line-height: 1.8;
+  color: #818181;
+}
+  
+.jumbotron {
+  background-color: #212529;
+  color: #ECBF42;
+  padding: 100px 25px;
+  font-family: Montserrat, sans-serif;
+}
+
+.navbar {
+  margin-bottom: 0;
+  background-color: #ECBF42;
+  z-index: 9999;
+  border: 0;
+  font-size: 12px;
+  line-height: 1.42857143;
+  letter-spacing: 4px;
+  border-radius: 0;
+  font-family: Montserrat, sans-serif;
+}
+
+.navbar li a, .navbar .navbar-brand {
+  color: #fff;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: #ECBF42 ;
+  background-color: #fff;
+}
+
+.logo{
+  background-image: url('burger.png');
+}
+
+.lineup{
+  margin-top: 8%;
+}
+
+
