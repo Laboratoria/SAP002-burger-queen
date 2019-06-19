@@ -37,10 +37,6 @@ você for trabalhar.
 
 ## 2. Resumo do projeto
 
-Desta vez temos um projeto 100% por demanda. Você sempre pode (e deve) fazer
-sugestões de melhora e mudança, mas muitas vezes trabalhará em um projeto em que
-primeiro deve se assegurar de cumprir os requisitos.
-
 Um pequeno restaurante de hambúrgueres, que está crescendo, necessita uma
 interface em que se possa realizar pedidos utilizando um _tablet_, e enviá-los
 para a cozinha para que sejam preparados de forma ordenada e eficiente (através
@@ -92,7 +88,7 @@ A interface deve mostrar os dois menus (café da manhã e restante do dia), cada
 um com todos os seus _produtos_. O usuário deve poder escolher que _produtos_
 adicionar e a interface deve mostrar o _resumo do pedido_ com o custo total.
 
-![out](https://user-images.githubusercontent.com/110297/45984241-b8b51c00-c025-11e8-8fa4-a390016bee9d.gif)
+![out](public/images/salao.png)
 
 ## 3. Objetivos de aprendizagem
 

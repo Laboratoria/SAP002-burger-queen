@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
 
 function OutlinedTextFields(props) {
   const classes = useStyles();
-  
-    return (
+
+  return (
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         id="outlined-name"

@@ -4,8 +4,8 @@
 }
 
 h2 {
-color: white;
-background-color: rgb(5, 155, 5);
+    color: white;
+    background-color: rgb(5, 155, 5);
 }
 
 .adicionais {
@@ -13,14 +13,14 @@ background-color: rgb(5, 155, 5);
     color: white;
 }
 
-.menu{
+.menu {
     background-image: url("../images/background.jpg");
     background-attachment: fixed;  
     display: flex;
     flex-direction: column;    
     justify-content: center;
     width: auto;
-  }
+}
   
 .bordaInteira {
     background-color: ghostwhite;
@@ -32,18 +32,18 @@ background-color: rgb(5, 155, 5);
     justify-content: center;
 }
   
-  .addOrderButton{
+.addOrderButton {
     border-radius: 5px;
     background-color: rgb(121, 7, 7);
     color: white;
     width: 10vw;
-  }
+}
 
-  .addOrderButton:hover {
+.addOrderButton:hover {
       background-color: rgb(255, 145, 0);
-  }
+}
 
-  .bebida {
+.bebida {
     align-self: center;
     width: 50vw;
-  }
+}

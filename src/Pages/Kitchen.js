@@ -24,12 +24,11 @@ class Kitchen extends React.Component {
           if (!doc.data().finishedTime) {
             return {
               data: doc.data(),
-              id: doc.id
+              id: doc.id,
             }
           }
         })
-        .filter(item => item);
-        console.log(doc)
+          .filter(item => item);
         const compare = (a, b) => {
           let firstOrder = parseFloat((a.data.hour).replace(':').replace(/[^\d.-]/g, ''));
           let secondOrder = parseFloat((b.data.hour).replace(':').replace(/[^\d.-]/g, ''));
@@ -42,7 +41,6 @@ class Kitchen extends React.Component {
           }
         }
         this.setState({ comprar: doc.sort(compare) });
-        console.log(doc.sort(compare))
       });
   }
 
@@ -54,36 +52,35 @@ class Kitchen extends React.Component {
     })
   }
 
-    logout = () => {
-        firebaseAppAuth.signOut()
-        .then(() => {
-          this.setState({
-            user: null        
-          });
-          this.props.history.push(`/`);
+  logout = () => {
+    firebaseAppAuth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
         });
-      }
+        this.props.history.push(`/`);
+      });
+  }
 
-      render() {
-        console.log(this.state.name)
-        console.log(this.state.funcionario)
-        return (
-          <div className="menu">            
-           <h1>Bem vindo a Cozinha!</h1>           
-            {this.state.comprar.map((opcao, index) => {
-              return <div className="column3" key={index}>
-                <p><b>Hora: </b>{opcao.data.hour}</p>
-                <p><b>Func.:</b> {opcao.data.funcionario} <br /><b>Cliente:</b> {opcao.data.cliente}</p>
-                <div>{opcao.data.comprar.map((opcao, index) => {
-                  return <p key={index}>{opcao.item} - {opcao.quantidade}</p>
-                })}
-                </div>                
-              </div>               
+  render() {
+    console.log(this.state.funcionario)
+    return (
+      <div className="menu">
+        <h1>Bem vindo a Cozinha!</h1>
+        {this.state.comprar.map((opcao, index) => {
+          return <div className="column3" key={index}>
+            <p><b>Hora: </b>{opcao.data.hour}</p>
+            <p><br /><b>Cliente:</b> {opcao.data.cliente}</p>
+            <div>{opcao.data.comprar.map((opcao, index) => {
+              return <p key={index}>{opcao.item} - {opcao.quantidade}</p>
             })}
-            <Button color="secondary" variant="contained" onClick={this.logout}>Logout</Button>
-          </div>    
-        );
-      }
+            </div>
+          </div>
+        })}
+        <Button color="secondary" variant="contained" onClick={this.logout}>Logout</Button>
+      </div>
+    );
+  }
 }
 
 export default withFirebaseAuth({

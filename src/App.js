@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home';
+import Home from './Pages/Home';
 import Register from './Pages/Register';
-import Salao from './components/Salao';
-import Kitchen from './components/Kitchen';
+import Salao from './Pages/Salao';
+import Kitchen from './Pages/Kitchen';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {

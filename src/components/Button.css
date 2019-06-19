@@ -1,4 +1,4 @@
-.logoutButton {
+  .logoutButton {
     background-color: rgb(248, 52, 52);
     color: white;
     border-radius: 5px;
@@ -9,11 +9,7 @@
     background-color: rgb(252, 111, 111)
   }
 
-  /* .orderButton {
-    background-color: rgb(146, 223, 146);
-    border-radius: 5px;
-  } */
-  .orderButton:hover{
+  .orderButton:hover {
     background-color: rgb(44, 185, 31);
   }
   .orderButton {
