@@ -1,140 +1,113 @@
-import AmericanCoffee from '../image/coffee1.jpg'
-import CoffeeWithMilk from '../image/coffee2.jpg'
-import Sandwhich from '../image/sandwhich.jpg'
-import Juice from '../image/juice.jpg'
-import SimpleMeatHamburger from '../image/meatham.jpg'
-import SimpleChickenHamburger from '../image/chickenham.jpg'
-import SimpleVeggieHamburger from '../image/veggieham.jpg'
-import DoubleMeatHamburger from '../image/doublemeatham.jpg'
-import DoubleChickenHamburger from '../image/doublechickenham.jpg'
-import DoubleVeggieHamburger from '../image/doubleveggieham.jpg'
-import FrenchFries from '../image/frenchfries.jpg'
-import OnionRings from '../image/onionrings.jpg'
-import WaterMedium from '../image/water.jpg'
-import WaterBig from '../image/water2.jpg'
-import SodaMedium from '../image/soda1.jpg'
-import SodaBig from '../image/soda2.jpg'
-
-
 const menuData = [
-    {
-        waiter: '',
-        client: '',
-        category: '',
-        isBreakfastChecked: true,
-        isRestOfTheDayChecked: true,
-        isEggChecked: true,
-        isCheeseChecked: true
-    },
     {
         id: 1,
         item: 'Sanduíche de presunto e queijo',
-        img: {Sandwhich},
+        img: './sandwhich.jpg',
         price: 'R$ 10.00',
         isOrderReady: true
     },
     {
         id: 2,
         item: 'Hamburger simples com carne bovina',
-        img: {SimpleMeatHamburger},
+        img: '../image/meatham.jpg',
         price: 'R$ 10.00',
         isOrderReady: true
     },
     {
         id: 3,
         item: 'Hamburger simples com frango',
-        img: {SimpleChickenHamburger},
+        img: '../image/chickenham.jpg',
         price: 'R$ 10.00',
         isOrderReady: true
     },
     {
         id: 4,
         item: 'Hamburger simples vegetariano',
-        img: {SimpleVeggieHamburger},
+        img: '../image/veggieham.jpg',
         price: 'R$ 10.00',
         isOrderReady: true
     },
     {
         id: 5,
         item: 'Hamburger duplo com carne bovina',
-        img: {DoubleMeatHamburger},
+        img: '../image/doublemeatham.jpg',
         price: 'R$ 15.00',
         isOrderReady: true
     },
     {
         id: 6,
         item: 'Hamburger duplo com frango',
-        img: {DoubleChickenHamburger},
+        img: '../image/doublechickenham.jpg',
         price: 'R$ 15.00',
         isOrderReady: true
     },
     {
         id: 7,
         item: 'Hamburger duplo vegetariano',
-        img: {DoubleVeggieHamburger},
+        img: '../image/doubleveggieham.jpg',
         price: 'R$ 15.00',
         isOrderReady: true
     },
     {
         id: 8,
         item: 'Café americano',
-        img: {AmericanCoffee},
+        img: '../image/coffee1.jpg',
         price: 'R$ 5.00',
         isOrderReady: true
     },
     {
         id: 9,
         item: 'Café com leite',
-        img: {CoffeeWithMilk},
+        img: '../image/coffee2.jpg',
         price: 'R$ 7.00',
         isOrderReady: true
     },
     {
         id: 10,
         item: 'Água 500ml',
-        img: {WaterMedium},
+        img: 'https://images.unsplash.com/photo-1500630967344-3b1f546423ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80',
         price: 'R$ 5.00',
         isOrderReady: true
     },
     {
         id: 11,
         item: 'Água 750ml',
-        img: {WaterBig},
+        img: '../image/water2.jpg',
         price: 'R$ 7.00',
         isOrderReady: true
     },
     {
         id: 12,
         item: 'Bebida com gás 500ml',
-        img: {SodaMedium},
+        img: '../image/soda1.jpg',
         price: 'R$ 7.00',
         isOrderReady: true
     },
     {
         id: 13,
         item: 'Bebida com gás 750ml',
-        img: {SodaBig},
+        img: '../image/soda2.jpg',
         price: 'R$ 10.00',
         isOrderReady: true
     },
     {
         id: 14,
         item: 'Suco de fruta natural',
-        img: {Juice},
+        img: '../image/juice.jpg',
         price: 'R$ 7.00',
         isOrderReady: true
     },
     {
         id: 15,
         item: 'Batata frita',
-        img: {FrenchFries},
+        img: '../image/frenchfries.jpg',
         price: 'R$ 5.00',
         isOrderReady: true
     },
     {
         id: 16,
         item: 'Anéis de cebola',
-        img: {OnionRings},
+        img: '../image/onionrings.jpg',
         price: 'R$ 5.00',
         isOrderReady: true
     },
@@ -151,5 +124,6 @@ const menuData = [
         isOrderReady: true
     }
 ]
+
 
 export default menuData

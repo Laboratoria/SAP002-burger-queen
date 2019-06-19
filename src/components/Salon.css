@@ -9,8 +9,6 @@
 
 }
 
-
-
 * {
     margin: 0;
     padding: 0;
@@ -66,7 +64,7 @@
     background-color: var(--color-alabama-crimson);
 }
 
-.waiter-info label {
+.salon-info label {
     font-size: 15px;
     text-transform: uppercase;
     color: var(--color-zinnwaldite-brown);
@@ -74,54 +72,44 @@
     font-weight: 700;
 }
 
-.filter-list {
-    width: 100%;
-    padding: 10px 20px;
-    margin: 20px 0;
-    display: block;
-    font-size: 18px;
-    font-family: var(--font-quicksand);
-    border-radius: 25px;
-    border: none;
-    background: rgba(222, 124, 90, 0.4);
-    color: var(--color-zinnwaldite-brown);
-    font-weight: 200;
-    box-sizing: border-box;
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 60%;
+    min-height: 70vh;
+    height: auto;
+    background-color: #ffda79;
+    border-radius: 6px;
 }
 
-.menu-list {
+.filterBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
     width: auto;
-    background-color: var(--color-rosewood);
-    color: white;
-    padding: 15px 15px;
-    text-align: center;
-    margin: 8px 0;
-    border: none;
-    font-family: var(--font-quicksand);
-    font-size: 14px;
-    text-transform: uppercase;
-    border-radius: 25px;
+    background-color: #ccae62;
+    min-height: 15vh;
+    height: auto;
+    margin: auto;
+    border-radius: 6px;
 }
 
-.order-button {
-    margin-left: 30px;
-    border: none;
-    padding: 5px 20px;
-    background-color: var(--color-terra-cotta);
-    color: black;
-    text-transform: uppercase;
-    font-family: var(--font-quicksand);
-    font-weight: 700;
+.filter {
+    margin: auto 1em;
+    font-size: 1.5em;
 }
 
-.modal {
-    position: fixed;
-    width: 100px;
-    height: 100px;
-    top: 20px;
-    right: 20px;
-    left: 20px;
-    bottom: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    background: #FFF;
+.cityBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    width: auto;
+    height: auto;
+    margin: auto;
 }
