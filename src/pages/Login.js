@@ -13,9 +13,6 @@ const database = firebase.firestore();
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
-
-    }
     this.state = {
       isLoginOpen:true, 
       isRegisterOpen:false

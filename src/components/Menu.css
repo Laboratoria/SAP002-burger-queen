@@ -1,0 +1,16 @@
+.box-menu {
+    width: 25em;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    border-radius: 12px;
+}
+
+.btn-menu {
+    width: 12em;
+    height: 4em;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

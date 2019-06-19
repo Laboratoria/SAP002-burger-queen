@@ -39,7 +39,6 @@ body,
     display: flex;
     flex-direction: column;
     min-width: 15em;
-    box-shadow: #daa520;
     border-radius: 6px;
     padding: 24px;
     
