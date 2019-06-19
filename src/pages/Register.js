@@ -72,7 +72,7 @@ class Register extends React.Component{
                     </form>
                     <div className="Align">
                         <Button text="CADASTRAR" onClick={this.createUser}/>
-                        <Link to="/" className="Link">NÃO QUERO ME CADASTRAR AGORA</Link>                
+                        <Link to="/login" className="Link">NÃO QUERO ME CADASTRAR AGORA</Link>                
                     </div>
                 </section>
             </div>
