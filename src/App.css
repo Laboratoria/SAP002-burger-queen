@@ -26,14 +26,3 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-.menu{
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  justify-content: left;
-}
-
-.orderButton{
-  border-radius: 5px;
-  background-color: rgb(253, 145, 145);
-}
