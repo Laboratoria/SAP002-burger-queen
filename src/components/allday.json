@@ -1,76 +1,30 @@
-[
-    {
-        "hamburger": [
-            {
-                "type": "SIMPLES",
-                "price": 10,
-                "img": "../images/"
-            },
+{    
+    "hamburger": [
+        { "type": "Hamburguer simples", "price": 10 },
+        { "type": "Hamburguer duplo", "price": 15 }
+    ],
+    
+    "hamburgerType": [
+        {"type": "Carne bovina"}, 
+        {"type": "Frango"},
+        {"type": "Vegetariano"}
+    ],
 
-            {
-                "type": "DUPLO",
-                "price": 15,
-                "img": "../images/"
-            }
-        ],
-        
-        "hamburgerType": [
-            "CARNE BOVINA", "FRANGO", "VEGETARIANO"
-        ],
+    "extra": [
+        { "type": "Queijo", "price": 1 },
+        { "type": "Ovo", "price": 1 }
+    ],
 
-        "extra": [
-            {
-                "type": "QUEIJO",
-                "price": "1",
-                "img": "../images/"
-            },
+    "sideDish": [
+        { "type": "Batata frita", "price": 5 },
+        { "type": "Anéis de cebola", "price": 5 }
+    ],
 
-            {
-                "type": "OVO",
-                "price": "1",
-                "img": "../images/"
-            }
-        ],
+    "drinks": [
+        { "type": "Água 500ML", "price": 5 },
+        { "type": "Água 750ML", "price": 7 },
+        { "type": "Bebida gaseificada 500ML", "price": 7 },
+        { "type": "Bebida gaseificada 750ML", "price": 10 }
+    ]
+}
 
-        "sideDish": [
-            {
-                "type": "BATATA FRITA",
-                "price": "5",
-                "img": "../images/"                
-            },
-
-            {
-                "type": "ANÉIS DE CEBOLA",
-                "price": "5",
-                "img": "../images/"
-            }
-        ],
-
-        "drinks": [
-            {
-                "type": "ÁGUA 500ML",
-                "price": 5,
-                "img": "../images/"
-            },
-
-            {
-                "type": "ÁGUA 750ML",
-                "price": 7,
-                "img": "../images/"
-            },
-
-            {
-                "type": "BEBIDA GASEIFICADA 500ML",
-                "price": 7,
-                "img": "../images/"
-            },
-
-            {
-                "type": "BEBIDA GASEIFICADA 750ML",
-                "price": 10,
-                "img": "../images/"
-            }
-        ]
-
-    }
-]
