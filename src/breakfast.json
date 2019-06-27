@@ -1,0 +1,25 @@
+[
+    {
+        "item": "CAFÉ AMERICANO",
+        "price": 5,
+        "img": "../images/"
+    },
+
+    {
+        "item": "CAFÉ COM LEITE",
+        "price": 7,
+        "img": "../images/"
+    },
+
+    {
+        "item": "SANDUÍCHE DE PRESUNTO E QUEIJO",
+        "price": 10,
+        "img": "../images/"
+    },
+
+    {
+        "item": "SUCO DE FRUTA NATURAL",
+        "price": 7,
+        "img": "../images/"
+    }
+]
