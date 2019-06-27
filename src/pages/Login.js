@@ -40,10 +40,8 @@ class Login extends React.Component{
                 sessionStorage.setItem('user', id);
                 sessionStorage.setItem('name', data.name);
                 sessionStorage.setItem('type', data.type);
+                window.location = '/';
             })
-
-
-            this.props.history.push(`/`)
         })
     }
     
@@ -53,17 +51,17 @@ class Login extends React.Component{
                 <InitialHeader />
                 <section className="Align">
                     <form className="Login-register-form">
-                        <h4>FAÇA SEU LOGIN</h4>
-                        <Input type="email" placeholder="E-MAIL" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
-                        <Input type="password" placeholder="SENHA" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
+                        <h4>Faça seu login</h4>
+                        <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
+                        <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
                     </form>
                     <div className="Align-beside">
                         <p>Mantenha-me conectado</p>
                         <p>Esqueci minha senha</p>
                     </div>
                     <div  className="Align">
-                        <Button text="ENTRAR" onClick={this.signIn}/>
-                        <Link to="register" className="Link">NÃO TEM CONTA? CADASTRE-SE</Link>
+                        <Button text="Entrar" onClick={this.signIn}/>
+                        <Link to="register" className="Link">Não tem conta? Cadastre-se</Link>
                     </div>
                 </section>
             </div>

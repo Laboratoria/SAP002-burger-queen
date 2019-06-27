@@ -26,12 +26,7 @@ class Register extends React.Component{
         const newState = this.state;
         newState[element] = event.target.value;
         this.setState(newState);
-        console.log(newState)
     }
-
-    // handleLabel = () => {
-    //     console.log("oi");
-    // }
 
     createUser = () => {
         this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -42,40 +37,37 @@ class Register extends React.Component{
                 email: this.state.email,
                 type: this.state.type
             });
+            sessionStorage.setItem('user', id);
+            sessionStorage.setItem('name', this.state.name);
+            sessionStorage.setItem('type', this.state.type);
         })
         .then(() => {
-            this.props.history.push(`/${this.state.type}`)
+            window.location = '/';
         })
     }
     
     render() {
         return (
-            <div>
+            <>
                 <InitialHeader />
                 <section className="Align">
                     <form className="Login-register-form">
-                        <h4>FAÇA SEU CADASTRO</h4>
-                        <Input type="text" placeholder="NOME COMPLETO" onChange={(e) => this.handleChange(e, "name")} value={this.props.name}/>
-                        <Input type="email" placeholder="E-MAIL" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
-                        <Input type="password" placeholder="SENHA" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
+                        <h4>Faça seu cadastro</h4>
+                        <Input type="text" placeholder="Nome completo" onChange={(e) => this.handleChange(e, "name")} value={this.props.name}/>
+                        <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
+                        <Input type="password" placeholder="Senhas" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
 
                         <div>
-                            <Toggle type="radio" name="toggle" id="saloon" value="saloon" onChange={(e) => this.handleChange(e, "type")} checked="checked"/>
-                            <Toggle type="radio" name="toggle" id="kitchen" value="kitchen" onChange={(e) => this.handleChange(e, "type")} />
-                            <label className="Toggle">
-                                <span></span>
-                            </label>
-                            <label htmlFor="saloon">SALÃO</label>
-                            <label htmlFor="kitchen">COZINHA</label>                           
+                            <Toggle />                        
                         </div>
 
                     </form>
                     <div className="Align">
-                        <Button text="CADASTRAR" onClick={this.createUser}/>
-                        <Link to="/login" className="Link">NÃO QUERO ME CADASTRAR AGORA</Link>                
+                        <Button text="Cadastrar" onClick={this.createUser}/>
+                        <Link to="/login" className="Link-voltar">Voltar</Link>                
                     </div>
                 </section>
-            </div>
+            </>
             )
         }
     }
