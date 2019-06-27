@@ -30,6 +30,10 @@ body {
     width: 40%;
 }
 
+.Logo-dashboard-header{
+    width: 15%;
+}
+
 .Align h4{
     text-align: center;
     margin: 0;
@@ -64,13 +68,29 @@ body {
     border: 1px solid #707070;
     border-radius: 50px;
     font-size: 30px;
+    font-weight: 700;
     color: #707070;
 }
 
 .Link {
     text-decoration: none;
     color: #707070;
+}
+
+.Link-voltar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 60px;
+    width: 180px;
+    margin: 10px 0 0;
+    background-color: transparent;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    font-size: 30px;
     font-weight: 700;
+    color: #707070;
 }
 
 input[type=radio]:checked + .Toggle span {
@@ -78,10 +98,34 @@ input[type=radio]:checked + .Toggle span {
     background-color: black; 
 }
 
+.Align-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.Saloon-order {
+    order: 1;
+}
+
+.Toggle-order {
+    order: 2;
+}
+
+.Kitchen-order {
+    order: 3;
+}
+
+.Radio-toggle {
+    position: absolute;
+}
+
 .Toggle {
     height: 34px;
     width: 60px;
     padding: 4px;
+    margin: 0 20px 0;
     display: flex;
     position: relative;
     background-color: white;
