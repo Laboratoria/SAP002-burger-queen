@@ -1,29 +1,39 @@
-//registro ok, puxa a página do tipo
-
 import React from 'react';
-// import Breakfast from '../breakfast.json';
-// import AllDay from '../allday.json'
+import firebase from '../firebaseConfig';
+import withFirebaseAuth from 'react-with-firebase-auth';
+import DashboardHeader from '../components/DashboardHeader';
+import Saloon from '../pages/Saloon'
+import Kitchen from '../pages/Kitchen'
+import Input from '../components/Input';
+import Button from '../components/Button';
+import '../components/Components.css'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 class Dashboard extends React.Component{
     constructor(props) {
         super();
         this.props = props;
+
         if(sessionStorage.getItem('user')){
-            console.log (sessionStorage.getItem('name'))
-            console.log(sessionStorage.getItem('type'));
-            
-//pegar o id do uduário do firebase
-//dentro desse id ver o tipo de página
-//retornar a página do tipo
-        }
-        else{
+            sessionStorage.getItem('id');
+            sessionStorage.getItem('name');
+            sessionStorage.getItem('type');        
+        } else{
             this.props.history.push('/Login');
         }
+
+        
     }
     
     render() {
+    
+        const pageType = (sessionStorage.getItem('type') === 'saloon') ? <Saloon/> : <Kitchen/>;
+        
         return (
-            <h1>Dashboard</h1>
+            <>
+                <DashboardHeader />
+                {pageType}
+            </>
             )
         }
     }
