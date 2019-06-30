@@ -8,7 +8,7 @@ function Saloon() {
     return (
         <>
         <SaloonAside/>
-        <h1>Escolha uma opção ao lado</h1>
+        <h1></h1>
         </>
             )
         }
