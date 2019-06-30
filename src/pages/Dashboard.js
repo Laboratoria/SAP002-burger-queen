@@ -32,6 +32,7 @@ class Dashboard extends React.Component{
         return (
             <>
                 <DashboardHeader />
+
                 {pageType}
             </>
             )

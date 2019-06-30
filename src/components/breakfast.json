@@ -1,6 +1,6 @@
 [
     { "item": "Café americano", "price": 5 },
-    { "item": "afé com leite", "price": 7 },
+    { "item": "Café com leite", "price": 7 },
     { "item": "Sanduíche de presunto e queijo", "price": 10 },
     { "item": "Suco de fruta natural", "price": 7 }
 ]

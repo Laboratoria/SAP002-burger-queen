@@ -60,7 +60,7 @@ class Login extends React.Component{
                         <p>Esqueci minha senha</p>
                     </div>
                     <div  className="Align">
-                        <Button text="Entrar" onClick={this.signIn}/>
+                        <Button  className="Button" text="Entrar" onClick={this.signIn}/>
                         <Link to="register" className="Link">Não tem conta? Cadastre-se</Link>
                     </div>
                 </section>

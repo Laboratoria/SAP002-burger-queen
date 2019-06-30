@@ -63,7 +63,7 @@ class Register extends React.Component{
 
                     </form>
                     <div className="Align">
-                        <Button text="Cadastrar" onClick={this.createUser}/>
+                        <Button  className="Button" text="Cadastrar" onClick={this.createUser}/>
                         <Link to="/login" className="Link-voltar">Voltar</Link>                
                     </div>
                 </section>
