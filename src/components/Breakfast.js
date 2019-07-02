@@ -22,12 +22,34 @@ class Breakfast extends React.Component{
     }
 
     getProduct = (product) => {
-        this.setState({
-            order: this.state.order.concat(product)
+        const productIndex = this.state.order.findIndex((item) => {
+            return item.item === product.item;
         });
+
+        if (productIndex < 0) {
+            const newProduct = {
+                ...product,
+                quantity: 1
+            };
+            this.setState({
+                order: this.state.order.concat(newProduct)
+            });
+        } else {
+            let newOrder = this.state.order;
+            newOrder[productIndex].quantity += 1;
+            this.setState({
+                order: newOrder
+            })
+        };
+
     }
 
     render() {
+
+        const orderTotalPrice = this.state.order.reduce((acc, cur) => {
+            return acc + (cur.quantity * cur.price)
+        }, 0);
+
         return (
             <>
             <Input type="text" placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "clientName")} value={this.props.clientName}/>
@@ -43,7 +65,29 @@ class Breakfast extends React.Component{
                     })
                     }
                 </ul>
-                </>
+
+                <div>
+                    <h2>Pedido</h2>
+                    <ul>
+                        {
+                            this.state.order.map((product, i) => {
+                                return <li key={i}>
+                                    <p>{product.item}</p>
+                                    <p>R$ {product.price * product.quantity},00</p>
+                                    <p>{product.quantity}</p>
+                                    <Button text="Editar"/>
+                                    <Button text="Excluir"/>
+                                </li>
+                            })
+                        }
+                    </ul>
+                </div>
+
+                <h1>Valor total: R$ {orderTotalPrice},00</h1>
+
+                <Button text="Enviar para a cozinha"/>
+
+            </>
             )
         }
 }

@@ -1,30 +1,30 @@
 {    
     "hamburger": [
-        { "type": "Hamburguer simples", "price": 10 },
-        { "type": "Hamburguer duplo", "price": 15 }
+        { "item": "Hamburguer simples", "price": 10 },
+        { "item": "Hamburguer duplo", "price": 15 }
     ],
     
     "hamburgerType": [
-        {"type": "Carne bovina"}, 
-        {"type": "Frango"},
-        {"type": "Vegetariano"}
+        {"item": "Carne bovina"}, 
+        {"item": "Frango"},
+        {"item": "Vegetariano"}
     ],
 
     "extra": [
-        { "type": "Queijo", "price": 1 },
-        { "type": "Ovo", "price": 1 }
+        { "item": "Queijo", "price": 1 },
+        { "item": "Ovo", "price": 1 }
     ],
 
     "sideDish": [
-        { "type": "Batata frita", "price": 5 },
-        { "type": "Anéis de cebola", "price": 5 }
+        { "item": "Batata frita", "price": 5 },
+        { "item": "Anéis de cebola", "price": 5 }
     ],
 
     "drinks": [
-        { "type": "Água 500ML", "price": 5 },
-        { "type": "Água 750ML", "price": 7 },
-        { "type": "Bebida gaseificada 500ML", "price": 7 },
-        { "type": "Bebida gaseificada 750ML", "price": 10 }
+        { "item": "Água 500ML", "price": 5 },
+        { "item": "Água 750ML", "price": 7 },
+        { "item": "Bebida gaseificada 500ML", "price": 7 },
+        { "item": "Bebida gaseificada 750ML", "price": 10 }
     ]
 }
 

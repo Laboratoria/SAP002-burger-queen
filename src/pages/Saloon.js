@@ -8,7 +8,6 @@ function Saloon() {
     return (
         <>
         <SaloonAside/>
-        <h1></h1>
         </>
             )
         }
