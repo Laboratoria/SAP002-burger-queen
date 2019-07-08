@@ -1,11 +1,10 @@
 import React from 'react';
-// import './App.css';
 import firebase from "../firebaseConfig";
 import Button from "../components/Button"
 import Home from "./Home"
 import withFirebaseAuth from 'react-with-firebase-auth';
 import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
-
+import Logo from "../components/Logo";
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -15,7 +14,6 @@ class Kitchen extends React.Component {
     super(props);
       this.state = {
       listItem: []
-      // waiter: ''
       };
     }
 
@@ -34,27 +32,40 @@ class Kitchen extends React.Component {
       const orders = this.state.listItem;
       return (
           <div>
-            {orders.map((orders, index) => {
-             return (<div key={index}><p>Cliente: {orders.customerName}</p> <p>Preço Total: {orders.totalPrice}</p>
-             <p>Garçom: {orders.waiter}</p>
+             <Logo />
+             <div className="main-body itens-list">
+               <div>
+               <h3 className="orders">PEDIDOS</h3>
+               </div>
+             
+             {orders.map((orders, index) => {
+             return (<div key={index}>
+              <hr className="divide-line"></hr>
+              <div className="orders">
+              <p>Cliente: {orders.customerName}</p>
+              <p>Garçom: {orders.waiter}</p>
              {
-                        orders.orderedItens.map((order, index) => {
-                          return (
-                            <tbody key={'tr' + index}>
-                              <tr>
-                                <td>{order.quantity} </td>
-                                <td>{order.name}</td>
-                              </tr>
-                            </tbody>
-                          )
-                        })
-                      }
+                orders.orderedItens.map((order, index) => {
+                  return (
+                    <tbody key={'tr' + index}>
+                      <tr>
+                        <td>{order.quantity} </td>
+                        <td>{order.name}</td>
+                      </tr>
+                    </tbody>
+                         )
+                      })
+              }
+                <p>Preço Total: {orders.totalPrice}</p> 
+              </div> 
+           
+                <Button text="Marcar como Pronto"/>
              </div>)
             })}
+             </div>
           </div>
       );
   }
-  
 }
 
 

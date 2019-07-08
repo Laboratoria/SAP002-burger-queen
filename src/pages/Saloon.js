@@ -3,7 +3,6 @@ import firebase from "../firebaseConfig";
 import Button from "../components/Button"
 import Input from "../components/Input"
 import withFirebaseAuth from 'react-with-firebase-auth';
-import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom';
 import menu from '../data';
 import Logo from "../components/Logo";
 import TabMenu from '../components/Tab';

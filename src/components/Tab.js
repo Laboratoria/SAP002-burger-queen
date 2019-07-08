@@ -1,11 +1,5 @@
 import React from 'react';
-import firebase from "../firebaseConfig";
-import Button from "../components/Button"
-import Input from "../components/Input"
-import withFirebaseAuth from 'react-with-firebase-auth';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Logo from "../components/Logo";
 
 class TabMenu extends React.Component {
     constructor(props) {
