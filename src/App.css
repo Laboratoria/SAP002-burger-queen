@@ -1,33 +1,116 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap&subset=latin-ext');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;	
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body {
+	background: #073561;
+	width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.main-body {
+	background: rgb(250, 250, 250, 0.7);
+	margin: 3% auto;
+	margin-top: 15%;
+	max-width: 85%;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	padding: 5%;
+	color: #ddd;
+	border-radius: 20px;	
 }
 
-.App-link {
-  color: #61dafb;
+.input-box {
+	background-color: #B1BFCC;
+	font-size: 16px;
+	width: 100%;
+	padding: 2% 4%;
+	border-bottom: 2px solid rgb(175, 12, 7);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+	margin-top: 3%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-logo {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 5vh;
+   font-family: 'Bungee Inline', cursive;
+   font-size: 70px;
+   color: rgb(175, 12, 7);
+   margin-top: 10%;
+}
+
+.submit-button {
+	background-color:#073561;
+	color: #fff;
+	border: none;
+	border-radius: 20px;
+}
+
+.nav-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.nav-link {
+   width: 50%;
+   display: flex;
+   justify-content: center;
+}
+
+.active {
+	background:#073561;	
+}
+
+.disabled {
+	background: #B1BFCC;	
+}
+
+.tab-left {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.tab-right {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.resume {
+   color: rgb(175, 12, 7);
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   margin: 8px;
+}
+
+.fa-plus-circle {
+   color: #073561;
+}
+
+.fa-minus-circle {
+   color: #073561;
+}
+
+.itens-list {
+   list-style: none;
+   color: rgb(175, 12, 7);
+}
+
+.divide-line {
+   border-top: 2px dashed rgb(175, 12, 7);
+   margin: 15px;
+}
+
+.orders {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
