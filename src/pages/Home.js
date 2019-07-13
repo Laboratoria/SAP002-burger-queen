@@ -1,8 +1,6 @@
 import React from 'react';
 import './Home.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import Signup from '../pages/Signup'
 import firebaseApp from "../firebaseConfig";
 import '../components/Menu.css';
 import '../components/Header.css';

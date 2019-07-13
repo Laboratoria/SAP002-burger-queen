@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Kitchen from './pages/Kitchen';
 import Hall from './pages/Hall';
 import Home from './pages/Home';
 
-import firebaseApp from "./firebaseConfig";
 import './components/Menu.css';
 import Signup from './pages/Signup';
 

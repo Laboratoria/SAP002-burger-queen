@@ -1,7 +1,5 @@
 import React from 'react';
 import './Home.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 
 import firebaseApp from "../firebaseConfig";
 import '../components/Menu.css';

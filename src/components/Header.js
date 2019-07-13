@@ -19,7 +19,7 @@ class Header extends React.Component {
             <h1 className="Header-logo-text">Burger<br></br>Queen</h1>
           </div>
           <div className=" p-5 col-3  offset-4">
-            <h3>{this.props.server.toUpperCase()}</h3>
+            <h3>{this.props.server}</h3>
           </div>
         </div>
         <div>

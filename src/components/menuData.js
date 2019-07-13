@@ -45,12 +45,12 @@ const menuData = [
       {
         name: 'Queijo',
         price: 1,
-        imgUrl: ''
+        imgUrl: 'https://firebasestorage.googleapis.com/v0/b/burger-queen-jana.appspot.com/o/menu-img%2Fcheese.png?alt=media&token=a25a74fa-bd41-42b4-a32d-fe9bc585af34'
       },
       {
         name: 'Ovo',
         price: 1,
-        imgUrl: ''
+        imgUrl: 'https://firebasestorage.googleapis.com/v0/b/burger-queen-jana.appspot.com/o/menu-img%2Ffried-egg.png?alt=media&token=338fa654-efc7-4d82-ba26-52ce61ac60ef'
       }
     ],
     options: [

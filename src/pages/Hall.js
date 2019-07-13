@@ -1,8 +1,6 @@
 import React from 'react';
 import '../App.css';
 import './Hall.css'
-import { BrowserRouter as Router, Route, Redirect } from
-  'react-router-dom'
 import firebaseApp from "../firebaseConfig";
 import '../components/Menu.css';
 import Header from '../components/Header';
@@ -28,7 +26,7 @@ class Hall extends React.Component {
   }
 
   componentDidMount = () => {
-    firebaseApp.auth().onAuthStateChanged((user) => {
+    firebaseApp.auth().onAuthStateChanged(user => {
       database.collection('users').doc(user.uid).get()
         .then(querySnapshot => {
           const server = querySnapshot.data().name
