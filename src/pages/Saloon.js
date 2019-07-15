@@ -1,18 +1,15 @@
 import React from 'react';
-// import Breakfast from '../breakfast.json';
-// import AllDay from '../allday.json'
+import Breakfast from '../components/Breakfast'
+import SaloonAside from '../components/SaloonAside';
+import '../components/Components.css'
 
-class Saloon extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-    
-    render() {
-        return (
-            <h1>Salão</h1>
+function Saloon() {
+
+    return (
+        <>
+        <SaloonAside/>
+        </>
             )
         }
-    }
 
 export default Saloon;

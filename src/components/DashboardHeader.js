@@ -4,16 +4,10 @@ import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import Button from '../components/Button';
 
-
 const firebaseAppAuth = firebase.auth();
 
 class DashboardHeader extends React.Component{
 
-    constructor(props) {
-        super();
-        this.props = props;
-    }
-    
 signOut = () => {
     firebaseAppAuth.signOut()
     .then(() => {

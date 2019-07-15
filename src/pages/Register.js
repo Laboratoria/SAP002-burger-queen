@@ -55,7 +55,7 @@ class Register extends React.Component{
                         <h4>Faça seu cadastro</h4>
                         <Input type="text" placeholder="Nome completo" onChange={(e) => this.handleChange(e, "name")} value={this.props.name}/>
                         <Input type="email" placeholder="E-mail" onChange={(e) => this.handleChange(e, "email")} value={this.props.email}/>
-                        <Input type="password" placeholder="Senhas" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
+                        <Input type="password" placeholder="Senha" onChange={(e) => this.handleChange(e, "password")} value={this.props.password}/>
 
                         <div>
                             <Toggle />                        
@@ -63,7 +63,7 @@ class Register extends React.Component{
 
                     </form>
                     <div className="Align">
-                        <Button text="Cadastrar" onClick={this.createUser}/>
+                        <Button  className="Button" text="Cadastrar" onClick={this.createUser}/>
                         <Link to="/login" className="Link-voltar">Voltar</Link>                
                     </div>
                 </section>
