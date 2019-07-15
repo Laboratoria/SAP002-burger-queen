@@ -1,6 +1,6 @@
-# Burguer Queen
+# Burger Queen
 
-## Plataforma para controle de pedidos interno de restaurante.
+## Plataforma para controle interno de pedidos de restaurante.
   
 ### Índice
 
