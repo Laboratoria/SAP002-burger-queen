@@ -66,7 +66,7 @@ class Register extends React.Component {
         <Input value={this.state.password} type="password"
           text="Senha"
           onChange={(e) => this.handleChange(e, "password")} />
-        <select value={this.state.tipo} type="password"
+        <select value={this.state.tipo}
           onChange={(e) => this.handleChange(e, "tipo")}>
           <option>Selecione</option>
           <option>Kitchen</option>

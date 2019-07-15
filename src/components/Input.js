@@ -28,6 +28,7 @@ function OutlinedTextFields(props) {
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         id="outlined-name"
+        type={props.type}
         label={props.text}
         className={classes.textField}
         value={props.value}
