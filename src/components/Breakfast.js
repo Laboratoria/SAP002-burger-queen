@@ -41,11 +41,12 @@ class Breakfast extends React.Component{
                 order: newOrder
             })
         };
-
+        
     }
-
+    
+    
     render() {
-
+        
         const orderTotalPrice = this.state.order.reduce((acc, cur) => {
             return acc + (cur.quantity * cur.price)
         }, 0);
