@@ -34,6 +34,7 @@ class Home extends React.Component {
     ).then(resp =>
       database.collection('users').doc(resp.user.uid).get()
         .then(resp => {
+          console.log(this.props.history)
           this.props.history.push(`/${resp.data().type}`)
         })
     );

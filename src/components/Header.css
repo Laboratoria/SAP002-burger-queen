@@ -2,25 +2,44 @@
   background-color: #623A2E;
   color: #E97D3F;
   width: 100%;
-  font-family: 'Roboto'
+  font-family: 'Roboto';
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding:1.2rem;
 }
 .Header-logo {
-  width: 75px;
+  width: 200px;
 }
   
 .Header-logo-img{
   width: 100%;
 }
-  
-.Header-logo-text{
-  line-height: 1em;  
-  font-size: 2em;
-  align-self: center;
-}
-  
-.Header-logo-container{
-  display:flex;
+
+.Header-server{
+  display: flex;
   flex-direction: row;
-  padding: 1em
+  justify-content: space-between;
+  align-items: baseline;
 }
-  
+
+.Header-server-text{
+  margin: 0 0 0 10px;
+}
+.Header-server-img-container{
+  width: 30px;
+}
+
+.Header-server-img{
+  width: 100%;
+}
+
+.Header-server-logout{
+  color: #E97D3F;
+  background-color: transparent;
+  border: #E97D3F solid 2px;
+  border-radius: 5px;
+  padding: 0.3rem 2rem 0.3rem 2rem;
+  margin: 0 3rem 0 4rem;
+}

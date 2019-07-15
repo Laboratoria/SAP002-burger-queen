@@ -2,24 +2,34 @@ import React from 'react';
 import './Menu.css';
 import menuData from './menuData';
 import MenuItem from './MenuItem';
+import MenuSelector from './MenuSelector';
 
 class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: menuData.filter(elem => !elem.breakfast),
+      menu: menuData.filter(elem => elem.breakfast),
+      breakfast: false
     };
-
-    this.handleChange = this.handleChange.bind(this)
-
+    this.handleChangeMenu = this.handleChangeMenu.bind(this)
   }
 
-  handleChange = (e) => {
-    const newMenuType = e.target.value
-    this.setState({
-      menu: menuData
-        .filter(elem => elem.breakfast === eval(newMenuType)),
-    })
+  componentDidUpdate() {
+    const isBreakfast = this.state.breakfast;
+    if (this.state.menu[0].breakfast !== isBreakfast) {
+      this.setState({
+        menu: menuData.filter(elem => elem.breakfast === isBreakfast),
+      })
+    }
+  }
+
+  handleChangeMenu = (e, breakfast) => {
+    const newMenuType = !this.state.breakfast
+    if (this.state.breakfast !== breakfast) {
+      this.setState({
+        breakfast: newMenuType
+      })
+    }
   }
 
   render() {
@@ -35,13 +45,8 @@ class Menu extends React.Component {
 
     return (
       <div>
-        <div className="container py-2">
-          <select className="Menu-select mt-1" onChange={this.handleChange}>
-            <option value={false}>Almoço</option>
-            <option value={true}>Café da manhã</option>
-          </select>
-        </div>
-        <div className="Menu d-flex container flex-wrap m-0">
+        <MenuSelector onClick={this.handleChangeMenu} />
+        <div className="Menu">
           {menuComponents}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import logo from '../assets/logo.png'
 import './Header.css';
+import logoFull from '../assets/logofull.png';
+import user from '../assets/user.png';
 
 class Header extends React.Component {
   constructor(props) {
@@ -10,21 +11,21 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="Header">
-        <div className="row">
-          <div className="Header-logo-container col-4 px-5">
-            <figure className="Header-logo">
-              <img src={logo} alt="" className="Header-logo-img"></img>
-            </figure>
-            <h1 className="Header-logo-text">Burger<br></br>Queen</h1>
-          </div>
-          <div className=" p-5 col-3  offset-4">
-            <h3>{this.props.server}</h3>
-          </div>
+      <div className="Header">
+        <figure className="Header-logo">
+          <img src={logoFull} alt="logo" className="Header-logo-img"></img>
+        </figure>
+        <div className="Header-server">
+          <figure className="Header-server-img-container">
+            <img src={user} alt="user" className="Header-server-img">
+            </img>
+          </figure>
+          <h3 classMenu-item Name="Header-server-text" >{this.props.server}</h3>
+          <button onClick={this.props.logout} className="Header-server-logout">
+            LOGOUT
+          </button>
         </div>
-        <div>
-        </div>
-      </header>
+      </div>
     );
   }
 }

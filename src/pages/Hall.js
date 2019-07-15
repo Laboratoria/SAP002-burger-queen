@@ -99,6 +99,10 @@ class Hall extends React.Component {
     }
   }
 
+  logout = () => {
+    this.props.history.push(`/`)
+  }
+
   render() {
     const orders = this.state.order.map(elem => {
       return (
@@ -109,16 +113,16 @@ class Hall extends React.Component {
         </tr>
       )
     })
-
     return (
       < div className="App" >
-        <Header server={this.state.server} />
+        <Header server={this.state.server} logout={this.logout} />
         <div className="w-100 d-flex">
           <div className="col-4 order ">
             <input type="text"
               className="Hall-input"
               placeholder="Digite o nome do cliente"
-              onChange={(e) => this.handleChange(e)} >
+              onChange={(e) => this.handleChange(e)}
+              value={this.state.client}>
             </input>
             <div>
               <table className="table table-text-light">

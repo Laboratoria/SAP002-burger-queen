@@ -2,9 +2,7 @@ import React from 'react';
 import '../App.css';
 import './Kitchen.css';
 import firebaseApp from "../firebaseConfig";
-// import '../components/Menu.css';
 import Header from '../components/Header';
-import { runInThisContext } from 'vm';
 
 const database = firebaseApp.firestore();
 

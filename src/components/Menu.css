@@ -5,34 +5,67 @@
   }
 
 .Menu{
-    background-color:#E6D1CA;
+  background-color:#E6D1CA;
+  width: 65vw;
+  display: flex;
+  flex-wrap: wrap;
+  margin:10px;
 }
 
-.Menu-item{
-    background-color: #623A2E;
-    color:#E6D1CA;
-    width: 100px;
-    height: 200px;
-    position: relative;
-    font-weight: 700;
+.MenuItem{
+  background-color: #623A2E;
+  color:#E6D1CA;
+  width: 20%;
+  height: 200px;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
 }
 
-.Menu-item-price{
-    position: absolute;
-    bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
+.MenuItem:hover{
+  filter: brightness(130%)
+}
+.MenuItem-name{
+  width: 100%;
+  margin: 10px auto;
+  text-align: center;
+  position:absolute;
+  top:0;
 }
 
-.Menu-select{
-    -webkit-appearance: none;  
-    -moz-appearance: none; 
-    appearance: none; 
-    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee;  /* Imagem de fundo (Seta) */
-    background-position: 118px center;  
-    color:#1D110D;
-    background-color: #E6D1CA;
-    width: 150px; 
-    height:30px; 
-    border:1px solid rgb(250, 246, 246);
-  }
+.MenuItem-price{
+  width: 100%;
+  margin: 10px auto;
+  text-align: center;
+  position:absolute;
+  bottom:0;
+  font-weight: 700;
+}
+
+.MenuItem-figure{
+  width: 100%;
+  position: absolute;
+  bottom: 24%;
+
+}
+
+.MenuItem-image{
+  width: 60%;
+  margin-left: 20%;
+}
+
+.Menu-button{
+  width: 50%;
+  border:none;
+  text-transform: uppercase;
+}
+
+.Menu-active{
+  background-color: #623A2E;
+  color:#E6D1CA;
+}
+
+.Menu-not-active{
+  color: #623A2E;
+  background-color:#E6D1CA;
+}
