@@ -48,6 +48,10 @@ class Register extends React.Component {
       })
   }
 
+  signIn = () => {
+    this.props.history.push(`../`);
+  }
+
   render() {
     if (this.props.error) {
       alert(this.props.error);
@@ -74,6 +78,8 @@ class Register extends React.Component {
         </select>
         <br></br><br></br>
         <Button onClick={this.createUser} variant="contained" color="secondary">Criar usuário</Button>
+        <p>Já possui login?</p>
+        <Button onClick={this.signIn} color="primary">Clique aqui</Button>
       </div>
     )
   }

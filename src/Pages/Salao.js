@@ -85,6 +85,7 @@ class Salao extends React.Component {
     if (quantidade > 0) {
       this.setState({
         comprar: newComprar
+
       });
     } else {
       newComprar.splice(itemIndex, 1);
@@ -144,7 +145,8 @@ class Salao extends React.Component {
               return <div className="bordaInteira" key={i}>
                 <img src={produto.img} width="200" />
                 <div className="borda">{produto.item} - Valor: R${produto.preco}</div>
-                <button className="addOrderButton" key={i} onClick={() => this.cliqueDaCompra(produto)}>ADD</button>
+                <button className="addOrderButton" key={i} onClick={() =>
+                  this.cliqueDaCompra(produto) || alert("ITEM ADICIONADO COM SUCESSO")}>ADD</button>
               </div>
             })
           }
@@ -154,7 +156,8 @@ class Salao extends React.Component {
               return <div className="bordaInteira" key={i}>
                 <img src={produto.img} width="200" />
                 <div className="borda">{produto.item} - Valor: R${produto.preco}</div>
-                <button className="addOrderButton" key={i} onClick={() => this.cliqueDaCompra(produto)}>ADD</button>
+                <button className="addOrderButton" key={i} onClick={() =>
+                  this.cliqueDaCompra(produto) || alert("ITEM ADICIONADO COM SUCESSO")}>ADD</button>
               </div>
             })
           }
@@ -164,7 +167,8 @@ class Salao extends React.Component {
               return <div className="bordaInteira" key={i}>
                 <img src={produto.img} width="200" />
                 <div className="borda">{produto.item} - Valor: R${produto.preco}</div>
-                <button className="addOrderButton" key={i} onClick={() => this.cliqueDaCompra(produto)}>ADD</button>
+                <button className="addOrderButton" key={i} onClick={() =>
+                  this.cliqueDaCompra(produto) || alert("ITEM ADICIONADO COM SUCESSO")}>ADD</button>
               </div>
             })
           }
@@ -175,7 +179,8 @@ class Salao extends React.Component {
               return <div className="bordaInteira" key={i}>
                 <img src={produto.img} width="200" />
                 <div className="borda">{produto.item} - Valor: R${produto.preco}</div>
-                <button className="addOrderButton" key={i} onClick={() => this.cliqueDaCompra(produto)}>ADD</button>
+                <button className="addOrderButton" key={i} onClick={() =>
+                  this.cliqueDaCompra(produto) || alert("ITEM ADICIONADO COM SUCESSO")}>ADD</button>
               </div>
             })
           }
@@ -185,7 +190,8 @@ class Salao extends React.Component {
               return <div className="bordaInteira" key={i}>
                 <img src={produto.img} width="200" />
                 <div className="borda">{produto.item} - Valor: R${produto.preco}</div>
-                <button className="addOrderButton" key={i} onClick={() => this.cliqueDaCompra(produto)}>ADD</button>
+                <button className="addOrderButton" key={i} onClick={() =>
+                  this.cliqueDaCompra(produto) || alert("ITEM ADICIONADO COM SUCESSO")}>ADD</button>
               </div>
             })
           }
@@ -195,7 +201,7 @@ class Salao extends React.Component {
           this.state.comprar.map((produto, i) => {
             return <div key={i}>
               <p key={i}>{produto.item}  R${produto.preco * produto.quantidade}  Qtd: {produto.quantidade} </p>
-              <button onClick={() => this.cliqueDeleta(produto)}>Excluir</button>
+              <button onClick={() => this.cliqueDeleta(produto) || alert("1 ITEM DELETADO")}>Excluir</button>
             </div>
           })
         }
