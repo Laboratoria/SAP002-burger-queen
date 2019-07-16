@@ -16,10 +16,10 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "rewrite": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/index.html" 
       }
     ]
   }

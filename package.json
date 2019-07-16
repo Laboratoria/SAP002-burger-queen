@@ -1,5 +1,5 @@
 {
-  "name": "burger-queen-class",
+  "name": "burger-queen-tati",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,13 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "## Índice",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "\u001b[D\u001b[D\u001b[D\u001b[3~\u001b[3~"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }
