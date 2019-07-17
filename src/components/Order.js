@@ -1,17 +1,26 @@
 import React from 'react';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import GetOrder from '../components/GetOrder.js';
+
 
 class Order extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            GetOrder,
+            order: [],
             clientName: '',
             total: 0
         }
     }
+
+    
+    
+    
+    // concatOrderes = () => {
+    //     const newArrayState = this.state;
+    //     newArrayState = this.state.order.concat(this.state.order.Breakfast, this.state.order.Allday);
+    //     this.setState(newArrayState);
+    // }
     
     handleChange = (event, element) => {
         const newState = this.state;
@@ -20,10 +29,25 @@ class Order extends React.Component{
     }
     
     render () {
-
-        // const orderTotalPrice = this.state.GetOrder.reduce((acc, cur) => {
-        //     return acc + (cur.quantity * cur.price)
-        // }, 0);
+        
+        // <Link to={{
+        //     pathname: '/breakfast/this.props.location.state.order',
+        //     state: {order: breakfastOrder}
+        // }}/>
+        
+        // console.log(Breakfast)
+        
+        // console.log(<Breakfast/>)
+        
+        // console.log()
+        
+        // console.log(this.state.order.Breakfast)
+        
+        // console.log(this.state.order)
+        
+        const orderTotalPrice = this.state.order.reduce((acc, cur) => {
+            return acc + (cur.quantity * cur.price)
+        }, 0);
         
         return (
             <>
@@ -31,7 +55,7 @@ class Order extends React.Component{
             <h2>Pedido</h2>
             <ul>
             {
-                GetOrder.map((product, i) => {
+                this.state.order.map((product, i) => {
                     return <li key={i}>
                     <p>{product.item}</p>
                     <p>R$ {product.price * product.quantity},00</p>
@@ -42,7 +66,7 @@ class Order extends React.Component{
                 })
             }
             </ul>
-            {/* <h3>Valor total: R$ {orderTotalPrice},00</h3> */}
+            <h3>Valor total: R$ {orderTotalPrice},00</h3>
             
             </div>
             

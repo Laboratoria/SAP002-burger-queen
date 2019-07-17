@@ -9,9 +9,9 @@ class Allday extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            clientName: '',
+            // clientName: '',
             order: [],
-            total: 0
+            // total: 0
         }
     }
 
@@ -46,13 +46,13 @@ class Allday extends React.Component{
 
     render() {
 
-        const orderTotalPrice = this.state.order.reduce((acc, cur) => {
-            return acc + (cur.quantity * cur.price)
-        }, 0);
+        // const orderTotalPrice = this.state.order.reduce((acc, cur) => {
+        //     return acc + (cur.quantity * cur.price)
+        // }, 0);
 
         return (
             <>
-                <Input type="text" placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "clientName")} value={this.props.clientName}/>
+                {/* <Input type="text" placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "clientName")} value={this.props.clientName}/> */}
                 <ul>
                     {
                     allDay.hamburger.map((product, i) => {
@@ -99,7 +99,7 @@ class Allday extends React.Component{
                         }
                     </ul>
 
-                    <div>
+                    {/* <div>
                     <h2>Pedido</h2>
                     <ul>
                         {
@@ -118,7 +118,7 @@ class Allday extends React.Component{
 
                 <h1>Valor total: R$ {orderTotalPrice},00</h1>
 
-                <Button text="Enviar para a cozinha"/>
+                <Button text="Enviar para a cozinha"/> */}
                 </>
             )
         }
