@@ -11,7 +11,7 @@ class SaloonAside extends React.Component{
         super(props);
         this.props = props;
         this.state = {
-            text: "Escolha uma opção ao lado",
+            text: <h1 className="Menu-state">ESCOLHA UMA OPÇÃO AO LADO</h1>
         };
     }
 
@@ -36,6 +36,7 @@ class SaloonAside extends React.Component{
     }
     
     render (){
+        
         return (
             
             <>
@@ -45,7 +46,7 @@ class SaloonAside extends React.Component{
                     <Button className="Aside-button" name={alldayImg} text ="ALMOÇO E JANTAR" onClick={(e) => this.handleMenuClick(e, "text")} id="allday"/>
                     <Button className="Aside-button" name={orderImg} text ="MEUS PEDIDOS" onClick={(e) => this.handleMenuClick(e, "text")} id="order"/>
                 </aside>
-                <h4 className="Menu-position">{this.state.text}</h4>
+                <section className="Menu-position">{this.state.text}</section>
             </section>
             </>
             )

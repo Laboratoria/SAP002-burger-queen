@@ -143,15 +143,14 @@ input[type=radio]:checked + .Toggle span {
 
 .Align-dashboard-header {
     margin: 0;
+    position: fixed;
     width: 100%;
     height: 100px;
-    box-sizing: border-box;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: white;
-    margin-top: 15px;
-    padding-bottom: 15px;
+    padding: 10px 0 10px;
     border-bottom: 1px solid black;
 }
 
@@ -182,9 +181,10 @@ input[type=radio]:checked + .Toggle span {
 .Align-aside {
     display: flex;
     flex-direction: column;
-    width: 40%;
-    margin: 0;
-    height: calc(100vh - 116px);
+    width: 25%;
+    margin-top: 120px;
+    position: fixed;
+    height: calc(100vh - 120px);
 }
 
 .Aside-button {
@@ -210,5 +210,8 @@ input[type=radio]:checked + .Toggle span {
 
 .Menu-position {
     display: flex;
-    width: 100%;
+    width: 75%;
+    padding: 20px 0;
+    margin-left: 25%;
+    margin-top: 115px;
 }

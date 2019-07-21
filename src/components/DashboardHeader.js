@@ -20,9 +20,9 @@ render (){
     return (
         <>
             <header className="Align-dashboard-header">
-                <p className="Person-name">{sessionStorage.getItem('name').toUpperCase()}</p>
+                <p className="Person-name">{sessionStorage.getItem('name')}</p>
                 <img className="Logo-dashboard-header" src={logo} alt="BURGER QUEEN"/>
-                <Button className="Sign-out" text="SAIR" onClick={this.signOut} />
+                <Button className="Sign-out" text="Sair" onClick={this.signOut} />
             </header>
         </>
         );

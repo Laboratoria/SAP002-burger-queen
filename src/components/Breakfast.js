@@ -65,7 +65,10 @@ class Breakfast extends React.Component{
 
         
         return (
-            <>
+            <section className="Align-menu">
+
+            <h1 className="Menu-title">CAFÉ DA MANHÃ</h1>
+
             {/* <Input type="text" placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "clientName")} value={this.props.clientName}/> */}
                 <ul className="Item-list">
                     {
@@ -104,7 +107,7 @@ class Breakfast extends React.Component{
 
                 {/* <Button text="Enviar para a cozinha"/> */}
 
-            </>
+            </section>
             )
         }
     }
