@@ -29,8 +29,4 @@ Projeto desenvolvido para o bootcamp da Laboratória SP. Consiste em desenvolver
 
 ### 3. Implementação
 
-Versão 0.0.1 - Login, cadastro como tipo de usuário, tela de salão.
-
-Versão 0.0.2 - Edição de pedidos, lista de pedidos feitos.
-
-Versão 0.0.3 - Tela de cozinha e integração de entrega com a tela do salão.
+Versão 1.0.0 - Login, cadastro como tipo de usuário, tela de salão.
