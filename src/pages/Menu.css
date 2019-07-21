@@ -1,0 +1,78 @@
+.Menu-state {
+    font-size: 30px;
+    margin: 0;
+    width: 100%;
+    font-weight: 700;
+    padding: 0 40px 0;
+    text-align: center;
+}
+
+.Align-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Menu-title {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 700;
+    padding: 0 40px 0;
+    text-align: center;
+}
+
+.Item-list {
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 40px;
+}
+
+.Item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.Align-product-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Burger-type-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.Item-burger-type {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Extras-burger {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.Item-extras {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.Button-add {
+    height: 40px;
+    width: 120px;
+    margin: 0 0 30px auto;
+    background-color: transparent;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #707070;
+}

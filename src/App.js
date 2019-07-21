@@ -1,6 +1,14 @@
 import React from 'react';
-import './App.css';
-import firebase from "./firebaseConfig";
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Saloon from './pages/Saloon'
+import Breakfast from './components/Breakfast'
+import Allday from './components/Allday'
+import Kitchen from './pages/Kitchen'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -9,11 +17,17 @@ class App extends React.Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
-        <header className="App-header">
-          <h1>#partiuBurgerQueen</h1>
-        </header>
+        <Route path="/" exact component={Dashboard} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/saloon" component={Saloon} />
+        <Route path="/breakfast" component={Breakfast} />
+        <Route path="/allday" component={Allday} />
+        <Route path="/kitchen" component={Kitchen} />
       </div>
+      </Router>
     );
   }
 }

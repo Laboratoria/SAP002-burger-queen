@@ -1,0 +1,30 @@
+{    
+    "hamburger": [
+        { "item": "Hamburguer simples", "price": 10 },
+        { "item": "Hamburguer duplo", "price": 15 }
+    ],
+    
+    "hamburgerType": [
+        {"item": "Carne bovina"}, 
+        {"item": "Frango"},
+        {"item": "Vegetariano"}
+    ],
+
+    "extra": [
+        { "item": "Queijo", "price": 1 },
+        { "item": "Ovo", "price": 1 }
+    ],
+
+    "sideDish": [
+        { "item": "Batata frita", "price": 5 },
+        { "item": "Anéis de cebola", "price": 5 }
+    ],
+
+    "drinks": [
+        { "item": "Água 500ML", "price": 5 },
+        { "item": "Água 750ML", "price": 7 },
+        { "item": "Bebida gaseificada 500ML", "price": 7 },
+        { "item": "Bebida gaseificada 750ML", "price": 10 }
+    ]
+}
+
