@@ -19,10 +19,10 @@ signOut = () => {
 render (){
     return (
         <>
-            <header className="Align">
-                <p>{sessionStorage.getItem('name')}</p>
+            <header className="Align-dashboard-header">
+                <p className="Person-name">{sessionStorage.getItem('name').toUpperCase()}</p>
                 <img className="Logo-dashboard-header" src={logo} alt="BURGER QUEEN"/>
-                <Button text="SAIR" onClick={this.signOut} />
+                <Button className="Sign-out" text="SAIR" onClick={this.signOut} />
             </header>
         </>
         );

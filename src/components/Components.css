@@ -30,10 +30,6 @@ body {
     width: 40%;
 }
 
-.Logo-dashboard-header{
-    width: 15%;
-}
-
 .Align h4{
     text-align: center;
     margin: 0;
@@ -143,4 +139,76 @@ input[type=radio]:checked + .Toggle span {
     background-color: black;
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
+}
+
+.Align-dashboard-header {
+    margin: 0;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+}
+
+.Person-name {
+    color: black;
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0;
+}
+
+.Logo-dashboard-header {
+    width: 15%;
+}
+
+.Sign-out {
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0;
+}
+
+.Align-menu-options {
+    display: flex;
+}
+
+.Align-aside {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0;
+    height: calc(100vh - 115px);
+}
+
+.Aside-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 33.33%;
+    padding: 0 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;   
+}
+
+.Aside-button img {
+    width: 50%;
+    margin-bottom: 15px;
+}
+
+.Menu-position {
+    display: flex;
+    width: 100%;
 }

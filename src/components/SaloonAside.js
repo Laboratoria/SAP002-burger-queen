@@ -1,8 +1,10 @@
 import React from 'react';
-import '../components/Components.css'
-import Button from './Button';
 import Breakfast from './Breakfast';
 import Allday from './Allday';
+import Button from './Button';
+import breakfastImg from '../images/breakfast.png';
+import alldayImg from '../images/allday.png';
+import orderImg from '../images/order.png';
 
 class SaloonAside extends React.Component{
     constructor(props) {
@@ -37,12 +39,14 @@ class SaloonAside extends React.Component{
         return (
             
             <>
-            <aside>
-            <Button className="Aside-button" text ="Café da Manhã" onClick={(e) => this.handleMenuClick(e, "text")} id="breakfast"/>
-            <Button className="Aside-button" text ="Almoço e Jantar" onClick={(e) => this.handleMenuClick(e, "text")} id="allday"/>
-            <Button className="Aside-button" text ="Meus pedidos" onClick={(e) => this.handleMenuClick(e, "text")} id="order"/>
-            </aside>
-            <h4>{this.state.text}</h4>
+            <section className="Align-menu-options">
+                <aside className="Align-aside">
+                    <Button className="Aside-button" name={breakfastImg} text ="CAFÉ DA MANHÃ" onClick={(e) => this.handleMenuClick(e, "text")} id="breakfast"/>
+                    <Button className="Aside-button" name={alldayImg} text ="ALMOÇO E JANTAR" onClick={(e) => this.handleMenuClick(e, "text")} id="allday"/>
+                    <Button className="Aside-button" name={orderImg} text ="MEUS PEDIDOS" onClick={(e) => this.handleMenuClick(e, "text")} id="order"/>
+                </aside>
+                <h4 className="Menu-position">{this.state.text}</h4>
+            </section>
             </>
             )
             

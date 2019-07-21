@@ -1,7 +1,7 @@
 import React from 'react';
 import allDay from '../components/allday.json';
 import '../components/Components.css'
-import Input from '../components/Input';
+// import Input from '../components/Input';
 import Button from '../components/Button';
 
 
