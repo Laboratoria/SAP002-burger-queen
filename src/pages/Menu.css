@@ -1,0 +1,28 @@
+.Item-list {
+    margin: 0;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.Item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.Align-product-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Button-add {
+    height: 40px;
+    width: 120px;
+    margin: 0 0 30px auto;
+    background-color: transparent;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #707070;
+}

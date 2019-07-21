@@ -53,7 +53,7 @@ class Allday extends React.Component{
         return (
             <>
                 {/* <Input type="text" placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "clientName")} value={this.props.clientName}/> */}
-                <ul>
+                <ul className="Item-list">
                     {
                     allDay.hamburger.map((product, i) => {
                         return  <li className="Item" key={i}>
@@ -90,7 +90,7 @@ class Allday extends React.Component{
                         {
                         allDay.drinks.map((product, i) => {
                             return  <li className="Item" key={i}>
-                                <h3>{product.type}</h3>
+                                <h3>{product.item}</h3>
                                 <h3>R$ {product.price},00</h3>
                                 {/* select de quantidade */}
                                 <Button text="Add item" onClick={() => this.getProduct(product)}/>

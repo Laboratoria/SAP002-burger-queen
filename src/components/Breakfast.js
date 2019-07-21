@@ -67,14 +67,16 @@ class Breakfast extends React.Component{
         return (
             <>
             {/* <Input type="text" placeholder="Nome do cliente" onChange={(e) => this.handleChange(e, "clientName")} value={this.props.clientName}/> */}
-                <ul>
+                <ul className="Item-list">
                     {
                         breakfast.map((product, i) => {
                             return  <li className="Item" key={i}>
-                            <h3>{product.item}</h3>
-                            <h3>R$ {product.price},00</h3>
+                            <section className="Align-product-price">
+                                <h3>{product.item}</h3>
+                                <h3>R$ {product.price},00</h3>
+                            </section>
                             {/* select de quantidade */}
-                            <Button text="Add item" onClick={this.getProductClick}/>
+                            <Button className="Button-add" text="Adicionar" onClick={this.getProductClick}/>
                         </li>
                     })
                 }

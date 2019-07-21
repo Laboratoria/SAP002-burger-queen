@@ -3,6 +3,7 @@ import DashboardHeader from '../components/DashboardHeader';
 import Saloon from '../pages/Saloon'
 import Kitchen from '../pages/Kitchen'
 import '../components/Components.css'
+import './Menu.css'
 
 class Dashboard extends React.Component{
     constructor(props) {
