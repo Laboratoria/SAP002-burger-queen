@@ -1,21 +1,27 @@
-import React from 'react';
-import './App.css';
-import firebase from "./firebaseConfig";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+import React from 'react'
+import Login from './components/Login'
+import Signup from './components/Signup'
+import Salon from './components/Salon'
+import Kitchen from './components/Kitchen'
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+import firebase from './firebaseConfig'
 
+
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>#partiuBurgerQueen</h1>
-        </header>
-      </div>
-    );
+      <Router>
+        <div className="App">
+          <Route path="/" exact component={Login}/>
+          <Route path="/signup" component={Signup}/>
+          <Route path="/kitchen" component={Kitchen}/>
+          <Route path="/salon" component={Salon}/>
+        </div>
+      </Router>  
+    )
   }
 }
 
-export default App;
+
+
+export default App

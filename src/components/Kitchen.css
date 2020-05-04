@@ -1,0 +1,65 @@
+:root {
+    --color-white: #fdffff;
+    --color-alabama-crimson: #b10f2e;
+    --color-rosewood: #570000;
+    --color-zinnwaldite-brown: #280000;
+    --color-terra-cotta: #de7c5a;
+    --font-courgette: 'Courgette', cursive;
+    --font-quicksand: 'Quicksand', sans-serif;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.kitchen-page{
+    width: 100%;
+    margin: 100px auto;
+    max-width: 768px;
+    min-height: 1024px;
+    position: relative;
+    background-image: url("../image/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    overflow: auto;
+}
+
+.container {
+    width: 568px;
+    margin: 90px auto;
+}
+
+.kitchen-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+    align-items: center;
+    padding: 30px 0;
+}
+
+.kitchen-header h1{
+    color: var(--color-zinnwaldite-brown);
+    text-transform: uppercase;
+    font-size: 35px;
+    font-family: var(--font-quicksand);
+}
+
+.kitchen-header button {
+    width: 120px;
+    padding: 10px 0;
+    border: none;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+    background-color: var(--color-zinnwaldite-brown);
+    color: var(--color-white);
+}
+
+.kitchen-header button:hover {
+    background-color: var(--color-alabama-crimson);
+}

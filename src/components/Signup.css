@@ -1,0 +1,123 @@
+:root {
+    --color-white: #FDFFFF;
+    --color-alabama-crimson: #B10F2E;
+    --color-rosewood: #570000;
+    --color-zinnwaldite-brown: #280000;
+    --color-terra-cotta: #DE7C5A;
+    --font-courgette: 'Courgette', cursive;
+    --font-quicksand: 'Quicksand', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    width: 100%;
+    margin: 100px auto;
+    max-width: 768px;
+    min-height: 1024px;
+    position: relative;
+    background-image: url("../image/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.signup-container {
+    width: 568px;
+    margin: 90px auto;
+}
+
+.signup-logo {
+    padding: 40px 0 40px 0;
+    text-align: center;
+}
+
+.signup-logo h1 {
+    font-size: 100px;
+    font-family: var(--font-courgette);
+    color: var(--color-zinnwaldite-brown);
+}
+
+.signup-logo h3 {
+    font-size: 30px;
+    font-weight: 200;
+    letter-spacing: 40px;
+    margin-left: 20px;
+    font-family: var(--font-quicksand);
+    color: var(--color-zinnwaldite-brown);
+}
+
+.signup {
+    padding: 30px 0;
+}
+
+.signup h2 {
+    font-size: 25px;
+    color: var(--color-zinnwaldite-brown);
+    font-family: var(--font-quicksand);
+}
+
+.signup-line {
+    width: 150px;
+    height: 4px;
+    background-color: var(--color-rosewood);
+    margin-top: 10px;
+}
+
+.login-form label,
+.signup-link {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--color-zinnwaldite-brown);
+    font-family: var(--font-quicksand);
+    font-weight: 700;
+}
+
+input[type=text], 
+input[type=password],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 20px 0;
+    display: block;
+    font-size: 18px;
+    font-family: var(--font-quicksand);
+    border-radius: 25px;
+    border: none;
+    background: rgba(222, 124, 90, 0.4);
+    color: var(--color-zinnwaldite-brown);
+    font-weight: 200;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: var(--color-zinnwaldite-brown);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    font-family: var(--font-quicksand);
+    font-size: 17px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.signup-link {
+    margin: 30px 0;
+    text-decoration: none;
+    color: var(--color-zinnwaldite-brown);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .page {
+        width: 100%;
+        max-width: 1024px;
+    }
+}
