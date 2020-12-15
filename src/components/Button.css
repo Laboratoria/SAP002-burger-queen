@@ -1,0 +1,30 @@
+  .logoutButton {
+    background-color: rgb(248, 52, 52);
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+  }
+
+  .logoutButton:hover {
+    background-color: rgb(252, 111, 111)
+  }
+
+  .orderButton:hover {
+    background-color: rgb(44, 185, 31);
+  }
+  .orderButton {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+  }
+
+  button, .menu {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+
+  h1, h2 {
+    font-family: 'Courier New', Courier, monospace
+  }
+
+  

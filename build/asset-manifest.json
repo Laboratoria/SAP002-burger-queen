@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a5c0ce81.chunk.css",
+    "main.js": "/static/js/main.07cd9374.chunk.js",
+    "main.js.map": "/static/js/main.07cd9374.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.b8416b0b.chunk.js": "/static/js/2.b8416b0b.chunk.js",
+    "static/js/2.b8416b0b.chunk.js.map": "/static/js/2.b8416b0b.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.573cd7a17183e8aad8b87a1c5c1b7c81.js": "/precache-manifest.573cd7a17183e8aad8b87a1c5c1b7c81.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.a5c0ce81.chunk.css.map": "/static/css/main.a5c0ce81.chunk.css.map",
+    "static/media/Kitchen.css": "/static/media/background.85a8c91c.jpg",
+    "static/media/logo_pb.png": "/static/media/logo_pb.b32dd0dc.png"
+  }
+}
